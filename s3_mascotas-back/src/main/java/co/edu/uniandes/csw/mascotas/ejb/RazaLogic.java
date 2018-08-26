@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
-import co.uniandes.csw.mascotas.persistence.RazaPersistence;
+import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
