@@ -5,27 +5,34 @@
  */
 package co.edu.uniandes.csw.mascotas.entities;
 
+import co.edu.uniandes.csw.mascotas.entities.BaseEntity;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
+
 /**
  *
  * @author Sebastian Mujica
  */
+@Entity
 public class TransaccionEntity extends BaseEntity implements Serializable{
     
     
     private Long id;
+    
+    private String fecha;
         
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private MascotaEntity mascota;
+    private ClienteEntity cliente;
 
-    public TransaccionEntity( Long id) {
+    public TransaccionEntity( Long id, String fecha) {
         this.id=id;
+        this.fecha=fecha;
     }
 
     /**
@@ -55,5 +62,32 @@ public class TransaccionEntity extends BaseEntity implements Serializable{
     public void setMascota(MascotaEntity mascota) {
         this.mascota = mascota;
     }
-  
+
+    /**
+     * @return the fecha
+     */
+    public String getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
 }
