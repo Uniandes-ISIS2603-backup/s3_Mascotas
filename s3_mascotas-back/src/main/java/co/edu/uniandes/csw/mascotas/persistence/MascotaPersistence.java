@@ -23,7 +23,7 @@ public class MascotaPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(MascotaPersistence.class.getName());
     
-    @PersistenceContext(unitName = "TiendaMascotasPU")
+    @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     
     public MascotaEntity create(MascotaEntity mascotaEntity){

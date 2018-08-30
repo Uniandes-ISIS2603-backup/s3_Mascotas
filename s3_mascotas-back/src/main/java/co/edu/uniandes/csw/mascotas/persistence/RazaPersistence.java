@@ -22,7 +22,7 @@ public class RazaPersistence {
     private static final Logger LOGGER = 
             Logger.getLogger(RazaPersistence.class.getName());
     
-    @PersistenceContext(unitName = "TiendaMascotasPU")
+    @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     
     public RazaEntity create(RazaEntity razaEntity){

@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class AdopcionPersistence {
     private static final Logger LOGGER = Logger.getLogger(AdopcionPersistence.class.getName());
-    @PersistenceContext(unitName = "TiendaMascotasPU")
+    @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     
 }
