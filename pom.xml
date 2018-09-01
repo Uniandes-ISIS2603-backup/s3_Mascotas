@@ -11,8 +11,8 @@
     <name>s3_petsuniandes</name>
  
     <modules>
-        <module>s3_mascotas-api</module>
         <module>s3_mascotas-back</module>
+        <module>s3_mascotas-api</module>
     </modules>
     
     <repositories>
