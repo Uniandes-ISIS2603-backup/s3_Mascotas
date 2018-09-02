@@ -42,9 +42,8 @@ public class RazaDTO implements Serializable{
     }
     
     public RazaEntity toEntity(){
-        return new RazaEntity(nombre);
-    }
-
-    
-    
+        RazaEntity newEntity = new RazaEntity();
+        newEntity.setNombre(nombre);
+        return newEntity;
+    }   
 }
