@@ -22,7 +22,7 @@ public class EspecieEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany
-    private List razas;
+    private List<RazaEntity> razas;
     
     public String getNombre() {
         return nombre;
@@ -32,7 +32,7 @@ public class EspecieEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
     
-    public List getRazas(){
+    public List<RazaEntity> getRazas(){
         return razas;
     }
     
