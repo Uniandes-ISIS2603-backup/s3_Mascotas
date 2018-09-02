@@ -48,7 +48,9 @@ public class MascotaPersistence {
         return em.merge(mascotaEntity);
     }
     
-    public void delete(Long mascotasId){
-        em.remove(find(mascotasId));
+    public void delete(MascotaEntity mascota){
+        em.getTransaction();
+        em.remove(mascota);
+        em.getTransaction().commit();
     }
 }
