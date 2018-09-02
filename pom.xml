@@ -11,8 +11,8 @@
     <name>s3_petsuniandes</name>
  
     <modules>
-        <module>s3_mascotas-back</module>
         <module>s3_mascotas-api</module>
+        <module>s3_mascotas-back</module>
     </modules>
     
     <repositories>
@@ -44,7 +44,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <!-- Dependencias comunes a los proyectos -->
     <dependencies>
         
@@ -54,7 +53,7 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
-        </dependency>    	
+        </dependency>     
         
         
         <!-- Soporte para ToStringBuilder -->
@@ -63,7 +62,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
-
         <!-- Pruebas con JUnit -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -76,7 +74,6 @@
             <version>4.12</version>
             <scope>test</scope> 
         </dependency>
-
         <!-- Soporte para pruebas con Payara 4.x -->
         <dependency>
             <groupId>fish.payara.arquillian</groupId>
