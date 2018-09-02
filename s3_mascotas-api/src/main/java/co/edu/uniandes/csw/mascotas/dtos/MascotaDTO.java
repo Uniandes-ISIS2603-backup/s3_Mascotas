@@ -100,6 +100,12 @@ public class MascotaDTO implements Serializable{
     
     
     public MascotaEntity toEntity(){
-        return new MascotaEntity(nombre, edad, genero, color, precio);
+        MascotaEntity newEntity = new MascotaEntity();
+        newEntity.setNombre(nombre);
+        newEntity.setEdad(edad);
+        newEntity.setGenero(genero);
+        newEntity.setColor(color);
+        newEntity.setPrecio(precio);
+        return newEntity;
     }
 }

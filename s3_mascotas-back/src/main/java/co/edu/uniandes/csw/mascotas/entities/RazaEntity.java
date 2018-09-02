@@ -26,10 +26,6 @@ public class RazaEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "raza", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
-    public RazaEntity(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getNombre() {
         return nombre;
     }

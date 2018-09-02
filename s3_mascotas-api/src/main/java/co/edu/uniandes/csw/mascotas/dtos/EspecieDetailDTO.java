@@ -16,6 +16,7 @@ import java.util.List;
  * @author estudiante
  */
 public class EspecieDetailDTO extends EspecieDTO implements Serializable{
+    
     private List<RazaDTO> razas;
     public EspecieDetailDTO(){
         super();

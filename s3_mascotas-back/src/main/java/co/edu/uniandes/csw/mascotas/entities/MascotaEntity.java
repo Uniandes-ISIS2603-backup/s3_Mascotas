@@ -27,16 +27,6 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private RazaEntity raza;
-
-    public MascotaEntity(String nombre, Integer edad, String genero, String color, Double precio) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.genero = genero;
-        this.color = color;
-        this.precio = precio;
-    }
-
-    
     
     public String getNombre() {
         return nombre;
