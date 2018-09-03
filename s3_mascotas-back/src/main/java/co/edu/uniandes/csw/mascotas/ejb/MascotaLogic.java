@@ -58,7 +58,7 @@ public class MascotaLogic {
         return newEntity;
     }
     
-    public void deleteMascota(Long mascotasId){
-        persistence.delete(mascotasId);
+    public void deleteMascota(MascotaEntity mascota){
+        persistence.delete(mascota);
     }
 }

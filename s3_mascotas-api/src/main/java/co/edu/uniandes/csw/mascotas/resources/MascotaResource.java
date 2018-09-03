@@ -92,12 +92,12 @@ public class MascotaResource {
     
     @DELETE
     @Path("{mascotasId: \\d+}")
-    public void deleteMascota(@PathParam("mascotasId") Long mascotasId, MascotaDTO mascota) throws BusinessLogicException{
+    public void deleteMascota(@PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
         if (mascotaLogic.getMascota(mascotasId) == null) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
-        mascotaLogic.deleteMascota(mascotasId);
+        mascotaLogic.deleteMascota(mascotaEntity);
     }
     
     private List<MascotaDTO> listEntity2DTO(List<MascotaEntity> entityList){
