@@ -42,6 +42,17 @@ public class CalificacionResource {
     
     private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
     
+//    @POST
+//    public CalificacionDTO crearCalificacion(CalificacionDTO calificacion)throws BusinessLogicException{
+//        
+//        LOGGER.info("CalificacionResource crearCalificacion: input: "+ calificacion.toString());
+//        CalificacionEntity calificacionEntity = calificacion.toEntity();
+//        CalificacionEntity nuevaCalificacionEntity = calificacionLogic.crearCalificacion(calificacionEntity);
+//        CalificacionDTO DTONuevaCalificacion = new CalificacionDTO(nuevaCalificacionEntity);
+//        LOGGER.info("CalificacionResource crearCalificacion: output: "+ DTONuevaCalificacion.toString());
+//        return DTONuevaCalificacion;
+//    }
+    
     /**
      * Crea una nueva calificacion con la información proporcionada en el cuerpo
      * de la petición web. Retorna una calificacion con la informacion igual a la de entrada.
@@ -49,14 +60,21 @@ public class CalificacionResource {
      * @return CalificacionDTO DTO con la misma informaciòn de entrada
      * @throws BusinessLogicException 
      */
-    @POST
-    public CalificacionDTO crearCalificacion(CalificacionDTO calificacion)throws BusinessLogicException{
+    @GET
+    public List<CalificacionDTO> darCalificaciones()throws BusinessLogicException{
         
-        LOGGER.info("CalificacionResource crearCalificacion: input: "+ calificacion.toString());
-        CalificacionEntity calificacionEntity = calificacion.toEntity();
-        CalificacionEntity nuevaCalificacionEntity = calificacionLogic.crearCalificacion(calificacionEntity);
-        CalificacionDTO DTONuevaCalificacion = new CalificacionDTO(nuevaCalificacionEntity);
-        LOGGER.info("CalificacionResource crearCalificacion: output: "+ DTONuevaCalificacion.toString());
-        return DTONuevaCalificacion;
+        LOGGER.info("CalificacionResource darCalificaciones: input: void");
+        List<CalificacionDTO> lista = convertirLista(calificacionLogic.getCalificaciones());
+        LOGGER.log(Level.INFO, "CalificacionResource getCalificaciones: output: {0}", "Calificaciones");
+        return lista;
+    }
+    
+    public List<CalificacionDTO> convertirLista(List<CalificacionEntity> pLista)
+    {
+        List<CalificacionDTO> lista = new ArrayList<>();
+        for (CalificacionEntity tmp : pLista) {
+            lista.add(new CalificacionDTO(tmp));
+        }
+        return lista;
     }
 }

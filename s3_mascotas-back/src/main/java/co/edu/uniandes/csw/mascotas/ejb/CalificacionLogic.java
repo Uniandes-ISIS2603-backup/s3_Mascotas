@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.CalificacionEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.mascotas.persistence.CalificacionPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,11 +23,21 @@ public class CalificacionLogic
 {
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
     
+    @Inject
+    private CalificacionPersistence persistence;
+    
     public CalificacionEntity crearCalificacion(CalificacionEntity entrada) throws BusinessLogicException
     {
-        LOGGER.info("Se está creando una calificación");
-        LOGGER.info("Creacion Finalizada");
+        LOGGER.info("A new score is being made");
+        persistence.create(entrada);
+        LOGGER.info("Score creation end.");
         return entrada;
     }
     
+    public List<CalificacionEntity> getCalificaciones(){
+        LOGGER.log(Level.INFO, "Searching for scores");
+        List<CalificacionEntity> calificaciones = persistence.findAll();
+        LOGGER.log(Level.INFO, "Ending search");
+        return calificaciones;
+    }
 }
