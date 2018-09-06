@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  * @author Camilo Pinilla
  */
 @Entity
-public class CLienteEntity extends BaseEntity implements Serializable
+public class ClienteEntity extends BaseEntity implements Serializable
 {
     private long telefono;
     private String direccion;

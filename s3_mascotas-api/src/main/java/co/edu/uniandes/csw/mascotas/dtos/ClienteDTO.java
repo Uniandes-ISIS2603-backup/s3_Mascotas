@@ -31,7 +31,7 @@ public class ClienteDTO implements Serializable{
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

@@ -20,6 +20,11 @@ public class HistoriaEntity extends BaseEntity implements Serializable
     {
         return foto;
     }
+    
+    public String getTexto()
+    {
+        return texto;
+    }
 
     public void setFoto(String foto)
     {
