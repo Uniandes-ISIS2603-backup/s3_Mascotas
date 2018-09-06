@@ -15,6 +15,8 @@ import java.io.Serializable;
  */
 public class MascotaVentaDTO implements Serializable{
     
+    private Long id;
+    
     private String documentosPedegree;
     
     private Double precio;
@@ -26,6 +28,7 @@ public class MascotaVentaDTO implements Serializable{
     
     public MascotaVentaDTO( MascotaVentaEntity mascotaVenta) {
         this.documentosPedegree = mascotaVenta.getDocumentosPedegree();
+        this.id= mascotaVenta.getId();
         this.precio= mascotaVenta.getPrecio();
         if (mascotaVenta.getMascota()!=null) {
             this.mascota = new MascotaDTO(mascotaVenta.getMascota());
@@ -57,6 +60,20 @@ public class MascotaVentaDTO implements Serializable{
     }
 
     /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
      * @param precio the precio to set
      */
     public void setPrecio(Double precio) {
@@ -78,7 +95,9 @@ public class MascotaVentaDTO implements Serializable{
     }
     
     public MascotaVentaEntity toEntity(){
-        MascotaVentaEntity entity = new MascotaVentaEntity(this.documentosPedegree, this.precio);
+        MascotaVentaEntity entity = new MascotaVentaEntity();
+        entity.setDocumentosPedegree(this.documentosPedegree);
+        entity.setPrecio(this.precio);
         if (this.mascota!=null) {
             entity.setMascota(this.mascota.toEntity());
         }

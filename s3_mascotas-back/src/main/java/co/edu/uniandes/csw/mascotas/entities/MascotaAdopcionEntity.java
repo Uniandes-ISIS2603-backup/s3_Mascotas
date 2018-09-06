@@ -7,26 +7,28 @@ package co.edu.uniandes.csw.mascotas.entities;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author Sebastian Mujica
  */
+@Entity
 public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
 
     private String historia;
     
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private MascotaEntity mascota;
     
+    @PodamExclude
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private MascotaEntity mascota;
+
+    public MascotaAdopcionEntity() {
+    }
     
 
-    public MascotaAdopcionEntity( String historia) {
-        this.historia = historia;
-    }
 
     /**
      * @return the historia

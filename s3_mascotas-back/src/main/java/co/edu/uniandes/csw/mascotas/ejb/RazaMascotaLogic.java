@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.ejb;
 
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 
 /**
@@ -15,6 +14,5 @@ import javax.ejb.Stateless;
 @Stateless
 public class RazaMascotaLogic {
     
-    private static final Logger LOGGER = Logger.getLogger(RazaMascotaLogic.class.getName());
     
 }

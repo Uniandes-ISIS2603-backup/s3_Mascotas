@@ -9,6 +9,8 @@
     <class>co.edu.uniandes.csw.mascotas.entities.EspecieEntity</class>
     <class>co.edu.uniandes.csw.mascotas.entities.MascotaEntity</class>
     <class>co.edu.uniandes.csw.mascotas.entities.RazaEntity</class>
+    <class>co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity</class>
+    <class>co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

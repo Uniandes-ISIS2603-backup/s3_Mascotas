@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 public class MascotaAdopcionDTO implements Serializable{
     
+    private Long id;
+    
     private String historia;
     
     private MascotaDTO mascota;
@@ -23,6 +25,7 @@ public class MascotaAdopcionDTO implements Serializable{
 
     public MascotaAdopcionDTO(MascotaAdopcionEntity mascotaAdopcionEntity) {
         this.historia= mascotaAdopcionEntity.getHistoria();
+        this.id = mascotaAdopcionEntity.getId();
         if(mascotaAdopcionEntity.getMascota()!=null){
             this.mascota = new MascotaDTO(mascotaAdopcionEntity.getMascota());
         }
@@ -53,6 +56,20 @@ public class MascotaAdopcionDTO implements Serializable{
     }
 
     /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
      * @param mascota the mascota to set
      */
     public void setMascota(MascotaDTO mascota) {
@@ -60,7 +77,8 @@ public class MascotaAdopcionDTO implements Serializable{
     }
     
     public MascotaAdopcionEntity toEntity(){
-        MascotaAdopcionEntity entity = new MascotaAdopcionEntity(this.historia);
+        MascotaAdopcionEntity entity = new MascotaAdopcionEntity();
+        entity.setHistoria(this.historia);
         if(this.mascota!=null){
             entity.setMascota(this.mascota.toEntity());
         }
