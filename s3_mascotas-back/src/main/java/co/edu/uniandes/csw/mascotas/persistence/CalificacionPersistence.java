@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.mascotas.persistence;
 
 import co.edu.uniandes.csw.mascotas.entities.CalificacionEntity;
-import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,16 +39,18 @@ public class CalificacionPersistence
         return q.getResultList();
     }
     
-        public CalificacionEntity find(Long calificacionId){
+    public CalificacionEntity find(Long calificacionId)
+    {
         return em.find(CalificacionEntity.class, calificacionId);
     }
     
-    public MascotaEntity update(MascotaEntity mascotaEntity){
-        LOGGER.log(Level.INFO, "Updating pet with id={0}", mascotaEntity.getId());
-        return em.merge(mascotaEntity);
+    public CalificacionEntity update(CalificacionEntity calificacionEntity)
+    {
+        LOGGER.log(Level.INFO, "Updating score with id={0}", calificacionEntity.getId());
+        return em.merge(calificacionEntity);
     }
     
-    public void delete(MascotaEntity mascota){
+    public void delete(CalificacionEntity mascota){
         em.getTransaction();
         em.remove(mascota);
         em.getTransaction().commit();
