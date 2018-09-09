@@ -42,7 +42,7 @@ public class MascotaVentaLogic {
         return mascotaventaEntity;
      }
      
-     public MascotaVentaEntity updateMascotaventa(long mascotaVentaId, MascotaVentaEntity mascotaVentaEntity){
+     public MascotaVentaEntity updateMascotaVenta(long mascotaVentaId, MascotaVentaEntity mascotaVentaEntity){
          LOOGER.log(Level.INFO, "Updating the pet with id ={0}", mascotaVentaId);
          MascotaVentaEntity nuevaMascotaVentaEntity = persistence.update(mascotaVentaEntity);
          LOOGER.log(Level.INFO, "Finished update on pet with id ={0}", mascotaVentaEntity.getId());

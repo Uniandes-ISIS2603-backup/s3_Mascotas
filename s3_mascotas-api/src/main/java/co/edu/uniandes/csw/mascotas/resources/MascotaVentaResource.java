@@ -68,7 +68,7 @@ public class MascotaVentaResource {
         if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId)== null){
             throw new WebApplicationException("The resource /mascotaVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
-        return new MascotaVentaDTO(mascotaVentaLogic.updateMascotaventa(mascotaVentaId, mascotaVenta.toEntity()));
+        return new MascotaVentaDTO(mascotaVentaLogic.updateMascotaVenta(mascotaVentaId, mascotaVenta.toEntity()));
     }
     
 
