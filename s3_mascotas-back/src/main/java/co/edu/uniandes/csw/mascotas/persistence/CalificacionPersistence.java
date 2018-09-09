@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.mascotas.persistence;
 
 import co.edu.uniandes.csw.mascotas.entities.CalificacionEntity;
+import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
