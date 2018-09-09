@@ -40,4 +40,14 @@ public class CalificacionLogic
         LOGGER.log(Level.INFO, "Ending search");
         return calificaciones;
     }
+    
+    public CalificacionEntity getCalificacion(Long calificacionId)
+    {
+        CalificacionEntity calificacionEntity = persistence.find(calificacionId);
+        if(calificacionEntity == null){
+            LOGGER.log(Level.SEVERE, "La calificacion con el id = {0} no existe", calificacionId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la calificacion con id = {0}", calificacionId);
+        return calificacionEntity;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 /**
  *
@@ -13,9 +14,20 @@ import javax.persistence.Entity;
 @Entity
 public class AdopcionEntity extends BaseEntity implements Serializable{
     private String docsAdopcion;
+    private CalificacionEntity calificacion;
 
     public String getDocsAdopcion() {
         return docsAdopcion;
+    }
+    
+    public CalificacionEntity getCalificacion()
+    {
+        return calificacion;
+    }
+    
+    public void setCalificacion(CalificacionEntity pCalificacion)
+    {
+       calificacion = pCalificacion;
     }
 
     public void setDocsAdopcion(String docsAdopcion) {
