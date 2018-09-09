@@ -17,6 +17,7 @@ public class CalificacionDTO implements Serializable
 {
     private Integer puntaje;   
     private String comentarios;
+    private Long id;
 
     public CalificacionDTO() {
     }
@@ -55,6 +56,16 @@ public class CalificacionDTO implements Serializable
      */
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
+    }
+    
+    public Long getId()
+    {
+        return id;
+    }
+    
+    public void setId(Long id)
+    {
+        this.id = id;
     }
     
     public CalificacionEntity toEntity(){

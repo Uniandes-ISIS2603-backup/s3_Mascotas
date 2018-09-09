@@ -31,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author pena
  */
-@Path("calificacion")
+@Path("calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

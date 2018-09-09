@@ -17,7 +17,8 @@ import javax.persistence.PersistenceContext;
  * @author Juan Sebastian Gomez
  */
 @Stateless
-public class AdopcionPersistence {
+public class AdopcionPersistence 
+{
     private static final Logger LOGGER = Logger.getLogger(AdopcionPersistence.class.getName());
     @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
@@ -26,6 +27,10 @@ public class AdopcionPersistence {
         em.persist(adopEn);
         LOGGER.log(Level.INFO, "Saliendo de crear una adopción nueva");
         return adopEn;
+    }
+    
+    public AdopcionEntity find(Long adopcionId){
+        return em.find(AdopcionEntity.class, adopcionId);
     }
     
 }
