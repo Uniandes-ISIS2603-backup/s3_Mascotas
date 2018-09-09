@@ -49,8 +49,8 @@ public class MascotaAdopcionLogic {
          return nuevaMascotaAdopcionEntity;
      }
     
-     public void deleteMascotaAdopcion(MascotaAdopcionEntity mascotaAdopcionEntity){
-         persistence.delete(mascotaAdopcionEntity);
+     public void deleteMascotaAdopcion(Long mascotaAdopcionId){
+         persistence.delete(mascotaAdopcionId);
      }
     
     

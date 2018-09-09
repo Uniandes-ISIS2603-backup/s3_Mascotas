@@ -86,13 +86,13 @@ public class MascotaVentaResource {
     
     @DELETE
     @Path("{mascotaAdopcionId: \\d+}")
-    public void deleteMascotaVenta(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId) throws BusinessLogicException{
-        MascotaVentaEntity mascotaVentaEntity = mascotaVentaLogic.getMascotaVenta(mascotaAdopcionId);
-        if(mascotaVentaLogic.getMascotaVenta(mascotaAdopcionId) == null){
-            throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaAdopcionId + "doesn't exist.", 404);
-            
+    public void deleteMascotaVenta(@PathParam("mascotaAdopcionId") Long mascotaVentaId) throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "MascotaVentaResource deleteMascotaVenta: input: {0}", mascotaVentaId);
+        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId) == null){
+            throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
-        mascotaVentaLogic.deleteMascotaVenta(mascotaVentaEntity);
+        mascotaVentaLogic.deleteMascotaVenta(mascotaVentaId);
+        LOGGER.info("MascotaVenta deleteMascotaVenta: output: void");
     }
     
 }

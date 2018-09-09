@@ -72,12 +72,12 @@ public class MascotaAdopcionResource {
     @DELETE
     @Path("{mascotaAdopcionId: \\d+}")
     public void deleteMascotaAdopcion(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, MascotaAdopcionDTO mascotaAdopcion) throws BusinessLogicException{
-        MascotaAdopcionEntity mascotaAdopcionEntity = mascotaAdopcionLogic.getMascotaAdopcion(mascotaAdopcionId);
+        LOGGER.log(Level.INFO, "MascotaAdopcionREsource deleteMascotaAdopcion: input: {0}", mascotaAdopcionId);
         if(mascotaAdopcionLogic.getMascotaAdopcion(mascotaAdopcionId) == null){
             throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaAdopcionId + "doesn't exist.", 404);
-            
         }
-        mascotaAdopcionLogic.deleteMascotaAdopcion(mascotaAdopcionEntity);
+        mascotaAdopcionLogic.deleteMascotaAdopcion(mascotaAdopcionId);
+        LOGGER.info("MascotaAdopcionResource deleteMascotaAdopcion: output: void");
     }
     
     @PUT
