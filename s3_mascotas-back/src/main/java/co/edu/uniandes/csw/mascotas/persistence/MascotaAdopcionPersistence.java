@@ -42,10 +42,11 @@ public class MascotaAdopcionPersistence {
         return em.merge(mascotaAdopcionEntity);
     }
     
-    public void delete(MascotaAdopcionEntity mascota){
-        em.getTransaction();
-        em.remove(mascota);
-        em.getTransaction().commit();
+    public void delete(Long mascotaAdopcionId){
+        LOGGER.log(Level.INFO, "Borrando mascotaAdopcion con id = {0}", mascotaAdopcionId);
+        MascotaAdopcionEntity entity = em.find(MascotaAdopcionEntity.class, mascotaAdopcionId);
+        em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar la MascotaAdopcion con id = {0}", mascotaAdopcionId);
     }
     
     

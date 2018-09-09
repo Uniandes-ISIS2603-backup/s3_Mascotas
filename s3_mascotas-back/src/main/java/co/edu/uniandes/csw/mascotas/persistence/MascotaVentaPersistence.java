@@ -36,14 +36,15 @@ public class MascotaVentaPersistence {
          }
          
         public MascotaVentaEntity update(MascotaVentaEntity mascotaVentaEntity){
-        LOGGER.log(Level.INFO, "Updating mascotaVenta with id={0}", mascotaVentaEntity.getId());
+        LOGGER.log(Level.INFO, "The mascotaVenta is updated,  with id={0}", mascotaVentaEntity.getId());
         return em.merge(mascotaVentaEntity);
     }
         
-        public void delete(MascotaVentaEntity mascota){
-            em.getTransaction();
-            em.remove(mascota);
-            em.getTransaction().commit();
+        public void delete(Long mascotaVentaId){
+            LOGGER.log(Level.INFO, "Borrando mascotaVenta con id = {0}", mascotaVentaId);
+            MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, mascotaVentaId);
+            em.remove(entity);
+            LOGGER.log(Level.INFO, "saliendo de borrar la mascotaVenta con id = {0}", mascotaVentaId);
         }
 
 }
