@@ -52,7 +52,7 @@ public class AdopcionCalificacionLogic {
     public void removeCalificacion(Long adopcionId, Long calificacionId)
     {
         AdopcionEntity adopcionEntity = adopcionPersistence.find(adopcionId);
-        calificacionPersistence.delete(calificacionPersistence.find(calificacionId));
+        calificacionPersistence.delete(calificacionId);
         adopcionEntity.setCalificacion(null);
     }
 }
