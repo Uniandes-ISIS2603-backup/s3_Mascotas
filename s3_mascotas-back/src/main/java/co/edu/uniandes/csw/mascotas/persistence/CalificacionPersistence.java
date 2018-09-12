@@ -50,9 +50,8 @@ public class CalificacionPersistence
         return em.merge(calificacionEntity);
     }
     
-    public void delete(CalificacionEntity calificacion){
-        em.getTransaction();
-        em.remove(calificacion);
-        em.getTransaction().commit();
+    public void delete(Long calificacionId){
+        CalificacionEntity calificacionEntity = em.find(CalificacionEntity.class, calificacionId);
+        em.remove(calificacionEntity);
     }
 }
