@@ -42,17 +42,6 @@ public class CalificacionResource {
     
     private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
     
-//    @POST
-//    public CalificacionDTO crearCalificacion(CalificacionDTO calificacion)throws BusinessLogicException{
-//        
-//        LOGGER.info("CalificacionResource crearCalificacion: input: "+ calificacion.toString());
-//        CalificacionEntity calificacionEntity = calificacion.toEntity();
-//        CalificacionEntity nuevaCalificacionEntity = calificacionLogic.crearCalificacion(calificacionEntity);
-//        CalificacionDTO DTONuevaCalificacion = new CalificacionDTO(nuevaCalificacionEntity);
-//        LOGGER.info("CalificacionResource crearCalificacion: output: "+ DTONuevaCalificacion.toString());
-//        return DTONuevaCalificacion;
-//    }
-    
     /**
      * Crea una nueva calificacion con la información proporcionada en el cuerpo
      * de la petición web. Retorna una calificacion con la informacion igual a la de entrada.
