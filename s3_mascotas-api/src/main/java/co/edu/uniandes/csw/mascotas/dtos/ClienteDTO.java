@@ -14,15 +14,16 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Camilo Pinilla
  */
 public class ClienteDTO implements Serializable{
-    private long id;
-    private long telefono;
+    
+    private Long id;
+    private Long telefono;
     private String direccion;
     private String tarjetaCreditoRegistrada;
-
+    
     public long getId() {
         return id;
     }
-
+    
     public void setId(long id) {
         this.id = id;
     }

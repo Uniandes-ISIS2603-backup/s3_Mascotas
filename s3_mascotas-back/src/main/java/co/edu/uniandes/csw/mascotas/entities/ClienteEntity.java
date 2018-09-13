@@ -5,7 +5,12 @@
  */
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Camilo Pinilla
@@ -16,6 +21,10 @@ public class ClienteEntity extends BaseEntity implements Serializable
     private long telefono;
     private String direccion;
     private String tarjetaCreditoRegistrada;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<CompraEntity> compras = new ArrayList<>();
 
     public long getTelefono()
     {
@@ -47,4 +56,11 @@ public class ClienteEntity extends BaseEntity implements Serializable
         this.tarjetaCreditoRegistrada = tarjetaCreditoRegistrada;
     }
     
+    public List<CompraEntity> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<CompraEntity> compras) {
+        this.compras = compras;
+    }
 }
