@@ -72,7 +72,7 @@ public class CompraResource {
     
     @PUT
     @Path("{comprasId: \\d+}")
-    public CompraDTO updateMascota(@PathParam("comprasId") Long compraId, CompraDTO compra) throws BusinessLogicException{
+    public CompraDTO updateCompra(@PathParam("comprasId") Long compraId, CompraDTO compra) throws BusinessLogicException{
         compra.setId(compraId);
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException("The resource /comrpas/" + compraId + "doesn't exist.", 404);            

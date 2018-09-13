@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.mascotas.resources;
 
 /**
  *
- * @author Juan Sebasti{an G{omez
+ * @author Juan Sebastián Gómez
  */
 import co.edu.uniandes.csw.mascotas.dtos.AdopcionDTO;
 import co.edu.uniandes.csw.mascotas.ejb.AdopcionLogic;
@@ -72,7 +72,7 @@ public class AdopcionResource {
     
     @PUT
     @Path("{adopcionesId: \\d+}")
-    public AdopcionDTO updateMascota(@PathParam("adopcionesId") Long adopId, AdopcionDTO adop) throws BusinessLogicException{
+    public AdopcionDTO updateAdopcion(@PathParam("adopcionesId") Long adopId, AdopcionDTO adop) throws BusinessLogicException{
         adop.setId(adopId);
         if (adopcionLogic.getAdopcion(adopId) == null) {
             throw new WebApplicationException("The resource /adopciones/" + adopId + "doesn't exist.", 404);            
