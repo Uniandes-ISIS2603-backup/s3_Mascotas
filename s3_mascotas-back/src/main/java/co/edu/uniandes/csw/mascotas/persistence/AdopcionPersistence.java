@@ -25,9 +25,11 @@ public class AdopcionPersistence
     @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     public AdopcionEntity create(AdopcionEntity adopEn){
+    
         LOGGER.log(Level.INFO, "Crear una adopción nueva");
         em.persist(adopEn);
         LOGGER.log(Level.INFO, "Saliendo de crear una adopción nueva");
+    
         return adopEn;
     }
         public List<AdopcionEntity> findAll(){

@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Juan Sebastián Gómez
@@ -14,6 +16,17 @@ import javax.persistence.Entity;
 public class CompraEntity extends BaseEntity implements Serializable{
     public double precio;
     public String tipoDePago;
+    @PodamExclude
+    @OneToOne
+    private CalificacionEntity calificacion;
+
+    public CalificacionEntity getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(CalificacionEntity calificacion) {
+        this.calificacion = calificacion;
+    }
 
     public double getPrecio() {
         return precio;

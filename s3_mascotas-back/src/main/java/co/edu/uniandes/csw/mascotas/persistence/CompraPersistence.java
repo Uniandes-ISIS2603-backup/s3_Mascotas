@@ -25,9 +25,9 @@ public class CompraPersistence {
     @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     public CompraEntity create(CompraEntity compraEn){
-        LOGGER.log(Level.INFO, "Crear una adopción nueva");
+        LOGGER.log(Level.INFO, "Crear una compra nueva");
         em.persist(compraEn);
-        LOGGER.log(Level.INFO, "Saliendo de crear una adopción nueva");
+        LOGGER.log(Level.INFO, "Saliendo de crear una compra nueva");
         return compraEn;
     }
     public List<CompraEntity> findAll(){

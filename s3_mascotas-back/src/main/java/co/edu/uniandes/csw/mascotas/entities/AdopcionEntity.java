@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Juan Sebastian Gomez
@@ -14,8 +16,10 @@ import javax.persistence.Entity;
 @Entity
 public class AdopcionEntity extends BaseEntity implements Serializable{
     private String docsAdopcion;
+    @PodamExclude
+    @OneToOne
     private CalificacionEntity calificacion;
-
+    
     public String getDocsAdopcion() {
         return docsAdopcion;
     }

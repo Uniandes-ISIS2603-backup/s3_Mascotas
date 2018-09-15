@@ -15,7 +15,16 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class AdopcionDTO implements Serializable{
     private String docsAdopcion;
+    private Long id;
+    private CalificacionDTO relacionCalificacion;    
 
+    public CalificacionDTO getRelacionCalificacion() {
+        return relacionCalificacion;
+    }
+
+    public void setRelacionCalificacion(CalificacionDTO relacionCalificacion) {
+        this.relacionCalificacion = relacionCalificacion;
+    }
     public String getDocsAdopcion() {
         return docsAdopcion;
     }
@@ -33,13 +42,12 @@ public class AdopcionDTO implements Serializable{
             this.docsAdopcion = adopcion.getDocsAdopcion();
         }
     }
-    private long id;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public AdopcionEntity toEntity(){

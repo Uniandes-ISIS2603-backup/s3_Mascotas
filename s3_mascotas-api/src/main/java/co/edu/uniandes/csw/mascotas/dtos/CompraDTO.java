@@ -14,11 +14,23 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CompraDTO implements Serializable {
 
-    public double getPrecio() {
+     private Double precio;
+     private String tipoDePago;
+     private Long id;
+     private CalificacionDTO relacionCalificacion;
+     public CalificacionDTO getRelacionCalificacion() {
+        return relacionCalificacion;
+    }
+
+    public void setRelacionCalificacion(CalificacionDTO relacionCalificacion) {
+        this.relacionCalificacion = relacionCalificacion;
+    }
+        
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -42,15 +54,13 @@ public class CompraDTO implements Serializable {
     /**
      * Atributo que representa el precio de la mascota
      */
-        private double precio;
-        private String tipoDePago;
-        private long id;
+       
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public CompraEntity toEntity(){

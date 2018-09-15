@@ -23,10 +23,11 @@ public class AdopcionLogic {
       private static final Logger LOGGER = Logger.getLogger(CompraLogic.class.getName());
     @Inject
     private AdopcionPersistence persistence;
-    public AdopcionEntity crearAdopcion(AdopcionEntity compraEnt)throws BusinessLogicException{
+    public AdopcionEntity crearAdopcion(AdopcionEntity adopEnt)throws BusinessLogicException{
         LOGGER.info("Creacion de adopcion");
-        persistence.create(compraEnt);
-        return compraEnt;
+        persistence.create(adopEnt);
+        
+        return adopEnt;
     }
         public List<AdopcionEntity> getAdopciones(){
         LOGGER.log(Level.INFO, "Buscando adopciones");
