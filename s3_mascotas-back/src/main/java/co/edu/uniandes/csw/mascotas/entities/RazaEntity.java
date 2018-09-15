@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -21,6 +22,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class RazaEntity extends BaseEntity implements Serializable{
     
     private String nombre;
+    
+    @PodamExclude
+    @ManyToOne
+    private EspecieEntity especie;
     
     @PodamExclude
     @OneToMany(mappedBy = "raza", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -42,7 +47,11 @@ public class RazaEntity extends BaseEntity implements Serializable{
         this.mascotas = mascotas;
     }
     
+    public void setEspecie(EspecieEntity especieEntity){
+        this.especie = especieEntity;
+    }
     
-    
-    
+    public EspecieEntity getEspecie(){
+        return especie;
+    }
 }
