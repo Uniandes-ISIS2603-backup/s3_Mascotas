@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
+//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
@@ -19,6 +21,18 @@ public class CompraEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private CalificacionEntity calificacion;
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
 
     public CalificacionEntity getCalificacion() {
         return calificacion;
