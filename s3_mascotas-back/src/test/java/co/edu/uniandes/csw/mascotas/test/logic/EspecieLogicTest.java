@@ -45,7 +45,7 @@ public class EspecieLogicTest {
     @Inject
     private UserTransaction utx;
     
-    private List<RazaEntity> razaData = new ArrayList<>();
+    //private List<RazaEntity> razaData = new ArrayList<>();
     
     private List<EspecieEntity> especieData = new ArrayList<EspecieEntity>();
     
@@ -88,8 +88,8 @@ public class EspecieLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from BookEntity").executeUpdate();
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from EspecieEntity").executeUpdate();
+        //em.createQuery("delete from EditorialEntity").executeUpdate();
     }
     
     /**
@@ -97,18 +97,12 @@ public class EspecieLogicTest {
      * pruebas.
      */
     private void insertData() {
-        for (int i = 0; i < 3; i++) {
-            RazaEntity raza = factory.manufacturePojo(RazaEntity.class);
-            em.persist(raza);
-            razaData.add(raza);
-        }
+        
         for (int i = 0; i < 3; i++) {
             EspecieEntity entity = factory.manufacturePojo(EspecieEntity.class);
             em.persist(entity);
             especieData.add(entity);
-            if (i == 0) {
-                razaData.get(i).setEspecie(entity);
-            }
+            
         }
     }
     
