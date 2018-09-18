@@ -106,6 +106,7 @@ public class MascotaDTO implements Serializable{
         newEntity.setGenero(genero);
         newEntity.setColor(color);
         newEntity.setPrecio(precio);
+        newEntity.setId(id);
         return newEntity;
     }
 }

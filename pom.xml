@@ -62,6 +62,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+        <!-- Soporte para Copia de propiedades -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
         <!-- Pruebas con JUnit -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>

@@ -75,6 +75,12 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     public void setRaza(RazaEntity raza) {
         this.raza = raza;
     }
+
+    @Override
+    public String toString() {
+        return "MascotaEntity{" + "nombre=" + nombre + ", edad=" + edad + ", genero=" + genero + ", color=" + color + ", precio=" + precio + ", raza=" + raza + '}';
+    }
+    
     
     
 }
