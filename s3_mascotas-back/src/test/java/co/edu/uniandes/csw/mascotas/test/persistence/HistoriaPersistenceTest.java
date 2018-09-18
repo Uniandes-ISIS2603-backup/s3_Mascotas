@@ -161,7 +161,7 @@ public class HistoriaPersistenceTest {
         HistoriaEntity compareEntity = em.find(HistoriaEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getId(), compareEntity.getId());
-        Assert.assertEquals(newEntity.getTexto(), compareEntity.getTexto(), 0);
+        Assert.assertEquals(newEntity.getTexto(), compareEntity.getTexto());
         Assert.assertEquals(newEntity.getFoto(), compareEntity.getFoto());
     }
 }
