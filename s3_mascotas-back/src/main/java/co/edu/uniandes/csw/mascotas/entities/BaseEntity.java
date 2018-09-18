@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.mascotas.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,6 +46,10 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    /**Atribute to hide the entity when the DELETE operation is asked*/
+    @Column(name = "deleted", columnDefinition = "boolean default false", nullable = false)
+    private Boolean deleted = false;
 
     public Long getId() {
         return id;
@@ -54,6 +59,14 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

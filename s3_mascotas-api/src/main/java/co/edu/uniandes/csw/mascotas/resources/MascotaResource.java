@@ -53,6 +53,8 @@ public class MascotaResource {
     public MascotaDTO crearMascota(MascotaDTO mascota)throws BusinessLogicException{
         
         LOGGER.info("MascotaResource crearMascota: input: "+ mascota.toString());
+        /** User cannot define id´s */
+        mascota.setId(null);
         MascotaEntity mascotaEntity = mascota.toEntity();
         MascotaEntity nuevoMascotaEntity = mascotaLogic.crearMascota(mascotaEntity);
         MascotaDTO nuevoMascotaDTO = new MascotaDTO(nuevoMascotaEntity);
