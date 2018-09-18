@@ -29,6 +29,9 @@ public class EspecieLogic
     public EspecieEntity crearEspecie(EspecieEntity entity) throws BusinessLogicException{
         LOGGER.info("Species creation process begins");
         // missing verifications
+        if(entity == null || mismoNombre(entity)){
+            throw new BusinessLogicException("No se puede crear la especie");
+        }
         EspecieEntity nuevaEntity = persistence.create(entity);
         LOGGER.info("Species creation finishes");
         return nuevaEntity;
@@ -64,7 +67,18 @@ public class EspecieLogic
         if (razas != null && !razas.isEmpty()) {
             throw new BusinessLogicException("No se puede borrar la especie con id = " + speciesId + " porque tiene razas asociadas");
         }
-        persistence.delete(speciesId);
+        getSpecies(speciesId).setDeleted(Boolean.TRUE);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la especie con id = {0}", speciesId);
+    }
+    private boolean mismoNombre(EspecieEntity entity)
+    {
+        List<EspecieEntity> especies = persistence.findAll();
+        for(int i = 0; i < especies.size(); i++)
+        {
+            if(entity.getNombre().equals(especies.get(i).getNombre())){
+                return true;
+            }
+        }
+        return false;
     }
 }
