@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.mascotas.test.persistence;
 
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
+import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
+import co.edu.uniandes.csw.mascotas.entities.HistoriaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
+import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
+import co.edu.uniandes.csw.mascotas.persistence.HistoriaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -30,139 +34,134 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Camilo Pinilla
  */
 @RunWith(Arquillian.class)
-public class ClientePersistenceTest {
-    
+public class HistoriaPersistenceTest {
+
     PodamFactory fabrica = new PodamFactoryImpl();
-    
+
     /**
      * Inyección de la dependencia a la clase ClientePersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private ClientePersistence clientePersistence;
-    
+    private HistoriaPersistence historiaPersistence;
+
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
      */
     @PersistenceContext
     private EntityManager em;
-    
+
     /**
      * Variable para marcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
     private UserTransaction utx;
-    
+
     /**
      * Lista que tiene los datos de prueba.
      */
-    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
-    
+    private List<HistoriaEntity> data = new ArrayList<HistoriaEntity>();
+
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Cliente, el descriptor de la
+     * embebido. El jar contiene las clases de Historia, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
     @Deployment
-    public static JavaArchive createDeployment(){
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml","beans.xml");
+                .addPackage(HistoriaEntity.class.getPackage())
+                .addPackage(HistoriaPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     /**
      * Configuración inicial de la prueba.
      */
     @Before
-    public void configTest(){
-        try{
+    public void configTest() {
+        try {
             utx.begin();
             em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            try{
+            try {
                 utx.rollback();
-            }
-            catch(Exception ed){
+            } catch (Exception ed) {
                 ed.printStackTrace();
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
-    private void clearData(){
-        em.createQuery("delete from ClienteEntity").executeUpdate();
+    private void clearData() {
+        em.createQuery("delete from HistoriaEntity").executeUpdate();
     }
-    
+
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData(){
-        for(int i= 0; i<10;i++){
-            ClienteEntity nueva = fabrica.manufacturePojo(ClienteEntity.class);
+    private void insertData() {
+        for (int i = 0; i < 10; i++) {
+            HistoriaEntity nueva = fabrica.manufacturePojo(HistoriaEntity.class);
             em.persist(nueva);
             data.add(nueva);
         }
     }
-    
+
     /**
-     * Prueba para crear un Cliente.
+     * Prueba para crear una Historia.
      */
     @Test
-    public void createClienteTest(){
-        ClienteEntity newEntity = fabrica.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = clientePersistence.create(newEntity);
-        
+    public void createHistoriaTest() {
+        HistoriaEntity newEntity = fabrica.manufacturePojo(HistoriaEntity.class);
+        HistoriaEntity result = historiaPersistence.create(newEntity);
+
         Assert.assertNotNull(result);
-        
-        ClienteEntity ent = em.find(ClienteEntity.class, result.getId());
-        
-        Assert.assertEquals(newEntity.getTelefono(),ent.getTelefono());
-        Assert.assertEquals(newEntity.getDireccion(), ent.getDireccion(),0);
-        Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),ent.getTarjetaCreditoRegistrada());
+
+        HistoriaEntity ent = em.find(HistoriaEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getFoto(), ent.getFoto());
+        Assert.assertEquals(newEntity.getTexto(), ent.getTexto());
     }
-    
+
     /**
      * Prueba para consultar un Cliente por id.
      */
     @Test
-    public void getClienteTest(){
-        ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = clientePersistence.find(entity.getId());
-        
+    public void getHistoriaTest() {
+        HistoriaEntity entity = data.get(0);
+        HistoriaEntity newEntity = historiaPersistence.find(entity.getId());
+
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(),newEntity.getId());
-        Assert.assertEquals(entity.getTelefono(),newEntity.getTelefono(),0);
-        Assert.assertEquals(entity.getDireccion(),newEntity.getDireccion());
-        Assert.assertEquals(entity.getTarjetaCreditoRegistrada(),newEntity.getTarjetaCreditoRegistrada());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getTexto(), newEntity.getTexto(), 0);
+        Assert.assertEquals(entity.getFoto(), newEntity.getFoto());
     }
-    
+
     @Test
-    public void updateClienteTest()throws BusinessLogicException{
-        ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = fabrica.manufacturePojo(ClienteEntity.class);
-        
+    public void updateClienteTest() throws BusinessLogicException {
+        HistoriaEntity entity = data.get(0);
+        HistoriaEntity newEntity = fabrica.manufacturePojo(HistoriaEntity.class);
+
         newEntity.setId(entity.getId());
-        clientePersistence.update(newEntity);
-        
-        ClienteEntity compareEntity = em.find(ClienteEntity.class, entity.getId());
-        
+        historiaPersistence.update(newEntity);
+
+        HistoriaEntity compareEntity = em.find(HistoriaEntity.class, entity.getId());
+
         Assert.assertEquals(newEntity.getId(), compareEntity.getId());
-        Assert.assertEquals(newEntity.getTelefono(),compareEntity.getTelefono(),0);
-        Assert.assertEquals(newEntity.getDireccion(),compareEntity.getDireccion());
-        Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),compareEntity.getTarjetaCreditoRegistrada());
+        Assert.assertEquals(newEntity.getTexto(), compareEntity.getTexto(), 0);
+        Assert.assertEquals(newEntity.getFoto(), compareEntity.getFoto());
     }
 }
