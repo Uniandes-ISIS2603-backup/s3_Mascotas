@@ -97,7 +97,7 @@ public class MascotaResource {
     @Path("{mascotasId: \\d+}")
     public void deleteMascota(@PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
-        if (mascotaLogic.getMascota(mascotasId) == null) {
+        if (mascotaEntity == null) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
         mascotaLogic.deleteMascota(mascotaEntity);
