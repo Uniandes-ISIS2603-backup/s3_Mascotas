@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.mascotas.dtos.MascotaAdopcionDTO;
 import co.edu.uniandes.csw.mascotas.ejb.MascotaAdopcionLogic;
 import co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -90,4 +92,49 @@ public class MascotaAdopcionResource {
         return new MascotaAdopcionDTO(mascotaAdopcionLogic.updateMascotaAdopcion(mascotaAdopcionId, mascotaAdopcion.toEntity()));
     }
     
-}
+    
+    /**
+     * Conexión con el servicio de Mascota para una mascota Adopcion
+     * {@link MascotaAdopcionMascotaResource}
+     * 
+     * Este método conecte la ruta de /mascotaAdopcion con las rutas de /mascotas 
+     * que dependen de la mascotaAdopcion, es una redirección al servicio que maneja
+     * el segmento de la URL que se encarga de la mascota de una MascotaAdopcion
+     * 
+     * @param mascotaAdopcionId El Id de la masctoa con respecto a la cual se accede
+     * al servicio
+     * @return El servicio de mascota para esta mascotaAdopcion en particular
+     * @throws WebApplicationException {@link WebApplicationException} 
+     * error de la lógica que se genera cuando no se encuentra la mascotaAdopcion
+     */
+    @Path("{mascotaAdopcionId: \\d+}/mascotas")
+    public Class<MascotaAdopcionToMascotaResource> getMascotaAdopcioMascotaResource( @PathParam("mascotaAdopcionId") Long mascotaAdopcionId){
+        if(mascotaAdopcionLogic.getMascotaAdopcion(mascotaAdopcionId)==null){
+            throw new WebApplicationException("El recurso/MascotaAdopcion/" + mascotaAdopcionId + "no existe", 404);
+        }
+        return MascotaAdopcionToMascotaResource.class;
+    }    
+    
+    
+    @GET
+    public List<MascotaAdopcionDTO> getMascotasAdopcion(){
+        LOGGER.info("MascotaAdopcion Resource getMascotasAdopcion : input : void");
+        List<MascotaAdopcionDTO> listaMascotasAdopcion = listEntityToDTO(mascotaAdopcionLogic.getMascotasAdopcion());
+        LOGGER.log(Level.INFO, "MascotaAdopcionResource getMascotasAdopcion: output: {0}", listaMascotasAdopcion.toString());
+        return listaMascotasAdopcion;
+    }
+    
+    
+    private List<MascotaAdopcionDTO> listEntityToDTO(List<MascotaAdopcionEntity> entityList){
+        List<MascotaAdopcionDTO> list = new ArrayList<>();
+        for(MascotaAdopcionEntity entity : entityList) {
+            list.add(new MascotaAdopcionDTO(entity));
+        }
+        return list;
+    }
+
+
+
+    
+    }
+    
