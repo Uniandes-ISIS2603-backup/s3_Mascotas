@@ -84,10 +84,11 @@ public class MascotaResource {
     @Path("{mascotasId: \\d+}")
     public MascotaDTO updateMascota(@PathParam("mascotasId") Long mascotasId, MascotaDTO mascota) throws BusinessLogicException{
         mascota.setId(mascotasId);
-        if (mascotaLogic.getMascota(mascotasId) == null) {
+        MascotaEntity mascotaOriginal = mascotaLogic.getMascota(mascotasId);
+        if (mascotaOriginal == null) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
-        return new MascotaDTO(mascotaLogic.updateMascota(mascotasId, mascota.toEntity()));
+        return new MascotaDTO(mascotaLogic.updateMascota(mascotaOriginal, mascota.toEntity()));
     }
     
     @DELETE

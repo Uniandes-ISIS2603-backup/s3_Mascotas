@@ -8,11 +8,14 @@ package co.edu.uniandes.csw.mascotas.ejb;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 
 /**
  *
@@ -51,14 +54,39 @@ public class MascotaLogic {
         return mascotaEntity;
     }
     
-    public MascotaEntity updateMascota(Long mascotasId, MascotaEntity mascotaEntity) throws BusinessLogicException{
-        LOOGER.log(Level.INFO, "Updating the pet with id = {0}", mascotasId);
-        MascotaEntity newEntity = persistence.update(mascotaEntity);
-        LOOGER.log(Level.INFO, "Finished update on pet with id = {0}", mascotaEntity.getId());
-        return newEntity;
+    public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios) throws BusinessLogicException{
+        LOOGER.log(Level.INFO, "Finished update on pet with id = {0}", mascotaOriginal.getId());
+        try {
+            
+            BeanUtilsBean copiarEntreClases = new BeanUtilsBean() {
+                @Override
+                public void copyProperty(Object dest, String name, Object value)
+                        throws IllegalAccessException, InvocationTargetException {
+                    if(value != null) {
+                        super.copyProperty(dest, name, value);
+                    }
+                }
+            };
+            
+            MascotaEntity resultingEntity = new MascotaEntity();
+            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
+            copiarEntreClases.copyProperties(resultingEntity, mascotaOriginal);
+            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
+            copiarEntreClases.copyProperties(resultingEntity, mascotaCambios);
+            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
+            persistence.update(resultingEntity);
+            return resultingEntity;
+        } catch (IllegalAccessException | InvocationTargetException ex ) {
+            Logger.getLogger(MascotaLogic.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
     public void deleteMascota(MascotaEntity mascota){
         persistence.delete(mascota);
+    }
+    
+    private void modifyEntity(MascotaEntity original, MascotaEntity modified){
+        
     }
 }
