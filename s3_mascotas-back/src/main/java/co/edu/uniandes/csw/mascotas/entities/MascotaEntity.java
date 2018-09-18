@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -27,6 +28,14 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private RazaEntity raza;
+    
+    @PodamExclude
+    @OneToOne
+    private MascotaAdopcionEntity mascotaAdopcion;
+    
+    @PodamExclude
+    @OneToOne
+    private MascotaVentaEntity mascotaVenta;
     
     public String getNombre() {
         return nombre;
@@ -74,6 +83,34 @@ public class MascotaEntity extends BaseEntity implements Serializable{
 
     public void setRaza(RazaEntity raza) {
         this.raza = raza;
+    }
+
+    /**
+     * @return the mascotaAdopcion
+     */
+    public MascotaAdopcionEntity getMascotaAdopcion() {
+        return mascotaAdopcion;
+    }
+
+    /**
+     * @param mascotaAdopcion the mascotaAdopcion to set
+     */
+    public void setMascotaAdopcion(MascotaAdopcionEntity mascotaAdopcion) {
+        this.mascotaAdopcion = mascotaAdopcion;
+    }
+
+    /**
+     * @return the mascotaVenta
+     */
+    public MascotaVentaEntity getMascotaVenta() {
+        return mascotaVenta;
+    }
+
+    /**
+     * @param mascotaVenta the mascotaVenta to set
+     */
+    public void setMascotaVenta(MascotaVentaEntity mascotaVenta) {
+        this.mascotaVenta = mascotaVenta;
     }
     
     
