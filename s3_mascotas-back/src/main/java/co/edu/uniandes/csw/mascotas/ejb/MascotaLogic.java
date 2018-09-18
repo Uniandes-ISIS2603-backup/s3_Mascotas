@@ -47,8 +47,9 @@ public class MascotaLogic {
     public MascotaEntity getMascota(Long mascotasId){
         LOOGER.log(Level.INFO, "Looking for pet with id = {0}", mascotasId);
         MascotaEntity mascotaEntity = persistence.find(mascotasId);
-        if (mascotaEntity == null) {
-            LOOGER.log(Level.SEVERE, "The pet with id = {0} does not exists", mascotasId);            
+        if (mascotaEntity == null || mascotaEntity.getDeleted()) {
+            LOOGER.log(Level.SEVERE, "The pet with id = {0} does not exists", mascotasId);
+            return null;
         }
         LOOGER.log(Level.INFO, "Ending search for the pet with id {0}", mascotasId);
         return mascotaEntity;

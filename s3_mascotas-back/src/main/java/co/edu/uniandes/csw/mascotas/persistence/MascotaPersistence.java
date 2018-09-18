@@ -35,7 +35,7 @@ public class MascotaPersistence {
     
     public List<MascotaEntity> findAll(){
         LOGGER.log(Level.INFO, "Consulting all pets");
-        Query q = em.createQuery("select u from MascotaEntity u");
+        Query q = em.createQuery("select u from MascotaEntity u where u.deleted = FALSE");
         return q.getResultList();
     }
     
@@ -49,8 +49,9 @@ public class MascotaPersistence {
     }
     
     public void delete(MascotaEntity mascota){
-        em.getTransaction();
-        em.remove(mascota);
-        em.getTransaction().commit();
+        //em.getTransaction();
+        mascota.setDeleted(Boolean.TRUE);
+        em.merge(mascota);
+        //em.getTransaction().commit();
     }
 }
