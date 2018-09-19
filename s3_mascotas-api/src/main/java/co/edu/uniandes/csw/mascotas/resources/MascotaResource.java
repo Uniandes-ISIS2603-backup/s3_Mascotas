@@ -110,4 +110,13 @@ public class MascotaResource {
         }
         return list;
     }
+    
+    @Path("{mascotasId: \\d+}/raza")
+    public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("mascotasId") Long mascotasId){
+        MascotaEntity m = mascotaLogic.getMascota(mascotasId);
+        if(m == null){
+            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+        }
+        return RazaMascotaResource.class;
+    }
 }

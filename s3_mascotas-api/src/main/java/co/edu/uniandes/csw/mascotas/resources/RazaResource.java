@@ -53,7 +53,7 @@ public class RazaResource {
     @Path("{razasId: \\d+}")
     public RazaDTO getRaza(@PathParam("razasId") Long razasId){
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
-        if (razaEntity == null) {
+        if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
         }
         return new RazaDTO(razaEntity);
@@ -63,7 +63,7 @@ public class RazaResource {
     @Path("{razasId: \\d+}")
     public void deleteRaza(@PathParam("razasId") Long razasId){
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
-        if (razaEntity == null) {
+        if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
         }
         razaLogic.deleteRaza(razaEntity);
@@ -74,7 +74,7 @@ public class RazaResource {
     public RazaDTO updateRaza(@PathParam("razasId") Long razasId, RazaDTO raza) throws BusinessLogicException{
         raza.setId(razasId);
         RazaEntity razaOriginal = razaLogic.getRaza(razasId);
-        if (razaOriginal == null) {
+        if (razaOriginal == null || razaOriginal.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);            
         }
         return new RazaDTO(razaLogic.updateRaza(razaOriginal, raza.toEntity()));
@@ -86,6 +86,15 @@ public class RazaResource {
         List<RazaDTO> listaRazas = listEntity2DTO(razaLogic.getRazas());
         LOGGER.log(Level.INFO, "RazaResource getRazas: output: {0}", listaRazas.toString());
         return listaRazas;
+    }
+    
+    @Path("{razasId: \\d+}/mascotas")
+    public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("razasId") Long razasId){
+        RazaEntity r = razaLogic.getRaza(razasId);
+        if (r == null || r.getDeleted()) {
+            throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);            
+        }
+        return RazaMascotaResource.class;
     }
 
     private List<RazaDTO> listEntity2DTO(List<RazaEntity> razas) {
