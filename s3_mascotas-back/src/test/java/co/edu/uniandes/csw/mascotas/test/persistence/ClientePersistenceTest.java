@@ -131,7 +131,7 @@ public class ClientePersistenceTest {
         ClienteEntity ent = em.find(ClienteEntity.class, result.getId());
         
         Assert.assertEquals(newEntity.getTelefono(),ent.getTelefono());
-        Assert.assertEquals(newEntity.getDireccion(), ent.getDireccion(),0);
+        Assert.assertEquals(newEntity.getDireccion(), ent.getDireccion());
         Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),ent.getTarjetaCreditoRegistrada());
     }
     

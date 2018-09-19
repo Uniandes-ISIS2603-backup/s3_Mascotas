@@ -57,17 +57,17 @@ public class ClientePersistence {
     }
     
     /**
-     * Busca si hay algun cliente con el telefono que se envía de argumento
+     * Busca si hay algun cliente con el teléfono que se envía de argumento
      *
-     * @param telefono: Telefono del cliente que se está buscando
-     * @return null si no existe ningun cliente con el telefono del argumento. Si
+     * @param telefono: Teléfono del cliente que se está buscando
+     * @return null si no existe ningun cliente con el teléfono del argumento. Si
      * existe alguno devuelve el primero.
      */
     public ClienteEntity findByTelefono(long telefono) {
-        LOGGER.log(Level.INFO, "Consultando clientes por telefono ", telefono);
-        // Se crea un query para buscar clientes con el telefono que recibe el método como argumento. ":telefono" es un placeholder que debe ser remplazado
+        LOGGER.log(Level.INFO, "Consultando clientes por teléfono ", telefono);
+        // Se crea un query para buscar clientes con el teléfono que recibe el método como argumento. ":telefono" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.telefono = :telefono", ClienteEntity.class);
-        // Se remplaza el placeholder ":isbn" con el valor del argumento 
+        // Se remplaza el placeholder ":telefono" con el valor del argumento 
         query = query.setParameter("telefono", telefono);
         // Se invoca el query se obtiene la lista resultado
         List<ClienteEntity> sameTelefono = query.getResultList();
@@ -79,7 +79,7 @@ public class ClientePersistence {
         } else {
             result = sameTelefono.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por telefono ", telefono);
+        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por teléfono ", telefono);
         return result;
     }
 }
