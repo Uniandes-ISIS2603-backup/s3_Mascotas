@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class AdopcionDTO implements Serializable{
     private String docsAdopcion;
     private Long id;
-    private CalificacionDTO relacionCalificacion;    
+    private CalificacionDTO relacionCalificacion;
 
     public CalificacionDTO getRelacionCalificacion() {
         return relacionCalificacion;
@@ -40,6 +40,7 @@ public class AdopcionDTO implements Serializable{
         if(adopcion!=null){
             this.id= adopcion.getId();
             this.docsAdopcion = adopcion.getDocsAdopcion();
+            this.relacionCalificacion = new CalificacionDTO(adopcion.getCalificacion());
         }
     }
 

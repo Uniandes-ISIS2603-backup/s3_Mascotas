@@ -24,8 +24,11 @@ public class CalificacionDTO implements Serializable
 
     public CalificacionDTO(CalificacionEntity calificacionEntity) 
     {
-        this.puntaje=calificacionEntity.getPuntaje();
-        this.comentarios=calificacionEntity.getComentarios();
+        if(calificacionEntity != null){
+            this.id=calificacionEntity.getId();
+            this.puntaje=calificacionEntity.getPuntaje();
+            this.comentarios=calificacionEntity.getComentarios();
+        }
     }
 
     /**
@@ -70,6 +73,7 @@ public class CalificacionDTO implements Serializable
     
     public CalificacionEntity toEntity(){
         CalificacionEntity calificacionEntity = new CalificacionEntity();
+        calificacionEntity.setId(id);
         calificacionEntity.setComentarios(comentarios);
         calificacionEntity.setPuntaje(puntaje);
         return calificacionEntity;

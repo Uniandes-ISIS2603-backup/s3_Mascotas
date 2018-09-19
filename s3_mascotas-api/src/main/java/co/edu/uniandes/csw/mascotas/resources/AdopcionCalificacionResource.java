@@ -43,7 +43,7 @@ public class AdopcionCalificacionResource
     private CalificacionLogic calificacionLogic;
     
     @POST
-    @Path("(calificacionId: \\d+)")
+    @Path("/{calificacionId: \\d+}")
     public CalificacionDTO addCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException
     {
         if(calificacionLogic.getCalificacion(calificacionId) == null){
