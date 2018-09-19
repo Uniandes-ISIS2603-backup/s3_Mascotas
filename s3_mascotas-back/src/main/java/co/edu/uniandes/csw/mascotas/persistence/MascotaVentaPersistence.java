@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.mascotas.persistence;
 
 import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -45,6 +47,12 @@ public class MascotaVentaPersistence {
             MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, mascotaVentaId);
             em.remove(entity);
             LOGGER.log(Level.INFO, "saliendo de borrar la mascotaVenta con id = {0}", mascotaVentaId);
+        }
+
+        public List<MascotaVentaEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todas las mascotasVenta");
+        TypedQuery query = em.createQuery("select u from MascotaVentaEntity u", MascotaVentaEntity.class);
+        return query.getResultList();
         }
 
 }
