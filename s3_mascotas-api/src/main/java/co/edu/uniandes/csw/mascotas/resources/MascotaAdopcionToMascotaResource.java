@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.mascotas.resources;
 
+import co.edu.uniandes.csw.mascotas.dtos.MascotaAdopcionDTO;
 import co.edu.uniandes.csw.mascotas.dtos.MascotaDTO;
 import co.edu.uniandes.csw.mascotas.ejb.MascotaAdopcionToMascotaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.MascotaLogic;
@@ -50,7 +51,6 @@ public class MascotaAdopcionToMascotaResource {
         MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionToMascotaLogic.addMascota(mascotaId, mascotaAdopcionId));
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource addMascota: output: {0}", mascotaDTO.toString());
         return mascotaDTO;
-
     }
     
     
@@ -69,8 +69,7 @@ public class MascotaAdopcionToMascotaResource {
     public MascotaDTO getMascota( @PathParam("mascotaAdopcionId") Long mascotaAdopcionId, @PathParam("mascotaId") Long mascotaId)throws  BusinessLogicException{
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource getMascota: input : mascotaAdopcionI : {0} , mascotaId. {1}", new Object[]{mascotaAdopcionId, mascotaId});
         if(mascotaLogic.getMascota(mascotaId)==null){
-            throw new WebApplicationException("El recurso/mascotaAdopcion/" + mascotaAdopcionId + "/mascotas/" + mascotaId + "no existe.", 404);
-            
+            throw new WebApplicationException("El recurso/mascotaAdopcion/" + mascotaAdopcionId + "/mascotas/" + mascotaId + " no existe.", 404);
         }
         MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionToMascotaLogic.getMascota(mascotaId, mascotaAdopcionId));
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource getMascota : output : {0}" , mascotaDTO.toString() );
