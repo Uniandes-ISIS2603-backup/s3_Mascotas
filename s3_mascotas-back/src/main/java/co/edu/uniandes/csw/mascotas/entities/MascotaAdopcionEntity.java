@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.mascotas.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -22,7 +22,7 @@ public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
     private MascotaEntity mascota;
 
     public MascotaAdopcionEntity() {

@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.mascotas.persistence;
 
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -37,7 +39,21 @@ public class RazaPersistence {
         return em.find(RazaEntity.class, razasId);
     }
     
-    public void delete(Long razasId){
-        em.remove(find(razasId));
+    public void delete(RazaEntity raza){
+        //em.getTransaction();
+        raza.setDeleted(Boolean.TRUE);
+        em.merge(raza);
+        //em.getTransaction().commit();
+    }
+    
+    public RazaEntity update(RazaEntity razaEntity){
+    LOGGER.log(Level.INFO, "Updating race with id={0}", razaEntity.getId());
+    return em.merge(razaEntity);
+    }
+    
+    public List<RazaEntity> findAll(){
+    LOGGER.log(Level.INFO, "Consulting all races");
+    Query q = em.createQuery("select u from RazaEntity u where u.deleted = FALSE");
+    return q.getResultList();
     }
 }

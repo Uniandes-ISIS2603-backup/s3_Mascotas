@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.mascotas.test.persistence;
 
-import co.edu.uniandes.csw.mascotas.persistence.MascotaAdopcionPersistence;
-import co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity;
+import co.edu.uniandes.csw.mascotas.persistence.MascotaVentaPersistence;
+import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -25,21 +26,19 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *Pruebas de persistencia para MascotaAdopcion
- * 
- * @author Sebastian Mujica
- * 
+ * pruebas de persistencia para MascotaVenta
+ *
+ * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class MascotaAdopcionTest {
-    
+public class MascotaVentaPersistenceTest {
     
     /**
      * Inyección de la dependencia a la clase MascotaAdopcionPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private MascotaAdopcionPersistence mascotaAdopcionPersistence;
+    private MascotaVentaPersistence mascotaVentaPersistence;
     
     
     /**
@@ -59,7 +58,7 @@ public class MascotaAdopcionTest {
     /**
      * Lista que tiene los datos de prueba.
      */
-    private List<MascotaAdopcionEntity> data = new ArrayList<MascotaAdopcionEntity>();
+    private List<MascotaVentaEntity> data = new ArrayList<MascotaVentaEntity>();
 
     /**
      *
@@ -71,8 +70,8 @@ public class MascotaAdopcionTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(MascotaAdopcionEntity.class.getPackage())
-                .addPackage(MascotaAdopcionPersistence.class.getPackage())
+                .addPackage(MascotaVentaEntity.class.getPackage())
+                .addPackage(MascotaVentaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -105,7 +104,7 @@ public class MascotaAdopcionTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from MascotaAdopcionEntity").executeUpdate();
+        em.createQuery("delete from MascotaVentaEntity").executeUpdate();
     }
 
     /**
@@ -118,7 +117,7 @@ public class MascotaAdopcionTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-            MascotaAdopcionEntity entity = factory.manufacturePojo(MascotaAdopcionEntity.class);
+            MascotaVentaEntity entity = factory.manufacturePojo(MascotaVentaEntity.class);
 
             em.persist(entity);
 
@@ -126,7 +125,7 @@ public class MascotaAdopcionTest {
         }
     }
     
-     /**
+       /**
      * Prueba para crear un MascotaAdopcion.
      *
      *
@@ -134,28 +133,28 @@ public class MascotaAdopcionTest {
     @Test
     public void createMascotaAdopcionTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        MascotaAdopcionEntity newEntity = factory.manufacturePojo(MascotaAdopcionEntity.class);
-        MascotaAdopcionEntity result = mascotaAdopcionPersistence.create(newEntity);
+        MascotaVentaEntity newEntity = factory.manufacturePojo(MascotaVentaEntity.class);
+        MascotaVentaEntity result = mascotaVentaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        MascotaAdopcionEntity entity = em.find(MascotaAdopcionEntity.class, result.getId());
+        MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getHistoria(), entity.getHistoria());
+        Assert.assertEquals(newEntity.getDocumentosPedegree(), entity.getDocumentosPedegree());
     }
     
     
         /**
-     * Prueba para eliminar una mascotaAdopcion.
+     * Prueba para eliminar una mascotaVenta.
      *
      *
      */
     @Test
-    public void deleteMascotaAdopcionTest() {
+    public void deleteMascotaVentaTest() {
         
-        MascotaAdopcionEntity entity = data.get(0);
-        mascotaAdopcionPersistence.delete(entity.getId());
-        MascotaAdopcionEntity deleted = em.find(MascotaAdopcionEntity.class, entity.getId());
+        MascotaVentaEntity entity = data.get(0);
+        mascotaVentaPersistence.delete(entity.getId());
+        MascotaVentaEntity deleted = em.find(MascotaVentaEntity.class, entity.getId());
         Assert.assertNull(deleted);
 
     }
@@ -167,9 +166,34 @@ public class MascotaAdopcionTest {
      */
     @Test
     public void findMascotaAdopcionTest() {
-        MascotaAdopcionEntity entity = data.get(0);
-        MascotaAdopcionEntity newEntity = mascotaAdopcionPersistence.find(entity.getId());
+        MascotaVentaEntity entity = data.get(0);
+        MascotaVentaEntity newEntity = mascotaVentaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getHistoria(), newEntity.getHistoria());
+        Assert.assertEquals(entity.getDocumentosPedegree(), newEntity.getDocumentosPedegree());
     }
+    
+        /**
+     * Prueba para consultar todas las mascotasVenta
+     */
+    @Test
+    public void finAllMascotasAdopcionTest(){
+        List<MascotaVentaEntity> mascotasVenta= mascotaVentaPersistence.findAll();
+        Assert.assertEquals(mascotasVenta.size(), data.size());
+    }
+    
+    /**
+     * Prueba para Actualizar el estado de una mascota.
+     */
+    @Test
+    public void updateMascotaTest(){
+        MascotaVentaEntity mascotaVenta = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        MascotaVentaEntity newEntity= factory.manufacturePojo(MascotaVentaEntity.class);
+        newEntity.setId(mascotaVenta.getId());
+        mascotaVentaPersistence.update(newEntity);
+        MascotaVentaEntity rta = em.find(MascotaVentaEntity.class, mascotaVenta.getId());
+        Assert.assertEquals(rta.getId(), mascotaVenta.getId());
+        Assert.assertNotEquals(rta.getDocumentosPedegree(), mascotaVenta.getDocumentosPedegree());
+    }
+    
 }

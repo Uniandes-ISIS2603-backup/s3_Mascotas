@@ -5,9 +5,9 @@
  */
 package co.edu.uniandes.csw.mascotas.test.persistence;
 
-import co.edu.uniandes.csw.mascotas.persistence.MascotaVentaPersistence;
-import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
-
+import co.edu.uniandes.csw.mascotas.persistence.MascotaAdopcionPersistence;
+import co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity;
+import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,19 +26,21 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * pruebas de persistencia para MascotaVenta
- *
- * @author estudiante
+ *Pruebas de persistencia para MascotaAdopcion
+ * 
+ * @author Sebastian Mujica
+ * 
  */
 @RunWith(Arquillian.class)
-public class MascotaVentaTest {
+public class MascotaAdopcionPersistenceTest {
+    
     
     /**
      * Inyección de la dependencia a la clase MascotaAdopcionPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private MascotaVentaPersistence mascotaVentaPersistence;
+    private MascotaAdopcionPersistence mascotaAdopcionPersistence;
     
     
     /**
@@ -58,7 +60,8 @@ public class MascotaVentaTest {
     /**
      * Lista que tiene los datos de prueba.
      */
-    private List<MascotaVentaEntity> data = new ArrayList<MascotaVentaEntity>();
+    private List<MascotaAdopcionEntity> data = new ArrayList<>();
+    
 
     /**
      *
@@ -70,8 +73,8 @@ public class MascotaVentaTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(MascotaVentaEntity.class.getPackage())
-                .addPackage(MascotaVentaPersistence.class.getPackage())
+                .addPackage(MascotaAdopcionEntity.class.getPackage())
+                .addPackage(MascotaAdopcionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -104,7 +107,7 @@ public class MascotaVentaTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from MascotaVentaEntity").executeUpdate();
+        em.createQuery("delete from MascotaAdopcionEntity").executeUpdate();
     }
 
     /**
@@ -117,7 +120,7 @@ public class MascotaVentaTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-            MascotaVentaEntity entity = factory.manufacturePojo(MascotaVentaEntity.class);
+            MascotaAdopcionEntity entity = factory.manufacturePojo(MascotaAdopcionEntity.class);
 
             em.persist(entity);
 
@@ -125,7 +128,7 @@ public class MascotaVentaTest {
         }
     }
     
-       /**
+     /**
      * Prueba para crear un MascotaAdopcion.
      *
      *
@@ -133,30 +136,29 @@ public class MascotaVentaTest {
     @Test
     public void createMascotaAdopcionTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        MascotaVentaEntity newEntity = factory.manufacturePojo(MascotaVentaEntity.class);
-        MascotaVentaEntity result = mascotaVentaPersistence.create(newEntity);
+        MascotaAdopcionEntity newEntity = factory.manufacturePojo(MascotaAdopcionEntity.class);
+        MascotaAdopcionEntity result = mascotaAdopcionPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, result.getId());
+        MascotaAdopcionEntity entity = em.find(MascotaAdopcionEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getDocumentosPedegree(), entity.getDocumentosPedegree());
+        Assert.assertEquals(newEntity.getHistoria(), entity.getHistoria());
     }
     
     
-        /**
-     * Prueba para eliminar una mascotaVenta.
+     /**
+     * Prueba para eliminar una mascotaAdopcion.
      *
      *
      */
     @Test
-    public void deleteMascotaVentaTest() {
+    public void deleteMascotaAdopcionTest() {
         
-        MascotaVentaEntity entity = data.get(0);
-        mascotaVentaPersistence.delete(entity.getId());
-        MascotaVentaEntity deleted = em.find(MascotaVentaEntity.class, entity.getId());
+        MascotaAdopcionEntity entity = data.get(0);
+        mascotaAdopcionPersistence.delete(entity.getId());
+        MascotaAdopcionEntity deleted = em.find(MascotaAdopcionEntity.class, entity.getId());
         Assert.assertNull(deleted);
-
     }
 
     /**
@@ -166,11 +168,35 @@ public class MascotaVentaTest {
      */
     @Test
     public void findMascotaAdopcionTest() {
-        MascotaVentaEntity entity = data.get(0);
-        MascotaVentaEntity newEntity = mascotaVentaPersistence.find(entity.getId());
+        MascotaAdopcionEntity entity = data.get(0);
+        MascotaAdopcionEntity newEntity = mascotaAdopcionPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDocumentosPedegree(), newEntity.getDocumentosPedegree());
+        Assert.assertEquals(entity.getHistoria(), newEntity.getHistoria());
     }
     
+    /**
+     * Prueba para consultar todas las mascotasAdopcion
+     */
+    @Test
+    public void finAllMascotasAdopcionTest(){
+        List<MascotaAdopcionEntity> mascotasAdopcion= mascotaAdopcionPersistence.findAll();
+        Assert.assertEquals(mascotasAdopcion.size(), data.size());
+    }
+    
+    /**
+     * Prueba para Actualizar el estado de una mascota.
+     */
+    @Test
+    public void updateMascotaTest(){
+        MascotaAdopcionEntity mascotaAdopcion = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        MascotaAdopcionEntity newEntity= factory.manufacturePojo(MascotaAdopcionEntity.class);
+        newEntity.setId(mascotaAdopcion.getId());
+        mascotaAdopcionPersistence.update(newEntity);
+        MascotaAdopcionEntity rta = em.find(MascotaAdopcionEntity.class, mascotaAdopcion.getId());
+        Assert.assertEquals(rta.getId(), mascotaAdopcion.getId());
+        Assert.assertNotEquals(rta.getHistoria(), mascotaAdopcion.getHistoria());
+
+    }
     
 }

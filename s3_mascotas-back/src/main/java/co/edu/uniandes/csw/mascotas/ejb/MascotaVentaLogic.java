@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaVentaPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -53,5 +54,11 @@ public class MascotaVentaLogic {
          persistence.delete(mascotaVentaId);
      }
     
+     public List<MascotaVentaEntity> getMascotasVenta(){
+         LOOGER.log(Level.INFO, "Inicia proceso de consultar todas las MascotasVenta");
+         List<MascotaVentaEntity> mascotasVenta= persistence.findAll();
+         LOOGER.log(Level.INFO, "Termina proceso de consultar todas las MascotasVenta");
+         return mascotasVenta;
+     }
     
 }
