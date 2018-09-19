@@ -5,12 +5,8 @@
  */
 package co.edu.uniandes.csw.mascotas.test.persistence;
 
-import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
-import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import co.edu.uniandes.csw.mascotas.entities.HistoriaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
-import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.HistoriaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,7 +142,6 @@ public class HistoriaPersistenceTest {
 
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getTexto(), newEntity.getTexto(), 0);
         Assert.assertEquals(entity.getFoto(), newEntity.getFoto());
     }
 
