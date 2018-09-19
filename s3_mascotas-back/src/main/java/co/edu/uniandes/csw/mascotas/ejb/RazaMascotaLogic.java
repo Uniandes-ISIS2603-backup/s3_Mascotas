@@ -5,7 +5,15 @@
  */
 package co.edu.uniandes.csw.mascotas.ejb;
 
+import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
+import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
+import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
+import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
+import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,5 +22,65 @@ import javax.ejb.Stateless;
 @Stateless
 public class RazaMascotaLogic {
     
+    private static final Logger LOGGER = Logger.getLogger(RazaMascotaLogic.class.getName());
+
+    @Inject
+    private RazaPersistence razaPersistence;
+    
+    @Inject
+    private MascotaPersistence mascotaPersistence;
+    
+    /**
+     * Relaciona una raza con su mascota (ya existentes)
+     * @param razasId
+     * @param mascotasId
+     * @return instancia de razaEntity que fue asociada con la mascota
+     */
+    public RazaEntity añadirMascota(Long razasId, Long mascotasId) throws BusinessLogicException{
+        RazaEntity raza = razaPersistence.find(razasId);
+        MascotaEntity mascota = mascotaPersistence.find(mascotasId);
+        if(mascota == null || mascota.getDeleted()){
+            throw new BusinessLogicException("The pet doesn't exist.");
+        }
+        raza.getMascotas().add(mascota);
+        return razaPersistence.find(razasId);
+    }
+    
+    /**
+     * Retorna la colección de mascotas asociadas a una raza concreta
+     * @param razasId
+     * @return List de MascotaEntity
+     */
+    public List<MascotaEntity> obtenerMascotas(Long razasId){
+        return razaPersistence.find(razasId).getMascotas();
+    }
+    
+    /**
+     * Retorna la mascota asociada a la raza identificada por el parámetro
+     * @param razasId
+     * @param mascotasId
+     * @return Entidad de la mascota
+     */
+    public MascotaEntity obtenerMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
+        List<MascotaEntity> mascotas = obtenerMascotas(razasId);
+        MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
+        int posicion = mascotas.indexOf(mascotaBuscada);
+        if (posicion >= 0 || !mascotaBuscada.getDeleted()) {
+            return mascotas.get(posicion);
+        }else{
+            throw new BusinessLogicException("La mascota no está asociada con la raza");
+        }
+    }
+    
+    /**
+     * Elimina la relación entre una mascota y una raza (ya existentes)
+     * @param razasId
+     * @param mascotasId 
+     */
+    public void removerMascota(Long razasId, Long mascotasId){
+        RazaEntity r = razaPersistence.find(razasId);
+        MascotaEntity m = mascotaPersistence.find(mascotasId);
+        r.getMascotas().remove(m);
+    }
     
 }

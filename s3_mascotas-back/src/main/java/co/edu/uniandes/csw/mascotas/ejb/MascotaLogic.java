@@ -70,11 +70,8 @@ public class MascotaLogic {
             };
             
             MascotaEntity resultingEntity = new MascotaEntity();
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             copiarEntreClases.copyProperties(resultingEntity, mascotaOriginal);
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             copiarEntreClases.copyProperties(resultingEntity, mascotaCambios);
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             persistence.update(resultingEntity);
             return resultingEntity;
         } catch (IllegalAccessException | InvocationTargetException ex ) {
