@@ -82,6 +82,7 @@ public class MascotaAdopcionDTO implements Serializable{
         if(this.mascota!=null){
             entity.setMascota(this.mascota.toEntity());
         }
+        entity.setId(this.id);
         return entity;
     }
     

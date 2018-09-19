@@ -33,7 +33,7 @@ public class MascotaAdopcionToMascotaResource {
     private static final Logger LOGGER = Logger.getLogger(MascotaAdopcionToMascotaResource.class.getName());
     
     @Inject
-    private MascotaAdopcionToMascotaLogic mascotaAdopcionMascotaLogic;
+    private MascotaAdopcionToMascotaLogic mascotaAdopcionToMascotaLogic;
     
     @Inject
     private MascotaLogic mascotaLogic;
@@ -47,7 +47,7 @@ public class MascotaAdopcionToMascotaResource {
         if(mascotaLogic.getMascota(mascotaId)==null){
             throw  new WebApplicationException("El recurso /mascotas/" + mascotaId + " no existe." , 404);
         }
-        MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionMascotaLogic.addMascota(mascotaId, mascotaAdopcionId));
+        MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionToMascotaLogic.addMascota(mascotaId, mascotaAdopcionId));
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource addMascota: output: {0}", mascotaDTO.toString());
         return mascotaDTO;
 
@@ -62,7 +62,7 @@ public class MascotaAdopcionToMascotaResource {
      * @param mascotaId Identificador de la mascota que se está buscando en la mascotaAdopción.
      * @return JSON {@link WebApplicationException}-
      * @throws BusinessLogicException {@link  BusinessLogicException} 
-     * Error de la lógica que se genera cuando no se encuentra el libro.
+     * Error de la lógica que se genera cuando no se encuentra la mascota.
      */
     @GET
     @Path("{mascotaId: \\d+}")
@@ -72,7 +72,7 @@ public class MascotaAdopcionToMascotaResource {
             throw new WebApplicationException("El recurso/mascotaAdopcion/" + mascotaAdopcionId + "/mascotas/" + mascotaId + "no existe.", 404);
             
         }
-        MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionMascotaLogic.getMascota(mascotaId, mascotaAdopcionId));
+        MascotaDTO mascotaDTO = new MascotaDTO(mascotaAdopcionToMascotaLogic.getMascota(mascotaId, mascotaAdopcionId));
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource getMascota : output : {0}" , mascotaDTO.toString() );
         return mascotaDTO;
     }

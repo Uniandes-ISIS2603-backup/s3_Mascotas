@@ -10,11 +10,18 @@ import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaAdopcionPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
-import java.util.List;
-import javax.ejb.Stateless;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 
 /**
@@ -47,7 +54,7 @@ public class MascotaAdopcionToMascotaLogic {
         MascotaAdopcionEntity mascotaAdopcionEntity = mascotaAdopcionPersistence.find(mascotaAdopcionId);
         MascotaEntity mascotaEntity = mascotaPersistence.find(mascotaId);
         mascotaAdopcionEntity.setMascota(mascotaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de agregarle una mascota a la mascotaAdopcion con id={0]", mascotaAdopcionId);
+        LOGGER.log(Level.INFO, "Termina proceso de agregarle una mascota a la mascotaAdopcion con id={0}", mascotaAdopcionId);
         return mascotaEntity;
     }
     
@@ -67,7 +74,7 @@ public class MascotaAdopcionToMascotaLogic {
         if(mascotaEntity!=null){
             return mascotaEntity;
         }
-        throw new BusinessLogicException("El libro no está asociado a la editorial");
+        throw new BusinessLogicException("La Mascota no está asociada a la MascotaVenta");
     }
     
     

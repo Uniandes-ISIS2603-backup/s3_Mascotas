@@ -85,19 +85,20 @@ public class MascotaAdopcionResource {
     @PUT
     @Path("{mascotaAdopcionId: \\d+}")
     public MascotaAdopcionDTO updateMascotaAdopcion(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, MascotaAdopcionDTO mascotaAdopcion)throws  BusinessLogicException{
-        mascotaAdopcion.setId(mascotaAdopcionId);
+        MascotaAdopcionEntity mascotaEntity= mascotaAdopcion.toEntity();
+        mascotaEntity.setId(mascotaAdopcionId);
         if(mascotaAdopcionLogic.getMascotaAdopcion(mascotaAdopcionId)== null){
             throw new WebApplicationException("The resource /mascotaAdopcion/" + mascotaAdopcionId + "doesn't exist.", 404);
         }
-        return new MascotaAdopcionDTO(mascotaAdopcionLogic.updateMascotaAdopcion(mascotaAdopcionId, mascotaAdopcion.toEntity()));
+        return new MascotaAdopcionDTO(mascotaAdopcionLogic.updateMascotaAdopcion(mascotaAdopcionId, mascotaEntity));
     }
     
     
     /**
      * Conexión con el servicio de Mascota para una mascota Adopcion
-     * {@link MascotaAdopcionMascotaResource}
+     * {@link MascotaAdopcionToMascotaResource}
      * 
-     * Este método conecte la ruta de /mascotaAdopcion con las rutas de /mascotas 
+     * Este método conecte la ruta de /mascotasAdopcion con las rutas de /mascotas 
      * que dependen de la mascotaAdopcion, es una redirección al servicio que maneja
      * el segmento de la URL que se encarga de la mascota de una MascotaAdopcion
      * 
