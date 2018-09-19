@@ -40,6 +40,10 @@ public class AdopcionCalificacionLogic {
         if(adopcionEntity == null){
             throw new BusinessLogicException("La adopcion no existe");
         }
+        if(adopcionEntity.getCalificacion() != null)
+        {
+            throw new BusinessLogicException("Ya se calificó esta adopción");
+        }
         adopcionEntity.setCalificacion(calificacionEntity);
         return calificacionPersistence.find(calificacionId);
     }
@@ -56,7 +60,7 @@ public class AdopcionCalificacionLogic {
         {
             throw new BusinessLogicException("La adopcion no existe");
         }
-        if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) == null )
+        if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) != null )
         {
             throw new BusinessLogicException("La calificacion no es valida");
         }
@@ -67,7 +71,7 @@ public class AdopcionCalificacionLogic {
     public void removeCalificacion(Long adopcionId, Long calificacionId)
     {
         AdopcionEntity adopcionEntity = adopcionPersistence.find(adopcionId);
-        calificacionPersistence.delete(calificacionId);
+        calificacionPersistence.find(calificacionId).setDeleted(Boolean.TRUE);
         adopcionEntity.setCalificacion(null);
     }
 }

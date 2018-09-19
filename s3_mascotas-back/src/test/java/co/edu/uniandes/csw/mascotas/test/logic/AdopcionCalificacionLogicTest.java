@@ -14,6 +14,8 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -53,9 +55,9 @@ public class AdopcionCalificacionLogicTest {
     @Inject
     private UserTransaction utx;
     
-    private List<AdopcionEntity> adopcionData = new ArrayList<>();
+    private CalificacionEntity rtaC;
     
-    private List<CalificacionEntity> calificacionData = new ArrayList<>();
+    private AdopcionEntity rtaA;
     
      /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -106,19 +108,17 @@ public class AdopcionCalificacionLogicTest {
      */
     private void insertData() 
     {
-        for (int i = 0; i < 3; i++) {
-            CalificacionEntity calificacionEntity = factory.manufacturePojo(CalificacionEntity.class);
-            em.persist(calificacionEntity);
-            calificacionData.add(calificacionEntity);
+        CalificacionEntity entityC = factory.manufacturePojo(CalificacionEntity.class);
+        AdopcionEntity entityA = factory.manufacturePojo(AdopcionEntity.class);
+        try 
+        {
+            rtaC = calificacionLogic.crearCalificacion(entityC);
+            rtaA = adopcionLogic.crearAdopcion(entityA);
+        } 
+        catch (BusinessLogicException ex) 
+        {
+            Logger.getLogger(AdopcionCalificacionLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<CalificacionEntity> temp = calificacionData;
-        for(int i = 0; i < 3; i++){
-            AdopcionEntity adopcionEntity = factory.manufacturePojo(AdopcionEntity.class);
-            adopcionEntity.setCalificacion(calificacionData.get(i));
-            em.persist(adopcionEntity);
-            adopcionData.add(adopcionEntity);
-        }
-        calificacionData = temp;
     }
     
     /**
@@ -129,10 +129,8 @@ public class AdopcionCalificacionLogicTest {
     @Test
     public void addCalificacionTest() throws BusinessLogicException
     {
-        CalificacionEntity entityC = factory.manufacturePojo(CalificacionEntity.class);
-        CalificacionEntity rtaC = calificacionLogic.crearCalificacion(entityC);
-        AdopcionEntity entityA = factory.manufacturePojo(AdopcionEntity.class);
-        AdopcionEntity rtaA = adopcionLogic.crearAdopcion(entityA);
+        //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
+        insertData();
         adopcionCalificacionLogic.addCalificacion(rtaC.getId(), rtaA.getId());
         AdopcionEntity rtaFinal = adopcionLogic.getAdopcion(rtaA.getId());
         Assert.assertTrue(rtaFinal.getCalificacion().getComentarios().equals(rtaC.getComentarios()));
@@ -146,10 +144,8 @@ public class AdopcionCalificacionLogicTest {
     @Test
     public void getCalificacionTest() throws BusinessLogicException
     {
-        CalificacionEntity entityC = factory.manufacturePojo(CalificacionEntity.class);
-        CalificacionEntity rtaC = calificacionLogic.crearCalificacion(entityC);
-        AdopcionEntity entityA = factory.manufacturePojo(AdopcionEntity.class);
-        AdopcionEntity rtaA = adopcionLogic.crearAdopcion(entityA);
+        //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
+        insertData();
         adopcionCalificacionLogic.addCalificacion(rtaC.getId(), rtaA.getId());
         Assert.assertEquals(rtaC.getComentarios(), adopcionCalificacionLogic.getCalificacion(rtaA.getId()).getComentarios());
     }
@@ -162,10 +158,8 @@ public class AdopcionCalificacionLogicTest {
     @Test
     public void replaceCalificacionTest() throws BusinessLogicException
     {
-        CalificacionEntity entityC = factory.manufacturePojo(CalificacionEntity.class);
-        CalificacionEntity rtaC = calificacionLogic.crearCalificacion(entityC);
-        AdopcionEntity entityA = factory.manufacturePojo(AdopcionEntity.class);
-        AdopcionEntity rtaA = adopcionLogic.crearAdopcion(entityA);
+        //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
+        insertData();
         adopcionCalificacionLogic.addCalificacion(rtaC.getId(), rtaA.getId());
         
         rtaC.setComentarios("Nuevo Comentario");
@@ -181,5 +175,16 @@ public class AdopcionCalificacionLogicTest {
         }
         
         Assert.assertEquals("Nuevo Comentario", adopcionCalificacionLogic.replaceCalificacion(rtaA.getId(), rtaC).getComentarios());
+    }
+    
+    @Test
+    public void removeCalificacionTest() throws BusinessLogicException
+    {
+        //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
+        insertData();
+        adopcionCalificacionLogic.addCalificacion(rtaC.getId(), rtaA.getId());
+        adopcionCalificacionLogic.removeCalificacion(rtaA.getId(), rtaC.getId());
+        Assert.assertEquals(Boolean.TRUE, calificacionLogic.getCalificacion(rtaC.getId()).getDeleted() );
+        Assert.assertTrue(adopcionLogic.getAdopcion(rtaA.getId()).getCalificacion() == null);
     }
 }

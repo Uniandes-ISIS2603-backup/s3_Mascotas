@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.mascotas.resources;
 import co.edu.uniandes.csw.mascotas.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.mascotas.ejb.AdopcionCalificacionLogic;
 import co.edu.uniandes.csw.mascotas.ejb.CalificacionLogic;
+import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.mappers.WebApplicationExceptionMapper;
 import java.util.List;
 import javax.inject.Inject;
@@ -43,7 +44,7 @@ public class AdopcionCalificacionResource
     
     @POST
     @Path("(calificacionId: \\d+)")
-    public CalificacionDTO addCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId)
+    public CalificacionDTO addCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException
     {
         if(calificacionLogic.getCalificacion(calificacionId) == null){
             throw new WebApplicationException("El recurso /calificaciones/" + calificacionId + " no existe.", 404);
@@ -63,7 +64,7 @@ public class AdopcionCalificacionResource
     }
     
     @PUT
-    public CalificacionDTO replaceCalificacion(@PathParam("adopcionId") Long adopcionId, CalificacionDTO calificacion)
+    public CalificacionDTO replaceCalificacion(@PathParam("adopcionId") Long adopcionId, CalificacionDTO calificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource replaceCalificacion: input: {0}", adopcionId);
         if(calificacionLogic.getCalificacion(calificacion.getId()) == null){
