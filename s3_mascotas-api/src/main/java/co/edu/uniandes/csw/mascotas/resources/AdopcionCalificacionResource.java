@@ -59,6 +59,10 @@ public class AdopcionCalificacionResource
     {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource getCalificacion: input: {0}", adopcionId);
         CalificacionDTO calificacion = new CalificacionDTO(adopcionCalificacionLogic.getCalificacion(adopcionId));
+        if(calificacion.getComentarios() == null)
+        {
+            throw new WebApplicationException("El recurso /adopciones/" + adopcionId + " no tiene una calificacion asociada.", 404);
+        }
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource getCalificacion: output: {0}", calificacion.toString());
         return calificacion;
     }
