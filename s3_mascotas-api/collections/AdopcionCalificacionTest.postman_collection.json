@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "5f5cfe4e-982d-4610-995c-135d1b999834",
+		"name": "AdopcionCalificacionTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear una calificacion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"buena app\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/calificacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"calificacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear una adopcion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"docsAdopcion\":\"ejemp\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "asociar una adopcion con una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa99b970-2877-41a0-9898-fbd5f78b331b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones",
+						"3",
+						"calificaciones",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "asociar calificacion a adopcion ya calificado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2ce7b24-1392-4668-89fe-9fbd963e896d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia asociar la calificacion ya que la adopcion ya esta calificada.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya se calificó esta adopción\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones",
+						"3",
+						"calificaciones",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una calificacion de un autor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una calificacion no existente de una adopcion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8fcf0303-83f5-4039-84d7-a9752ca637e9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c29ee487-f51f-4734-b606-d9b6e84078c5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
