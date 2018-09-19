@@ -60,7 +60,7 @@ public class AdopcionCalificacionLogic {
         {
             throw new BusinessLogicException("La adopcion no existe");
         }
-        if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) != null )
+        if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) == null )
         {
             throw new BusinessLogicException("La calificacion no es valida");
         }
