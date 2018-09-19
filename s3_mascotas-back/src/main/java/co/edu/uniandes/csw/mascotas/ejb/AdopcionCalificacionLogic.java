@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.CalificacionEntity;
 import co.edu.uniandes.csw.mascotas.entities.AdopcionEntity;
+import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.AdopcionPersistence;
 import javax.ejb.Stateless;
@@ -29,10 +30,16 @@ public class AdopcionCalificacionLogic {
     @Inject
     private CalificacionPersistence calificacionPersistence;
     
-    public CalificacionEntity addCalificacion(Long adopcionId, Long calificacionId)
+    public CalificacionEntity addCalificacion(Long adopcionId, Long calificacionId) throws BusinessLogicException
     {
         CalificacionEntity calificacionEntity = calificacionPersistence.find(calificacionId);
+        if(calificacionEntity == null){
+            throw new BusinessLogicException("La calificacion no existe");
+        }
         AdopcionEntity adopcionEntity = adopcionPersistence.find(adopcionId);
+        if(adopcionEntity == null){
+            throw new BusinessLogicException("La adopcion no existe");
+        }
         adopcionEntity.setCalificacion(calificacionEntity);
         return calificacionPersistence.find(calificacionId);
     }
@@ -42,9 +49,17 @@ public class AdopcionCalificacionLogic {
         return adopcionPersistence.find(adopcionId).getCalificacion();
     }
     
-    public CalificacionEntity replaceCalificacion(Long adopcionId, CalificacionEntity pCalificacion)
+    public CalificacionEntity replaceCalificacion(Long adopcionId, CalificacionEntity pCalificacion) throws BusinessLogicException
     {
         AdopcionEntity adopcionEntity = adopcionPersistence.find(adopcionId);
+        if(adopcionEntity == null)
+        {
+            throw new BusinessLogicException("La adopcion no existe");
+        }
+        if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) == null )
+        {
+            throw new BusinessLogicException("La calificacion no es valida");
+        }
         adopcionEntity.setCalificacion(pCalificacion);
         return adopcionPersistence.find(adopcionId).getCalificacion();
     }
