@@ -22,13 +22,11 @@ public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
+    @OneToOne
+   // @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
     private MascotaEntity mascota;
 
-    public MascotaAdopcionEntity() {
-    }
-    
-
+   
 
     /**
      * @return the historia
@@ -52,7 +50,7 @@ public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param mascotaEntity the mascotaEntity to set
+     * @param mascota the mascotaEntity to set
      */
     public void setMascota(MascotaEntity mascota) {
         this.mascota = mascota;

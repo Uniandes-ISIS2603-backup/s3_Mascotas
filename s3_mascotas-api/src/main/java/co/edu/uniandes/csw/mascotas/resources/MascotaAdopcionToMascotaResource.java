@@ -43,7 +43,7 @@ public class MascotaAdopcionToMascotaResource {
     
     @POST
     @Path("{mascotaId: \\d+}")
-    public MascotaDTO addMascota(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, @PathParam("mascotaId") Long mascotaId){
+    public MascotaDTO addMascota(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, @PathParam("mascotaId") Long mascotaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "MascotaAdopcionMascotaResource addMascota: input: mascotaAdopcionId: {0}, mascotaId:{1}", new Object[]{mascotaAdopcionId, mascotaId});
         if(mascotaLogic.getMascota(mascotaId)==null){
             throw  new WebApplicationException("El recurso /mascotas/" + mascotaId + " no existe." , 404);
