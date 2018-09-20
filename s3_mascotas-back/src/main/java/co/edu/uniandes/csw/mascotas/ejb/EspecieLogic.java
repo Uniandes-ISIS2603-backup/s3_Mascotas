@@ -47,9 +47,6 @@ public class EspecieLogic
     public EspecieEntity getSpecies(Long speciesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la especie con id = {0}", speciesId);
         EspecieEntity especieEntity = persistence.find(speciesId);
-        if (especieEntity == null) {
-            LOGGER.log(Level.SEVERE, "La especie con el id = {0} no existe", speciesId);
-        }
         LOGGER.log(Level.INFO, "Termina proceso de consultar la especie con id = {0}", speciesId);
         return especieEntity;
     }
