@@ -28,9 +28,9 @@ import javax.ws.rs.core.MediaType;
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class mascotaVentaToMascotaResource {
+public class MascotaVentaToMascotaResource {
     
-    private static final Logger LOGGER = Logger.getLogger(mascotaVentaToMascotaResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MascotaVentaToMascotaResource.class.getName());
     
     @Inject
     private MascotaVentaToMascotaLogic mascotaVentaToMascotaLogic;

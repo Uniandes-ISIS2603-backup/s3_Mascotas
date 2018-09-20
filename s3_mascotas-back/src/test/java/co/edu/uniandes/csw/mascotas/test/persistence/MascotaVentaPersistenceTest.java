@@ -172,7 +172,18 @@ public class MascotaVentaPersistenceTest {
         Assert.assertEquals(entity.getDocumentosPedegree(), newEntity.getDocumentosPedegree());
     }
     
-        /**
+     /**
+     * Prueba para consultar todas las mascotasVenta
+     *
+    @Test
+    public void finAllMascotasAdopcionTest(){
+        List<MascotaVentaEntity> mascotasVenta= mascotaVentaPersistence.findAll();
+        Assert.assertEquals(mascotasVenta.size(), data.size());
+    }
+   
+     */
+    
+     /**
      * Prueba para consultar todas las mascotasVenta
      */
     @Test
@@ -180,6 +191,8 @@ public class MascotaVentaPersistenceTest {
         List<MascotaVentaEntity> mascotasVenta= mascotaVentaPersistence.findAll();
         Assert.assertEquals(mascotasVenta.size(), data.size());
     }
+    
+    
     
     /**
      * Prueba para Actualizar el estado de una mascota.
@@ -195,5 +208,8 @@ public class MascotaVentaPersistenceTest {
         Assert.assertEquals(rta.getId(), mascotaVenta.getId());
         Assert.assertNotEquals(rta.getDocumentosPedegree(), mascotaVenta.getDocumentosPedegree());
     }
+    
+    
+  
     
 }

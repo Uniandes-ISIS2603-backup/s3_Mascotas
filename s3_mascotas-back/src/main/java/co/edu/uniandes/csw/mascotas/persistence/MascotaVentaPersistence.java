@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -41,6 +42,17 @@ public class MascotaVentaPersistence {
         LOGGER.log(Level.INFO, "The mascotaVenta is updated,  with id={0}", mascotaVentaEntity.getId());
         return em.merge(mascotaVentaEntity);
     }
+        
+        /*
+        public void delete(Long mascotaVentaId){
+            LOGGER.log(Level.INFO, "Borrando mascotaVenta con id = {0}", mascotaVentaId);
+            MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, mascotaVentaId);
+            //em.remove(entity);
+            entity.setDeleted(Boolean.TRUE);
+            em.merge(entity);
+            LOGGER.log(Level.INFO, "saliendo de borrar la mascotaVenta con id = {0}", mascotaVentaId);
+        }
+        */
         
         public void delete(Long mascotaVentaId){
             LOGGER.log(Level.INFO, "Borrando mascotaVenta con id = {0}", mascotaVentaId);
