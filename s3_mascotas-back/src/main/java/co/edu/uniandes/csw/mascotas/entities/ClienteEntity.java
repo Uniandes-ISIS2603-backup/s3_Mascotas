@@ -25,6 +25,9 @@ public class ClienteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy = "cliente")
     private List<CompraEntity> compras = new ArrayList<>();
+    @PodamExclude
+    @OneToMany(mappedBy="cliente")
+    private List<AdopcionEntity> adopciones = new ArrayList<>();
 
     public long getTelefono()
     {
