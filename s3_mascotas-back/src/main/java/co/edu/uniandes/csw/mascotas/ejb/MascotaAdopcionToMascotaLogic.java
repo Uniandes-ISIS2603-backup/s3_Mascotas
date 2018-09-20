@@ -111,8 +111,6 @@ public class MascotaAdopcionToMascotaLogic {
             mascotaPersistence.find(mascotaId).setDeleted(Boolean.TRUE);
             mascotaADopcionEntity.setMascota(null);
         }
-        
-
     }
     
 }

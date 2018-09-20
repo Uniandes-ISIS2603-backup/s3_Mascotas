@@ -28,9 +28,9 @@ public class MascotaVentaLogic {
     
      public MascotaVentaEntity crearMascotaVenta(MascotaVentaEntity entity) throws BusinessLogicException{
         LOOGER.info("MascotaVenta creation process begins");
-        if(persistence.find(entity.getId())!=null){
-            throw new BusinessLogicException("No se puede crear una especie con los mismos documentos pedegree");
-        }
+        //if(persistence.find(entity.getId())!=null){
+        //    throw new BusinessLogicException("No se puede crear una especie con los mismos documentos pedegree");
+        //}
         persistence.create(entity);
         LOOGER.info("MascotaVenta was succesfully created");
         return entity;

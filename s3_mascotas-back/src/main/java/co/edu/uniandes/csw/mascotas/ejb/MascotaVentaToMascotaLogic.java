@@ -41,13 +41,22 @@ public class MascotaVentaToMascotaLogic {
      * @param  mascotaId El id de la mascota a guardar.
      * @return La Mascota creada.
      */
-    public MascotaEntity addMascota(Long mascotaId, Long mascotaVentaId){
+    public MascotaEntity addMascota(Long mascotaId, Long mascotaVentaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una mascota a la mascotaVenta con id ={0}", mascotaVentaId);
         MascotaVentaEntity mascotaVentaEntity = mascotaVentaPersistence.find(mascotaVentaId);
+        if(mascotaVentaEntity==null){
+            throw new BusinessLogicException("no existe la mascotaVenta");
+        }
         MascotaEntity mascotaEntity = mascotaPersistence.find(mascotaId);
+        if(mascotaEntity==null){
+            throw new BusinessLogicException("la mascota que se intenta asociar no existe");
+        }
+        if(mascotaVentaEntity.getMascota()!=null){
+            throw new BusinessLogicException("la mascotaVenta ya tiene una mascota asociada");
+        }
         mascotaVentaEntity.setMascota(mascotaEntity);
         LOGGER.log(Level.INFO, "Termina el proceso de agregarle una mascota a la mascotaVenta con id={0}", mascotaVentaId);
-        return mascotaEntity;
+        return mascotaPersistence.find(mascotaId);
     }
     
     
@@ -66,6 +75,38 @@ public class MascotaVentaToMascotaLogic {
             return mascotaEntity;
         }
         throw new BusinessLogicException("La mascota no está asociada a la mascotaVenta");
+    }
+    
+    
+    
+    
+    public MascotaEntity replaceMascota(Long mascotaVentaId, MascotaEntity pMascotaEntity) throws BusinessLogicException
+    {
+        MascotaVentaEntity ventaEntity = mascotaVentaPersistence.find(mascotaVentaId);
+        if(ventaEntity == null)
+        {
+            throw new BusinessLogicException("La MascotaVenta no existe");
+        }
+        if(pMascotaEntity == null || mascotaPersistence.find(pMascotaEntity.getId()) == null )
+        {
+            throw new BusinessLogicException("La mascota no es valida");
+        }
+        ventaEntity.setMascota(pMascotaEntity);
+        return mascotaVentaPersistence.find(mascotaVentaId).getMascota();
+    }
+    
+    public void removeMascota(Long mascotaVentaId, Long mascotaId) throws BusinessLogicException
+    {
+        MascotaVentaEntity mascotaVentaEntity = mascotaVentaPersistence.find(mascotaVentaId);
+        if(mascotaVentaEntity.getMascota()==null){
+            throw new BusinessLogicException("La MascotaVenta no tiene una mascota asociada");
+        }
+        if(mascotaPersistence.find(mascotaId).equals(mascotaVentaEntity.getMascota())){
+            mascotaPersistence.find(mascotaId).setDeleted(Boolean.TRUE);
+            mascotaVentaEntity.setMascota(null);
+        }
+        
+
     }
 
 
