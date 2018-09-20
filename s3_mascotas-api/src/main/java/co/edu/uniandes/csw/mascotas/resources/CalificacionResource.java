@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Path("calificaciones")
 @Produces("application/json")

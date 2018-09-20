@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Stateless
 public class EspeciePersistence 

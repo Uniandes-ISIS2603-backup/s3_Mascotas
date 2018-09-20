@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Pena
+ * @author Cristhian Peña
  */
 public class CalificacionDTO implements Serializable
 {

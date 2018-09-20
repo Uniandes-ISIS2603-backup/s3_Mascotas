@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *  
- * @author estudiante
+ * @author Cristhian Peña
  */
 @RunWith(Arquillian.class)
 public class EspecieLogicTest {

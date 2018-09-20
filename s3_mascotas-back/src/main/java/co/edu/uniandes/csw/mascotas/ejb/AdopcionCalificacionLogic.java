@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author estudiante
+ * @author Cristhian Peña
  */
 @Stateless
 public class AdopcionCalificacionLogic {

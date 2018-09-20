@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 /**
  *
- * @author estudiante
+ * @author Cristhian Peña
  */
 @Stateless
 public class EspecieLogic 

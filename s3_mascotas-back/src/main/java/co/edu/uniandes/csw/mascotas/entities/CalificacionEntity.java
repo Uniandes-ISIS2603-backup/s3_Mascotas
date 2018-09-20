@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
