@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Juan Sebastián Gómez
  */
+@Stateless
 public class CompraLogic {
     private static final Logger LOGGER = Logger.getLogger(CompraLogic.class.getName());
     @Inject

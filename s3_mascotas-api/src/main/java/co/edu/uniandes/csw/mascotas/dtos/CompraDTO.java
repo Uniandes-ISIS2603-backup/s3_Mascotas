@@ -59,6 +59,8 @@ public class CompraDTO implements Serializable {
            this.id =compra.getId();
            this.precio=compra.getPrecio();
            this.tipoDePago=compra.getTipoDePago();
+           this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
+           this.relacionCliente = new ClienteDTO(compra.getCliente());
        }
     }
     /**
