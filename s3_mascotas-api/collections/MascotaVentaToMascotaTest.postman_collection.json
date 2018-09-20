@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "c52e4744-0cbe-47dd-8c02-6b0e880381fa",
+		"name": "MascotaVentaToMascotaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta",
+						"2",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Obtiene una mascota con id:{2} de una mascotaVenta con id:{2}, como respuesta se obtiene la mascota consultada."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta",
+						"2",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Relaciona una mascotaVenta con id:{2} con una mascota con id:{2}"
+			},
+			"response": []
+		}
+	]
+}

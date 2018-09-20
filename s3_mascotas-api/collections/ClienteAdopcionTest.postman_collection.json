@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "72f520f3-3139-4069-bf72-abccf071b5d3",
+		"name": "ClienteAdopcionTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/adopciones/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"1",
+						"adopciones",
+						"2"
+					]
+				},
+				"description": "Actualiza un cliente con identificador id:{1}.\nComo respuesta se obtiene el cliente con la información actualizada.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/clientes/1/adopciones/2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/adopciones/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"1",
+						"adopciones",
+						"2"
+					]
+				},
+				"description": "Obtiene una adopcion con id:{2} asociada a un cliente con id:{1}. Como respuesta se obtiene la información de la adopcion\n\n"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "b125616e-2cee-4c87-afa0-a87927b61321",
+		"name": "ClientesTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Obtiene la lista de todos los clientes."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"1"
+					]
+				},
+				"description": "Obtiene un cliente con identificador id:{1}"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/clientes",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/frontstepbystep.api/api/clientes/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"frontstepbystep.api",
+						"api",
+						"clientes",
+						"2"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/clientes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/frontstepbystep.api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"frontstepbystep.api",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		}
+	]
+}
