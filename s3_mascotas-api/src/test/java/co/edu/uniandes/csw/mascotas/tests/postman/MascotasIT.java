@@ -71,8 +71,6 @@ public class MascotasIT {
                 .setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-resources.xml"));
     }
-
-    @Ignore
     @Test
     @RunAsClient
     public void postman() throws IOException {
