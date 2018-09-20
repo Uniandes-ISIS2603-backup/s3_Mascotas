@@ -25,12 +25,10 @@ public class MascotaVentaEntity extends BaseEntity implements Serializable{
     private Double precio;
     
     @PodamExclude
-    @OneToOne( mappedBy = "mascotaVenta", fetch = FetchType.EAGER)
+    @OneToOne
+    //@OneToOne( mappedBy = "mascotaVenta", fetch = FetchType.EAGER)
     private MascotaEntity mascota;
 
-    public MascotaVentaEntity() {
-        
-    }
 
     /**
      * @return the documentosPedegree
