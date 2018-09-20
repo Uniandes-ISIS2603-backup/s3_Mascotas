@@ -37,6 +37,9 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private MascotaVentaEntity mascotaVenta;
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
     
     public String getNombre() {
         return nombre;
