@@ -66,4 +66,12 @@ public class ClienteEntity extends BaseEntity implements Serializable
     public void setCompras(List<CompraEntity> compras) {
         this.compras = compras;
     }
+    
+    public List<AdopcionEntity> getAdopciones() {
+        return adopciones;
+    }
+
+    public void setAdopciones(List<AdopcionEntity> adopciones) {
+        this.adopciones = adopciones;
+    }
 }
