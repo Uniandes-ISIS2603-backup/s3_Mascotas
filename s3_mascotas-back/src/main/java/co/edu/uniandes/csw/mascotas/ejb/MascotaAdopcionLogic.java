@@ -50,7 +50,11 @@ public class MascotaAdopcionLogic {
          return nuevaMascotaAdopcionEntity;
      }
     
-     public void deleteMascotaAdopcion(Long mascotaAdopcionId){
+     public void deleteMascotaAdopcion(Long mascotaAdopcionId) throws BusinessLogicException{
+         MascotaAdopcionEntity entity = persistence.find(mascotaAdopcionId);
+         if(entity!=null){
+             throw new BusinessLogicException("No se puede eliminar la Mascota adopcion ya que tiene una mascota asociada");
+         }
          persistence.delete(mascotaAdopcionId);
      }
     

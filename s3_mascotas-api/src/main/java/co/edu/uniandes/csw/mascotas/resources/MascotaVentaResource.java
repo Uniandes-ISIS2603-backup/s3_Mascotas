@@ -68,7 +68,8 @@ public class MascotaVentaResource {
     public MascotaVentaDTO updateMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId, MascotaVentaDTO mascotaVenta)throws  BusinessLogicException{
         MascotaVentaEntity mascotaVentaEntity = mascotaVenta.toEntity();
         mascotaVentaEntity.setId(mascotaVentaId);
-        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId)== null){
+        MascotaVentaEntity buscado = mascotaVentaLogic.getMascotaVenta(mascotaVentaId);
+        if(buscado== null){
             throw new WebApplicationException("The resource /mascotaVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
         return new MascotaVentaDTO(mascotaVentaLogic.updateMascotaVenta(mascotaVentaId, mascotaVentaEntity));
@@ -91,7 +92,8 @@ public class MascotaVentaResource {
     @Path("{mascotaVentaId: \\d+}")
     public void deleteMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "MascotaVentaResource deleteMascotaVenta: input: {0}", mascotaVentaId);
-        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId) == null){
+        MascotaVentaEntity buscado = mascotaVentaLogic.getMascotaVenta(mascotaVentaId);
+        if(buscado == null){
             throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
         mascotaVentaLogic.deleteMascotaVenta(mascotaVentaId);
@@ -113,11 +115,11 @@ public class MascotaVentaResource {
      * error de la lógica que se genera cuando no se encuentra la mascotaVenta
      */
     @Path("{mascotaVentaId: \\d+}/mascotas")
-    public Class<mascotaVentaToMascotaResource> getMascotaVentaToMascotaResource( @PathParam("mascotaVentaId") Long mascotaVentaId){
+    public Class<MascotaVentaToMascotaResource> getMascotaVentaToMascotaResource( @PathParam("mascotaVentaId") Long mascotaVentaId){
         if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId)==null){
             throw new WebApplicationException("El recurso/MascotaVenta/" + mascotaVentaId + "no existe", 404);
         }
-        return mascotaVentaToMascotaResource.class;
+        return MascotaVentaToMascotaResource.class;
     }    
     
 

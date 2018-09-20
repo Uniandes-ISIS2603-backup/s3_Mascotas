@@ -81,7 +81,7 @@ public class AdopcionCalificacionResource
     
     @DELETE
     @Path("{calificacionId: \\d+}")
-    public void removeAuthor(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) {
+    public void removeCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource removeCalificacion: input: adopcionId {0} , calificacionId {1}", new Object[]{adopcionId, calificacionId});
         if (calificacionLogic.getCalificacion(calificacionId) == null) {
             throw new WebApplicationException("El recurso /calificacion/" + calificacionId + " no existe.", 404);

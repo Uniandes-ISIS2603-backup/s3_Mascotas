@@ -28,6 +28,9 @@ public class MascotaVentaLogic {
     
      public MascotaVentaEntity crearMascotaVenta(MascotaVentaEntity entity) throws BusinessLogicException{
         LOOGER.info("MascotaVenta creation process begins");
+        if(persistence.find(entity.getId())!=null){
+            throw new BusinessLogicException("No se puede crear una especie con los mismos documentos pedegree");
+        }
         persistence.create(entity);
         LOOGER.info("MascotaVenta was succesfully created");
         return entity;
@@ -43,14 +46,22 @@ public class MascotaVentaLogic {
         return mascotaventaEntity;
      }
      
-     public MascotaVentaEntity updateMascotaVenta(long mascotaVentaId, MascotaVentaEntity mascotaVentaEntity){
+     public MascotaVentaEntity updateMascotaVenta(long mascotaVentaId, MascotaVentaEntity mascotaVentaEntity) throws BusinessLogicException{
          LOOGER.log(Level.INFO, "Updating the pet with id ={0}", mascotaVentaId);
+         if(persistence.find(mascotaVentaId).getDocumentosPedegree().equalsIgnoreCase(mascotaVentaEntity.getDocumentosPedegree())){
+             throw new BusinessLogicException("No se puede actualizar los documentos, ya existe una mascota con estos documentos");
+         }
          MascotaVentaEntity nuevaMascotaVentaEntity = persistence.update(mascotaVentaEntity);
          LOOGER.log(Level.INFO, "Finished update on pet with id ={0}", mascotaVentaEntity.getId());
          return nuevaMascotaVentaEntity;
      }
     
-     public void deleteMascotaVenta(Long mascotaVentaId){
+     public void deleteMascotaVenta(Long mascotaVentaId) throws BusinessLogicException{
+         MascotaVentaEntity entity = persistence.find(mascotaVentaId);
+         if(entity.getMascota()!=null)
+         {
+             throw new BusinessLogicException("No se puede eliminar la mascotaVenta, ya que tiene una mascota asociada");
+         }
          persistence.delete(mascotaVentaId);
      }
     

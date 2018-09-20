@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "c4ece08d-051c-4644-be28-28f9c3e5937b",
+		"name": "Adopcion_Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crearAdopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b52e359-2dcc-4c89-8e69-726f36da8549",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":3,\n\t\"docsAdopcion\": \"asdfsadfasd\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "coja el libro pelado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9dc49f62-d102-4c4e-9aec-78053cdc10a7",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

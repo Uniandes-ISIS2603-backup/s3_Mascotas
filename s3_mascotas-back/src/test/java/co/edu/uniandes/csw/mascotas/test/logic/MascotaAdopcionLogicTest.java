@@ -180,7 +180,7 @@ public class MascotaAdopcionLogicTest {
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
-    @Test
+    @Test(expected = BusinessLogicException.class)
     public void deleteMascotaAdopcionTest() throws BusinessLogicException {
         MascotaAdopcionEntity entity = mascotaAdopcionData.get(1);
         mascotaAdopcionLogic.deleteMascotaAdopcion(entity.getId());
