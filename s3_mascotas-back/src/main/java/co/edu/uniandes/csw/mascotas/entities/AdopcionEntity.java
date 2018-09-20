@@ -23,6 +23,14 @@ public class AdopcionEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
     public String getDocsAdopcion() {
         return docsAdopcion;
     }

@@ -162,7 +162,7 @@ public class MascotaVentaLogicTest {
      * Prueba para actualizar una mascotaVenta.
      */
     @Test
-    public void updateMascotaVentaTest() throws BusinessLogicException {
+    public void updateMascotaVentaTest()throws BusinessLogicException{
         MascotaVentaEntity entity = mascotaVentaData.get(0);
         MascotaVentaEntity pojoEntity = factory.manufacturePojo(MascotaVentaEntity.class);
         pojoEntity.setId(entity.getId());
