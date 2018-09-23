@@ -39,7 +39,7 @@ public class MascotaLogicTest {
     @Inject
     private MascotaLogic mascotaLogic;
     
-     @PersistenceContext
+    @PersistenceContext
     private EntityManager em;
      
     @Inject

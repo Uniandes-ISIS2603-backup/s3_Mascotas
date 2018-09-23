@@ -32,10 +32,8 @@ import java.util.logging.Logger;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * Clase que implementa el recurso "books/{id}/authors".
  *
- * @author ISIS2603
- * @version 1.0
+ * @author lemus
  */
 @Path("especies/{especiesId : \\d+}/razas")
 @Consumes(MediaType.APPLICATION_JSON)

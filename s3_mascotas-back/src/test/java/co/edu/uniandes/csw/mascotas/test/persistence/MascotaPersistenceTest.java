@@ -69,7 +69,7 @@ public class MascotaPersistenceTest {
         }
     }
     private void clearData(){
-        em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from MascotaEntity").executeUpdate();
     }
     private void insertData(){
         for(int i= 0; i<10;i++){

@@ -40,7 +40,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 public class MascotaVentaToMascotaLogicTest {
     
-           private PodamFactory factory = new PodamFactoryImpl();
+    private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
     private MascotaVentaToMascotaLogic mascotaVentaToMascotaLogic;

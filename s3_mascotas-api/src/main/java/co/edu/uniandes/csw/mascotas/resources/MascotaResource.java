@@ -67,7 +67,7 @@ public class MascotaResource {
     public MascotaDTO getMascota(@PathParam("mascotasId") Long mascotasId){
         LOGGER.log(Level.INFO, "MascotaResource getMascota: input: {0}", mascotasId);
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
-        if(mascotaEntity == null){
+        if(mascotaEntity == null || mascotaEntity.getDeleted()){
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);
         }
         LOGGER.log(Level.INFO, "MascotaResource getMascota: output: {0}", mascotaEntity.toString());
@@ -87,7 +87,7 @@ public class MascotaResource {
     public MascotaDTO updateMascota(@PathParam("mascotasId") Long mascotasId, MascotaDTO mascota) throws BusinessLogicException{
         mascota.setId(mascotasId);
         MascotaEntity mascotaOriginal = mascotaLogic.getMascota(mascotasId);
-        if (mascotaOriginal == null) {
+        if (mascotaOriginal == null || mascotaOriginal.getDeleted()) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
         return new MascotaDTO(mascotaLogic.updateMascota(mascotaOriginal, mascota.toEntity()));
@@ -97,7 +97,7 @@ public class MascotaResource {
     @Path("{mascotasId: \\d+}")
     public void deleteMascota(@PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
-        if (mascotaEntity == null) {
+        if (mascotaEntity == null || mascotaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
         mascotaLogic.deleteMascota(mascotaEntity);
@@ -114,7 +114,7 @@ public class MascotaResource {
     @Path("{mascotasId: \\d+}/raza")
     public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("mascotasId") Long mascotasId){
         MascotaEntity m = mascotaLogic.getMascota(mascotasId);
-        if(m == null){
+        if(m == null || m.getDeleted()){
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
         return RazaMascotaResource.class;

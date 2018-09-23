@@ -86,6 +86,8 @@ public class RazaMascotaLogic {
         RazaEntity r = razaPersistence.find(razasId);
         MascotaEntity m = mascotaPersistence.find(mascotasId);
         r.getMascotas().remove(m);
+        m.setRaza(null);
+        mascotaPersistence.update(m);
     }
     
 }

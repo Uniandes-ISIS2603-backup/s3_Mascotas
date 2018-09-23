@@ -52,7 +52,7 @@ public class RazaResource {
     
     @GET
     @Path("{razasId: \\d+}")
-    public RazaDTO getRaza(@PathParam("razasId") Long razasId){
+    public RazaDetailDTO getRaza(@PathParam("razasId") Long razasId){
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
