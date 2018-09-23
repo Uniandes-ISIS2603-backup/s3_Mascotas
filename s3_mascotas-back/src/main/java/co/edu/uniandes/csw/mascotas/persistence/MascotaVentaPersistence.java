@@ -16,8 +16,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Clase que maneja la persistencia de una mascota de venta.
  *
- * @author estudiante
+ * @author Sebastian Mujica
  */
 @Stateless
 public class MascotaVentaPersistence {
@@ -27,6 +28,11 @@ public class MascotaVentaPersistence {
          @PersistenceContext(unitName = "PetsUniandesPU")
          protected EntityManager em;
          
+         /**
+          * se crea una mascota de venta en la BD.
+          * @param mascotaEntity
+          * @return 
+          */
          public MascotaVentaEntity create (MascotaVentaEntity mascotaEntity){
             LOGGER.log(Level.INFO, "creating new MascotaVenta");
             em.persist(mascotaEntity);
@@ -34,10 +40,20 @@ public class MascotaVentaPersistence {
             return mascotaEntity;
          }
          
+         /**
+          * Se encuentra una mascota de venta en la BD.
+          * @param mascotaVentaId
+          * @return 
+          */
          public MascotaVentaEntity find (Long  mascotaVentaId){
             return em.find(MascotaVentaEntity.class, mascotaVentaId);
          }
          
+         /**
+          * se actualiza una mascota de venta en la BD.
+          * @param mascotaVentaEntity
+          * @return 
+          */
         public MascotaVentaEntity update(MascotaVentaEntity mascotaVentaEntity){
         LOGGER.log(Level.INFO, "The mascotaVenta is updated,  with id={0}", mascotaVentaEntity.getId());
         return em.merge(mascotaVentaEntity);
@@ -54,6 +70,10 @@ public class MascotaVentaPersistence {
         }
         */
         
+        /**
+         * Se  elimina una mascota de venta en la BD.
+         * @param mascotaVentaId 
+         */
         public void delete(Long mascotaVentaId){
             LOGGER.log(Level.INFO, "Borrando mascotaVenta con id = {0}", mascotaVentaId);
             MascotaVentaEntity entity = em.find(MascotaVentaEntity.class, mascotaVentaId);
@@ -61,6 +81,10 @@ public class MascotaVentaPersistence {
             LOGGER.log(Level.INFO, "saliendo de borrar la mascotaVenta con id = {0}", mascotaVentaId);
         }
 
+        /**
+         * Se encuentran todas las mascotas de venta en la BD.
+         * @return 
+         */
         public List<MascotaVentaEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todas las mascotasVenta");
         TypedQuery query = em.createQuery("select u from MascotaVentaEntity u", MascotaVentaEntity.class);

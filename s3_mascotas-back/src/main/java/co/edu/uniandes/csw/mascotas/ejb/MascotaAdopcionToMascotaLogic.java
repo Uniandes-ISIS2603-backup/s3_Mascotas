@@ -48,6 +48,7 @@ public class MascotaAdopcionToMascotaLogic {
      * @param mascotaAdopcionId El id de la MascotaAdopcion en la que se va a guardar la mascota.
      * @param  mascotaId El id de la mascota a guardar.
      * @return La Mascota creada.
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     public MascotaEntity addMascota(Long mascotaId, Long mascotaAdopcionId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una mascota a la mascotaAdopcion con id ={0}", mascotaAdopcionId);
@@ -86,6 +87,17 @@ public class MascotaAdopcionToMascotaLogic {
         throw new BusinessLogicException("La Mascota no está asociada a la MascotaVenta");
     }
     
+    
+    /**
+     * Se reempleaza la mascota de una mascota de adopción.
+     * @param mascotaAdopcionId el id de la mascota de adopción que se va a 
+     * actualizar.
+     * @param pMascotaEntity la mascota que se va a actualizar en la mascota de
+     * adopción.
+     * @return la mascota de adopción con su respectiva mascota actualizada.
+     * @throws BusinessLogicException, en caso de que la mascota que se va a 
+     * actualizar no exista o no sea válida. porque ya pertenece a otra mascota.
+     */
         public MascotaEntity replaceMascota(Long mascotaAdopcionId, MascotaEntity pMascotaEntity) throws BusinessLogicException
     {
         MascotaAdopcionEntity adopcionEntity = mascotaAdopcionPersistence.find(mascotaAdopcionId);
@@ -101,6 +113,12 @@ public class MascotaAdopcionToMascotaLogic {
         return mascotaAdopcionPersistence.find(mascotaAdopcionId).getMascota();
     }
     
+        /**
+         * Se elimina una mascota de una mascota de adopción.
+         * @param mascotaAdopcionId la mascota de adopción.
+         * @param mascotaId la mascota que se va a eliminar.
+         * @throws BusinessLogicException 
+         */
     public void removeMascota(Long mascotaAdopcionId, Long mascotaId) throws BusinessLogicException
     {
         MascotaAdopcionEntity mascotaADopcionEntity = mascotaAdopcionPersistence.find(mascotaAdopcionId);

@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author estudiante
+ * @author Sebastian Mujica
  */
 @Stateless
 public class MascotaAdopcionPersistence {
@@ -28,6 +28,11 @@ public class MascotaAdopcionPersistence {
     @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     
+    /**
+     * se crea una mascota de venta en la base de datos.
+     * @param mascotaAdopcionEntity información de la mascota a crear.
+     * @return mascota de adopción con un id asignado.
+     */
     public MascotaAdopcionEntity create(MascotaAdopcionEntity mascotaAdopcionEntity){
         LOGGER.log(Level.INFO, "Creating new mascotaAdopcion");
         em.persist(mascotaAdopcionEntity);
@@ -35,15 +40,29 @@ public class MascotaAdopcionPersistence {
         return mascotaAdopcionEntity;
     }
     
+    /**
+     * Se encuentra una mascota de adopción.
+     * @param mascotaAdopcionId id de la mascota de adopcion buscada.
+     * @return la mascota de adopción buscada.
+     */
     public MascotaAdopcionEntity find(Long mascotaAdopcionId){
         return em.find(MascotaAdopcionEntity.class, mascotaAdopcionId);
     }
     
+    /**
+     * Se actualiza la información de una mascota de adopción en la BD
+     * @param mascotaAdopcionEntity
+     * @return 
+     */
     public MascotaAdopcionEntity update(MascotaAdopcionEntity mascotaAdopcionEntity){
         LOGGER.log(Level.INFO, "Updating mascotaAdopcion with id={0}", mascotaAdopcionEntity.getId());
         return em.merge(mascotaAdopcionEntity);
     }
     
+    /**
+     * se elimina una mascota de adopción de la BD.
+     * @param mascotaAdopcionId 
+     */
     public void delete(Long mascotaAdopcionId){
         LOGGER.log(Level.INFO, "Borrando mascotaAdopcion con id = {0}", mascotaAdopcionId);
         MascotaAdopcionEntity entity = em.find(MascotaAdopcionEntity.class, mascotaAdopcionId);
@@ -51,6 +70,10 @@ public class MascotaAdopcionPersistence {
         LOGGER.log(Level.INFO, "Saliendo de borrar la MascotaAdopcion con id = {0}", mascotaAdopcionId);
     }
     
+    /**
+     * Se obtienen todas las mascotas de adopción de la aplicación.
+     * @return 
+     */
     public List<MascotaAdopcionEntity> findAll(){
         LOGGER.log(Level.INFO, "Consultando todas las mascotasAdopcion");
         TypedQuery query = em.createQuery("select u from MascotaAdopcionEntity u", MascotaAdopcionEntity.class);

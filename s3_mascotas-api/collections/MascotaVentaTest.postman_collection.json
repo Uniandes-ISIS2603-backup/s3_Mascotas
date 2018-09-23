@@ -39,74 +39,6 @@
 		{
 			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"mascotaVenta",
-						"2",
-						"mascotas",
-						"2"
-					]
-				},
-				"description": "Relaciona una mascotaVenta con id:{2} con una mascota con id:{2}"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"mascotaVenta",
-						"2",
-						"mascotas",
-						"2"
-					]
-				},
-				"description": "Obtiene una mascota con id:{2} de una mascotaVenta con id:{2}, como respuesta se obtiene la mascota consultada."
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
-			"request": {
 				"method": "PUT",
 				"header": [
 					{
@@ -132,6 +64,37 @@
 						"2"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta"
+					]
+				},
+				"description": "Se crea una nueva mascotaVenta con la información enviada en el body, se recibe un objeto con un id asignado por la base de datos y la información recibida\n"
 			},
 			"response": []
 		}

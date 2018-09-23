@@ -9,22 +9,46 @@ import co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity;
 import java.io.Serializable;
 
 /**
+ * Esta clase representa una mascotaADopcion en el objeto de transferencia de
+ * archvios DTO model.
  *
  * @author Sebastian Mujica
  */
 public class MascotaAdopcionDTO implements Serializable{
     
+    
+    /**
+     * Atributo que representa el id de una masdcota de adopción.
+     */
     private Long id;
     
+    
+    /**
+     * Atributo que representa la hsitoria de una mascota de adopción.
+     */
     private String historia;
     
+    /**
+     * Atributo que representa una relación a uno de una mascota de 
+     * adopción con una mascota.
+     */
     private MascotaDTO mascota;
 
+    
+    /**
+     * Método constructor que permite construir una mascota de adopcion
+     * de manera vacía.
+     */
     public MascotaAdopcionDTO() {
     }
 
     
-    
+    /**
+     * Método constructor que construye una mascota de adopcion DTO a partir
+     * de una mascota de adopcíón entity.
+     * @param mascotaAdopcionEntity La mascota De adopción entity que se 
+     * transforma a DTO
+     */
     public MascotaAdopcionDTO(MascotaAdopcionEntity mascotaAdopcionEntity) {
          this.historia= mascotaAdopcionEntity.getHistoria();
          this.id = mascotaAdopcionEntity.getId();
@@ -80,6 +104,12 @@ public class MascotaAdopcionDTO implements Serializable{
         this.mascota = mascota;
     }
     
+    
+    /**
+     * Método que permite transformar una mascota de adopción DTO a una mascota
+     * de adopción Entity.
+     * @return Mascota de adopción entity.
+     */
     public MascotaAdopcionEntity toEntity(){
         MascotaAdopcionEntity entity = new MascotaAdopcionEntity();
         entity.setHistoria(this.historia);

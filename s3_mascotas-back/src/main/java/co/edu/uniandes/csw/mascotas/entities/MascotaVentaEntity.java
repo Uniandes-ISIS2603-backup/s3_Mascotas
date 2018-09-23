@@ -20,8 +20,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MascotaVentaEntity extends BaseEntity implements Serializable{
     
+    /**
+     * representa los documentos pedegree de una mascota de venta.
+     */
     private String documentosPedegree;
     
+    /**
+     * representa el precio de una mascota de venta.
+     */
     private Double precio;
     
     @PodamExclude

@@ -18,6 +18,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
 
+    /**
+     * representa la historia de una mascota de adopción de tipo Entity.
+     */
     private String historia;
     
     

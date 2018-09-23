@@ -15,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clae que permite manejar la base de datos y administrar la información 
+ * de una mascota de adopción e implementar las reglas de negocio.
  *
  * @author Sebastian Mujica
  */
@@ -26,6 +28,12 @@ public class MascotaAdopcionLogic {
     @Inject
     private MascotaAdopcionPersistence persistence;
     
+    /**
+     * Se crea una nueva mascota de adopción.
+     * @param entity
+     * @return MascotaAdopcionEntity, la mascota de adopcion creada.
+     * @throws BusinessLogicException 
+     */
     public MascotaAdopcionEntity crearMascotaAdopcion(MascotaAdopcionEntity entity) throws BusinessLogicException{
         LOOGER.info("MascotaAdopcion creation process begins");
         persistence.create(entity);
@@ -33,6 +41,11 @@ public class MascotaAdopcionLogic {
         return entity;
     }
     
+    /**
+     * Se obtiene la mascota de adopción
+     * @param mascotaAdopcionId el id de la mascota de adopcion buscada.
+     * @return 
+     */
     public MascotaAdopcionEntity getMascotaAdopcion(Long mascotaAdopcionId){
         LOOGER.log(Level.INFO, "Looking for pet with id = {0}", mascotaAdopcionId);
         MascotaAdopcionEntity mascotaAdopcionEntity= persistence.find(mascotaAdopcionId);
@@ -43,6 +56,13 @@ public class MascotaAdopcionLogic {
         return mascotaAdopcionEntity;
      }
      
+    /**
+     * Se actualiza una mascota de adopcion.
+     * @param mascotaAdopcionId el id de la mascota que se busca actualizar.
+     * @param mascotaAdopcionEntity la información que se desea actualizar de la
+     * mascota de adopción.
+     * @return la mascota de adopción actualizada.
+     */
      public MascotaAdopcionEntity updateMascotaAdopcion(long mascotaAdopcionId, MascotaAdopcionEntity mascotaAdopcionEntity){
          LOOGER.log(Level.INFO, "Updating the pet with id ={0}", mascotaAdopcionId);
          MascotaAdopcionEntity nuevaMascotaAdopcionEntity = persistence.update(mascotaAdopcionEntity);
@@ -50,6 +70,13 @@ public class MascotaAdopcionLogic {
          return nuevaMascotaAdopcionEntity;
      }
     
+     /**
+      * se elimina una mascota de adopción.
+      * @param mascotaAdopcionId el id de la mascota de adopción que se desea
+      * eliminar.
+      * @throws BusinessLogicException, En caso de que la mascota de adopción 
+      * tenga una mascota asociada.
+      */
      public void deleteMascotaAdopcion(Long mascotaAdopcionId) throws BusinessLogicException{
          MascotaAdopcionEntity entity = persistence.find(mascotaAdopcionId);
          if(entity!=null){
@@ -58,6 +85,10 @@ public class MascotaAdopcionLogic {
          persistence.delete(mascotaAdopcionId);
      }
     
+     /**
+      * se obtienen todas las mascotas de adopcipon de la aplicación.
+      * @return una lsita con todas las mascotas de adopción de la tienda
+      */
      public List<MascotaAdopcionEntity> getMascotasAdopcion(){
          LOOGER.log(Level.INFO, "Inicia proceso de consultar todas las MascotasAdopcion");
          List<MascotaAdopcionEntity> mascotasAdopcion= persistence.findAll();
