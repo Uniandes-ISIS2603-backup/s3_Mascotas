@@ -112,6 +112,9 @@ public class MascotaVentaToMascotaLogicTest {
     {
         MascotaVentaEntity entityC = factory.manufacturePojo(MascotaVentaEntity.class);
         MascotaEntity entityA = factory.manufacturePojo(MascotaEntity.class);
+        while (entityA.getEdad() < 0) {
+            entityA = factory.manufacturePojo(MascotaEntity.class);
+        }
         try 
         {
             mascotaVentaA = mascotaVentaLogic.crearMascotaVenta(entityC);
@@ -132,7 +135,7 @@ public class MascotaVentaToMascotaLogicTest {
     public void addMascotaTest() throws BusinessLogicException
     {
         //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
-        insertData();
+        //insertData();
         MascotaEntity respuesta = mascotaVentaToMascotaLogic.addMascota(mascotaB.getId(), mascotaVentaA.getId());
         MascotaVentaEntity rtaFinal = mascotaVentaLogic.getMascotaVenta(mascotaVentaA.getId());
         Assert.assertTrue(rtaFinal.getMascota().getNombre().equals(respuesta.getNombre()));
@@ -146,7 +149,7 @@ public class MascotaVentaToMascotaLogicTest {
     @Test
     public void getCalificacionTest() throws BusinessLogicException
     {
-        insertData();
+        //insertData();
         mascotaVentaToMascotaLogic.addMascota(mascotaB.getId(), mascotaVentaA.getId());
         Assert.assertEquals(mascotaB.getNombre(), mascotaVentaToMascotaLogic.getMascota(mascotaB.getId(), mascotaVentaA.getId()).getNombre());
     }
@@ -161,7 +164,7 @@ public class MascotaVentaToMascotaLogicTest {
     public void replaceMascotaTest() throws BusinessLogicException
     {
         //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
-        insertData();
+        //insertData();
         mascotaVentaToMascotaLogic.addMascota(mascotaB.getId(), mascotaVentaA.getId());
         mascotaB.setColor("dorado");
         try{
@@ -178,7 +181,7 @@ public class MascotaVentaToMascotaLogicTest {
     public void removeMascotaTest() throws BusinessLogicException
     {
         //El metodo ConfigTest no funciona correctamente en mi maquina local, debido a esto llamo al metodo insertData directamente
-        insertData();
+        //insertData();
         mascotaVentaToMascotaLogic.addMascota(mascotaB.getId(), mascotaVentaA.getId());
         mascotaVentaToMascotaLogic.removeMascota(mascotaVentaA.getId(), mascotaB.getId());
         Assert.assertNull(mascotaLogic.getMascota(mascotaB.getId()));

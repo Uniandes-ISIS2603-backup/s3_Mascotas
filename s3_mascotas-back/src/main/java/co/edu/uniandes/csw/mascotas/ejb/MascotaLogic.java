@@ -30,7 +30,9 @@ public class MascotaLogic {
     
     public MascotaEntity crearMascota(MascotaEntity entity) throws BusinessLogicException{
         LOOGER.info("Pet creation process begins");
-        // missing verifications
+        if (entity.getEdad() < 0) {
+            throw new BusinessLogicException("age is incorrect");
+        }
         persistence.create(entity);
         LOOGER.info("Pet creation finishes");
         return entity;
