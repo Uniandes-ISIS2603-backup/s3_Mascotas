@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Cristhian Peña
  */
 public class EspecieDetailDTO extends EspecieDTO implements Serializable{
     

@@ -23,16 +23,20 @@ public class MascotaAdopcionDTO implements Serializable{
     public MascotaAdopcionDTO() {
     }
 
+    
+    
     public MascotaAdopcionDTO(MascotaAdopcionEntity mascotaAdopcionEntity) {
-        this.historia= mascotaAdopcionEntity.getHistoria();
-        this.id = mascotaAdopcionEntity.getId();
-        if(mascotaAdopcionEntity.getMascota()!=null){
-            this.mascota = new MascotaDTO(mascotaAdopcionEntity.getMascota());
-        }
-        else{
-            this.mascota = null;
-        }
+         this.historia= mascotaAdopcionEntity.getHistoria();
+         this.id = mascotaAdopcionEntity.getId();
+         if(mascotaAdopcionEntity.getMascota()!=null){
+           this.mascota= new MascotaDTO(mascotaAdopcionEntity.getMascota());
+         }
+         else{
+             this.mascota=null;
+         }
     }
+        
+    
 
     /**
      * @return the historia
@@ -79,9 +83,7 @@ public class MascotaAdopcionDTO implements Serializable{
     public MascotaAdopcionEntity toEntity(){
         MascotaAdopcionEntity entity = new MascotaAdopcionEntity();
         entity.setHistoria(this.historia);
-        if(this.mascota!=null){
-            entity.setMascota(this.mascota.toEntity());
-        }
+        entity.setId(this.id);
         return entity;
     }
     

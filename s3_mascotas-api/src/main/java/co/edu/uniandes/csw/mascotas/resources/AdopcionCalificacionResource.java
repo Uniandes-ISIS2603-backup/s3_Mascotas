@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.mascotas.resources;
 import co.edu.uniandes.csw.mascotas.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.mascotas.ejb.AdopcionCalificacionLogic;
 import co.edu.uniandes.csw.mascotas.ejb.CalificacionLogic;
+import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.mappers.WebApplicationExceptionMapper;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author estudiante
+ * @author Cristhian Peña
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,8 +43,8 @@ public class AdopcionCalificacionResource
     private CalificacionLogic calificacionLogic;
     
     @POST
-    @Path("(calificacionId: \\d+)")
-    public CalificacionDTO addCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId)
+    @Path("/{calificacionId: \\d+}")
+    public CalificacionDTO addCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) throws BusinessLogicException
     {
         if(calificacionLogic.getCalificacion(calificacionId) == null){
             throw new WebApplicationException("El recurso /calificaciones/" + calificacionId + " no existe.", 404);
@@ -58,12 +59,16 @@ public class AdopcionCalificacionResource
     {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource getCalificacion: input: {0}", adopcionId);
         CalificacionDTO calificacion = new CalificacionDTO(adopcionCalificacionLogic.getCalificacion(adopcionId));
+        if(calificacion.getComentarios() == null)
+        {
+            throw new WebApplicationException("El recurso /adopciones/" + adopcionId + " no tiene una calificacion asociada.", 404);
+        }
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource getCalificacion: output: {0}", calificacion.toString());
         return calificacion;
     }
     
     @PUT
-    public CalificacionDTO replaceCalificacion(@PathParam("adopcionId") Long adopcionId, CalificacionDTO calificacion)
+    public CalificacionDTO replaceCalificacion(@PathParam("adopcionId") Long adopcionId, CalificacionDTO calificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource replaceCalificacion: input: {0}", adopcionId);
         if(calificacionLogic.getCalificacion(calificacion.getId()) == null){
@@ -76,7 +81,7 @@ public class AdopcionCalificacionResource
     
     @DELETE
     @Path("{calificacionId: \\d+}")
-    public void removeAuthor(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) {
+    public void removeCalificacion(@PathParam("adopcionId") Long adopcionId, @PathParam("calificacionId") Long calificacionId) {
         LOGGER.log(Level.INFO, "AdopcionCalificacionResource removeCalificacion: input: adopcionId {0} , calificacionId {1}", new Object[]{adopcionId, calificacionId});
         if (calificacionLogic.getCalificacion(calificacionId) == null) {
             throw new WebApplicationException("El recurso /calificacion/" + calificacionId + " no existe.", 404);

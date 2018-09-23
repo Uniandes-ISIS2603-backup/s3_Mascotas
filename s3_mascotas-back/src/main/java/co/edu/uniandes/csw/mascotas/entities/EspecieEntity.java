@@ -13,7 +13,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Entity
 public class EspecieEntity extends BaseEntity implements Serializable{

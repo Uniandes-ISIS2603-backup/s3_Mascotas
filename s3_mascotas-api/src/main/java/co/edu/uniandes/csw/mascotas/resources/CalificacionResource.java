@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Path("calificaciones")
 @Produces("application/json")
@@ -45,7 +45,6 @@ public class CalificacionResource {
     /**
      * Crea una nueva calificacion con la información proporcionada en el cuerpo
      * de la petición web. Retorna una calificacion con la informacion igual a la de entrada.
-     * @param calificacion
      * @return CalificacionDTO DTO con la misma informaciòn de entrada
      * @throws BusinessLogicException 
      */
@@ -56,6 +55,15 @@ public class CalificacionResource {
         List<CalificacionDTO> lista = convertirLista(calificacionLogic.getCalificaciones());
         LOGGER.log(Level.INFO, "CalificacionResource getCalificaciones: output: {0}", "Calificaciones");
         return lista;
+    }
+    
+    
+    
+    @POST
+    public CalificacionDTO crearCalificacion(CalificacionDTO calificacion)throws BusinessLogicException
+    {
+        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.crearCalificacion(calificacion.toEntity()));
+        return calificacionDTO;
     }
     
     public List<CalificacionDTO> convertirLista(List<CalificacionEntity> pLista)

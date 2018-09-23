@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author pena
+ * @author Cristhian Peña
  */
 @Stateless
 public class CalificacionLogic 

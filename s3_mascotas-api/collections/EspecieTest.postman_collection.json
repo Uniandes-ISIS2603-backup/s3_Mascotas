@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "aa357432-2672-41d1-8688-5860c33aeda6",
+		"name": "EspecieTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear especie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "761f3849-3a8c-40ee-b5bd-07998b470d67",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"Ejemplo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear especie",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Ejemplo\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s3_mascotas-api",
+								"api",
+								"especies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "27",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Sep 2018 05:51:48 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\":4,\"nombre\":\"Ejemplo\"}"
+				}
+			]
+		},
+		{
+			"name": "crear una especie ya existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "26278371-1723-4794-9bc3-e763904c886f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia obtener una especie con un nombre que ya existe\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se puede crear la especie\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"San bernardo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear una especie ya existente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"San bernardo\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s3_mascotas-api",
+								"api",
+								"especies"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "28",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Sep 2018 05:34:50 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "No se puede crear la especie"
+				}
+			]
+		},
+		{
+			"name": "obtener todas las especies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0744acb7-f492-4866-af26-631bd6b2d428",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							"tests[\"species count\"] = data.length >= 1;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una especie especifica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4531208-e708-405d-9041-2097f9360344",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una especie inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d131be8-d6bc-404b-97af-23ae161e3f97",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia obtener una especie con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /especies/7 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar una especie inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f92f9b62-29b4-4398-8d53-4d178d786b53",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia actualizar una especie con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /especies/7 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"paddle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una especie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2953d165-8de1-4546-82ea-3d289158a51b",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"yahtsu\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una especie",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"yahtsu\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/s3_mascotas-api/api/especies/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s3_mascotas-api",
+								"api",
+								"especies",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "63",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Sep 2018 05:42:27 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"type\":\"especieDetailDTO\",\"id\":2,\"nombre\":\"yahtsu\",\"razas\":[]}"
+				}
+			]
+		},
+		{
+			"name": "eliminar una especie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

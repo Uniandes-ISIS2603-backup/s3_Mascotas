@@ -86,4 +86,12 @@ public class AdopcionResource {
         }
         return list;
     }
+     
+     @Path("{adopcionId: \\d+}/calificaciones")
+    public Class<AdopcionCalificacionResource> getAdopcionCalificacionResource(@PathParam("adopcionId") Long adopcionId) {
+        if (adopcionLogic.getAdopcion(adopcionId) == null) {
+            throw new WebApplicationException("El recurso /adopciones/" + adopcionId + " no existe.", 404);
+        }
+        return AdopcionCalificacionResource.class;
+    }
 }

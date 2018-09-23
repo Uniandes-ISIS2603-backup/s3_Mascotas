@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 import co.edu.uniandes.csw.mascotas.entities.MascotaAdopcionEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaAdopcionPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -49,9 +50,19 @@ public class MascotaAdopcionLogic {
          return nuevaMascotaAdopcionEntity;
      }
     
-     public void deleteMascotaAdopcion(Long mascotaAdopcionId){
+     public void deleteMascotaAdopcion(Long mascotaAdopcionId) throws BusinessLogicException{
+         MascotaAdopcionEntity entity = persistence.find(mascotaAdopcionId);
+         if(entity!=null){
+             throw new BusinessLogicException("No se puede eliminar la Mascota adopcion ya que tiene una mascota asociada");
+         }
          persistence.delete(mascotaAdopcionId);
      }
     
+     public List<MascotaAdopcionEntity> getMascotasAdopcion(){
+         LOOGER.log(Level.INFO, "Inicia proceso de consultar todas las MascotasAdopcion");
+         List<MascotaAdopcionEntity> mascotasAdopcion= persistence.findAll();
+         LOOGER.log(Level.INFO, "Termina proceso de consultar todas las MascotasAdopcion");
+         return mascotasAdopcion;
+     }
     
 }

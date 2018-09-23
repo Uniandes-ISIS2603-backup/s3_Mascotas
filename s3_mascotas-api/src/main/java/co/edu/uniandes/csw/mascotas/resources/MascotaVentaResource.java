@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.mascotas.dtos.MascotaVentaDTO;
 import co.edu.uniandes.csw.mascotas.ejb.MascotaVentaLogic;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -64,11 +66,13 @@ public class MascotaVentaResource {
     @PUT
     @Path("{mascotaVentaId: \\d+}")
     public MascotaVentaDTO updateMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId, MascotaVentaDTO mascotaVenta)throws  BusinessLogicException{
-        mascotaVenta.setId(mascotaVentaId);
-        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId)== null){
+        MascotaVentaEntity mascotaVentaEntity = mascotaVenta.toEntity();
+        mascotaVentaEntity.setId(mascotaVentaId);
+        MascotaVentaEntity buscado = mascotaVentaLogic.getMascotaVenta(mascotaVentaId);
+        if(buscado== null){
             throw new WebApplicationException("The resource /mascotaVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
-        return new MascotaVentaDTO(mascotaVentaLogic.updateMascotaVenta(mascotaVentaId, mascotaVenta.toEntity()));
+        return new MascotaVentaDTO(mascotaVentaLogic.updateMascotaVenta(mascotaVentaId, mascotaVentaEntity));
     }
     
 
@@ -85,14 +89,58 @@ public class MascotaVentaResource {
     }
     
     @DELETE
-    @Path("{mascotaAdopcionId: \\d+}")
-    public void deleteMascotaVenta(@PathParam("mascotaAdopcionId") Long mascotaVentaId) throws BusinessLogicException{
+    @Path("{mascotaVentaId: \\d+}")
+    public void deleteMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "MascotaVentaResource deleteMascotaVenta: input: {0}", mascotaVentaId);
-        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId) == null){
+        MascotaVentaEntity buscado = mascotaVentaLogic.getMascotaVenta(mascotaVentaId);
+        if(buscado == null){
             throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaVentaId + "doesn't exist.", 404);
         }
         mascotaVentaLogic.deleteMascotaVenta(mascotaVentaId);
         LOGGER.info("MascotaVenta deleteMascotaVenta: output: void");
+    }
+    
+     /**
+     * Conexión con el servicio de Mascota para una mascota Venta
+     * {@link MascotaVentaToMascotaResource}
+     * 
+     * Este método conecte la ruta de /mascotasVenta con las rutas de /mascotas 
+     * que dependen de la mascotaAdopcion, es una redirección al servicio que maneja
+     * el segmento de la URL que se encarga de la mascota de una MascotaVenta
+     * 
+     * @param mascotaVentaId El Id de la masctoa con respecto a la cual se accede
+     * al servicio
+     * @return El servicio de mascota para esta mascotaVenta en particular
+     * @throws WebApplicationException {@link WebApplicationException} 
+     * error de la lógica que se genera cuando no se encuentra la mascotaVenta
+     */
+    @Path("{mascotaVentaId: \\d+}/mascotas")
+    public Class<MascotaVentaToMascotaResource> getMascotaVentaToMascotaResource( @PathParam("mascotaVentaId") Long mascotaVentaId){
+        if(mascotaVentaLogic.getMascotaVenta(mascotaVentaId)==null){
+            throw new WebApplicationException("El recurso/MascotaVenta/" + mascotaVentaId + "no existe", 404);
+        }
+        return MascotaVentaToMascotaResource.class;
+    }    
+    
+
+    
+    @GET
+    public List<MascotaVentaDTO> getMascotasVenta(){
+        LOGGER.info("MascotaVentaResource getMascotasVenta : input : void");
+        List<MascotaVentaDTO> listaMascotasVenta = listEntityToDTO(mascotaVentaLogic.getMascotasVenta());
+        LOGGER.log(Level.INFO, "MascotaVentaResource getMascotasVenta: output: {0}", listaMascotasVenta.toString());
+        return listaMascotasVenta;
+    }
+
+    
+    
+    
+    private List<MascotaVentaDTO> listEntityToDTO(List<MascotaVentaEntity> entityList){
+        List<MascotaVentaDTO> list = new ArrayList<>();
+        for(MascotaVentaEntity entity : entityList) {
+            list.add(new MascotaVentaDTO(entity));
+        }
+        return list;
     }
     
 }

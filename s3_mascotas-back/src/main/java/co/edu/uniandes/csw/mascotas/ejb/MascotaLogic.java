@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 
 /**
@@ -47,8 +46,9 @@ public class MascotaLogic {
     public MascotaEntity getMascota(Long mascotasId){
         LOOGER.log(Level.INFO, "Looking for pet with id = {0}", mascotasId);
         MascotaEntity mascotaEntity = persistence.find(mascotasId);
-        if (mascotaEntity == null) {
-            LOOGER.log(Level.SEVERE, "The pet with id = {0} does not exists", mascotasId);            
+        if (mascotaEntity == null || mascotaEntity.getDeleted()) {
+            LOOGER.log(Level.SEVERE, "The pet with id = {0} does not exists", mascotasId);
+            return null;
         }
         LOOGER.log(Level.INFO, "Ending search for the pet with id {0}", mascotasId);
         return mascotaEntity;
@@ -69,11 +69,8 @@ public class MascotaLogic {
             };
             
             MascotaEntity resultingEntity = new MascotaEntity();
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             copiarEntreClases.copyProperties(resultingEntity, mascotaOriginal);
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             copiarEntreClases.copyProperties(resultingEntity, mascotaCambios);
-            LOOGER.log(Level.INFO, "resulting entity", resultingEntity.toString());
             persistence.update(resultingEntity);
             return resultingEntity;
         } catch (IllegalAccessException | InvocationTargetException ex ) {

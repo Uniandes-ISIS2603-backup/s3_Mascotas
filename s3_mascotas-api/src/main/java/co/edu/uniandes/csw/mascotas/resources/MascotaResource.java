@@ -53,6 +53,8 @@ public class MascotaResource {
     public MascotaDTO crearMascota(MascotaDTO mascota)throws BusinessLogicException{
         
         LOGGER.info("MascotaResource crearMascota: input: "+ mascota.toString());
+        /** User cannot define id´s */
+        mascota.setId(null);
         MascotaEntity mascotaEntity = mascota.toEntity();
         MascotaEntity nuevoMascotaEntity = mascotaLogic.crearMascota(mascotaEntity);
         MascotaDTO nuevoMascotaDTO = new MascotaDTO(nuevoMascotaEntity);
@@ -95,7 +97,7 @@ public class MascotaResource {
     @Path("{mascotasId: \\d+}")
     public void deleteMascota(@PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
-        if (mascotaLogic.getMascota(mascotasId) == null) {
+        if (mascotaEntity == null) {
             throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
         }
         mascotaLogic.deleteMascota(mascotaEntity);
@@ -107,5 +109,14 @@ public class MascotaResource {
             list.add(new MascotaDTO(m));
         }
         return list;
+    }
+    
+    @Path("{mascotasId: \\d+}/raza")
+    public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("mascotasId") Long mascotasId){
+        MascotaEntity m = mascotaLogic.getMascota(mascotasId);
+        if(m == null){
+            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+        }
+        return RazaMascotaResource.class;
     }
 }

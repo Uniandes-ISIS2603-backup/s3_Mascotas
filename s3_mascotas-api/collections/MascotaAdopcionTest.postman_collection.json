@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "d4f89efe-b384-4c05-8bea-0cc08bbe1abb",
+		"name": "MascotaAdopcionTest",
+		"description": "En este documento se guardarán los test del recurso MascotaAdopcion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaAdopcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion"
+					]
+				},
+				"description": "Se crea una nueva mascota con su historia correspondiente, además la base de datos genera el id que le corresponde."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaAdopcion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion"
+					]
+				},
+				"description": "Obtiene la mascota consultada la cual corresponde al id :{32} con sus respectivos atributos."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaAdopcion/31/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion",
+						"31",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Relaciona la mascotaVenta la cual corresponde al id :{31} con la respectiva mascota que corresponde l id: {2}, la petición retorna la mascota agregada."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaAdopcion/31/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion",
+						"31",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Se obtiene la mascota con id:{2} correspondiente a la mascotaVenta con id: {31}."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaAdopcion/33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion",
+						"33"
+					]
+				},
+				"description": "Actualiza una mascoda con id:{33}. Como respuesta se obtiene la información acutalizada con su respectivo id."
+			},
+			"response": []
+		}
+	]
+}

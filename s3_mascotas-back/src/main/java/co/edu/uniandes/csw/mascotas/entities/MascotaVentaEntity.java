@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -23,12 +25,10 @@ public class MascotaVentaEntity extends BaseEntity implements Serializable{
     private Double precio;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
+    //@OneToOne( mappedBy = "mascotaVenta", fetch = FetchType.EAGER)
     private MascotaEntity mascota;
 
-    public MascotaVentaEntity() {
-        
-    }
 
     /**
      * @return the documentosPedegree

@@ -96,8 +96,12 @@ public class MascotaAdopcionLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from MascotaAdopcionEntity").executeUpdate();
+        em.createQuery("delete from MascotaEntity").executeUpdate();
     }
 
+    /**
+     * Inserta los valores iniciales para la prueba
+     */
     private void insertData() {
         for(int i = 0; i<3 ; i++){
             MascotaAdopcionEntity mascotaAdopcion = factory.manufacturePojo(MascotaAdopcionEntity.class);
@@ -111,21 +115,81 @@ public class MascotaAdopcionLogicTest {
         }
     }
     
+    /**
+     * Prueba para crear una MascotaAdopcion.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
     @Test
     public void createMascotaAdopcionTest() throws BusinessLogicException {
         MascotaAdopcionEntity newEntity = factory.manufacturePojo(MascotaAdopcionEntity.class);
-        newEntity.setMascota(mascotasData.get(1));
         MascotaAdopcionEntity result = mascotaAdopcionLogic.crearMascotaAdopcion(newEntity);
         Assert.assertNotNull(result);
         MascotaAdopcionEntity entity = em.find(MascotaAdopcionEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getHistoria(), entity.getHistoria());
     }
     
+     /**
+     * Prueba para consultar la lista de mascotasAdopcion.
+     */
+    @Test
+    public void getMascotasAdopcionTest() {
+        List<MascotaAdopcionEntity> list = mascotaAdopcionLogic.getMascotasAdopcion();
+        Assert.assertEquals(mascotaAdopcionData.size(), list.size());
+        for (MascotaAdopcionEntity entity : list) {
+            boolean found = false;
+            for (MascotaAdopcionEntity storedEntity : mascotaAdopcionData) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
     
+     /**
+     * Prueba para consultar un MascotaAdopcion.
+     */
+    @Test
+    public void getMascotaAdopcionTest() {
+        MascotaAdopcionEntity entity = mascotaAdopcionData.get(0);
+        MascotaAdopcionEntity resultEntity = mascotaAdopcionLogic.getMascotaAdopcion(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getHistoria(), resultEntity.getHistoria());
+    }
+    
+    /**
+     * Prueba para actualizar una MascotaAdopcion.
+     */
+    @Test
+    public void updateMascotaAdopcionTest() {
+        MascotaAdopcionEntity entity = mascotaAdopcionData.get(0);
+        MascotaAdopcionEntity pojoEntity = factory.manufacturePojo(MascotaAdopcionEntity.class);
+        pojoEntity.setId(entity.getId());
+        mascotaAdopcionLogic.updateMascotaAdopcion(pojoEntity.getId(), pojoEntity);
+        MascotaAdopcionEntity resp= em.find(MascotaAdopcionEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertNotEquals(entity.getHistoria(), resp.getHistoria());
+    }
+    
+    
+    /**
+     * Prueba para eliminar una MascotaAdopcion.
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void deleteMascotaAdopcionTest() throws BusinessLogicException {
+        MascotaAdopcionEntity entity = mascotaAdopcionData.get(1);
+        mascotaAdopcionLogic.deleteMascotaAdopcion(entity.getId());
+        MascotaAdopcionEntity deleted = em.find(MascotaAdopcionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 }
 
 
 
-    
-    
 
+    

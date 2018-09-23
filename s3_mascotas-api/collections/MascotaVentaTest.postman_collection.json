@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "03778b68-0a8b-4de2-861e-2bf950a18535",
+		"name": "MascotaVentaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta"
+					]
+				},
+				"description": "Obtiene todas las mascotaVenta con sus mascotas asociadas, en caso de no tener mascota asociada el atributo es null."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta",
+						"2",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Relaciona una mascotaVenta con id:{2} con una mascota con id:{2}"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta",
+						"2",
+						"mascotas",
+						"2"
+					]
+				},
+				"description": "Obtiene una mascota con id:{2} de una mascotaVenta con id:{2}, como respuesta se obtiene la mascota consultada."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaVenta",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "ed77eb00-e887-41c2-8847-8a65e5268638",
+		"name": "HistoriaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/historias",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/historias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias"
+					]
+				},
+				"description": "Obtiene la lista de todos las historias."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/historias",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/historias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias"
+					]
+				},
+				"description": "Crea la historia con los valores dados, como respuesta se obtiene la historia con un id asignado por la base de datos."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/historias/2",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias",
+						"2"
+					]
+				},
+				"description": "actualiza la historia con id:{2} con los valores dados, como respuesta se obtiene la historia con los valores actualizados."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/frontstepbystep.api/api/historias/2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias",
+						"2"
+					]
+				},
+				"description": "Se obtiene la historia con id{2}."
+			},
+			"response": []
+		}
+	]
+}

@@ -22,6 +22,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -29,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *  
- * @author estudiante
+ * @author Cristhian Peña
  */
 @RunWith(Arquillian.class)
 public class EspecieLogicTest {
@@ -45,7 +46,7 @@ public class EspecieLogicTest {
     @Inject
     private UserTransaction utx;
     
-    //private List<RazaEntity> razaData = new ArrayList<>();
+    private List<RazaEntity> razaData = new ArrayList<>();
     
     private List<EspecieEntity> especieData = new ArrayList<EspecieEntity>();
     
@@ -89,27 +90,34 @@ public class EspecieLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from EspecieEntity").executeUpdate();
-        //em.createQuery("delete from EditorialEntity").executeUpdate();
     }
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {
-        
+    private void insertData() 
+    {
+        for(int i = 0; i < 2; i++){
+            RazaEntity razaEntity = factory.manufacturePojo(RazaEntity.class);
+            em.persist(razaEntity);
+            razaData.add(razaEntity);
+        }
         for (int i = 0; i < 3; i++) {
-            EspecieEntity entity = factory.manufacturePojo(EspecieEntity.class);
-            em.persist(entity);
-            especieData.add(entity);
-            
+            EspecieEntity especieEntity = factory.manufacturePojo(EspecieEntity.class);
+            if(i == 0)
+            {
+                especieEntity.setRazas(razaData);
+            }
+            em.persist(especieEntity);
+            especieData.add(especieEntity);
         }
     }
     
     /**
      * Prueba para crear una Especie.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     @Test
     public void createEspecieTest() throws BusinessLogicException
@@ -126,10 +134,10 @@ public class EspecieLogicTest {
      * Prueba para crear una Especie con el mismo nombre de una Especie que ya
      * existe.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void createEditorialConMismoNombreTest() throws BusinessLogicException {
+    public void createEspecieConMismoNombreTest() throws BusinessLogicException {
         EspecieEntity newEntity = factory.manufacturePojo(EspecieEntity.class);
         newEntity.setNombre(especieData.get(0).getNombre());
         especieLogic.crearEspecie(newEntity);
@@ -187,9 +195,11 @@ public class EspecieLogicTest {
     @Test
     public void deleteEspecieTest() throws BusinessLogicException {
         EspecieEntity entity = especieData.get(1);
+        System.out.println(entity.getId());
+        System.out.println(entity.getRazas().size());
         especieLogic.deleteEspecie(entity.getId());
         EspecieEntity deleted = em.find(EspecieEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        Assert.assertTrue(deleted.getDeleted());
     }
     
     /**
@@ -197,8 +207,9 @@ public class EspecieLogicTest {
      *
      * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
+    
     @Test(expected = BusinessLogicException.class)
-    public void deleteEditorialConBooksAsociadosTest() throws BusinessLogicException {
+    public void deleteEspecieConRazasAsociadasTest() throws BusinessLogicException {
         EspecieEntity entity = especieData.get(0);
         especieLogic.deleteEspecie(entity.getId());
     }

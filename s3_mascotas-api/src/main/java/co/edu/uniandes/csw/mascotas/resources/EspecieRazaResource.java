@@ -67,9 +67,9 @@ public class EspecieRazaResource
     }
 
     /**
-     * Retorna todas las mascotas asociadas con la raza especificada
+     * Retorna todas las razas asociadas con la especie especificada
      * @param razasId
-     * @return colección de mascotas de la raza
+     * @return colección de razas de la especie
      */
     @GET
     public List<RazaDetailDTO> obtenerRazas(@PathParam("especiesId") Long especiesId){

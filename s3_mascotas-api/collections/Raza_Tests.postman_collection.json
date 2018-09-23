@@ -148,6 +148,102 @@
 				"description": "pedir una raza por id"
 			},
 			"response": []
+		},
+		{
+			"name": "Obtener todas las razas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"locust3\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						""
+					]
+				},
+				"description": "Se obtiene todas las razas existentes"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Raza",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"razaNueva\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						"4"
+					]
+				},
+				"description": "Se actualiza el nombre de la raza"
+			},
+			"response": []
 		}
 	]
 }
