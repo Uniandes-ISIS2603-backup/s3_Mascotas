@@ -10,22 +10,46 @@ import co.edu.uniandes.csw.mascotas.entities.MascotaVentaEntity;
 import java.io.Serializable;
 
 /**
- *
+ *Esta clase representa una MascotaVenta en el objeto de transferencia de archivos.
+ * 
  * @author Sebastian Mujica
  */
 public class MascotaVentaDTO implements Serializable{
     
+    /**
+     * Atributo que representa el id de una mascotaVenta
+     */
     private Long id;
     
+    /**
+     * Atributo que representa los documentos Pedegree de unas mascotaVenta
+     */
     private String documentosPedegree;
     
+    /**
+     * Atributo que representa el precio de venta de una mascota venta.
+     */
     private Double precio;
     
+    
+    /**
+     * Atributo que representa una relación a uno de una mascotaVentaDTO
+     * con una mascotaDTO 
+     */
     private MascotaDTO mascota;
 
+    /**
+     * Constructor vacío de la clase MascotaVentaDTO
+     */
     public MascotaVentaDTO() {
     }
     
+    /**
+     * Método constructor que construye una mascota de venta  DTO a partir
+     * de una mascota de venta Entity.
+     * @param mascotaVenta la Entity que se utiliza para construir la mascota
+     * de venta DTO
+     */
     public MascotaVentaDTO( MascotaVentaEntity mascotaVenta) {
         this.documentosPedegree = mascotaVenta.getDocumentosPedegree();
         this.id= mascotaVenta.getId();
@@ -94,6 +118,10 @@ public class MascotaVentaDTO implements Serializable{
         this.mascota = mascota;
     }
     
+    /**
+     * Metodo que transforma un objeto DTO a una MascotaVentaEntity
+     * @return MascotaVentaEntity
+     */
     public MascotaVentaEntity toEntity(){
         MascotaVentaEntity entity = new MascotaVentaEntity();
         entity.setDocumentosPedegree(this.documentosPedegree);

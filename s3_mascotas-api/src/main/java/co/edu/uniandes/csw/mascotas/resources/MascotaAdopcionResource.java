@@ -26,7 +26,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que representa un recurso de "mascotaAdopcion"
  * @author Sebastian Mujica
  */
 @Path("mascotaAdopcion")
@@ -35,6 +35,10 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class MascotaAdopcionResource {
      
+    /**
+     * Inyección de dependencia que permite manejar la lógica de una mascota de 
+     * adopción, de esta se encarga el contenedor de dependencias.
+     */
     @Inject
     MascotaAdopcionLogic mascotaAdopcionLogic;
     
@@ -59,6 +63,11 @@ public class MascotaAdopcionResource {
     }
     
 
+    /**
+     * obtiene la lista de todas las mascotas de adopcion en la tienda.
+     * @return JSONArray {@link mascotaAdopcionDTO} - Las mascotas de adopcion
+     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
     @GET
     @Path("{mascotaAdopcionId: \\d+}")
     public MascotaAdopcionDTO getMascota(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId){
@@ -71,9 +80,14 @@ public class MascotaAdopcionResource {
         return new MascotaAdopcionDTO(mascotaEntity);
     }
     
+    /**
+     * Permite eliminar una mascota de adopcion con el id asociado.
+     * @param mascotaAdopcionId id de la mascota a eliminar. 
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{mascotaAdopcionId: \\d+}")
-    public void deleteMascotaAdopcion(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, MascotaAdopcionDTO mascotaAdopcion) throws BusinessLogicException{
+    public void deleteMascotaAdopcion(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "MascotaAdopcionREsource deleteMascotaAdopcion: input: {0}", mascotaAdopcionId);
         if(mascotaAdopcionLogic.getMascotaAdopcion(mascotaAdopcionId) == null){
             throw  new WebApplicationException("The resource /mascotasVenta/" + mascotaAdopcionId + "doesn't exist.", 404);
@@ -82,6 +96,14 @@ public class MascotaAdopcionResource {
         LOGGER.info("MascotaAdopcionResource deleteMascotaAdopcion: output: void");
     }
     
+    /**
+     * Actualiza una mascota de adopcioncon un nuevo cuerpo la cual corresponda 
+     * al id  entregado por el parámetro.
+     * @param mascotaAdopcionId
+     * @param mascotaAdopcion
+     * @return La mascota de adopcion actualizada.
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{mascotaAdopcionId: \\d+}")
     public MascotaAdopcionDTO updateMascotaAdopcion(@PathParam("mascotaAdopcionId") Long mascotaAdopcionId, MascotaAdopcionDTO mascotaAdopcion)throws  BusinessLogicException{
@@ -116,7 +138,11 @@ public class MascotaAdopcionResource {
         return MascotaAdopcionToMascotaResource.class;
     }    
     
-    
+  /**
+     * obtiene la lista de todas las mascotas de adopcion en la tienda.
+     * @return JSONArray {@link mascotaAdopcionDTO} - Las mascotas de adopcion
+     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
     @GET
     public List<MascotaAdopcionDTO> getMascotasAdopcion(){
         LOGGER.info("MascotaAdopcion Resource getMascotasAdopcion : input : void");
@@ -125,7 +151,13 @@ public class MascotaAdopcionResource {
         return listaMascotasAdopcion;
     }
     
-    
+        /**
+     * Permite convertir una lista de mascotas de adopcion tipo Entity a una lista
+     * de mascotas de adopcion a tipo DTO
+     * @param entityList la lista de mascotas de adopcion entity a convertir.
+     * @return JSONArray {@link mascotaAdopcionDTO} - Las mascotas de adopcion
+     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía. 
+     */
     private List<MascotaAdopcionDTO> listEntityToDTO(List<MascotaAdopcionEntity> entityList){
         List<MascotaAdopcionDTO> list = new ArrayList<>();
         for(MascotaAdopcionEntity entity : entityList) {

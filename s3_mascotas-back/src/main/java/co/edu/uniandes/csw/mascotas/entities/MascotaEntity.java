@@ -121,6 +121,20 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     public void setMascotaVenta(MascotaVentaEntity mascotaVenta) {
         this.mascotaVenta = mascotaVenta;
     }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
     
     
     

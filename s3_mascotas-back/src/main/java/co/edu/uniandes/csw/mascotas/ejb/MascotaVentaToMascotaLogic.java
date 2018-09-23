@@ -40,6 +40,10 @@ public class MascotaVentaToMascotaLogic {
      * @param mascotaVentaId El id de la mascotaVenta en la que se va a guardar la mascota.
      * @param  mascotaId El id de la mascota a guardar.
      * @return La Mascota creada.
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException, 
+     * en caso de que existan problemas para asociar la mascota, puede tenerse el
+     * caso de que la mascota no ecsita, la mascota de adopción no exista, o que 
+     * la mascota de adopción ya tenga una mascota asociada.
      */
     public MascotaEntity addMascota(Long mascotaId, Long mascotaVentaId) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle una mascota a la mascotaVenta con id ={0}", mascotaVentaId);
@@ -79,7 +83,15 @@ public class MascotaVentaToMascotaLogic {
     
     
     
-    
+    /**
+     * Se reemplaza una mascota en una mascota de venta.
+     * @param mascotaVentaId el ide de la mascota de venta.
+     * @param pMascotaEntity el id de la mascota que se va a actualizar en la 
+     * mascota de venta.
+     * @return
+     * @throws BusinessLogicException, en caso de que la mascota n oexista,
+     * o que no sea válida.
+     */
     public MascotaEntity replaceMascota(Long mascotaVentaId, MascotaEntity pMascotaEntity) throws BusinessLogicException
     {
         MascotaVentaEntity ventaEntity = mascotaVentaPersistence.find(mascotaVentaId);
@@ -95,6 +107,14 @@ public class MascotaVentaToMascotaLogic {
         return mascotaVentaPersistence.find(mascotaVentaId).getMascota();
     }
     
+    /**
+     * Se elimina una mascota de una mascota de venta.
+     * @param mascotaVentaId el ide de la mascota de venta.
+     * @param mascotaId el id de la mascota que va a ser eliminada.
+     * @throws BusinessLogicException, en casod e que la mascota de venta
+     * no tenga una mascota asociada, o que la mascota asociada no corersponda 
+     * a la mascota que se deseaa eliminar.
+     */
     public void removeMascota(Long mascotaVentaId, Long mascotaId) throws BusinessLogicException
     {
         MascotaVentaEntity mascotaVentaEntity = mascotaVentaPersistence.find(mascotaVentaId);

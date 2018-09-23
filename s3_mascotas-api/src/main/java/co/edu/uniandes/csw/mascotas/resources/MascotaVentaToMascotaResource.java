@@ -39,6 +39,14 @@ public class MascotaVentaToMascotaResource {
     private MascotaLogic mascotaLogic;
     
     
+    /**
+     * Asocia una mascota de venta con una mascota de acuerdos a los id's dados 
+     * respectivamente.
+     * @param mascotaVentaId
+     * @param mascotaId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("{mascotaId: \\d+}")
     public MascotaDTO addMascota(@PathParam("mascotaVentaId") Long mascotaVentaId, @PathParam("mascotaId") Long mascotaId) throws BusinessLogicException{

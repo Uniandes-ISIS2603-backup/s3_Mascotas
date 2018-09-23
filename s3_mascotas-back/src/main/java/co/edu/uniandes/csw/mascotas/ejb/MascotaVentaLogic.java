@@ -15,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia y maneja las reglas de 
+ * negocio de la clase mascota de venta.
  *
  * @author Sebastian Mujica
  */
@@ -26,6 +28,14 @@ public class MascotaVentaLogic {
     @Inject
     private MascotaVentaPersistence persistence;
     
+    
+    /**
+     * Crea una mascota de venta.
+     * @param entity la información de la mascota de venta a crear.
+     * @return la mascota de venta con la información con que fue creada y un id
+     * asginado por la base de datos.
+     * @throws BusinessLogicException 
+     */
      public MascotaVentaEntity crearMascotaVenta(MascotaVentaEntity entity) throws BusinessLogicException{
         LOOGER.info("MascotaVenta creation process begins");
         //if(persistence.find(entity.getId())!=null){
@@ -36,6 +46,11 @@ public class MascotaVentaLogic {
         return entity;
     }
      
+     /**
+      * Obtiene un mascota de venta.
+      * @param mascotaVentaId el id de la mascota de venta que se busca.
+      * @return la mascota de venta buscada.
+      */
      public MascotaVentaEntity getMascotaVenta(Long mascotaVentaId){
         LOOGER.log(Level.INFO, "Looking for pet with id = {0}", mascotaVentaId);
         MascotaVentaEntity mascotaventaEntity= persistence.find(mascotaVentaId);
@@ -46,6 +61,16 @@ public class MascotaVentaLogic {
         return mascotaventaEntity;
      }
      
+     /**
+      * Actualiza una mascota de venta.
+      * @param mascotaVentaId el id de la mascota de venta que se quiere 
+      * actualizar.
+      * @param mascotaVentaEntity la información que se va a ctualizar en la 
+      * mascota de venta.
+      * @return la mascota de venta actualizada.
+      * @throws BusinessLogicException, en caso de que no se pueda actualizar
+      * información que es única de otra mascota.
+      */
      public MascotaVentaEntity updateMascotaVenta(long mascotaVentaId, MascotaVentaEntity mascotaVentaEntity) throws BusinessLogicException{
          LOOGER.log(Level.INFO, "Updating the pet with id ={0}", mascotaVentaId);
          if(persistence.find(mascotaVentaId).getDocumentosPedegree().equalsIgnoreCase(mascotaVentaEntity.getDocumentosPedegree())){
@@ -56,6 +81,12 @@ public class MascotaVentaLogic {
          return nuevaMascotaVentaEntity;
      }
     
+     /**
+      * se elimina una mascota de venta.
+      * @param mascotaVentaId el ide de la mascota que se va a eliminar.
+      * @throws BusinessLogicException, en caso de que la mascota de venta tenga
+      * una mascota asociada.
+      */
      public void deleteMascotaVenta(Long mascotaVentaId) throws BusinessLogicException{
          MascotaVentaEntity entity = persistence.find(mascotaVentaId);
          if(entity.getMascota()!=null)
@@ -65,6 +96,10 @@ public class MascotaVentaLogic {
          persistence.delete(mascotaVentaId);
      }
     
+     /**
+      * se obtienen todas las mascotas de venta de la tienda.
+      * @return una lista con todas las mascotas.
+      */
      public List<MascotaVentaEntity> getMascotasVenta(){
          LOOGER.log(Level.INFO, "Inicia proceso de consultar todas las MascotasVenta");
          List<MascotaVentaEntity> mascotasVenta= persistence.findAll();

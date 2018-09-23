@@ -26,6 +26,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
+ * Clase que implementa el recurso "mascotaVenta"
  *
  * @author Sebastian Mujica
  */
@@ -38,11 +39,19 @@ import javax.ws.rs.WebApplicationException;
 
 public class MascotaVentaResource {
     
+    /**
+     * Injeción de dependencias que se realiza para manejar la lógica de una 
+     * mascota de venta.
+     */
     @Inject
     MascotaVentaLogic mascotaVentaLogic;
     
     
-    
+    /**
+     * Logger que se utiliza para registrar información en la consola del 
+     * programa durante la ejecución de este, Además, para guardar los
+     * registros.
+     */
     private static final Logger LOGGER = Logger.getLogger(MascotaVentaResource.class.getName());
     
     
@@ -50,7 +59,7 @@ public class MascotaVentaResource {
      * Crea una nueva mascotaVenta con la información proporcionada en el cuerpo
      * de la petición. Retorna un objeto idéntico con un id autogenerado.
      * @param mascotaVenta
-     * @return
+     * @return MascotaVenta que se creó con un id asignado por la BD.
      * @throws BusinessLogicException 
      */
     @POST
@@ -63,6 +72,14 @@ public class MascotaVentaResource {
         return nuevaMascotaDTO;
     }
     
+    /**
+     * Actualiza una  mascota venta con la información proporcionada en el 
+     * cuerpo y el id proporcionado por el parámetro.
+     * @param mascotaVentaId el id de la mascota de venta a actualizar.
+     * @param mascotaVenta la información de la mascota que se va a actualizar.
+     * @return MascotaVenta actualizada.
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{mascotaVentaId: \\d+}")
     public MascotaVentaDTO updateMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId, MascotaVentaDTO mascotaVenta)throws  BusinessLogicException{
@@ -76,6 +93,11 @@ public class MascotaVentaResource {
     }
     
 
+    /**
+     * Obtiene una mascota de venta con el id proporcionado por el usuario.
+     * @param mascotaVentaId la mascota de venta que se busca.
+     * @return la mascota de venta buscada.
+     */
     @GET
     @Path("{mascotaVentaId: \\d+}")
     public MascotaVentaDTO getMascota(@PathParam("mascotaVentaId") Long mascotaVentaId){
@@ -88,6 +110,11 @@ public class MascotaVentaResource {
         return new MascotaVentaDTO(mascotaEntity);
     }
     
+    /**
+     * Elimina una mascota de venta con el id proporcionado.
+     * @param mascotaVentaId
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{mascotaVentaId: \\d+}")
     public void deleteMascotaVenta(@PathParam("mascotaVentaId") Long mascotaVentaId) throws BusinessLogicException{
@@ -124,6 +151,11 @@ public class MascotaVentaResource {
     
 
     
+    /**
+     * obtiene la lista de todas las mascotas de venta en la tienda.
+     * @return JSONArray {@link mascotaVentaDTO} - Las mascotas de venta
+     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
     @GET
     public List<MascotaVentaDTO> getMascotasVenta(){
         LOGGER.info("MascotaVentaResource getMascotasVenta : input : void");
@@ -134,7 +166,13 @@ public class MascotaVentaResource {
 
     
     
-    
+    /**
+     * Permite convertir una lista de mascotas de venta tipo Entity a una lista
+     * de mascotas de venta a tipo DTO
+     * @param entityList la lista de mascotas de venta entity a convertir.
+     * @return JSONArray {@link mascotaVentaDTO} - Las mascotas de venta
+     * encontrados en la aplicación. Si no hay ninguno retorna una lista vacía. 
+     */
     private List<MascotaVentaDTO> listEntityToDTO(List<MascotaVentaEntity> entityList){
         List<MascotaVentaDTO> list = new ArrayList<>();
         for(MascotaVentaEntity entity : entityList) {
