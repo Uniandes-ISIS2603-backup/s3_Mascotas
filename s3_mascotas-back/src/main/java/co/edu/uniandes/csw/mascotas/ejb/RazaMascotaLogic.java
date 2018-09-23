@@ -42,8 +42,13 @@ public class RazaMascotaLogic {
         if(mascota == null || mascota.getDeleted()){
             throw new BusinessLogicException("The pet doesn't exist.");
         }
+        if (raza.getMascotas().contains(mascota)) {
+            throw new BusinessLogicException("The pet is already within the race");
+        }
         raza.getMascotas().add(mascota);
-        return razaPersistence.find(razasId);
+        mascota.setRaza(raza);
+        mascotaPersistence.update(mascota);
+        return raza;
     }
     
     /**
