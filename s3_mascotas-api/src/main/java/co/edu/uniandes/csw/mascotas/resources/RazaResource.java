@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.RazaDTO;
+import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.RazaLogic;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
@@ -56,7 +57,7 @@ public class RazaResource {
         if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
         }
-        return new RazaDTO(razaEntity);
+        return new RazaDetailDTO(razaEntity);
     }
     
     @DELETE

@@ -48,8 +48,8 @@ public class RazaMascotaResource {
      * @return JSON {@link RazaDetailDTO} - La raza asociada
      */
     @POST
-    @Path("{mascotasId: \\d+}")
-    public RazaDetailDTO añadirMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasID") Long mascotasId)throws BusinessLogicException{
+    @Path("/{mascotasId: \\d+}")
+    public RazaDetailDTO añadirMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
         
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
@@ -80,7 +80,7 @@ public class RazaMascotaResource {
     }
     
     @DELETE
-    @Path("{mascotasId: \\d+}")
+    @Path("/{mascotasId: \\d+}")
     public void removerMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId){
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
