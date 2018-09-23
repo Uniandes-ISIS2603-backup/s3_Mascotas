@@ -16,11 +16,20 @@ import java.util.List;
  * @author Cristhian Peña
  */
 public class EspecieDetailDTO extends EspecieDTO implements Serializable{
-    
+    //Lista de razas
     private List<RazaDTO> razas;
+    
     public EspecieDetailDTO(){
         super();
     }
+    
+    /**
+     * Crea un objeto EspecieDetailDTO a partir de un objeto EspecieEntity
+     * incluyendo los atributos de EspecieDTO.
+     *
+     * @param especieEntity Entidad EspecieEntity desde la cual se va a crear el
+     * nuevo objeto.
+     */
     public EspecieDetailDTO(EspecieEntity especieEntity){
         super(especieEntity);
         if(especieEntity != null){
@@ -31,6 +40,12 @@ public class EspecieDetailDTO extends EspecieDTO implements Serializable{
         }
     }
     
+    /**
+     * Convierte el objeto de tipo DTO en objeto Entity para la lógica
+     *
+     * @return EspecieEntity objeto convertido
+     *
+     */
     @Override
     public EspecieEntity toEntity(){
         EspecieEntity especieEntity = super.toEntity();
@@ -44,10 +59,18 @@ public class EspecieDetailDTO extends EspecieDTO implements Serializable{
         return especieEntity;
     }
     
+    /**
+     * Metodo que retorna la lista de razas de la especie
+     * @return List de RazasDTO 
+     */
     public List<RazaDTO> getRazas(){
         return razas;
     }
     
+    /**
+     * Método que cambia la lista de razas a la que entra por parámetro
+     * @param razas lista de razas a cambiar
+     */
     public void setRazas(List<RazaDTO> razas){
         this.razas = razas;
     }

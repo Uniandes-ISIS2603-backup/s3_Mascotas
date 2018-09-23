@@ -36,7 +36,7 @@ public class EspecieEntity extends BaseEntity implements Serializable{
         return razas;
     }
     
-    public void setRazas(List razas){
+    public void setRazas(List<RazaEntity> razas){
         this.razas = razas;
     }
 }

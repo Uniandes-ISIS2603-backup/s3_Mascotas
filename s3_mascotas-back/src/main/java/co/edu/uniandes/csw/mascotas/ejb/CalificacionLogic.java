@@ -29,6 +29,10 @@ public class CalificacionLogic
     public CalificacionEntity crearCalificacion(CalificacionEntity entrada) throws BusinessLogicException
     {
         LOGGER.info("A new score is being made");
+        if(entrada.getPuntaje() < 1 || entrada.getPuntaje() > 5)
+        {
+            throw new BusinessLogicException("El puntaje no es valido");
+        }
         persistence.create(entrada);
         LOGGER.info("Score creation end.");
         return entrada;

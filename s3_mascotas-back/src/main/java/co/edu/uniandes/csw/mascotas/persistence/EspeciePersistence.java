@@ -52,6 +52,7 @@ public class EspeciePersistence
     
     public void delete(Long especieId){
         EspecieEntity especieEntity = em.find(EspecieEntity.class, especieId);
-        em.remove(especieEntity);
+        especieEntity.setDeleted(Boolean.TRUE);
+        em.merge(especieEntity);
     }
 }
