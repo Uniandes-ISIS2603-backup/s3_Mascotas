@@ -30,7 +30,9 @@ public class RazaLogic {
     
     public RazaEntity crearRaza(RazaEntity entity) throws BusinessLogicException{
         LOOGER.info("Race creation process begins");
-        // missing verifications
+        if (verificarNombreRepetido(entity)) {
+            throw new BusinessLogicException("The race with the name" + entity.getNombre() + "already exist.");
+        }
         persistence.create(entity);
         LOOGER.info("Race creation finishes");
         return entity;
@@ -78,5 +80,20 @@ public class RazaLogic {
         List<RazaEntity> razas = persistence.findAll();
         LOOGER.log(Level.INFO, "Ending search");
         return razas;
+    }
+    
+    /**
+     * Verifica si el nombre de la raza ya existe
+     * @param raza 
+     * @return true si ya existe, false de lo contrario
+     */
+    private boolean verificarNombreRepetido(RazaEntity raza){
+        List<RazaEntity> razas = getRazas();
+        for (RazaEntity r : razas){
+            if (raza.getNombre().equals(r.getNombre())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

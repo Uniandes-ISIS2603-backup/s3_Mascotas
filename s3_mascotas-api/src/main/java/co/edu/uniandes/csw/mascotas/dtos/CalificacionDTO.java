@@ -15,13 +15,20 @@ import java.io.Serializable;
  */
 public class CalificacionDTO implements Serializable
 {
+    //Entero con el puntaje de la calificación
     private Integer puntaje;   
+    //Cadena de caracteres que contiene los comentarios de la calificacion
     private String comentarios;
+    //Identificador unico de la calificacion
     private Long id;
 
     public CalificacionDTO() {
     }
 
+    /**
+     * Constructor de un objeto DTO, creado a partir de un objeto entity entrado por parámetro
+     * @param calificacionEntity objeto entity a partir del cual se creará el objeto
+     */
     public CalificacionDTO(CalificacionEntity calificacionEntity) 
     {
         if(calificacionEntity != null){
@@ -71,6 +78,10 @@ public class CalificacionDTO implements Serializable
         this.id = id;
     }
     
+    /**
+     * Método que convierte de DTO a objeto Entity, para enviarlo a la capa de la lógica
+     * @return calificacionEntity objeto entity ya convertido.
+     */
     public CalificacionEntity toEntity(){
         CalificacionEntity calificacionEntity = new CalificacionEntity();
         calificacionEntity.setId(id);
