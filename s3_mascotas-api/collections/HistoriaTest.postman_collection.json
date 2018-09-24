@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "ed77eb00-e887-41c2-8847-8a65e5268638",
+		"_postman_id": "e9b2c978-d915-4936-90b6-8a71e9834a8f",
 		"name": "HistoriaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/historias",
+			"name": "Obtener todas las historias",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -37,7 +37,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/historias",
+			"name": "Crear historia",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -48,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n}"
+					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_mascotas-api/api/historias",
@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/historias/2",
+			"name": "Actualizar una historia",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -79,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion y Ginebra\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/2",
@@ -100,7 +100,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/historias/2",
+			"name": "Obtener una historia",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -114,7 +114,7 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/2",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,7 +124,7 @@
 						"s3_mascotas-api",
 						"api",
 						"historias",
-						"2"
+						"1"
 					]
 				},
 				"description": "Se obtiene la historia con id{2}."

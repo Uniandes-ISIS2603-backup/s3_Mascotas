@@ -16,9 +16,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ClienteDTO implements Serializable{
     
     private Long id;
-    private Long telefono;
+    private String correo;
     private String direccion;
     private String tarjetaCreditoRegistrada;
+    
+    public ClienteDTO() {
+        
+    }
+
+    public ClienteDTO(ClienteEntity cliente){
+        if(cliente != null){
+            this.id= cliente.getId();
+            this.correo = cliente.getCorreo();
+            this.direccion = cliente.getDireccion();
+            this.tarjetaCreditoRegistrada = cliente.getTarjetaCreditoRegistrada();
+        }
+    }
     
     public long getId() {
         return id;
@@ -28,12 +41,12 @@ public class ClienteDTO implements Serializable{
         this.id = id;
     }
 
-    public long getTelefono() {
-        return telefono;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getDireccion() {
@@ -51,27 +64,14 @@ public class ClienteDTO implements Serializable{
     public void setTarjetaCreditoRegistrada(String tarjetaCreditoRegistrada) {
         this.tarjetaCreditoRegistrada = tarjetaCreditoRegistrada;
     }
-
-    public ClienteDTO() {
-        
-    }
-
-    public ClienteDTO(ClienteEntity Cliente){
-        if(Cliente!=null){
-            this.id= Cliente.getId();
-            this.telefono = Cliente.getTelefono();
-            this.direccion = Cliente.getDireccion();
-            this.tarjetaCreditoRegistrada = Cliente.getTarjetaCreditoRegistrada();
-        }
-    }
     
     public ClienteEntity toEntity(){
         ClienteEntity nueva = new ClienteEntity();
         
-        nueva.setId(this.id);
-        nueva.setTelefono(this.telefono);
-        nueva.setDireccion(this.direccion);
-        nueva.setTarjetaCreditoRegistrada(this.tarjetaCreditoRegistrada);
+        nueva.setId(id);
+        nueva.setCorreo(correo);
+        nueva.setDireccion(direccion);
+        nueva.setTarjetaCreditoRegistrada(tarjetaCreditoRegistrada);
         
         return nueva;
     }
