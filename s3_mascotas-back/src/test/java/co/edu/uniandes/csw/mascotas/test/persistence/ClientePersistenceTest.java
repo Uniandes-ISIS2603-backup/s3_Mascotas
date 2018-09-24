@@ -145,7 +145,7 @@ public class ClientePersistenceTest {
         
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(),newEntity.getId());
-        Assert.assertEquals(entity.getCorreo(),newEntity.getCorreo(),0);
+        Assert.assertEquals(entity.getCorreo(),newEntity.getCorreo());
         Assert.assertEquals(entity.getDireccion(),newEntity.getDireccion());
         Assert.assertEquals(entity.getTarjetaCreditoRegistrada(),newEntity.getTarjetaCreditoRegistrada());
     }

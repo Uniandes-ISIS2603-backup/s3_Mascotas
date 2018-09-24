@@ -79,11 +79,11 @@ public class ClienteHistoriaLogic {
     /**
      * Elimina la relación entre una mascota y un cliente (ya existentes)
      * @param clienteId
-     * @param mascotasId 
+     * @param historiasId 
      */
-    public void removeMascota(Long clienteId, Long mascotasId){
+    public void removeHistoria(Long clienteId, Long historiasId){
         ClienteEntity c = clientePersistence.find(clienteId);
-        HistoriaEntity m = historiaPersistence.find(mascotasId);
+        HistoriaEntity m = historiaPersistence.find(historiasId);
         c.getHistorias().remove(m);
     }
     

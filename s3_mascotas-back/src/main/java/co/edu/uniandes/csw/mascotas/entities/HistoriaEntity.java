@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Camilo Pinilla
@@ -13,6 +15,11 @@ import javax.persistence.Entity;
 @Entity
 public class HistoriaEntity extends BaseEntity implements Serializable
 {
+    @PodamExclude
+    @OneToOne
+   // @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
+    private ClienteEntity cliente;
+    
     private String foto;
     private String texto;
 
@@ -36,4 +43,17 @@ public class HistoriaEntity extends BaseEntity implements Serializable
         this.texto = texto;
     }
     
+    /**
+     * @return the mascotaEntity
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the mascotaEntity to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
 }
