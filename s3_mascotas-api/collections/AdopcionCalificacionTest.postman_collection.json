@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "crear una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f07c0bf-9a90-4ff1-8aec-05e01ec07cce",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -17,10 +31,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"buena app\"\n}"
+					"raw": "{\n\t\"puntaje\":\"3\", \n\t\"comentarios\":\"buen sitio :D\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/calificacion",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/calificaciones",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,7 +43,7 @@
 					"path": [
 						"s3_mascotas-api",
 						"api",
-						"calificacion"
+						"calificaciones"
 					]
 				}
 			},
@@ -37,6 +51,20 @@
 		},
 		{
 			"name": "crear una adopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85a0844a-27e8-4837-b777-6c232002907e",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -71,10 +99,16 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fa99b970-2877-41a0-9898-fbd5f78b331b",
+						"id": "7f2469f8-b15a-4296-96b1-09a44faa6da3",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+							"if(responseCode.code === 200){",
+							"    tests[\"No genera error en el Post\"] = responseCode.code ===200;",
+							"}",
+							"//Para esta verificacion, se necesita llenar los campos en la url. Con la URL \"http://localhost:8080/s3_mascotas-api/api/adopciones/\" e instruccion get, se pueden ver que adopciones no tienen vinculo aun y probar el método",
+							"else if(responseCode.code === 404){",
+							"    tests[\"No se han llenado las variables\"] = responseCode.code ===404;",
+							"}"
 						]
 					}
 				}
@@ -92,7 +126,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_a}}/calificaciones/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -102,9 +136,9 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"3",
+						"{{new_id_a}}",
 						"calificaciones",
-						"3"
+						"{{new_id_a}}"
 					]
 				}
 			},
@@ -127,10 +161,57 @@
 			],
 			"request": {
 				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_a}}/calificaciones/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones",
+						"{{new_id_a}}",
+						"calificaciones",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una calificacion de una adopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6577354-a1fc-4246-8608-f92a3d10fde5",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -141,33 +222,45 @@
 						"api",
 						"adopciones",
 						"3",
-						"calificaciones",
-						"3"
+						"calificaciones"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "obtener una calificacion de un autor",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "obtener una calificacion no existente de una adopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87bab732-6f9a-461f-8d86-6e71181cb374",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia obtener ninguna calificacion ya que la calificacion no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /adopciones/1 no tiene una calificacion asociada.\");"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"adopciones",
+						"1",
+						"calificaciones"
+					]
 				}
 			},
 			"response": []
