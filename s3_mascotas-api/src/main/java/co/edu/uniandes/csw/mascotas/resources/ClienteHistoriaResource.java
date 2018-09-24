@@ -6,13 +6,16 @@
 package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.ClienteDetailDTO;
+import co.edu.uniandes.csw.mascotas.dtos.HistoriaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.MascotaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
+import co.edu.uniandes.csw.mascotas.ejb.ClienteHistoriaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.mascotas.ejb.ClienteMascotaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.RazaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.RazaMascotaLogic;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
+import co.edu.uniandes.csw.mascotas.entities.HistoriaEntity;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
@@ -42,7 +45,7 @@ public class ClienteHistoriaResource {
     private static final Logger LOGGER = Logger.getLogger(ClienteHistoriaResource.class.getName());
     
     @Inject
-    private ClienteMascotaLogic clienteMascotaLogic;
+    private ClienteHistoriaLogic clienteHistoriaLogic;
     
     @Inject
     private ClienteLogic clienteLogic;
@@ -52,14 +55,14 @@ public class ClienteHistoriaResource {
      * @return JSON {@link RazaDetailDTO} - La raza asociada
      */
     @POST
-    @Path("{mascotasId: \\d+}")
-    public ClienteDetailDTO addMascota(@PathParam("clienteId") Long clienteId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
+    @Path("{historiasId: \\d+}")
+    public ClienteDetailDTO addHistoria(@PathParam("clientesId") Long clienteId, @PathParam("historiasId") Long historiasId)throws BusinessLogicException{
         
         ClienteEntity c = clienteLogic.getCliente(clienteId);
         if (c == null || c.getDeleted()) {
             throw new WebApplicationException("the resource /clientes/" + clienteId + " doesn't exists.", 404);
         }
-        ClienteDetailDTO clienteDetail = new ClienteDetailDTO(clienteMascotaLogic.addMascota(clienteId, mascotasId));
+        ClienteDetailDTO clienteDetail = new ClienteDetailDTO(clienteHistoriaLogic.addHistoria(clienteId, historiasId));
         return clienteDetail;
     }
 
@@ -69,34 +72,34 @@ public class ClienteHistoriaResource {
      * @return colección de mascotas del cliente
      */
     @GET
-    public List<MascotaDTO> getMascotas(@PathParam("clienteId") Long clienteId){
-        return listEntity2DTO(clienteMascotaLogic.getMascotas(clienteId));
+    public List<HistoriaDTO> getHistorias(@PathParam("clienteId") Long clienteId){
+        return listEntity2DTO(clienteHistoriaLogic.getHistorias(clienteId));
     }
     
     @GET
-    @Path("/{mascotasId: \\d+}")
-    public MascotaDTO getMascota(@PathParam("clienteId") Long clienteId, @PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
+    @Path("/{historiasId: \\d+}")
+    public HistoriaDTO getMascota(@PathParam("clienteId") Long clienteId, @PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         ClienteEntity c = clienteLogic.getCliente(clienteId);
         if (c == null || c.getDeleted()) {
             throw new WebApplicationException("the resource /clientes/" + clienteId + " doesn't exists.", 404);
         }
-        return new MascotaDTO(clienteMascotaLogic.getMascota(clienteId, mascotasId));
+        return new HistoriaDTO(clienteHistoriaLogic.getHistoria(clienteId, mascotasId));
     }
     
     @DELETE
-    @Path("{mascotasId: \\d+}")
-    public void removeMascota(@PathParam("clienteId") Long clienteId, @PathParam("mascotasId") Long mascotasId){
+    @Path("{historiasId: \\d+}")
+    public void removeHistoria(@PathParam("clienteId") Long clienteId, @PathParam("historiasId") Long historiasId){
         ClienteEntity c = clienteLogic.getCliente(clienteId);
         if (c == null || c.getDeleted()) {
             throw new WebApplicationException("the resource /clientes/" + clienteId + " doesn't exists.", 404);
         }
-        clienteMascotaLogic.removeMascota(clienteId, mascotasId);
+        clienteHistoriaLogic.removeHistoria(clienteId, historiasId);
     }
     
-    private List<MascotaDTO> listEntity2DTO(List<MascotaEntity> entityList){
-        List<MascotaDTO> list = new ArrayList<>();
-        for(MascotaEntity m : entityList){
-            list.add(new MascotaDTO(m));
+    private List<HistoriaDTO> listEntity2DTO(List<HistoriaEntity> entityList){
+        List<HistoriaDTO> list = new ArrayList<>();
+        for(HistoriaEntity m : entityList){
+            list.add(new HistoriaDTO(m));
         }
         return list;
     }
