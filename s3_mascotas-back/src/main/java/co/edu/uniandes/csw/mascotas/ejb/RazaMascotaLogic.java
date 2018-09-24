@@ -36,7 +36,7 @@ public class RazaMascotaLogic {
      * @param mascotasId
      * @return instancia de razaEntity que fue asociada con la mascota
      */
-    public RazaEntity añadirMascota(Long razasId, Long mascotasId) throws BusinessLogicException{
+    public RazaEntity addMascota(Long razasId, Long mascotasId) throws BusinessLogicException{
         RazaEntity raza = razaPersistence.find(razasId);
         MascotaEntity mascota = mascotaPersistence.find(mascotasId);
         if(mascota == null || mascota.getDeleted()){
@@ -48,7 +48,8 @@ public class RazaMascotaLogic {
         raza.getMascotas().add(mascota);
         mascota.setRaza(raza);
         mascotaPersistence.update(mascota);
-        return raza;
+        razaPersistence.update(raza);
+        return razaPersistence.find(razasId);
     }
     
     /**
@@ -56,7 +57,7 @@ public class RazaMascotaLogic {
      * @param razasId
      * @return List de MascotaEntity
      */
-    public List<MascotaEntity> obtenerMascotas(Long razasId){
+    public List<MascotaEntity> getMascotas(Long razasId){
         return razaPersistence.find(razasId).getMascotas();
     }
     
@@ -66,8 +67,8 @@ public class RazaMascotaLogic {
      * @param mascotasId
      * @return Entidad de la mascota
      */
-    public MascotaEntity obtenerMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
-        List<MascotaEntity> mascotas = obtenerMascotas(razasId);
+    public MascotaEntity getMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
+        List<MascotaEntity> mascotas = getMascotas(razasId);
         MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
         int posicion = mascotas.indexOf(mascotaBuscada);
         if (posicion >= 0 || !mascotaBuscada.getDeleted()) {
@@ -82,7 +83,7 @@ public class RazaMascotaLogic {
      * @param razasId
      * @param mascotasId 
      */
-    public void removerMascota(Long razasId, Long mascotasId){
+    public void removeMascota(Long razasId, Long mascotasId){
         RazaEntity r = razaPersistence.find(razasId);
         MascotaEntity m = mascotaPersistence.find(mascotasId);
         r.getMascotas().remove(m);
