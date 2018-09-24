@@ -172,7 +172,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_a}}/calificaciones/{{new_id_a}}",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,9 +182,9 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"{{new_id_a}}",
+						"3",
 						"calificaciones",
-						"{{new_id_a}}"
+						"3"
 					]
 				}
 			},
