@@ -32,6 +32,10 @@ public class ClienteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy="cliente")
     private List<MascotaEntity> mascotas = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy="cliente")
+    private List<HistoriaEntity> historias = new ArrayList<>();
 
     public String getCorreo()
     {
@@ -85,5 +89,13 @@ public class ClienteEntity extends BaseEntity implements Serializable
 
     public void setMascotas(List<MascotaEntity> mascotas) {
         this.mascotas = mascotas;
+    }
+    
+    public List<HistoriaEntity> getHistorias() {
+        return historias;
+    }
+
+    public void setHistorias(List<HistoriaEntity> historias) {
+        this.historias = historias;
     }
 }
