@@ -109,6 +109,7 @@ public class AdopcionCalificacionLogicTest {
     private void insertData() 
     {
         CalificacionEntity entityC = factory.manufacturePojo(CalificacionEntity.class);
+        entityC.setPuntaje(3);
         AdopcionEntity entityA = factory.manufacturePojo(AdopcionEntity.class);
         try 
         {

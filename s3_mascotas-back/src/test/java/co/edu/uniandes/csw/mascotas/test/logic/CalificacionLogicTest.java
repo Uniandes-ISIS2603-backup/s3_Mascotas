@@ -110,6 +110,7 @@ public class CalificacionLogicTest {
     public void createEspecieTest() throws BusinessLogicException
     {
         CalificacionEntity newEspecie = factory.manufacturePojo(CalificacionEntity.class);
+        newEspecie.setPuntaje(3);
         CalificacionEntity result = calificacionLogic.crearCalificacion(newEspecie);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
@@ -117,6 +118,7 @@ public class CalificacionLogicTest {
         Assert.assertEquals(newEspecie.getComentarios(), entity.getComentarios());
         
         CalificacionEntity newEspecie2 = factory.manufacturePojo(CalificacionEntity.class);
+        newEspecie2.setPuntaje(4);
         CalificacionEntity result2 = calificacionLogic.crearCalificacion(newEspecie2);
         Assert.assertNotNull(result2);
         CalificacionEntity entity2 = em.find(CalificacionEntity.class, result2.getId());
@@ -156,6 +158,7 @@ public class CalificacionLogicTest {
     public void getCalificacionTest() throws BusinessLogicException
     {
         CalificacionEntity newEspecie = factory.manufacturePojo(CalificacionEntity.class);
+        newEspecie.setPuntaje(4);
         CalificacionEntity result = calificacionLogic.crearCalificacion(newEspecie);
         CalificacionEntity retorno = calificacionLogic.getCalificacion(result.getId());
         Assert.assertEquals(result.getId(), retorno.getId());
