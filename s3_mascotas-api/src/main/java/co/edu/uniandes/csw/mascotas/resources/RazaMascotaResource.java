@@ -49,13 +49,13 @@ public class RazaMascotaResource {
      */
     @POST
     @Path("/{mascotasId: \\d+}")
-    public RazaDetailDTO añadirMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
+    public RazaDetailDTO addMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
         
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
             throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
         }
-        RazaDetailDTO razaDetail = new RazaDetailDTO(razaMascotaLogic.añadirMascota(razasId, mascotasId));
+        RazaDetailDTO razaDetail = new RazaDetailDTO(razaMascotaLogic.addMascota(razasId, mascotasId));
         return razaDetail;
     }
 
@@ -65,28 +65,28 @@ public class RazaMascotaResource {
      * @return colección de mascotas de la raza
      */
     @GET
-    public List<MascotaDTO> obtenerMascotas(@PathParam("razasId") Long razasId){
-        return listEntity2DTO(razaMascotaLogic.obtenerMascotas(razasId));
+    public List<MascotaDTO> getMascotas(@PathParam("razasId") Long razasId){
+        return listEntity2DTO(razaMascotaLogic.getMascotas(razasId));
     }
     
     @GET
     @Path("/{mascotasId: \\d+}")
-    public MascotaDTO obtenerMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
+    public MascotaDTO getMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
             throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
         }
-        return new MascotaDTO(razaMascotaLogic.obtenerMascota(razasId, mascotasId));
+        return new MascotaDTO(razaMascotaLogic.getMascota(razasId, mascotasId));
     }
     
     @DELETE
     @Path("/{mascotasId: \\d+}")
-    public void removerMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId){
+    public void removeMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId){
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
             throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
         }
-        razaMascotaLogic.removerMascota(razasId, mascotasId);
+        razaMascotaLogic.removeMascota(razasId, mascotasId);
     }
     
     private List<MascotaDTO> listEntity2DTO(List<MascotaEntity> entityList){
