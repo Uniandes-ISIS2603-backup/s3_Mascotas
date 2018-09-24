@@ -126,7 +126,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_a}}/calificaciones/{{new_id_a}}",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -136,9 +136,9 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"{{new_id_a}}",
+						"1",
 						"calificaciones",
-						"{{new_id_a}}"
+						"1"
 					]
 				}
 			},
@@ -172,7 +172,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones/3",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,9 +182,9 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"3",
+						"1",
 						"calificaciones",
-						"3"
+						"1"
 					]
 				}
 			},
