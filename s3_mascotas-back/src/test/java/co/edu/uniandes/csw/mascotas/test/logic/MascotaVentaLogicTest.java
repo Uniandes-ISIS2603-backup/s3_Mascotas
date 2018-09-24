@@ -34,7 +34,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-
 public class MascotaVentaLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
@@ -64,7 +63,7 @@ public class MascotaVentaLogicTest {
                 .addPackage(MascotaVentaLogic.class.getPackage())
                 .addPackage(MascotaVentaPersistence.class.getPackage())
                 .addAsManifestResource("META-inf/persistence.xml" , "persistence.xml")
-                 .addAsManifestResource("META-inf/beans.xml" , "beans.xml");
+                .addAsManifestResource("META-inf/beans.xml" , "beans.xml");
     }
     
     /**
@@ -116,7 +115,6 @@ public class MascotaVentaLogicTest {
     /**
      * Prueba para crear una MascotaVenta.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
     public void createMascotaVentaTest() throws BusinessLogicException {

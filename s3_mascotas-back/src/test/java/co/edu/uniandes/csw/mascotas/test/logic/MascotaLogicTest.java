@@ -19,12 +19,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -32,78 +34,122 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author lemus
  */
+@RunWith(Arquillian.class)
 public class MascotaLogicTest {
     
+
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
     private MascotaLogic mascotaLogic;
     
-     @PersistenceContext
+    @PersistenceContext
     private EntityManager em;
-     
+    
     @Inject
     private UserTransaction utx;
     
-    //private List<RazaEntity> razaData = new ArrayList<>();
+    private List<MascotaEntity> listaDatos = new ArrayList<>();
     
-    private List<MascotaEntity> mascotaData = new ArrayList<MascotaEntity>();
-    
-     /**
-     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
-     * El jar contiene las clases, el descriptor de la base de datos y el
-     * archivo beans.xml para resolver la inyección de dependencias.
-     */
     @Deployment
-    public static JavaArchive createDeployment() {
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(MascotaEntity.class.getPackage())
-                .addPackage(MascotaEntity.class.getPackage())
+                .addPackage(MascotaLogic.class.getPackage())
                 .addPackage(MascotaPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
-    
-    /**
-     * Configuración inicial de la prueba.
-     */
+
     @Before
-    public void configTest() {
-        try {
+    public void configTest(){
+        try{
             utx.begin();
+            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
-            try {
+            try{
                 utx.rollback();
-            } catch (Exception e1) {
+            }
+            catch(Exception e1){
                 e1.printStackTrace();
             }
         }
     }
-    
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     */
-    private void clearData() {
+
+    private void clearData(){
         em.createQuery("delete from MascotaEntity").executeUpdate();
-        //em.createQuery("delete from EditorialEntity").executeUpdate();
     }
-    
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     */
-    private void insertData() {
-        
-        for (int i = 0; i < 3; i++) {
-            MascotaEntity entity = factory.manufacturePojo(MascotaEntity.class);
-            em.persist(entity);
-            mascotaData.add(entity);
-            
+
+    private void insertData(){
+        for(int i= 0; i<10;i++){
+            MascotaEntity nueva = factory.manufacturePojo(MascotaEntity.class);
+            nueva.setDeleted(Boolean.FALSE);
+            em.persist(nueva);
+            listaDatos.add(nueva);
         }
     }
     
+    @Test
+    public void createMascotaTest() throws BusinessLogicException {
+        MascotaEntity newEntity = factory.manufacturePojo(MascotaEntity.class);
+        int edad = newEntity.getEdad();
+        if (edad < 0) {
+            newEntity.setEdad((-1) * edad);
+        }
+        MascotaEntity result = mascotaLogic.crearMascota(newEntity);
+        Assert.assertNotNull(result);
+        MascotaEntity entity = em.find(MascotaEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getColor(), entity.getColor());
+        Assert.assertEquals(newEntity.getEdad(), entity.getEdad());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getGenero(), entity.getGenero());
+    }
+    
+    @Test
+    public void getMascotaTest() {
+        MascotaEntity entity = listaDatos.get(0);
+        MascotaEntity resultEntity = mascotaLogic.getMascota(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getColor(), resultEntity.getColor());
+        Assert.assertEquals(entity.getEdad(), resultEntity.getEdad());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+        Assert.assertEquals(entity.getGenero(), resultEntity.getGenero());
+    }
+    
+    @Test
+    public void getMascotasTest() {
+        List<MascotaEntity> list = mascotaLogic.getMascotas();
+        Assert.assertEquals(listaDatos.size(), list.size());
+        for (MascotaEntity entity : list) {
+            boolean found = false;
+            for (MascotaEntity storedEntity : listaDatos) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void updateMascotaVentaTest()throws BusinessLogicException{
+        MascotaEntity entity = listaDatos.get(0);
+        MascotaEntity pojoEntity = factory.manufacturePojo(MascotaEntity.class);
+        pojoEntity.setId(entity.getId());
+        mascotaLogic.updateMascota(entity, pojoEntity);
+        MascotaEntity resp= em.find(MascotaEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(pojoEntity.getEdad(), resp.getEdad());
+        Assert.assertEquals(pojoEntity.getColor(), resp.getColor());
+        Assert.assertEquals(pojoEntity.getGenero(), resp.getGenero());
+        
+    }
 }
