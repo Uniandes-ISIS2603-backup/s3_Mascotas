@@ -29,7 +29,7 @@ public class ClienteLogic {
     
     public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException{
         LOOGER.info("Customer creation process begins");
-        if(persistence.findByTelefono(entity.getTelefono()) != null){
+        if(persistence.findByCorreo(entity.getCorreo()) != null){
             throw new BusinessLogicException("El Teléfono ya existe");
         }
         persistence.create(entity);
@@ -59,7 +59,7 @@ public class ClienteLogic {
         
         // ClienteEntity cliente = getCliente()
         
-        if(persistence.findByTelefono(clienteEntity.getTelefono()) != null){
+        if(persistence.findByCorreo(clienteEntity.getCorreo()) != null){
             throw new BusinessLogicException("El Teléfono ya existe");
         }
         

@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -18,7 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable
 {
-    private long telefono;
+    private String correo;
     private String direccion;
     private String tarjetaCreditoRegistrada;
     
@@ -33,15 +32,19 @@ public class ClienteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy="cliente")
     private List<MascotaEntity> mascotas = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy="cliente")
+    private List<HistoriaEntity> historias = new ArrayList<>();
 
-    public long getTelefono()
+    public String getCorreo()
     {
-        return telefono;
+        return correo;
     }
 
-    public void setTelefono(long telefono)
+    public void setCorreo(String correo)
     {
-        this.telefono = telefono;
+        this.correo = correo;
     }
 
     public String getDireccion()
@@ -86,5 +89,13 @@ public class ClienteEntity extends BaseEntity implements Serializable
 
     public void setMascotas(List<MascotaEntity> mascotas) {
         this.mascotas = mascotas;
+    }
+    
+    public List<HistoriaEntity> getHistorias() {
+        return historias;
+    }
+
+    public void setHistorias(List<HistoriaEntity> historias) {
+        this.historias = historias;
     }
 }

@@ -130,7 +130,7 @@ public class ClientePersistenceTest {
         
         ClienteEntity ent = em.find(ClienteEntity.class, result.getId());
         
-        Assert.assertEquals(newEntity.getTelefono(),ent.getTelefono());
+        Assert.assertEquals(newEntity.getCorreo(),ent.getCorreo());
         Assert.assertEquals(newEntity.getDireccion(), ent.getDireccion());
         Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),ent.getTarjetaCreditoRegistrada());
     }
@@ -145,7 +145,7 @@ public class ClientePersistenceTest {
         
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(),newEntity.getId());
-        Assert.assertEquals(entity.getTelefono(),newEntity.getTelefono(),0);
+        Assert.assertEquals(entity.getCorreo(),newEntity.getCorreo(),0);
         Assert.assertEquals(entity.getDireccion(),newEntity.getDireccion());
         Assert.assertEquals(entity.getTarjetaCreditoRegistrada(),newEntity.getTarjetaCreditoRegistrada());
     }
@@ -161,7 +161,7 @@ public class ClientePersistenceTest {
         ClienteEntity compareEntity = em.find(ClienteEntity.class, entity.getId());
         
         Assert.assertEquals(newEntity.getId(), compareEntity.getId());
-        Assert.assertEquals(newEntity.getTelefono(),compareEntity.getTelefono(),0);
+        Assert.assertEquals(newEntity.getCorreo(),compareEntity.getCorreo());
         Assert.assertEquals(newEntity.getDireccion(),compareEntity.getDireccion());
         Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),compareEntity.getTarjetaCreditoRegistrada());
     }

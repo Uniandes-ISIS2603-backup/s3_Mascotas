@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "b125616e-2cee-4c87-afa0-a87927b61321",
+		"_postman_id": "1ae8c81d-2ee6-48a3-a320-d01235495ef2",
 		"name": "ClientesTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "Obtener todos los clientes",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -37,7 +37,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "Obtener un cliente",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -69,7 +69,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/clientes",
+			"name": "Actualizar un cliente",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -80,7 +80,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/frontstepbystep.api/api/clientes/2",
@@ -101,7 +101,19 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/clientes",
+			"name": "Crear cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c99704ce-fdf4-41dc-b1ef-6b1d0de28d04",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -112,17 +124,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/frontstepbystep.api/api/clientes",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"frontstepbystep.api",
+						"s3_mascotas-api",
 						"api",
 						"clientes"
 					]

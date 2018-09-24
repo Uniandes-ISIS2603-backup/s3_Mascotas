@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Camilo Pinilla
  */
 public class HistoriaDTO implements Serializable{
-    private long id;
+    private Long id;
     private String foto;
     private String texto;
 
@@ -22,7 +22,7 @@ public class HistoriaDTO implements Serializable{
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

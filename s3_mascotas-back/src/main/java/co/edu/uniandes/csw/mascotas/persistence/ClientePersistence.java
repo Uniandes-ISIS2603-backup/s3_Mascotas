@@ -63,23 +63,23 @@ public class ClientePersistence {
      * @return null si no existe ningun cliente con el teléfono del argumento. Si
      * existe alguno devuelve el primero.
      */
-    public ClienteEntity findByTelefono(long telefono) {
-        LOGGER.log(Level.INFO, "Consultando clientes por teléfono ", telefono);
-        // Se crea un query para buscar clientes con el teléfono que recibe el método como argumento. ":telefono" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.telefono = :telefono", ClienteEntity.class);
-        // Se remplaza el placeholder ":telefono" con el valor del argumento 
-        query = query.setParameter("telefono", telefono);
+    public ClienteEntity findByCorreo(String correo) {
+        LOGGER.log(Level.INFO, "Consultando clientes por teléfono ", correo);
+        // Se crea un query para buscar clientes con el correo que recibe el método como argumento. ":correo" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.correo = ':correo'", ClienteEntity.class);
+        // Se remplaza el placeholder ":correo" con el valor del argumento 
+        query = query.setParameter("correo", correo);
         // Se invoca el query se obtiene la lista resultado
-        List<ClienteEntity> sameTelefono = query.getResultList();
+        List<ClienteEntity> sameCorreo = query.getResultList();
         ClienteEntity result;
-        if (sameTelefono == null) {
+        if (sameCorreo == null) {
             result = null;
-        } else if (sameTelefono.isEmpty()) {
+        } else if (sameCorreo.isEmpty()) {
             result = null;
         } else {
-            result = sameTelefono.get(0);
+            result = sameCorreo.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por teléfono ", telefono);
+        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por teléfono ", correo);
         return result;
     }
 }
