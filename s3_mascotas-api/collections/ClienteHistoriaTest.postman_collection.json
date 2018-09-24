@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "35127bf5-a621-440e-ac10-e206c0c271c0",
-		"name": "ClienteAdopcionTest",
+		"_postman_id": "2b7ce090-e98c-456d-ba7e-046ea767d49e",
+		"name": "ClienteHistoriaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Relacionar cliente con adopcion",
+			"name": "Relacionar cliente con historia",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -20,7 +20,7 @@
 					"raw": "{\n    \"clienteId\": \"1\",\n    \"adopcionId\": \"1\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/adopciones/2",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/historias/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,7 +31,7 @@
 						"api",
 						"clientes",
 						"1",
-						"adopciones",
+						"historias",
 						"2"
 					]
 				},
@@ -40,7 +40,7 @@
 			"response": []
 		},
 		{
-			"name": "Obtener el cliente de una adopcion",
+			"name": "Obtener el cliente de una historia",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -54,7 +54,7 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/adopciones/2",
+					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/historias/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -65,13 +65,35 @@
 						"api",
 						"clientes",
 						"1",
-						"adopciones",
+						"historias",
 						"2"
 					]
 				},
 				"description": "Obtiene una adopcion con id:{2} asociada a un cliente con id:{1}. Como respuesta se obtiene la información de la adopcion\n\n"
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6b32f9d0-8ec7-4ae9-9ede-f6454e41ca58",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6dda3d22-ca08-4ca6-87bc-c966fa3e108f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
