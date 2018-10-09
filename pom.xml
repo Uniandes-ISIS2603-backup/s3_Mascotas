@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <name>s3_petsuniandes</name>
  
-    <modules></modules>
+    <modules>
+        <module>s3_mascotas-back</module>
+        <module>s3_mascotas-api</module>
+    </modules>
     
     <repositories>
         <repository>
