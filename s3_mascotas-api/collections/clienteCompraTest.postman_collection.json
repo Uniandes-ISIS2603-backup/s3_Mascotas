@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/clientes/2/compras/3",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/clientes/2/compras/3",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -15,12 +15,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/2/compras/3",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/3",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -44,12 +44,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/2/compras/3",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/3",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
