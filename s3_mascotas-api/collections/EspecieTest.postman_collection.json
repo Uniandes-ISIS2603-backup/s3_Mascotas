@@ -35,12 +35,12 @@
 					"raw": "{\n\t\"nombre\":\"EspecieTest\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -65,12 +65,12 @@
 							"raw": "{\n\t\"nombre\":\"Ejemplo\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+							"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{ip}}"
 							],
-							"port": "8080",
+							"port": "{{puerto}}",
 							"path": [
 								"s3_mascotas-api",
 								"api",
@@ -153,12 +153,12 @@
 					"raw": "{\n\t\"nombre\":\"EspecieTest\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -184,12 +184,12 @@
 							"raw": "{\n\t\"nombre\":\"San bernardo\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+							"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{ip}}"
 							],
-							"port": "8080",
+							"port": "{{puerto}}",
 							"path": [
 								"s3_mascotas-api",
 								"api",
@@ -264,12 +264,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -300,12 +300,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -336,12 +336,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/0",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -380,12 +380,12 @@
 					"raw": "{\n\t\"nombre\":\"paddle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/0",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -425,12 +425,12 @@
 					"raw": "{\n\t\"nombre\":\"yahtsu\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -457,12 +457,12 @@
 							"raw": "{\n\t\"nombre\":\"yahtsu\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/s3_mascotas-api/api/especies/2",
+							"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/2",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{ip}}"
 							],
-							"port": "8080",
+							"port": "{{puerto}}",
 							"path": [
 								"s3_mascotas-api",
 								"api",
@@ -536,12 +536,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

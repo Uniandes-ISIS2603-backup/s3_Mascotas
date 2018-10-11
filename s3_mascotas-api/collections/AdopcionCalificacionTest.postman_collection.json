@@ -34,12 +34,12 @@
 					"raw": "{\n\t\"puntaje\":\"3\", \n\t\"comentarios\":\"buen sitio :D\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -78,12 +78,12 @@
 					"raw": "{\n\t\"docsAdopcion\":\"ejemp\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -105,7 +105,7 @@
 							"if(responseCode.code === 200){",
 							"    tests[\"No genera error en el Post\"] = responseCode.code ===200;",
 							"}",
-							"//Para esta verificacion, se necesita llenar los campos en la url. Con la URL \"http://localhost:8080/s3_mascotas-api/api/adopciones/\" e instruccion get, se pueden ver que adopciones no tienen vinculo aun y probar el método",
+							"//Para esta verificacion, se necesita llenar los campos en la url. Con la URL \"http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/\" e instruccion get, se pueden ver que adopciones no tienen vinculo aun y probar el método",
 							"else if(responseCode.code === 404){",
 							"    tests[\"No se han llenado las variables\"] = responseCode.code ===404;",
 							"}"
@@ -126,12 +126,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/1/calificaciones/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -172,12 +172,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/1/calificaciones/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -211,12 +211,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/3/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/3/calificaciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -248,12 +248,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/1/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/1/calificaciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

@@ -20,12 +20,12 @@
 					"raw": "{\n    \"clienteId\": \"1\",\n    \"adopcionId\": \"1\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/historias/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/historias/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -54,12 +54,12 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1/historias/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/historias/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

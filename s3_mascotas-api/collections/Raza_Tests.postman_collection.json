@@ -36,12 +36,12 @@
 					"raw": "{\n\t\"nombre\": \"locust\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -84,12 +84,12 @@
 					"raw": "{\n\t\"nombre\": \"covenant\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -132,12 +132,12 @@
 					"raw": "{\n\t\"nombre\": \"covenant\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -180,12 +180,12 @@
 					"raw": "{\n\t\"nombre\": \"locust3\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -228,12 +228,12 @@
 					"raw": "{\n\t\"nombre\": \"razaNueva\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/razas/4",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/4",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

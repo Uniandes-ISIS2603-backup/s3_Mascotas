@@ -34,12 +34,12 @@
 					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"excelente servicio\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -78,12 +78,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

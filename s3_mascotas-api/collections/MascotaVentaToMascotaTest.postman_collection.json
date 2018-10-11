@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -20,12 +20,12 @@
 					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -40,7 +40,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -54,12 +54,12 @@
 					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaVenta/2/mascotas/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

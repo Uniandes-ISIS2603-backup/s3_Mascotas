@@ -38,12 +38,12 @@
 					"raw": "{\n\t\"nombre\" : \"a\",\n\t\"edad\": \"2\",\n\t\"genero\": \"g\",\n\t\"color\": \"c\",\n\t\"precio\": \"6\"\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotas",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -69,12 +69,12 @@
 					"raw": "{\n\t\"nombre\" : \"a\",\n\t\"edad\": \"2\",\n\t\"genero\": \"g\",\n\t\"color\": \"c\",\n\t\"precio\": \"6\"\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -119,12 +119,12 @@
 					"raw": "{\n\t\"nombre\" : \"Ram\",\n\t\"edad\": \"30\",\n\t\"genero\": \"g\",\n\t\"color\": \"c\",\n\t\"precio\": \"6\"\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotas/",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -167,12 +167,12 @@
 					"raw": "{\n\t\"nombre\": \"nuevoNombre\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -211,12 +211,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotas/15",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/15",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
