@@ -26,7 +26,7 @@ public class MascotaAdopcionEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToOne
-   // @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
+    //@OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
     private MascotaEntity mascota;
 
    
