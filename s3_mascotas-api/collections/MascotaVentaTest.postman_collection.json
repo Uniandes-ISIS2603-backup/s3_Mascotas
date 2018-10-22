@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -20,12 +20,12 @@
 					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaVenta",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -37,7 +37,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -51,12 +51,12 @@
 					"raw": "{\n    \"documentosPedegree\": \"sdfjdfsxksl\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaVenta/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/frontstepbystep.api/api/editorials",
+			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -82,12 +82,12 @@
 					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/mascotaVenta",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaVenta",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

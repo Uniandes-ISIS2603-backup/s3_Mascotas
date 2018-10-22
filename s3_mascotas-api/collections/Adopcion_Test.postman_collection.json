@@ -34,12 +34,12 @@
 					"raw": "{\n\t\"id\":3,\n\t\"docsAdopcion\": \"asdfsadfasd\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -70,12 +70,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/adopciones/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

@@ -20,12 +20,12 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -51,12 +51,12 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -83,12 +83,12 @@
 					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/frontstepbystep.api/api/clientes/2",
+					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/clientes/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"frontstepbystep.api",
 						"api",
@@ -127,12 +127,12 @@
 					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

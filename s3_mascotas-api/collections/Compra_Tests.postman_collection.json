@@ -34,12 +34,12 @@
 					"raw": "{\n    \"id\": 3,\n    \"precio\": 0,\n    \"tipoDePago\" : \"asdf\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/compras",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -70,12 +70,12 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/compras/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",

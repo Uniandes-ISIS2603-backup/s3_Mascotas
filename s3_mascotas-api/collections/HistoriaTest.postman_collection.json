@@ -20,12 +20,12 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/historias",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -51,12 +51,12 @@
 					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/historias",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -82,12 +82,12 @@
 					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion y Ginebra\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/2",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
@@ -114,12 +114,12 @@
 					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_mascotas-api/api/historias/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s3_mascotas-api",
 						"api",
