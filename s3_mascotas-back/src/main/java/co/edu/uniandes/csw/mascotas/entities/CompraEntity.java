@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class CompraEntity extends BaseEntity implements Serializable{
-    public double precio;
+    public Double precio;
     public String tipoDePago;
     @PodamExclude
     @OneToOne
@@ -42,11 +42,11 @@ public class CompraEntity extends BaseEntity implements Serializable{
         this.calificacion = calificacion;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

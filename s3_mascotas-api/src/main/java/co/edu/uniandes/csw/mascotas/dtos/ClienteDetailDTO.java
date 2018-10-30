@@ -26,7 +26,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
     public ClienteDetailDTO(ClienteEntity clienteEntity){
         super(clienteEntity);
-        if (clienteEntity.getCompras()!= null) {
+        if (clienteEntity!= null) {
             compras = new ArrayList<>();
             for(CompraEntity c : clienteEntity.getCompras()){
                 compras.add(new CompraDTO(c));

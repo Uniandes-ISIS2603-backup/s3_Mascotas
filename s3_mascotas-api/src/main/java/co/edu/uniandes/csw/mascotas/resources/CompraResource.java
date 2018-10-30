@@ -34,11 +34,17 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class CompraResource {
     @Inject
-    CompraLogic compraLogic;
+    private CompraLogic compraLogic;
     
     private static final Logger LOGGER = Logger.getLogger(CompraResource.class.getName());
     
-   
+       @GET
+    public List<CompraDTO> getCompras(){
+        LOGGER.info("CompraResource getCompras: input: void");
+        List<CompraDTO> listaCompra = listEntity2DTO(compraLogic.getCompras());
+        LOGGER.log(Level.INFO, "CompraResource getCompras: output: {0}", listaCompra.toString());
+        return listaCompra;
+    }
     @POST
     public CompraDTO crearCompra(CompraDTO compra)throws BusinessLogicException{
         
@@ -62,13 +68,7 @@ public class CompraResource {
         return new CompraDTO(compraEntity);
     }
     
-    @GET
-    public List<CompraDTO> getCompras(){
-        LOGGER.info("CompraResource getCompras: input: void");
-        List<CompraDTO> listaCompra = listEntity2DTO(compraLogic.getCompras());
-        LOGGER.log(Level.INFO, "AdopcionResource getADopciones: output: {0}", listaCompra.toString());
-        return listaCompra;
-    }
+
     
     @PUT
     @Path("{comprasId: \\d+}")

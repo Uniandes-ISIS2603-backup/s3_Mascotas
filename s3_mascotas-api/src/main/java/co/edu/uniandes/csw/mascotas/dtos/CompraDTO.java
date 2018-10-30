@@ -52,15 +52,17 @@ public class CompraDTO implements Serializable {
         this.tipoDePago = tipoDePago;
     }
     public CompraDTO(){
+        super();
         
     }
     public CompraDTO(CompraEntity compra){
+        
        if(compra!=null){
            this.id =compra.getId();
            this.precio=compra.getPrecio();
            this.tipoDePago=compra.getTipoDePago();
            this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
-           this.relacionCliente = new ClienteDTO(compra.getCliente());
+//           this.relacionCliente = new ClienteDTO(compra.getCliente());
        }
     }
     /**
