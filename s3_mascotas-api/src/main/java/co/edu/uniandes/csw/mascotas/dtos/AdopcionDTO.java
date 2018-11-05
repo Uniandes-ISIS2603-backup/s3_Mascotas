@@ -49,7 +49,7 @@ public class AdopcionDTO implements Serializable{
             this.id= adopcion.getId();
             this.docsAdopcion = adopcion.getDocsAdopcion();
             this.relacionCalificacion = new CalificacionDTO(adopcion.getCalificacion());
-   //         this.relacionClienteDetailDTO = new ClienteDetailDTO(adopcion.getCliente());
+   //          this.relacionClienteDetailDTO = new ClienteDetailDTO(adopcion.getCliente());
         }
     }
 

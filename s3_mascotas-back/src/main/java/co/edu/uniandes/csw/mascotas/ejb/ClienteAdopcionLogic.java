@@ -46,7 +46,8 @@ public class ClienteAdopcionLogic {
             throw new BusinessLogicException("El cliente no existe");
         }
         clienteEntity.getAdopciones().add(adopcionEntity);
-        
+        adopcionEntity.setCliente(clienteEntity);
+        clientePersistence.update(clienteEntity);
         return adopcionPersistence.find(adopcionId);
     }
     

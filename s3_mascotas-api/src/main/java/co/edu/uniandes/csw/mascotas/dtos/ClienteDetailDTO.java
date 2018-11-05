@@ -5,9 +5,10 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 
+import co.edu.uniandes.csw.mascotas.entities.AdopcionEntity;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
-import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
     private List<CompraDTO> compras;
+    private List<AdopcionDTO> adopciones;
 
     public ClienteDetailDTO() {
         super();
@@ -28,8 +30,12 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         super(clienteEntity);
         if (clienteEntity!= null) {
             compras = new ArrayList<>();
+            adopciones = new ArrayList<>();
             for(CompraEntity c : clienteEntity.getCompras()){
                 compras.add(new CompraDTO(c));
+            }
+            for(AdopcionEntity a: clienteEntity.getAdopciones()){
+                adopciones.add(new AdopcionDTO(a));
             }
         }
     }
@@ -47,12 +53,30 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         ClienteEntity clienteEntity = super.toEntity();
         if (compras != null) {
             List<CompraEntity> comprasEntity = new ArrayList<>();
-            for (CompraDTO c : getCompras()) {
+            //List<AdopcionEntity> adopcionEntity= new ArrayList<>();
+            for (CompraDTO c :compras) {
                 comprasEntity.add(c.toEntity());
             }
+            
             clienteEntity.setCompras(comprasEntity);
+            }
+        if(adopciones!=null){
+            List<AdopcionEntity> adopcionEntity = new ArrayList<>();
+            for(AdopcionDTO a: adopciones){
+                adopcionEntity.add(a.toEntity());
+            }
+            clienteEntity.setAdopciones(adopcionEntity);
         }
+
         return clienteEntity;
+    }
+
+    public List<AdopcionDTO> getAdopciones() {
+        return adopciones;
+    }
+
+    public void setAdopciones(List<AdopcionDTO> adopciones) {
+        this.adopciones = adopciones;
     }
     
 }

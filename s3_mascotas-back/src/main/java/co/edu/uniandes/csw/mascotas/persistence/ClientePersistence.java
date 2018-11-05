@@ -66,7 +66,7 @@ public class ClientePersistence {
     public ClienteEntity findByCorreo(String correo) {
         LOGGER.log(Level.INFO, "Consultando clientes por teléfono ", correo);
         // Se crea un query para buscar clientes con el correo que recibe el método como argumento. ":correo" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.correo = ':correo'", ClienteEntity.class);
+        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.correo = :correo", ClienteEntity.class);
         // Se remplaza el placeholder ":correo" con el valor del argumento 
         query = query.setParameter("correo", correo);
         // Se invoca el query se obtiene la lista resultado

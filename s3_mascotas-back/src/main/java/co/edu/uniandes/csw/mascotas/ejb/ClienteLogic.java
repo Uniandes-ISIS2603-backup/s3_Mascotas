@@ -57,7 +57,6 @@ public class ClienteLogic {
     public ClienteEntity updateCliente(Long clienteId, ClienteEntity clienteEntity) throws BusinessLogicException{
         LOOGER.log(Level.INFO, "Updating the customer with id = {0}", clienteId);
         
-        // ClienteEntity cliente = getCliente()
         
         if(persistence.findByCorreo(clienteEntity.getCorreo()) != null){
             throw new BusinessLogicException("El Teléfono ya existe");

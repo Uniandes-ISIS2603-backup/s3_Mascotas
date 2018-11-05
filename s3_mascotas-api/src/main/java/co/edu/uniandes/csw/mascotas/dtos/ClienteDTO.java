@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.mascotas.dtos;
+import co.edu.uniandes.csw.mascotas.entities.AdopcionEntity;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
+import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
@@ -19,7 +23,8 @@ public class ClienteDTO implements Serializable{
     private String correo;
     private String direccion;
     private String tarjetaCreditoRegistrada;
-    
+    private List<CompraDTO> relacionCompra;
+    private List<AdopcionDTO> relacionAdopcion;
     public ClienteDTO() {
         
     }
@@ -30,9 +35,24 @@ public class ClienteDTO implements Serializable{
             this.correo = cliente.getCorreo();
             this.direccion = cliente.getDireccion();
             this.tarjetaCreditoRegistrada = cliente.getTarjetaCreditoRegistrada();
+       //     convertirComprasADTO(cliente.getCompras());
+         //   convertirAdopcionADTO(cliente.getAdopciones());
         }
     }
-    
+    private void convertirComprasADTO(List<CompraEntity> a){
+       relacionCompra= new ArrayList();
+        for(CompraEntity c: a){
+            CompraDTO nuevo = new CompraDTO(c);
+            relacionCompra.add(nuevo);
+        }
+    }
+    private void convertirAdopcionADTO(List<AdopcionEntity> a){
+        relacionAdopcion = new ArrayList();
+        for(AdopcionEntity c: a){
+            AdopcionDTO nuevo = new AdopcionDTO(c);
+            relacionAdopcion.add(nuevo);
+        }
+    }    
     public long getId() {
         return id;
     }
@@ -72,7 +92,6 @@ public class ClienteDTO implements Serializable{
         nueva.setCorreo(correo);
         nueva.setDireccion(direccion);
         nueva.setTarjetaCreditoRegistrada(tarjetaCreditoRegistrada);
-        
         return nueva;
     }
     

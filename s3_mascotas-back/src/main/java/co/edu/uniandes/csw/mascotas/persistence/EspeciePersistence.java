@@ -35,7 +35,7 @@ public class EspeciePersistence
     
     public List<EspecieEntity> findAll(){
         LOGGER.log(Level.INFO, "Consulting all species");
-        Query q = em.createQuery("select u from EspecieEntity u");
+        Query q = em.createQuery("select u from EspecieEntity u where u.deleted = FALSE");
         return q.getResultList();
     }
     
@@ -49,7 +49,6 @@ public class EspeciePersistence
         LOGGER.log(Level.INFO, "Updating species with id={0}", especieEntity.getId());
         return em.merge(especieEntity);
     }
-    
     public void delete(Long especieId){
         EspecieEntity especieEntity = em.find(EspecieEntity.class, especieId);
         especieEntity.setDeleted(Boolean.TRUE);

@@ -30,8 +30,8 @@ public class ClienteEntity extends BaseEntity implements Serializable
     private List<AdopcionEntity> adopciones = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy="cliente")
-    private List<MascotaEntity> mascotas = new ArrayList<>();
+    @OneToMany(mappedBy="cliente") 
+   private List<MascotaEntity> mascotas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy="cliente")
