@@ -36,6 +36,7 @@ public class MascotaDTO implements Serializable{
             this.genero = mascotaEntity.getGenero();
             this.color = mascotaEntity.getColor();
             this.precio = mascotaEntity.getPrecio();
+            this.imagen = mascotaEntity.getImagen();
             if (mascotaEntity.getRaza() != null) {
                 this.raza = new RazaDTO(mascotaEntity.getRaza());
             }else{
@@ -99,7 +100,13 @@ public class MascotaDTO implements Serializable{
     public void setRaza(RazaDTO raza) {
         this.raza = raza;
     }
+    public String getImagen() {
+        return imagen;
+    }
     
+    public void setImagen(String imagen){
+        this.imagen = imagen;
+    }
     
     
     public MascotaEntity toEntity(){
@@ -110,6 +117,7 @@ public class MascotaDTO implements Serializable{
         newEntity.setColor(color);
         newEntity.setPrecio(precio);
         newEntity.setId(id);
+        newEntity.setImagen(imagen);
         return newEntity;
     }
 }

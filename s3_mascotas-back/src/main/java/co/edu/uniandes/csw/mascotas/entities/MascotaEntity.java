@@ -25,6 +25,7 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     private String genero;
     private String color;
     private Double precio;
+    private String imagen;
     
         
     @PodamExclude
@@ -137,7 +138,11 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
+    public String getImagen() {
+        return imagen;
+    }
     
-    
-    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }

@@ -57,11 +57,6 @@ public class ClienteLogic {
     public ClienteEntity updateCliente(Long clienteId, ClienteEntity clienteEntity) throws BusinessLogicException{
         LOOGER.log(Level.INFO, "Updating the customer with id = {0}", clienteId);
         
-        
-        if(persistence.findByCorreo(clienteEntity.getCorreo()) != null){
-            throw new BusinessLogicException("El Teléfono ya existe");
-        }
-        
         ClienteEntity newEntity = persistence.update(clienteEntity);
         LOOGER.log(Level.INFO, "Finished update on customer with id = {0}", clienteEntity.getId());
         return newEntity;

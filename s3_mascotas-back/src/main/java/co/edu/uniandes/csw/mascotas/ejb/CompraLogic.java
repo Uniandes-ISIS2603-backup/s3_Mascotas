@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
+import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
+import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +25,20 @@ public class CompraLogic {
     private static final Logger LOGGER = Logger.getLogger(CompraLogic.class.getName());
     @Inject
     private CompraPersistence persistence;
+    private MascotaPersistence mascPersistence;
+    
     public CompraEntity crearCompra(CompraEntity compraEnt)throws BusinessLogicException{
         LOGGER.info("Creacion de compra");
+        MascotaEntity masc = mascPersistence.find(compraEnt.getMascotaId());
+        if(masc == null){
+            throw new BusinessLogicException("La mascota no existe");
+        }
+        if(masc.getDeleted().equals(Boolean.TRUE))
+        {
+            throw new BusinessLogicException("La mascota ya fue comprada");
+        }
+        masc.setDeleted(Boolean.TRUE);
+        mascPersistence.update(masc);
         persistence.create(compraEnt);
         return compraEnt;
     }
