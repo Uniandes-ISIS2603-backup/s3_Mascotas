@@ -40,7 +40,9 @@ public class ClienteComprasLogic {
         if(clienteEntity == null){
             throw new BusinessLogicException("El cliente no existe");
         }
-        clienteEntity.getCompras().add(compraEntity);
+        List<CompraEntity> a =clienteEntity.getCompras();
+        a.add(compraEntity);
+        clienteEntity.setCompras(a);
         return compraPersistence.find(compraId);
     }
     public List<CompraEntity> getCompras(Long clienteId)
