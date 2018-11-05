@@ -28,16 +28,19 @@ public class MascotaDTO implements Serializable{
     }
     
     public MascotaDTO(MascotaEntity mascotaEntity){
-        this.id = mascotaEntity.getId();
-        this.nombre = mascotaEntity.getNombre();
-        this.edad = mascotaEntity.getEdad();
-        this.genero = mascotaEntity.getGenero();
-        this.color = mascotaEntity.getColor();
-        this.precio = mascotaEntity.getPrecio();
-        if (mascotaEntity.getRaza() != null) {
-            this.raza = new RazaDTO(mascotaEntity.getRaza());
-        }else{
-            this.raza = null;
+        if(mascotaEntity != null)
+        {
+            this.id = mascotaEntity.getId();
+            this.nombre = mascotaEntity.getNombre();
+            this.edad = mascotaEntity.getEdad();
+            this.genero = mascotaEntity.getGenero();
+            this.color = mascotaEntity.getColor();
+            this.precio = mascotaEntity.getPrecio();
+            if (mascotaEntity.getRaza() != null) {
+                this.raza = new RazaDTO(mascotaEntity.getRaza());
+            }else{
+                this.raza = null;
+            }
         }
     }
 
