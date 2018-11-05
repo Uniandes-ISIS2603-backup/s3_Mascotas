@@ -24,6 +24,10 @@ public class CompraEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToOne
+    private MascotaEntity mascota;
+    
+    @PodamExclude
+    @ManyToOne
     private ClienteEntity cliente;
 
     public ClienteEntity getCliente() {
@@ -32,6 +36,15 @@ public class CompraEntity extends BaseEntity implements Serializable{
 
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
+    }
+    
+    public MascotaEntity getMascota(){
+        return mascota;
+    }
+    
+    public void setMascota(MascotaEntity mascota)
+    {
+        this.mascota = mascota;
     }
 
     public CalificacionEntity getCalificacion() {
