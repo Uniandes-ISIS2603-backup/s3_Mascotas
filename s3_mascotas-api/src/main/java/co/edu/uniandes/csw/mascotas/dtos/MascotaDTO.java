@@ -20,7 +20,7 @@ public class MascotaDTO implements Serializable{
     private String genero;
     private String color;
     private Double precio;
-    
+    private String imagen;
     private RazaDTO raza;
     
 
