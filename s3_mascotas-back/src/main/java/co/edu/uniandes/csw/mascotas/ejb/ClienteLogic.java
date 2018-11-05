@@ -30,7 +30,7 @@ public class ClienteLogic {
     public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException{
         LOOGER.info("Customer creation process begins");
         if(persistence.findByCorreo(entity.getCorreo()) != null){
-            throw new BusinessLogicException("El Teléfono ya existe");
+            throw new BusinessLogicException("El correo ya esta registrado");
         }
         persistence.create(entity);
         LOOGER.info("Customer creation finishes");

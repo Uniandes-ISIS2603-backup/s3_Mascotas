@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.ClienteDTO;
+import co.edu.uniandes.csw.mascotas.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
@@ -38,7 +39,7 @@ import javax.ws.rs.WebApplicationException;
 public class ClienteResource {
     
     @Inject
-    ClienteLogic clienteLogic;
+    private ClienteLogic clienteLogic;
     
     // Debug logger
     private static final Logger LOGGER = Logger.getLogger(ClienteResource.class.getName());
@@ -73,7 +74,7 @@ public class ClienteResource {
      */
     @GET
     @Path("{clienteId: \\d+}")
-    public ClienteDTO getCliente(@PathParam("clienteId") Long clienteId){
+    public ClienteDetailDTO getCliente(@PathParam("clienteId") Long clienteId){
         
         LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteId);
         
@@ -85,7 +86,7 @@ public class ClienteResource {
         
         LOGGER.log(Level.INFO, "CLienteResource getCliente: output: {0}", clienteEntity.toString());
         
-        return new ClienteDTO(clienteEntity);
+        return new ClienteDetailDTO(clienteEntity);
     }
     
     /**
@@ -93,11 +94,11 @@ public class ClienteResource {
      * @return List<ClienteDTO>
      */
     @GET
-    public List<ClienteDTO> getClientes(){
+    public List<ClienteDetailDTO> getClientes(){
         
         LOGGER.info("ClienteResource getClientes: input: void");
         
-        List<ClienteDTO> listaClientes = listEntity2DTO(clienteLogic.getClientes());
+        List<ClienteDetailDTO> listaClientes = listEntity2DTO(clienteLogic.getClientes());
         
         LOGGER.log(Level.INFO, "MascotaResource getMascotas: output: {0}", listaClientes.toString());
         
@@ -131,10 +132,10 @@ public class ClienteResource {
         clienteLogic.deleteCliente(clienteEntity);
     }
     
-    private List<ClienteDTO> listEntity2DTO(List<ClienteEntity> entityList){
-        List<ClienteDTO> list = new ArrayList<>();
+    private List<ClienteDetailDTO> listEntity2DTO(List<ClienteEntity> entityList){
+        List<ClienteDetailDTO> list = new ArrayList<>();
         for(ClienteEntity m : entityList){
-            list.add(new ClienteDTO(m));
+            list.add(new ClienteDetailDTO(m));
         }
         return list;
     }
