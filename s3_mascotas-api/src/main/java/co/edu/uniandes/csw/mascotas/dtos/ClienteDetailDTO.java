@@ -28,6 +28,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
     public ClienteDetailDTO(ClienteEntity clienteEntity){
         super(clienteEntity);
+        System.out.println("Entramos al detail");
         if (clienteEntity!= null) {
             compras = new ArrayList<>();
             adopciones = new ArrayList<>();
@@ -51,6 +52,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     @Override
     public ClienteEntity toEntity(){
         ClienteEntity clienteEntity = super.toEntity();
+        System.out.println("Entra a esta vaina");
         if (compras != null) {
             List<CompraEntity> comprasEntity = new ArrayList<>();
             //List<AdopcionEntity> adopcionEntity= new ArrayList<>();

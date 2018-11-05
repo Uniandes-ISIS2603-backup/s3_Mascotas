@@ -17,7 +17,7 @@ public class EspecieDTO implements Serializable
 {
     private Long id;   
     private String nombre;
-
+    private String imagen;
     public EspecieDTO() {
     }
 
@@ -28,6 +28,14 @@ public class EspecieDTO implements Serializable
             this.nombre=especieEntity.getNombre();
             this.id=especieEntity.getId();
         }
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     /**

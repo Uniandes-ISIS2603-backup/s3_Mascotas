@@ -40,7 +40,7 @@ public class ClienteComprasResource {
     private CompraLogic compraLogic;
     
     @POST
-    @Path("/{compraId: \\d+}")
+    @Path("{compraId: \\d+}")
     public CompraDTO addCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) throws BusinessLogicException
     {
         if(compraLogic.getCompra(compraId) == null){

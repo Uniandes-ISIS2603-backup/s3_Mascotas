@@ -16,7 +16,15 @@ public class RazaDTO implements Serializable{
     
     private Long id;
     private String nombre;
-    
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     public RazaDTO(){
     }
     

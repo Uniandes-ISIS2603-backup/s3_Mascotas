@@ -22,7 +22,15 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class RazaEntity extends BaseEntity implements Serializable{
     
     private String nombre;
-    
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     @PodamExclude
     @ManyToOne
     private EspecieEntity especie;

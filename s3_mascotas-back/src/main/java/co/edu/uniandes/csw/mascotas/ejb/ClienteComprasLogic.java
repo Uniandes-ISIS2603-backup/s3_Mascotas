@@ -46,6 +46,17 @@ public class ClienteComprasLogic {
     public List<CompraEntity> getCompras(Long clienteId)
     {
         return clientePersistence.find(clienteId).getCompras();
-    }   
+    }  
+    public CompraEntity getCompra(Long cliente, Long compra)throws BusinessLogicException{
+        List<CompraEntity> compras = getCompras(cliente);
+        CompraEntity c = compraPersistence.find(compra);
+        int pos = compras.indexOf(c);
+        if(pos>=0){
+            return compras.get(pos);
+        }
+        else{
+            throw new BusinessLogicException("Eso no existe.");
+        }
+    }
     
 }

@@ -23,8 +23,6 @@ public class ClienteDTO implements Serializable{
     private String correo;
     private String direccion;
     private String tarjetaCreditoRegistrada;
-    private List<CompraDTO> relacionCompra;
-    private List<AdopcionDTO> relacionAdopcion;
     public ClienteDTO() {
         
     }
@@ -39,20 +37,7 @@ public class ClienteDTO implements Serializable{
          //   convertirAdopcionADTO(cliente.getAdopciones());
         }
     }
-    private void convertirComprasADTO(List<CompraEntity> a){
-       relacionCompra= new ArrayList();
-        for(CompraEntity c: a){
-            CompraDTO nuevo = new CompraDTO(c);
-            relacionCompra.add(nuevo);
-        }
-    }
-    private void convertirAdopcionADTO(List<AdopcionEntity> a){
-        relacionAdopcion = new ArrayList();
-        for(AdopcionEntity c: a){
-            AdopcionDTO nuevo = new AdopcionDTO(c);
-            relacionAdopcion.add(nuevo);
-        }
-    }    
+   
     public long getId() {
         return id;
     }
