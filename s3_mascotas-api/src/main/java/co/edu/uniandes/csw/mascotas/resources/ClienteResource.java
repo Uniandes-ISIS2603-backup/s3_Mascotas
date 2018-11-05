@@ -139,4 +139,20 @@ public class ClienteResource {
         }
         return list;
     }
+    
+      @Path("{clienteId: \\d+}/adopciones")
+    public Class<ClienteAdopcionResource> getClienteAdopcionResource(@PathParam("clienteId") Long clienteId) {
+        if (clienteLogic.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+        }
+        return ClienteAdopcionResource.class;
+    }
+    
+     @Path("{clienteId: \\d+}/compras")
+    public Class<ClienteComprasResource> getClienteComprasResource(@PathParam("clienteId") Long clienteId) {
+        if (clienteLogic.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+        }
+        return ClienteComprasResource.class;
+    }
 }

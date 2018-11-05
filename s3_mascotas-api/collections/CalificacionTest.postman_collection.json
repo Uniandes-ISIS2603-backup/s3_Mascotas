@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "95786f3c-9716-4b69-8c18-a4d599180ef2",
+		"_postman_id": "acff6050-6a74-4b37-a867-a7dc18f3a7ab",
 		"name": "CalificacionTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,12 +12,11 @@
 					"listen": "test",
 					"script": {
 						"id": "f1a802a0-b69e-4ac4-b2e7-d5dac5da1fa6",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],

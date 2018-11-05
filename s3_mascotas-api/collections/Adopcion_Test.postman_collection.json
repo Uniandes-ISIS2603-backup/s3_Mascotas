@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c4ece08d-051c-4644-be28-28f9c3e5937b",
+		"_postman_id": "752a3b8e-9531-4601-8a28-2f7f49ca48bf",
 		"name": "Adopcion_Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -50,25 +50,28 @@
 			"response": []
 		},
 		{
-			"name": "coja el libro pelado",
+			"name": "dar todas adopciones",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "9dc49f62-d102-4c4e-9aec-78053cdc10a7",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/{{new_id_b}}",
 					"protocol": "http",

@@ -1,39 +1,10 @@
 {
 	"info": {
-		"_postman_id": "611611ae-6582-47ba-9d1b-b49f47b2621c",
+		"_postman_id": "c22560e8-6814-4fa1-93d5-80c6214b4733",
 		"name": "ClienteCompraTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/clientes/2/compras/3",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/3",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"clientes",
-						"2",
-						"compras",
-						"3"
-					]
-				},
-				"description": "Se obtiene la compra asociada con id:{3} al cliente con id{2}. Se obtiene como respuesta la compra."
-			},
-			"response": []
-		},
 		{
 			"name": "Relacionar el cliente con una compra",
 			"request": {
@@ -60,6 +31,48 @@
 					]
 				},
 				"description": "Se asocia la compra con id:{3} al cliente con id:{2}. Se obtiene como respuesta la compra asociada."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener el cliente de una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1479d1f-41fa-4d80-ae14-8f3980fb4263",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"2",
+						"compras",
+						""
+					]
+				},
+				"description": "Se obtiene la compra asociada con id:{3} al cliente con id{2}. Se obtiene como respuesta la compra."
 			},
 			"response": []
 		}

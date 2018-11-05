@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5f5cfe4e-982d-4610-995c-135d1b999834",
+		"_postman_id": "6b372d3b-6c08-4a8e-a394-2f8bd2b879b8",
 		"name": "AdopcionCalificacionTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -197,21 +197,24 @@
 					"listen": "test",
 					"script": {
 						"id": "c6577354-a1fc-4246-8608-f92a3d10fde5",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/3/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/1/calificaciones",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -221,7 +224,7 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"3",
+						"1",
 						"calificaciones"
 					]
 				}
@@ -235,20 +238,23 @@
 					"listen": "test",
 					"script": {
 						"id": "87bab732-6f9a-461f-8d86-6e71181cb374",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se deberia obtener ninguna calificacion ya que la calificacion no existe.\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /adopciones/1 no tiene una calificacion asociada.\");"
-						]
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /adopciones/3 no tiene una calificacion asociada.\");"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/1/calificaciones",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/adopciones/3/calificaciones",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -258,7 +264,7 @@
 						"s3_mascotas-api",
 						"api",
 						"adopciones",
-						"1",
+						"3",
 						"calificaciones"
 					]
 				}

@@ -1,12 +1,25 @@
 {
 	"info": {
-		"_postman_id": "1ae8c81d-2ee6-48a3-a320-d01235495ef2",
+		"_postman_id": "478fc950-fd07-4044-bc88-8b4c8d8dab04",
 		"name": "ClientesTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Obtener todos los clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d515b18c-d87f-4dd3-9abe-43ec8b6d777a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -17,7 +30,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
@@ -37,80 +50,17 @@
 			"response": []
 		},
 		{
-			"name": "Obtener un cliente",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"clientes",
-						"1"
-					]
-				},
-				"description": "Obtiene un cliente con identificador id:{1}"
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar un cliente",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/clientes/2",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"frontstepbystep.api",
-						"api",
-						"clientes",
-						"2"
-					]
-				},
-				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
-			},
-			"response": []
-		},
-		{
 			"name": "Crear cliente",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "c99704ce-fdf4-41dc-b1ef-6b1d0de28d04",
-						"type": "text/javascript",
 						"exec": [
-							""
-						]
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -137,6 +87,98 @@
 						"s3_mascotas-api",
 						"api",
 						"clientes"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03a2431e-4580-468a-b0d4-7629b199a785",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"1"
+					]
+				},
+				"description": "Obtiene un cliente con identificador id:{1}"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b735edef-1a42-427d-bf0a-cf5462090f3e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"1"
 					]
 				},
 				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
