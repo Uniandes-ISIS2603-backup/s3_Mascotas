@@ -21,11 +21,8 @@ public class CompraEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private CalificacionEntity calificacion;
-    
-    @PodamExclude
-    @ManyToOne
-    private MascotaEntity mascota;
-    
+   
+   private Long mascotaId; 
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
@@ -37,16 +34,16 @@ public class CompraEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-    
-    public MascotaEntity getMascota(){
-        return mascota;
-    }
-    
-    public void setMascota(MascotaEntity mascota)
-    {
-        this.mascota = mascota;
+
+    public Long getMascotaId() {
+        return mascotaId;
     }
 
+    public void setMascotaId(Long mascotaId) {
+        this.mascotaId = mascotaId;
+    }
+    
+    
     public CalificacionEntity getCalificacion() {
         return calificacion;
     }

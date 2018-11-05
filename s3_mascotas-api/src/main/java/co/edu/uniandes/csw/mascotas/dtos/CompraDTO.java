@@ -20,8 +20,8 @@ public class CompraDTO implements Serializable {
      private Long id;
      private CalificacionDTO relacionCalificacion;
      private ClienteDTO relacionCliente;
-     private MascotaDTO relacionMascota;
-
+     //private MascotaDTO relacionMascota;
+     private Long mascotaId;
     public ClienteDTO getRelacionCliente() {
         return relacionCliente;
     }
@@ -29,16 +29,16 @@ public class CompraDTO implements Serializable {
     public void setRelacionCliente(ClienteDTO relacionCliente) {
         this.relacionCliente = relacionCliente;
     }
-    
-    public MascotaDTO getRelacionMascota()
-    {
-        return relacionMascota;
+
+    public Long getMascotaId() {
+        return mascotaId;
+    }
+
+    public void setMascotaId(Long mascotaId) {
+        this.mascotaId = mascotaId;
     }
     
-    public void seRelacionMascota(MascotaDTO relacionMascota)
-    {
-        this.relacionMascota = relacionMascota;
-    }
+    
     
      public CalificacionDTO getRelacionCalificacion() {
         return relacionCalificacion;
@@ -74,7 +74,8 @@ public class CompraDTO implements Serializable {
            this.precio=compra.getPrecio();
            this.tipoDePago=compra.getTipoDePago();
            this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
-           this.relacionMascota = new MascotaDTO(compra.getMascota());
+           this.mascotaId = compra.getMascotaId();
+       //    this.relacionMascota = new MascotaDTO(compra.getMascota());
 //           this.relacionCliente = new ClienteDTO(compra.getCliente());
        }
     }
@@ -95,6 +96,7 @@ public class CompraDTO implements Serializable {
         compra.setId(this.id);
         compra.setPrecio(this.precio);
         compra.setTipoDePago(this.tipoDePago);
+        compra.setMascotaId(mascotaId);
         return compra;
     }   
         @Override

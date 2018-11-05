@@ -31,6 +31,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Juan Sebastian Gomez, Camilo Pinilla
  */
+@Path("clientes/(clienteId :\\d)/adopciones")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteAdopcionResource {

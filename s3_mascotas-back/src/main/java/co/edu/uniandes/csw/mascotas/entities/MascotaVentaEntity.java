@@ -34,7 +34,17 @@ public class MascotaVentaEntity extends BaseEntity implements Serializable{
     @OneToOne
     //@OneToOne( mappedBy = "mascotaVenta", fetch = FetchType.EAGER)
     private MascotaEntity mascota;
+    @PodamExclude
+    @OneToOne
+    private HistoriaEntity historia;
 
+    public HistoriaEntity getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(HistoriaEntity historia) {
+        this.historia = historia;
+    }
 
     /**
      * @return the documentosPedegree

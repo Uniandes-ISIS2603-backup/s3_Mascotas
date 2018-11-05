@@ -37,7 +37,15 @@ public class MascotaVentaDTO implements Serializable{
      * con una mascotaDTO 
      */
     private MascotaDTO mascota;
+    private HistoriaDTO historia;
 
+    public HistoriaDTO getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(HistoriaDTO historia) {
+        this.historia = historia;
+    }
     /**
      * Constructor vacío de la clase MascotaVentaDTO
      */
@@ -60,6 +68,7 @@ public class MascotaVentaDTO implements Serializable{
         else{
             this.mascota = null;
         }
+        this.historia = new HistoriaDTO(mascotaVenta.getHistoria());
     }
 
     /**
@@ -130,6 +139,7 @@ public class MascotaVentaDTO implements Serializable{
             entity.setMascota(this.mascota.toEntity());
         }
         entity.setId(this.id);
+        entity.setHistoria(this.historia.toEntity());
         return entity;
     }
     

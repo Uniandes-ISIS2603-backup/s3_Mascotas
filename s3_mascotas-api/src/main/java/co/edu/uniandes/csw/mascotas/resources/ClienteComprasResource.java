@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
 /**
  *
  * @author Juan Sebastian Gomez, Camilo Pinilla
- */
+ */@Path("clientes/(clienteId :\\d+)/compras")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteComprasResource {
@@ -40,7 +40,7 @@ public class ClienteComprasResource {
     private CompraLogic compraLogic;
     
     @POST
-    @Path("{compraId: \\d+}")
+    @Path("/{compraId: \\d+}")
     public CompraDTO addCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) throws BusinessLogicException
     {
         if(compraLogic.getCompra(compraId) == null){
