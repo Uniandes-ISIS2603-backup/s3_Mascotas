@@ -95,8 +95,6 @@ public class CompraDTO implements Serializable {
         compra.setId(this.id);
         compra.setPrecio(this.precio);
         compra.setTipoDePago(this.tipoDePago);
-        compra.setCalificacion(this.relacionCalificacion.toEntity());
-        compra.setMascota(this.relacionMascota.toEntity());
         return compra;
     }   
         @Override
