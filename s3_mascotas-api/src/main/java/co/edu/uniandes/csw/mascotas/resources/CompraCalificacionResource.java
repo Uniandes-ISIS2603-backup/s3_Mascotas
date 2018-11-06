@@ -28,6 +28,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Juan Sebastian Gomez, Cristhian Peña
  */
+@Path("compras/(compraId :\\d+)/calificaciones")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
@@ -37,14 +38,11 @@ public class CompraCalificacionResource {
     private CompraCalificacionLogic compraCalificacionLogic;
     @Inject 
     private CalificacionLogic calificacionLogic;
+    
     @POST
-    @Path("(calificacion: \\d+)")
-    public CalificacionDTO addCalificacion(@PathParam("calificacionID") Long califId, @PathParam("compraId") Long compraId)throws BusinessLogicException{
-                LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0} , calificacionId: {1}", new Object[]{compraId, califId});
-        if (calificacionLogic.getCalificacion(califId) == null) {
-            throw new WebApplicationException("El recurso /calificacion/" + califId + " no existe.", 404);
-        }
-        CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.addCalificacion(compraId, califId));
+    public CalificacionDTO addCalificacion(CalificacionDTO calificacion, @PathParam("compraId") Long compraId)throws BusinessLogicException{
+                LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
+        CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.addCalificacion(compraId, calificacion.toEntity()));
         LOGGER.log(Level.INFO, "EditorialBooksResource addBook: output: {0}", calificacionDTO.toString());
         return calificacionDTO;
     }
@@ -59,7 +57,7 @@ public class CompraCalificacionResource {
     }
     
     @PUT
-    public CalificacionDTO replaceCalificacion(@PathParam("adopcionId") Long compraId, CalificacionDTO calificacion) throws BusinessLogicException
+    public CalificacionDTO replaceCalificacion(@PathParam("compraId") Long compraId, CalificacionDTO calificacion) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CompraCalificacionResource replaceCalificacion: input: {0}", compraId);
         if(calificacionLogic.getCalificacion(calificacion.getId()) == null){

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.EspecieDetailDTO;
 import co.edu.uniandes.csw.mascotas.dtos.MascotaDTO;
+import co.edu.uniandes.csw.mascotas.dtos.RazaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieLogic;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieRazaLogic;
@@ -55,14 +56,13 @@ public class EspecieRazaResource
      * @return JSON {@link EspecieDetailDTO} - La raza asociada
      */
     @POST
-    @Path("/{razasId: \\d+}")
-    public EspecieDetailDTO añadirRaza(@PathParam("especiesId") Long especiesId, @PathParam("razasId") Long razasId)throws BusinessLogicException{
+    public EspecieDetailDTO añadirRaza(@PathParam("especiesId") Long especiesId, RazaDTO raza)throws BusinessLogicException{
         
-        EspecieEntity e = especieLogic.getSpecies(razasId);
+        EspecieEntity e = especieLogic.getSpecies(especiesId);
         if (e == null || e.getDeleted()) {
             throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
         }
-        EspecieDetailDTO especieDetail = new EspecieDetailDTO(especieRazaLogic.añadirRaza(especiesId, razasId));
+        EspecieDetailDTO especieDetail = new EspecieDetailDTO(especieRazaLogic.añadirRaza(especiesId, raza.toEntity()));
         return especieDetail;
     }
 

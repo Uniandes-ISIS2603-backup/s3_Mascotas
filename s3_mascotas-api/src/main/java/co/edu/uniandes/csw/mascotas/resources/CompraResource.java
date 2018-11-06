@@ -86,4 +86,12 @@ public class CompraResource {
         }
         return list;
     }
+     
+     @Path("{comprasId: \\d+}/calificaciones")
+    public Class<CompraCalificacionResource> getCompraCalificacionResource(@PathParam("comprasId") Long compraId) {
+        if (compraLogic.getCompra(compraId) == null) {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        return CompraCalificacionResource.class;
+    }
 }

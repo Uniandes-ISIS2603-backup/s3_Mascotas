@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8552c534-e8ee-4ca0-91a7-482390f38250",
+		"_postman_id": "e9bda037-5a4a-4542-ac34-14f32bc89196",
 		"name": "ClienteMascotaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -80,7 +80,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -92,7 +92,7 @@
 						"clientes",
 						"1",
 						"mascotas",
-						"1"
+						""
 					]
 				},
 				"description": "Obtiene una adopcion con id:{2} asociada a un cliente con id:{1}. Como respuesta se obtiene la información de la adopcion\n\n"

@@ -155,7 +155,7 @@ public class EspecieResource
     }
     
     @Path("{especieId: \\d+}/razas")
-    public Class<EspecieRazaResource> getClienteMascotaResource(@PathParam("especieId") Long especieId) {
+    public Class<EspecieRazaResource> getEspecieRazaResource(@PathParam("especieId") Long especieId) {
         if (especieLogic.getSpecies(especieId) == null) {
             throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
         }

@@ -31,14 +31,17 @@ public class EspecieRazaLogic {
     @Inject
     private RazaPersistence razaPersistence;
     
+    @Inject
+    private RazaLogic razaLogic;      
+    
         /**
      * Relaciona una raza con su especie (ya existentes)
      * @param especiesId
      * @param mascotasId
      * @return instancia de Especie que fue asociada con la raza
      */
-    public EspecieEntity añadirRaza(Long especiesId, Long razasId) throws BusinessLogicException{
-        RazaEntity raza = razaPersistence.find(razasId);
+    public EspecieEntity añadirRaza(Long especiesId, RazaEntity razaEntity) throws BusinessLogicException{
+        RazaEntity raza = razaLogic.crearRaza(razaEntity);
         EspecieEntity especie = especiePersistence.find(especiesId);
         if(raza == null || raza.getDeleted()){
             throw new BusinessLogicException("The race doesn't exist.");

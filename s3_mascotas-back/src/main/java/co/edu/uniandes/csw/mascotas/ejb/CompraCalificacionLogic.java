@@ -28,18 +28,20 @@ public class CompraCalificacionLogic {
     @Inject
     private CalificacionPersistence calificacionPersistence;
     
-    public CalificacionEntity addCalificacion(Long compraId, Long calificacionId) throws BusinessLogicException
+    @Inject
+    private CalificacionLogic calificacionLogic;
+    
+    public CalificacionEntity addCalificacion(Long compraId, CalificacionEntity calificacion) throws BusinessLogicException
     {
-        CalificacionEntity calificacionEntity = calificacionPersistence.find(calificacionId);
-        if(calificacionEntity == null){
-            throw new BusinessLogicException("La calificacion no existe");
-        }
+        
         CompraEntity compraEntity = compraPersistence.find(compraId);
         if(compraEntity == null){
             throw new BusinessLogicException("La compra no existe");
         }
+        CalificacionEntity calificacionEntity = calificacionLogic.crearCalificacion(calificacion);
         compraEntity.setCalificacion(calificacionEntity);
-        return calificacionPersistence.find(calificacionId);
+        compraPersistence.update(compraEntity);
+        return calificacionPersistence.find(calificacionEntity.getId());
     }
     
     public CalificacionEntity getCalificacion(Long adopcionId)

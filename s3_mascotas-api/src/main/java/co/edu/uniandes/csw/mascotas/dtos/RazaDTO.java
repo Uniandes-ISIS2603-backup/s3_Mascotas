@@ -17,6 +17,15 @@ public class RazaDTO implements Serializable{
     private Long id;
     private String nombre;
     private String imagen;
+    private Long especieId;
+
+    public Long getEspecieId() {
+        return especieId;
+    }
+
+    public void setEspecieId(Long especieId) {
+        this.especieId = especieId;
+    }
 
     public String getImagen() {
         return imagen;
@@ -31,6 +40,8 @@ public class RazaDTO implements Serializable{
     public RazaDTO(RazaEntity raza){
         this.id = raza.getId();
         this.nombre = raza.getNombre();
+        this.imagen = raza.getImagen();
+        this.especieId = raza.getEspecie().getId();
     }
 
     public Long getId() {
@@ -52,6 +63,8 @@ public class RazaDTO implements Serializable{
     public RazaEntity toEntity(){
         RazaEntity newEntity = new RazaEntity();
         newEntity.setNombre(nombre);
+        newEntity.setId(id);
+        newEntity.setImagen(imagen);
         return newEntity;
     }   
 }

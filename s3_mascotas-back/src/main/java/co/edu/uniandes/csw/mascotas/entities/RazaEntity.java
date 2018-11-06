@@ -23,7 +23,8 @@ public class RazaEntity extends BaseEntity implements Serializable{
     
     private String nombre;
     private String imagen;
-
+ //   private Long  especieId;
+    
     public String getImagen() {
         return imagen;
     }
@@ -54,6 +55,15 @@ public class RazaEntity extends BaseEntity implements Serializable{
     public void setMascotas(List<MascotaEntity> mascotas) {
         this.mascotas = mascotas;
     }
+ //   public void setEspecieId(Long especieId)
+ //   {
+ //       this.especieId = especieId;
+ //   }
+    
+ //   public Long getEspecieId()
+ //   {
+ //       return especieId;
+ //   }
     
     public void setEspecie(EspecieEntity especieEntity){
         this.especie = especieEntity;

@@ -27,6 +27,7 @@ public class EspecieDTO implements Serializable
         {
             this.nombre=especieEntity.getNombre();
             this.id=especieEntity.getId();
+            this.imagen=especieEntity.getImagen();
         }
     }
 
@@ -72,6 +73,7 @@ public class EspecieDTO implements Serializable
         EspecieEntity especieEntity = new EspecieEntity();
         especieEntity.setId(id);
         especieEntity.setNombre(nombre);
+        especieEntity.setImagen(imagen);
         return especieEntity;
     }
     
