@@ -45,6 +45,8 @@ public class ClienteMascotaLogic {
             throw new BusinessLogicException("The pet doesn't exist.");
         }
         cliente.getMascotas().add(mascota);
+        mascota.setCliente(cliente);
+        clientePersistence.update(cliente);
         
         return clientePersistence.find(clienteId);
     }

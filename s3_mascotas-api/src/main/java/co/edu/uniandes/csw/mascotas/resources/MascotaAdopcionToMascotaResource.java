@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Sebastian Mujica
  */
+@Path("mascotaAdopcion/(mascotaAdopcionId :\\d)/mascotas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MascotaAdopcionToMascotaResource {

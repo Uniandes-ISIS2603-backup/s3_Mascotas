@@ -1,12 +1,24 @@
 {
 	"info": {
-		"_postman_id": "e9b2c978-d915-4936-90b6-8a71e9834a8f",
+		"_postman_id": "0183b885-58db-4da4-8369-33bb30a49a20",
 		"name": "HistoriaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Obtener todas las historias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ab9d4f0-41b6-4b7f-b886-3114563d4a6d",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -17,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias",
@@ -38,6 +50,18 @@
 		},
 		{
 			"name": "Crear historia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c82716a-156f-494d-a156-c356d2a7b861",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -69,6 +93,18 @@
 		},
 		{
 			"name": "Actualizar una historia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23c7b47d-8457-48b2-a6af-88ba2d6d46b9",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -101,6 +137,18 @@
 		},
 		{
 			"name": "Obtener una historia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24533149-6b80-4f02-9380-3eee7b30c285",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -111,7 +159,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/1",

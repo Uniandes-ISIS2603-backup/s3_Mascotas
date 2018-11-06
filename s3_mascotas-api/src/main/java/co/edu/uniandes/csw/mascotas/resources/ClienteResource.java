@@ -155,4 +155,12 @@ public class ClienteResource {
         }
         return ClienteComprasResource.class;
     }
+    
+     @Path("{clienteId: \\d+}/mascotas")
+    public Class<ClienteMascotaResource> getClienteMascotaResource(@PathParam("clienteId") Long clienteId) {
+        if (clienteLogic.getCliente(clienteId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+        }
+        return ClienteMascotaResource.class;
+    }
 }

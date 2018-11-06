@@ -1,12 +1,25 @@
 {
 	"info": {
-		"_postman_id": "a61eda12-c4ae-445d-b35a-73cae143d587",
+		"_postman_id": "8552c534-e8ee-4ca0-91a7-482390f38250",
 		"name": "ClienteMascotaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Relacionar cliente con una mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27a82eab-4ffc-49ae-bc1e-76871c52aa49",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -20,7 +33,7 @@
 					"raw": "{\n    \"clienteId\": \"1\",\n    \"adopcionId\": \"1\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -32,7 +45,7 @@
 						"clientes",
 						"1",
 						"mascotas",
-						"2"
+						"1"
 					]
 				},
 				"description": "Actualiza un cliente con identificador id:{1}.\nComo respuesta se obtiene el cliente con la información actualizada.\n"
@@ -40,7 +53,20 @@
 			"response": []
 		},
 		{
-			"name": "Obtener el cliente de una mascota",
+			"name": "Obtener la mascota de un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7355ad5-9836-4c3b-9851-5427d9b73de2",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -51,10 +77,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"historia\": \"el perro estaba en la calle\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/2",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1/mascotas/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -66,7 +92,7 @@
 						"clientes",
 						"1",
 						"mascotas",
-						"2"
+						"1"
 					]
 				},
 				"description": "Obtiene una adopcion con id:{2} asociada a un cliente con id:{1}. Como respuesta se obtiene la información de la adopcion\n\n"

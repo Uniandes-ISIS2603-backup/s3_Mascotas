@@ -25,10 +25,15 @@ public class CompraLogic {
     private static final Logger LOGGER = Logger.getLogger(CompraLogic.class.getName());
     @Inject
     private CompraPersistence persistence;
+    @Inject
     private MascotaPersistence mascPersistence;
     
     public CompraEntity crearCompra(CompraEntity compraEnt)throws BusinessLogicException{
         LOGGER.info("Creacion de compra");
+        if(compraEnt == null)
+        {
+            throw new BusinessLogicException("Compra vacia");
+        }
         MascotaEntity masc = mascPersistence.find(compraEnt.getMascotaId());
         if(masc == null){
             throw new BusinessLogicException("La mascota no existe");

@@ -35,6 +35,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Camilo Pinilla
  */
+@Path("clientes/(clienteId :\\d+)/mascotas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteMascotaResource {

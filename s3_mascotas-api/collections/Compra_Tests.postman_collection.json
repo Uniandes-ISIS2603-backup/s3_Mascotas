@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8cb838ab-59ad-46ba-adf0-4a531c778f79",
+		"_postman_id": "75001bf7-51a1-4061-b5c9-d27db349b2fc",
 		"name": "Compra_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,12 +12,12 @@
 					"listen": "test",
 					"script": {
 						"id": "c24b9e7d-1daa-4241-9bbe-1abbdc651277",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody)",
 							"postman.setGlobalVariable(\"new_id_b\",data.id);",
 							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -31,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 3,\n    \"precio\": 0,\n    \"tipoDePago\" : \"asdf\"\n}"
+					"raw": "{\n    \"id\": 3,\n    \"mascotaId\":1,\n    \"precio\": 0,\n    \"tipoDePago\" : \"asdf\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras",
@@ -56,19 +56,23 @@
 					"listen": "test",
 					"script": {
 						"id": "4143fc00-0380-42bb-af85-529ab7f211a9",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
+							"pm.globals.set(\"new_id_b\", \"1\");",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/{{new_id_b}}",
 					"protocol": "http",

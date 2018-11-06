@@ -7,6 +7,19 @@
 	"item": [
 		{
 			"name": "Relacionar el cliente con una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bb4701e-17e7-4744-9493-468a4a907b86",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -15,7 +28,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/3",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/2/compras/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -27,7 +40,7 @@
 						"clientes",
 						"2",
 						"compras",
-						"3"
+						"1"
 					]
 				},
 				"description": "Se asocia la compra con id:{3} al cliente con id:{2}. Se obtiene como respuesta la compra asociada."

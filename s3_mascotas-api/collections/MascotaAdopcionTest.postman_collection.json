@@ -1,13 +1,25 @@
 {
 	"info": {
-		"_postman_id": "d4f89efe-b384-4c05-8bea-0cc08bbe1abb",
+		"_postman_id": "12a5b1d3-41e0-424b-ac4a-e04526ddafa9",
 		"name": "MascotaAdopcionTest",
 		"description": "En este documento se guardarán los test del recurso MascotaAdopcion",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
+			"name": "Crear mascota adopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "158f2daf-b8f4-405e-a1d8-fbfaf95e8038",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -38,7 +50,19 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
+			"name": "Obtener todas las mascotas adopcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a42474d-e8cb-45b4-9441-533466d68e4c",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -49,7 +73,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"historia\": \"el perro fue abandonado en el centro de la ciudad hace seis meses\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaAdopcion",
@@ -69,7 +93,19 @@
 			"response": []
 		},
 		{
-			"name": "http://{{ip}}:{{puerto}}/frontstepbystep.api/api/editorials",
+			"name": "Actualizar mascota que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cb5223a-412f-4fc2-ab6d-7f985c4bcc05",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -94,6 +130,50 @@
 						"api",
 						"mascotaAdopcion",
 						"33"
+					]
+				},
+				"description": "Actualiza una mascoda con id:{33}. Como respuesta se obtiene la información acutalizada con su respectivo id."
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5532e26d-d77c-4a6e-83cf-c6a98355ba5a",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"historia\": \"sdfjdfsxksl\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotaAdopcion/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotaAdopcion",
+						"1"
 					]
 				},
 				"description": "Actualiza una mascoda con id:{33}. Como respuesta se obtiene la información acutalizada con su respectivo id."
