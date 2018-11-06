@@ -131,19 +131,6 @@ public class EspecieLogicTest {
     }
     
     /**
-     * Prueba para crear una Especie con el mismo nombre de una Especie que ya
-     * existe.
-     *
-     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void createEspecieConMismoNombreTest() throws BusinessLogicException {
-        EspecieEntity newEntity = factory.manufacturePojo(EspecieEntity.class);
-        newEntity.setNombre(especieData.get(0).getNombre());
-        especieLogic.crearEspecie(newEntity);
-    }
-    
-    /**
      * Prueba para consultar la lista de Especies.
      */
     @Test

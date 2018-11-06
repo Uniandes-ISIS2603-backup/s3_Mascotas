@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.mascotas.test.logic;
 
 import co.edu.uniandes.csw.mascotas.ejb.CompraLogic;
+import co.edu.uniandes.csw.mascotas.ejb.MascotaLogic;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
+import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.UserTransaction;
 import org.junit.Assert;
 
@@ -46,6 +49,7 @@ public class CompraLogicTest {
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CompraEntity.class.getPackage())
+                .addPackage(MascotaEntity.class.getPackage())
                 .addPackage(CompraLogic.class.getPackage())
                 .addPackage(CompraPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
@@ -71,17 +75,27 @@ public class CompraLogicTest {
     }
     private void clearData(){
         em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from MascotaEntity").executeUpdate();
     }
     private void insertData(){
         for(int i = 0; i<10;i++){
             CompraEntity nueva = podam.manufacturePojo(CompraEntity.class);
+            
+            MascotaEntity mascota = podam.manufacturePojo(MascotaEntity.class);
+            mascota.setDeleted(Boolean.FALSE);
+            em.persist(mascota);
             em.persist(nueva);
             listaDatos.add(nueva);
         }
     }
     @Test
     public void crearCompraTest()throws BusinessLogicException{
-        CompraEntity nueva = podam.manufacturePojo(CompraEntity.class );
+        CompraEntity nueva = podam.manufacturePojo(CompraEntity.class);
+        
+        Query q = em.createQuery("select u from MascotaEntity u");
+        List<MascotaEntity> m = q.getResultList();
+        nueva.setMascotaId(m.get(0).getId());
+        
         CompraEntity resultado = compraLogic.crearCompra(nueva);
         Assert.assertNotNull(resultado);
         CompraEntity vamoAComparar = em.find(CompraEntity.class, resultado.getId());

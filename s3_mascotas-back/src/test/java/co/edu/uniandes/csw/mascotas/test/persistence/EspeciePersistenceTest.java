@@ -81,7 +81,7 @@ public class EspeciePersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from EspecieEntity").executeUpdate();
+        em.createQuery("delete u from EspecieEntity u").executeUpdate();
     }
 
     /**

@@ -153,5 +153,12 @@ public class EspecieResource
         }
         return lista;
     }
-
+    
+    @Path("{especieId: \\d+}/razas")
+    public Class<EspecieRazaResource> getClienteMascotaResource(@PathParam("especieId") Long especieId) {
+        if (especieLogic.getSpecies(especieId) == null) {
+            throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
+        }
+        return EspecieRazaResource.class;
+    }
 }
