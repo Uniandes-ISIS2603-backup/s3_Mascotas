@@ -66,6 +66,7 @@ public class MascotaVentaResource {
     public MascotaVentaDTO crearMascotaVenta(MascotaVentaDTO mascotaVenta)throws BusinessLogicException{
         LOGGER.info("mascotaAdopcionResource crearMascota: input: " + mascotaVenta.toString());
         MascotaVentaEntity mascotaVentaEntity = mascotaVenta.toEntity();
+        mascotaVentaEntity.setId(null);
         MascotaVentaEntity nuevaMascotaVentaEntity = mascotaVentaLogic.crearMascotaVenta(mascotaVentaEntity);
         MascotaVentaDTO nuevaMascotaDTO = new MascotaVentaDTO(nuevaMascotaVentaEntity);
         LOGGER.info("MascotaAdopcionResource crearMascota: output: "+ nuevaMascotaDTO.toString());

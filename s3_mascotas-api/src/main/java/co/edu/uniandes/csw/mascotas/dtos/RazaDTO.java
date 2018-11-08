@@ -41,7 +41,8 @@ public class RazaDTO implements Serializable{
         this.id = raza.getId();
         this.nombre = raza.getNombre();
         this.imagen = raza.getImagen();
-        this.especieId = raza.getEspecie().getId();
+        if(raza.getEspecie()!=null)
+            this.especieId = raza.getEspecie().getId();
     }
 
     public Long getId() {

@@ -23,6 +23,10 @@ public class MascotaDTO implements Serializable{
     private String imagen;
     private RazaDTO raza;
     
+    /**
+     * El id de la raza a la que pertenece la mascota.
+     */
+    private Long idRaza;
 
     public MascotaDTO() {
     }
@@ -119,5 +123,19 @@ public class MascotaDTO implements Serializable{
         newEntity.setId(id);
         newEntity.setImagen(imagen);
         return newEntity;
+    }
+
+    /**
+     * @return the idRaza
+     */
+    public Long getIdRaza() {
+        return idRaza;
+    }
+
+    /**
+     * @param idRaza the idRaza to set
+     */
+    public void setIdRaza(Long idRaza) {
+        this.idRaza = idRaza;
     }
 }

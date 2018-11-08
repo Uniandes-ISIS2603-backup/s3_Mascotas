@@ -40,6 +40,9 @@ public class MascotaResource {
     @Inject
     MascotaLogic mascotaLogic;
     
+    @Inject
+    RazaMascotaResource razaMascotaResource;
+    
     private static final Logger LOGGER = Logger.getLogger(MascotaResource.class.getName());
     
     /**
@@ -59,6 +62,7 @@ public class MascotaResource {
         MascotaEntity nuevoMascotaEntity = mascotaLogic.crearMascota(mascotaEntity);
         MascotaDTO nuevoMascotaDTO = new MascotaDTO(nuevoMascotaEntity);
         LOGGER.info("MascotaResource crearMascota: output: "+ nuevoMascotaDTO.toString());
+        razaMascotaResource.addMascota(mascota.getIdRaza(), nuevoMascotaDTO.getId());
         return nuevoMascotaDTO;
     }
 
