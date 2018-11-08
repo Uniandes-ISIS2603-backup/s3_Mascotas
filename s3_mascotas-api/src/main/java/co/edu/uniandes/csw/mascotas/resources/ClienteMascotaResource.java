@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.mascotas.resources;
 
+import co.edu.uniandes.csw.mascotas.dtos.ClienteDTO;
 import co.edu.uniandes.csw.mascotas.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.mascotas.dtos.MascotaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
@@ -18,6 +19,7 @@ import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -54,14 +56,10 @@ public class ClienteMascotaResource {
      */
     @POST
     @Path("{mascotasId: \\d+}")
-    public ClienteDetailDTO addMascota(@PathParam("clienteId") Long clienteId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
-        
-        ClienteEntity c = clienteLogic.getCliente(clienteId);
-        if (c == null || c.getDeleted()) {
-            throw new WebApplicationException("the resource /clientes/" + clienteId + " doesn't exists.", 404);
-        }
-        ClienteDetailDTO clienteDetail = new ClienteDetailDTO(clienteMascotaLogic.addMascota(clienteId, mascotasId));
-        return clienteDetail;
+    public MascotaDTO addMascota(ClienteDTO cliente, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "ClienteMascotaResource addMascota: input: mascotaID:{0}:");
+        MascotaDTO mascotaDTO = new MascotaDTO(clienteMascotaLogic.addMascota(cliente.getId(), mascotasId));
+        return mascotaDTO;
     }
 
     /**

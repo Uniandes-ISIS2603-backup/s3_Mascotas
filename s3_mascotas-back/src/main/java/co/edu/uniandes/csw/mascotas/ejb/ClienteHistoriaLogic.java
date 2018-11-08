@@ -37,7 +37,7 @@ public class ClienteHistoriaLogic {
      * @param historiasId
      * @return instancia de clienteEntity que fue asociada con la mascota
      */
-    public ClienteEntity addHistoria(Long clienteId, Long historiasId) throws BusinessLogicException{
+    public HistoriaEntity addHistoria(Long clienteId, Long historiasId) throws BusinessLogicException{
         
         ClienteEntity cliente = clientePersistence.find(clienteId);
         HistoriaEntity historia = historiaPersistence.find(historiasId);
@@ -47,7 +47,7 @@ public class ClienteHistoriaLogic {
         }
         cliente.getHistorias().add(historia);
         
-        return clientePersistence.find(clienteId);
+        return historiaPersistence.find(historia.getId());
     }
     
     /**

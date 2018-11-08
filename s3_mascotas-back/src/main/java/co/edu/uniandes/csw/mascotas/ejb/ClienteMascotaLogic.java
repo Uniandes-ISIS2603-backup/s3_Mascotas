@@ -36,7 +36,7 @@ public class ClienteMascotaLogic {
      * @param mascotasId
      * @return instancia de clienteEntity que fue asociada con la mascota
      */
-    public ClienteEntity addMascota(Long clienteId, Long mascotasId) throws BusinessLogicException{
+    public MascotaEntity addMascota(Long clienteId, Long mascotasId) throws BusinessLogicException{
         
         ClienteEntity cliente = clientePersistence.find(clienteId);
         MascotaEntity mascota = mascotaPersistence.find(mascotasId);
@@ -48,7 +48,7 @@ public class ClienteMascotaLogic {
         mascota.setCliente(cliente);
         clientePersistence.update(cliente);
         
-        return clientePersistence.find(clienteId);
+        return mascotaPersistence.find(mascota.getId());
     }
     
     /**

@@ -41,7 +41,7 @@ public class CompraCalificacionResource {
     
     @POST
     public CalificacionDTO addCalificacion(CalificacionDTO calificacion, @PathParam("compraId") Long compraId)throws BusinessLogicException{
-                LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
+        LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
         CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.addCalificacion(compraId, calificacion.toEntity()));
         LOGGER.log(Level.INFO, "EditorialBooksResource addBook: output: {0}", calificacionDTO.toString());
         return calificacionDTO;
