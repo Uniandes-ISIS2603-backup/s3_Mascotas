@@ -19,7 +19,7 @@ public class CompraEntity extends BaseEntity implements Serializable{
     public Double precio;
     public String tipoDePago;
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "compra")
     private CalificacionEntity calificacion;
    
    private Long mascotaId; 

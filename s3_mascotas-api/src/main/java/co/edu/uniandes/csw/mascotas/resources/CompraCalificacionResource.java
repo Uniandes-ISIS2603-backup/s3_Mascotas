@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Juan Sebastian Gomez, Cristhian Peña
  */
-@Path("compras/(compraId :\\d+)/calificaciones")
+@Path("compras/(comprasId :\\d+)/calificaciones")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
@@ -40,15 +40,16 @@ public class CompraCalificacionResource {
     private CalificacionLogic calificacionLogic;
     
     @POST
-    public CalificacionDTO addCalificacion(CalificacionDTO calificacion, @PathParam("compraId") Long compraId)throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
+    public CalificacionDTO addCalificacion(CalificacionDTO calificacion, @PathParam("comprasId") Long compraId)throws BusinessLogicException{
+                LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
+                LOGGER.log(Level.INFO, "String: {0}", calificacion.toString());
         CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.addCalificacion(compraId, calificacion.toEntity()));
         LOGGER.log(Level.INFO, "EditorialBooksResource addBook: output: {0}", calificacionDTO.toString());
         return calificacionDTO;
     }
     
     @GET
-    public CalificacionDTO getCalificacion(@PathParam("compraId") Long compraId)
+    public CalificacionDTO getCalificacion(@PathParam("comprasId") Long compraId)
     {
         LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: input: {0}", compraId);
         CalificacionDTO calificacion = new CalificacionDTO(compraCalificacionLogic.getCalificacion(compraId));
