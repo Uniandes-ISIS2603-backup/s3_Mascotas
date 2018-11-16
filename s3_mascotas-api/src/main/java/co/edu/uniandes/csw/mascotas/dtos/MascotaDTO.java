@@ -22,6 +22,7 @@ public class MascotaDTO implements Serializable{
     private Double precio;
     private String imagen;
     private RazaDTO raza;
+    private HistoriaDTO historia;
     
     /**
      * El id de la raza a la que pertenece la mascota.
@@ -46,6 +47,10 @@ public class MascotaDTO implements Serializable{
             }else{
                 this.raza = null;
             }
+            if(mascotaEntity.getHistoria() != null)
+                this.historia = new HistoriaDTO(mascotaEntity.getHistoria());
+            else
+                this.historia = null;
         }
     }
 
@@ -122,6 +127,10 @@ public class MascotaDTO implements Serializable{
         newEntity.setPrecio(precio);
         newEntity.setId(id);
         newEntity.setImagen(imagen);
+        if(this.raza != null)
+            newEntity.setRaza(this.raza.toEntity());
+        if(this.historia != null)
+            newEntity.setHistoria(this.historia.toEntity());
         return newEntity;
     }
 
@@ -137,5 +146,13 @@ public class MascotaDTO implements Serializable{
      */
     public void setIdRaza(Long idRaza) {
         this.idRaza = idRaza;
+    }
+
+    public HistoriaDTO getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(HistoriaDTO historia) {
+        this.historia = historia;
     }
 }

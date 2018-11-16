@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 
+import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import java.io.Serializable;
 
@@ -66,6 +67,7 @@ public class RazaDTO implements Serializable{
         newEntity.setNombre(nombre);
         newEntity.setId(id);
         newEntity.setImagen(imagen);
+        newEntity.setEspecieId(especieId);
         return newEntity;
     }   
 }

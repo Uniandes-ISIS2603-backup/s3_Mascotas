@@ -33,6 +33,11 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     private RazaEntity raza;
     
     @PodamExclude
+    @OneToOne(mappedBy="mascota")
+    private HistoriaEntity historia;
+    
+    /**
+    @PodamExclude
     @OneToOne(mappedBy="mascota" , fetch = FetchType.EAGER)
     private MascotaAdopcionEntity mascotaAdopcion;
     
@@ -40,6 +45,8 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     //@OneToOne
     @OneToOne(mappedBy="mascota" , fetch = FetchType.EAGER)
     private MascotaVentaEntity mascotaVenta;
+    * */
+    
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
@@ -99,32 +106,32 @@ public class MascotaEntity extends BaseEntity implements Serializable{
 
     /**
      * @return the mascotaAdopcion
-     */
+     *
     public MascotaAdopcionEntity getMascotaAdopcion() {
         return mascotaAdopcion;
-    }
+    }*/
 
     /**
      * @param mascotaAdopcion the mascotaAdopcion to set
-     */
+     *
     public void setMascotaAdopcion(MascotaAdopcionEntity mascotaAdopcion) {
         this.mascotaAdopcion = mascotaAdopcion;
-    }
+    }*/
 
     /**
      * @return the mascotaVenta
-     */
+     *
     public MascotaVentaEntity getMascotaVenta() {
         return mascotaVenta;
-    }
+    }*/
 
     /**
      * @param mascotaVenta the mascotaVenta to set
-     */
+     *
     public void setMascotaVenta(MascotaVentaEntity mascotaVenta) {
         this.mascotaVenta = mascotaVenta;
-    }
-
+    }*/
+    
     /**
      * @return the cliente
      */
@@ -145,4 +152,14 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    public HistoriaEntity getHistoria() {
+        return historia;
+    }
+
+    public void setHistoria(HistoriaEntity historia) {
+        this.historia = historia;
+    }
+    
+    
 }

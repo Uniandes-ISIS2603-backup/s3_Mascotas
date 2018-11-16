@@ -17,8 +17,7 @@ public class HistoriaEntity extends BaseEntity implements Serializable
 {
     @PodamExclude
     @OneToOne
-   // @OneToOne(mappedBy="mascotaAdopcion" , fetch = FetchType.EAGER)
-    private ClienteEntity cliente;
+    private MascotaEntity mascota;
     
     private String foto;
     private String texto;
@@ -46,14 +45,14 @@ public class HistoriaEntity extends BaseEntity implements Serializable
     /**
      * @return the mascotaEntity
      */
-    public ClienteEntity getCliente() {
-        return cliente;
+    public MascotaEntity getMascota() {
+        return mascota;
     }
 
     /**
-     * @param cliente the mascotaEntity to set
+     * @param mascota the mascotaEntity to set
      */
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
+    public void setMascota(MascotaEntity mascota) {
+        this.mascota = mascota;
     }
 }
