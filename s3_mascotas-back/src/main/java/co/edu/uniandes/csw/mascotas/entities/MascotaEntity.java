@@ -33,7 +33,7 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     private RazaEntity raza;
     
     @PodamExclude
-    @OneToOne(mappedBy="mascota")
+    @OneToOne(mappedBy="mascota", fetch = FetchType.LAZY)
     private HistoriaEntity historia;
     
     /**
