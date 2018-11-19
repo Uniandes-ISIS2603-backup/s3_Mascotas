@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.mascotas.dtos;
-import co.edu.uniandes.csw.mascotas.entities.AdopcionEntity;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import java.io.Serializable;

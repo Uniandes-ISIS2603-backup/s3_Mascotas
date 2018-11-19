@@ -22,7 +22,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ClienteComprasLogic {
-      private static final Logger LOGGER = Logger.getLogger(AdopcionCalificacionLogic.class.getName());
+      private static final Logger LOGGER = Logger.getLogger(ClienteComprasLogic.class.getName());
     
     @Inject
     private ClientePersistence clientePersistence;

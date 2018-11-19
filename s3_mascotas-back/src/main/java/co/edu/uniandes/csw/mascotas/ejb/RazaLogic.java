@@ -21,7 +21,8 @@ import org.apache.commons.beanutils.BeanUtilsBean;
  * @author lemus
  */
 @Stateless
-public class RazaLogic {
+public class RazaLogic 
+{
     
     private static final Logger LOOGER = Logger.getLogger(RazaLogic.class.getName());
 

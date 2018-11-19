@@ -26,16 +26,8 @@ public class ClienteEntity extends BaseEntity implements Serializable
     private List<CompraEntity> compras = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy="cliente")
-    private List<AdopcionEntity> adopciones = new ArrayList<>();
-    
-    @PodamExclude
     @OneToMany(mappedBy="cliente") 
    private List<MascotaEntity> mascotas = new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy="cliente")
-    private List<HistoriaEntity> historias = new ArrayList<>();
 
     public String getCorreo()
     {
@@ -75,27 +67,11 @@ public class ClienteEntity extends BaseEntity implements Serializable
         this.compras = compras;
     }
     
-    public List<AdopcionEntity> getAdopciones() {
-        return adopciones;
-    }
-
-    public void setAdopciones(List<AdopcionEntity> adopciones) {
-        this.adopciones = adopciones;
-    }
-    
     public List<MascotaEntity> getMascotas() {
         return mascotas;
     }
 
     public void setMascotas(List<MascotaEntity> mascotas) {
         this.mascotas = mascotas;
-    }
-    
-    public List<HistoriaEntity> getHistorias() {
-        return historias;
-    }
-
-    public void setHistorias(List<HistoriaEntity> historias) {
-        this.historias = historias;
     }
 }

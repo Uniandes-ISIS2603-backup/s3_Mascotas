@@ -38,7 +38,7 @@ public class ClienteHistoriaLogic {
      * @return instancia de clienteEntity que fue asociada con la mascota
      */
     public HistoriaEntity addHistoria(Long clienteId, Long historiasId) throws BusinessLogicException{
-        
+        /**
         ClienteEntity cliente = clientePersistence.find(clienteId);
         HistoriaEntity historia = historiaPersistence.find(historiasId);
         
@@ -48,6 +48,8 @@ public class ClienteHistoriaLogic {
         cliente.getHistorias().add(historia);
         
         return historiaPersistence.find(historia.getId());
+        * */
+        return null;
     }
     
     /**
@@ -56,7 +58,8 @@ public class ClienteHistoriaLogic {
      * @return List de HistoriaEntity
      */
     public List<HistoriaEntity> getHistorias(Long historiaId){
-        return clientePersistence.find(historiaId).getHistorias();
+        //return clientePersistence.find(historiaId).getHistorias();
+        return null;
     }
     
     /**
@@ -82,9 +85,11 @@ public class ClienteHistoriaLogic {
      * @param historiasId 
      */
     public void removeHistoria(Long clienteId, Long historiasId){
+        /**
         ClienteEntity c = clientePersistence.find(clienteId);
         HistoriaEntity m = historiaPersistence.find(historiasId);
         c.getHistorias().remove(m);
+        * */
     }
     
 }
