@@ -21,7 +21,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class CompraPersistence {
-     private static final Logger LOGGER = Logger.getLogger(AdopcionPersistence.class.getName());
+     private static final Logger LOGGER = Logger.getLogger(CompraPersistence.class.getName());
     @PersistenceContext(unitName = "PetsUniandesPU")
     protected EntityManager em;
     public CompraEntity create(CompraEntity compraEn){

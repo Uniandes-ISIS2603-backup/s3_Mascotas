@@ -20,7 +20,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CompraCalificacionLogic {
-       private static final Logger LOGGER = Logger.getLogger(AdopcionCalificacionLogic.class.getName());
+       private static final Logger LOGGER = Logger.getLogger(CompraCalificacionLogic.class.getName());
     
     @Inject
     private CompraPersistence compraPersistence;

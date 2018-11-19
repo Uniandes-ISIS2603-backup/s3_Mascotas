@@ -31,7 +31,7 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteComprasResource {
-    private static final Logger LOGGER = Logger.getLogger(AdopcionCalificacionResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClienteComprasResource.class.getName());
     
     @Inject
     private ClienteComprasLogic clienteCompraLogic;

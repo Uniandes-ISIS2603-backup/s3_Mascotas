@@ -6,7 +6,6 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 
-import co.edu.uniandes.csw.mascotas.entities.AdopcionEntity;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
@@ -22,7 +21,7 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
     private List<CompraDTO> compras;
-    private List<AdopcionDTO> adopciones;
+//    private List<AdopcionDTO> adopciones;
     private List<MascotaDTO> mascotas;
 
     public ClienteDetailDTO() {
@@ -34,14 +33,14 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         System.out.println("Entramos al detail");
         if (clienteEntity!= null) {
             compras = new ArrayList<>();
-            adopciones = new ArrayList<>();
+  //          adopciones = new ArrayList<>();
             mascotas = new ArrayList<>();
             for(CompraEntity c : clienteEntity.getCompras()){
                 compras.add(new CompraDTO(c));
             }
-            for(AdopcionEntity a: clienteEntity.getAdopciones()){
-                adopciones.add(new AdopcionDTO(a));
-            }
+    //      for(AdopcionEntity a: clienteEntity.getAdopciones()){
+    //            adopciones.add(new AdopcionDTO(a));
+    //      }
             for(MascotaEntity m: clienteEntity.getMascotas()){
                 mascotas.add(new MascotaDTO(m));
             }
@@ -77,6 +76,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
             
             clienteEntity.setCompras(comprasEntity);
             }
+        /**
         if(adopciones!=null){
             List<AdopcionEntity> adopcionEntity = new ArrayList<>();
             for(AdopcionDTO a: adopciones){
@@ -84,6 +84,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
             }
             clienteEntity.setAdopciones(adopcionEntity);
         }
+        * */
         if(mascotas!=null){
              List<MascotaEntity> mascotaEntity = new ArrayList<>();
             for(MascotaDTO a: mascotas){
@@ -94,7 +95,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
 
         return clienteEntity;
     }
-
+/**
     public List<AdopcionDTO> getAdopciones() {
         return adopciones;
     }
@@ -102,5 +103,5 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     public void setAdopciones(List<AdopcionDTO> adopciones) {
         this.adopciones = adopciones;
     }
-    
+    * */
 }
