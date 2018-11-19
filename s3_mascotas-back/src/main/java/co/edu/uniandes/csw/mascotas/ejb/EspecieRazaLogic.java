@@ -46,9 +46,6 @@ public class EspecieRazaLogic {
         if(raza == null || raza.getDeleted()){
             throw new BusinessLogicException("The race doesn't exist.");
         }
-        if (raza.getMascotas().contains(especie)) {
-            throw new BusinessLogicException("The race is already within the species");
-        }
         especie.getRazas().add(raza);
         raza.setEspecie(especie);
         razaPersistence.update(raza);

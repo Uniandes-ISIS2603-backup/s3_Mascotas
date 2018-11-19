@@ -16,13 +16,13 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class CompraEntity extends BaseEntity implements Serializable{
-    public Double precio;
-    public String tipoDePago;
+    private Double precio;
+    private String tipoDePago;
     @PodamExclude
     @OneToOne(mappedBy = "compra")
     private CalificacionEntity calificacion;
    
-   private Long mascotaId; 
+    private Long mascotaId; 
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
