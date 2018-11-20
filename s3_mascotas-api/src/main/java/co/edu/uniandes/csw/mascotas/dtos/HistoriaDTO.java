@@ -46,11 +46,11 @@ public class HistoriaDTO implements Serializable{
         
     }
 
-    public HistoriaDTO(HistoriaEntity Historia){
-        if(Historia!=null){
-            this.id= Historia.getId();
-            this.foto = Historia.getFoto();
-            this.texto = Historia.getTexto();
+    public HistoriaDTO(HistoriaEntity historia){
+        if(historia!=null){
+            this.id= historia.getId();
+            this.foto = historia.getFoto();
+            this.texto = historia.getTexto();
         }
     }
     

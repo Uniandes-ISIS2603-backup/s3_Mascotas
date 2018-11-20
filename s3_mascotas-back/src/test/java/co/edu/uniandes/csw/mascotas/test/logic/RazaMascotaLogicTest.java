@@ -121,9 +121,9 @@ public class RazaMascotaLogicTest {
         MascotaEntity m2 = listaMascotas.get(1);
         MascotaEntity m3 = listaMascotas.get(2);
         
-        razaMascotaLogic.addMascota(r.getId(), m1.getId());
-        razaMascotaLogic.addMascota(r.getId(), m2.getId());
-        razaMascotaLogic.addMascota(r.getId(), m3.getId());
+        razaMascotaLogic.addMascota(r.getId(), m1);
+        razaMascotaLogic.addMascota(r.getId(), m2);
+        razaMascotaLogic.addMascota(r.getId(), m3);
         
         RazaEntity modR = razaLogic.getRaza(r.getId());
         MascotaEntity modM1 = mascotaLogic.getMascota(m1.getId());
@@ -145,9 +145,9 @@ public class RazaMascotaLogicTest {
         MascotaEntity m2 = listaMascotas.get(1);
         MascotaEntity m3 = listaMascotas.get(2);
 
-        razaMascotaLogic.addMascota(r.getId(), m1.getId());
-        razaMascotaLogic.addMascota(r.getId(), m2.getId());
-        razaMascotaLogic.addMascota(r.getId(), m3.getId());
+        razaMascotaLogic.addMascota(r.getId(), m1);
+        razaMascotaLogic.addMascota(r.getId(), m2);
+        razaMascotaLogic.addMascota(r.getId(), m3);
 
         RazaEntity modR = razaLogic.getRaza(r.getId());
         MascotaEntity modM1 = mascotaLogic.getMascota(m1.getId());
@@ -183,12 +183,12 @@ public class RazaMascotaLogicTest {
         MascotaEntity m5 = listaMascotas.get(4);
         MascotaEntity m6 = listaMascotas.get(5);
 
-        razaMascotaLogic.addMascota(r.getId(), m1.getId());
-        razaMascotaLogic.addMascota(r.getId(), m2.getId());
-        razaMascotaLogic.addMascota(r.getId(), m3.getId());
-        razaMascotaLogic.addMascota(r.getId(), m4.getId());
-        razaMascotaLogic.addMascota(r.getId(), m5.getId());
-        razaMascotaLogic.addMascota(r.getId(), m6.getId());
+        razaMascotaLogic.addMascota(r.getId(), m1);
+        razaMascotaLogic.addMascota(r.getId(), m2);
+        razaMascotaLogic.addMascota(r.getId(), m3);
+        razaMascotaLogic.addMascota(r.getId(), m4);
+        razaMascotaLogic.addMascota(r.getId(), m5);
+        razaMascotaLogic.addMascota(r.getId(), m6);
         
         razaMascotaLogic.removeMascota(r.getId(), m2.getId());
 

@@ -31,6 +31,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author lemus
  */
+@Path("razas/{razasId : \\d+}/mascotas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RazaMascotaResource {
@@ -48,14 +49,13 @@ public class RazaMascotaResource {
      * @return JSON {@link RazaDetailDTO} - La raza asociada
      */
     @POST
-    @Path("/{mascotasId: \\d+}")
-    public RazaDetailDTO addMascota(@PathParam("razasId") Long razasId, @PathParam("mascotasId") Long mascotasId)throws BusinessLogicException{
+    public RazaDetailDTO addMascota(@PathParam("razasId") Long razasId, MascotaDTO mascota)throws BusinessLogicException{
         
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
             throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
         }
-        RazaDetailDTO razaDetail = new RazaDetailDTO(razaMascotaLogic.addMascota(razasId, mascotasId));
+        RazaDetailDTO razaDetail = new RazaDetailDTO(razaMascotaLogic.addMascota(razasId, mascota.toEntity()));
         return razaDetail;
     }
 

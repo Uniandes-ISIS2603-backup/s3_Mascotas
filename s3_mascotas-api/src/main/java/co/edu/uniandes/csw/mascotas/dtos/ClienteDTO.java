@@ -5,10 +5,7 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
-import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
@@ -32,8 +29,6 @@ public class ClienteDTO implements Serializable{
             this.correo = cliente.getCorreo();
             this.direccion = cliente.getDireccion();
             this.tarjetaCreditoRegistrada = cliente.getTarjetaCreditoRegistrada();
-       //     convertirComprasADTO(cliente.getCompras());
-         //   convertirAdopcionADTO(cliente.getAdopciones());
         }
     }
    

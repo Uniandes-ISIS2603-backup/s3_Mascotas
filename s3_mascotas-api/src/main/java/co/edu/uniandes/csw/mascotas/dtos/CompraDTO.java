@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
-import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -20,7 +19,6 @@ public class CompraDTO implements Serializable {
      private Long id;
      private CalificacionDTO relacionCalificacion;
      private ClienteDTO relacionCliente;
-     //private MascotaDTO relacionMascota;
      private Long mascotaId;
     public ClienteDTO getRelacionCliente() {
         return relacionCliente;
@@ -75,8 +73,6 @@ public class CompraDTO implements Serializable {
            this.tipoDePago=compra.getTipoDePago();
            this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
            this.mascotaId = compra.getMascotaId();
-       //    this.relacionMascota = new MascotaDTO(compra.getMascota());
-//           this.relacionCliente = new ClienteDTO(compra.getCliente());
        }
     }
     /**

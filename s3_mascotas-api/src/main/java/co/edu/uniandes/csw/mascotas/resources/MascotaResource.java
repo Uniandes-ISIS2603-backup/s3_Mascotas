@@ -62,7 +62,7 @@ public class MascotaResource {
         MascotaEntity nuevoMascotaEntity = mascotaLogic.crearMascota(mascotaEntity);
         MascotaDTO nuevoMascotaDTO = new MascotaDTO(nuevoMascotaEntity);
         LOGGER.info("MascotaResource crearMascota: output: "+ nuevoMascotaDTO.toString());
-        razaMascotaResource.addMascota(mascota.getIdRaza(), nuevoMascotaDTO.getId());
+        mascotaLogic.crearMascota(mascota.toEntity());
         return nuevoMascotaDTO;
     }
 

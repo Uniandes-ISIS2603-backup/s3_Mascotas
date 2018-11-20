@@ -33,17 +33,21 @@ public class RazaMascotaLogic {
     /**
      * Relaciona una raza con su mascota (ya existentes)
      * @param razasId
-     * @param mascotasId
+     * @param mascotaIngresada
      * @return instancia de razaEntity que fue asociada con la mascota
      */
-    public RazaEntity addMascota(Long razasId, Long mascotasId) throws BusinessLogicException{
+    public RazaEntity addMascota(Long razasId, MascotaEntity mascotaIngresada) throws BusinessLogicException{
         RazaEntity raza = razaPersistence.find(razasId);
-        MascotaEntity mascota = mascotaPersistence.find(mascotasId);
+        
+        LOGGER.info("Pet creation process begins");
+        if (mascotaIngresada.getEdad() < 0) {
+            throw new BusinessLogicException("age is incorrect");
+        }
+        MascotaEntity mascota = mascotaPersistence.create(mascotaIngresada);
+        LOGGER.info("Pet creation finishes");
+        
         if(mascota == null || mascota.getDeleted()){
             throw new BusinessLogicException("The pet doesn't exist.");
-        }
-        if (raza.getMascotas().contains(mascota)) {
-            throw new BusinessLogicException("The pet is already within the race");
         }
         raza.getMascotas().add(mascota);
         mascota.setRaza(raza);
