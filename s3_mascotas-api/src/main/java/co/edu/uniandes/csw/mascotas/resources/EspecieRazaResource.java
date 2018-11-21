@@ -62,7 +62,7 @@ public class EspecieRazaResource
         if (e == null || e.getDeleted()) {
             throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
         }
-        EspecieDetailDTO especieDetail = new EspecieDetailDTO(especieRazaLogic.añadirRaza(especiesId, raza.toEntity()));
+        EspecieDetailDTO especieDetail = new EspecieDetailDTO(especieRazaLogic.addRaza(especiesId, raza.toEntity()));
         return especieDetail;
     }
 

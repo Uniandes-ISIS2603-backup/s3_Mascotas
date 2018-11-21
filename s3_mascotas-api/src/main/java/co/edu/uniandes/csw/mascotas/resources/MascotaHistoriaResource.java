@@ -56,7 +56,7 @@ public class MascotaHistoriaResource
         if(mascota == null || mascota.getDeleted()) {
             throw new WebApplicationException("the resource /mascotas/" + mascotaId + " doesn't exists.", 404);
         }
-        MascotaDTO mascotaRetorno = new MascotaDTO(mascotaHistoriaLogic.añadirHistoria(mascotaId, historia.toEntity()));
+        MascotaDTO mascotaRetorno = new MascotaDTO(mascotaHistoriaLogic.addHistoria(mascotaId, historia.toEntity()));
         return mascotaRetorno;
     }
 }
