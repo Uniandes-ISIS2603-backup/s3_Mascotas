@@ -15,7 +15,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Cristhian Peña
  */
 @Entity
-public class CalificacionEntity extends BaseEntity implements Serializable{
+public class CalificacionEntity extends BaseEntity implements Serializable
+{
     
     private String comentarios;
     private Integer puntaje;

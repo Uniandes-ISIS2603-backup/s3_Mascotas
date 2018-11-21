@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class CompraCalificacionLogic {
     
     public CalificacionEntity addCalificacion(Long compraId, CalificacionEntity calificacion) throws BusinessLogicException
     {
-        
+        LOGGER.log(Level.INFO, "Inserting score into compra id = {0}", compraId);
         CompraEntity compraEntity = compraPersistence.find(compraId);
         if(compraEntity == null){
             throw new BusinessLogicException("La compra no existe");
@@ -44,29 +45,30 @@ public class CompraCalificacionLogic {
         return calificacionPersistence.find(calificacionEntity.getId());
     }
     
-    public CalificacionEntity getCalificacion(Long adopcionId)
+    public CalificacionEntity getCalificacion(Long compraId)
     {
-        return compraPersistence.find(adopcionId).getCalificacion();
+        return compraPersistence.find(compraId).getCalificacion();
     }
     
-    public CalificacionEntity replaceCalificacion(Long adopcionId, CalificacionEntity pCalificacion) throws BusinessLogicException
+    public CalificacionEntity replaceCalificacion(Long compraId, CalificacionEntity pCalificacion) throws BusinessLogicException
     {
-        CompraEntity compraEntity = compraPersistence.find(adopcionId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
         if(compraEntity == null)
         {
-            throw new BusinessLogicException("La adopcion no existe");
+            throw new BusinessLogicException("La compra no existe");
         }
         if(pCalificacion == null || calificacionPersistence.find(pCalificacion.getId()) == null )
         {
             throw new BusinessLogicException("La calificacion no es valida");
         }
         compraEntity.setCalificacion(pCalificacion);
-        return compraPersistence.find(adopcionId).getCalificacion();
+        return compraPersistence.find(compraId).getCalificacion();
     }
     
-    public void removeCalificacion(Long adopcionId, Long calificacionId)
+    public void removeCalificacion(Long compraId, Long calificacionId)
     {
-        CompraEntity compraEntity = compraPersistence.find(adopcionId);
+        LOGGER.log(Level.INFO, "Deleting score from compra id = {0}", compraId);
+        CompraEntity compraEntity = compraPersistence.find(compraId);
         calificacionPersistence.delete(calificacionId);
         compraEntity.setCalificacion(null);
     }

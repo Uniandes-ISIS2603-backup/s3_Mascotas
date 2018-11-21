@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -32,6 +33,7 @@ public class ClienteComprasLogic {
     
     public CompraEntity addCompra(Long compraId, Long clienteId) throws BusinessLogicException
     {
+        LOGGER.log(Level.INFO, "Relacionando compra {0} con cliente {1}", new Object[]{compraId, clienteId});
         CompraEntity compraEntity = compraPersistence.find(compraId);
         if(compraEntity == null){
             throw new BusinessLogicException("La compra no existe");

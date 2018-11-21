@@ -64,7 +64,7 @@ public class CompraLogic {
         return compraEntity;
     }
     
-    public CompraEntity updateCompra(Long compraId, CompraEntity compraEntity) throws BusinessLogicException{
+    public CompraEntity updateCompra(Long compraId, CompraEntity compraEntity){
         LOGGER.log(Level.INFO, "Updating the pet with id = {0}", compraId);
         CompraEntity newEntity = persistence.update(compraEntity);
         LOGGER.log(Level.INFO, "Finished update on pet with id = {0}", compraEntity.getId());

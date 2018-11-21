@@ -29,7 +29,9 @@ public class HistoriaLogic {
     
     public HistoriaEntity createHistoria(HistoriaEntity entity) throws BusinessLogicException{
         LOOGER.info("History creation process begins");
-        // missing verifications
+        if(entity == null){
+            throw new BusinessLogicException("Invalid history");
+        }
         persistence.create(entity);
         LOOGER.info("History creation finishes");
         return entity;
@@ -52,7 +54,7 @@ public class HistoriaLogic {
         return historiaEntity;
     }
     
-    public HistoriaEntity updateHistoria(Long historiaId, HistoriaEntity historiaEntity) throws BusinessLogicException{
+    public HistoriaEntity updateHistoria(Long historiaId, HistoriaEntity historiaEntity){
         LOOGER.log(Level.INFO, "Updating the customer with id = {0}", historiaId);
         HistoriaEntity newEntity = persistence.update(historiaEntity);
         LOOGER.log(Level.INFO, "Finished update on customer with id = {0}", historiaEntity.getId());

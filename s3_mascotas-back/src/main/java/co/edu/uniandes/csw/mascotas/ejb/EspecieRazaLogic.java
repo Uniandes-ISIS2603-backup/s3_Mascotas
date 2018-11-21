@@ -6,12 +6,12 @@
 package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
-import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.EspeciePersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -40,7 +40,9 @@ public class EspecieRazaLogic {
      * @param mascotasId
      * @return instancia de Especie que fue asociada con la raza
      */
-    public EspecieEntity añadirRaza(Long especiesId, RazaEntity razaEntity) throws BusinessLogicException{
+    public EspecieEntity addRaza(Long especiesId, RazaEntity razaEntity) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "Creating raza linked with especie id = {0}", especiesId);
         RazaEntity raza = razaLogic.crearRaza(razaEntity);
         EspecieEntity especie = especiePersistence.find(especiesId);
         if(raza == null || raza.getDeleted()){

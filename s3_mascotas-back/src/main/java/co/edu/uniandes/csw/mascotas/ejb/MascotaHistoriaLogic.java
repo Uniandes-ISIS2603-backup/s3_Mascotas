@@ -10,7 +10,7 @@ import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.HistoriaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
-import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -36,12 +36,13 @@ public class MascotaHistoriaLogic
     /**
      * Relaciona una historia con una mascota ya existente
      * @param mascotaId
-     * @param HistoriaEntity
+     * @param historiaEntity
      * @return instancia de Mascota que fue asociada con la historia
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
-    public MascotaEntity añadirHistoria(Long mascotaId, HistoriaEntity historiaEntity) throws BusinessLogicException
+    public MascotaEntity addHistoria(Long mascotaId, HistoriaEntity historiaEntity) throws BusinessLogicException
     {
-        LOGGER.info("Creating historiaEntity related with mascotaId=" + mascotaId);
+        LOGGER.log(Level.INFO, "Creating historiaEntity related with mascota id = {0}", mascotaId);
         MascotaEntity mascota = mascotaPersistence.find(mascotaId);
         if(mascota.getHistoria() != null)
         {
@@ -63,6 +64,22 @@ public class MascotaHistoriaLogic
     public HistoriaEntity obtenerHistoria(Long mascotaId)
     {
         return mascotaPersistence.find(mascotaId).getHistoria();
+    }
+    
+    public HistoriaEntity updateHistoria(Long mascotaId) throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Updating the story of the pet with id = {0}", mascotaId);
+        MascotaEntity mascotaEntity = mascotaPersistence.find(mascotaId);
+        if(mascotaEntity == null){
+            throw new BusinessLogicException("La mascota no existe");
+        }
+        HistoriaEntity historiaEntity = mascotaEntity.getHistoria();
+        if(historiaEntity == null){
+            throw new BusinessLogicException("La mascota no tiene una historia");
+        }
+        HistoriaEntity newEntity = historiaPersistence.update(historiaEntity);
+        mascotaEntity.setHistoria(newEntity);
+        LOGGER.log(Level.INFO, "Finished update on the story with id = {0}", newEntity.getId());
+        return newEntity;
     }
     
     /**

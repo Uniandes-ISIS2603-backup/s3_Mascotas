@@ -56,7 +56,7 @@ public class MascotaLogic {
         return mascotaEntity;
     }
     
-    public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios) throws BusinessLogicException{
+    public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios){
         LOOGER.log(Level.INFO, "Finished update on pet with id = {0}", mascotaOriginal.getId());
         try {
             
@@ -83,9 +83,5 @@ public class MascotaLogic {
     
     public void deleteMascota(MascotaEntity mascota){
         persistence.delete(mascota);
-    }
-    
-    private void modifyEntity(MascotaEntity original, MascotaEntity modified){
-        
     }
 }
