@@ -32,7 +32,7 @@ public class RazaEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany(mappedBy = "raza", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<MascotaEntity> mascotas = new ArrayList<MascotaEntity>();
+    private List<MascotaEntity> mascotas = new ArrayList<>();
     
     public String getImagen() {
         return imagen;

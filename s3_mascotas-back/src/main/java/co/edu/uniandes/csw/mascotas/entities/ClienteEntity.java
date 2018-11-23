@@ -5,10 +5,8 @@
  */
 package co.edu.uniandes.csw.mascotas.entities;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import java.util.*;
+import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
@@ -24,10 +22,6 @@ public class ClienteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy = "cliente")
     private List<CompraEntity> compras = new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy="cliente") 
-   private List<MascotaEntity> mascotas = new ArrayList<>();
 
     public String getCorreo()
     {
@@ -65,13 +59,5 @@ public class ClienteEntity extends BaseEntity implements Serializable
 
     public void setCompras(List<CompraEntity> compras) {
         this.compras = compras;
-    }
-    
-    public List<MascotaEntity> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(List<MascotaEntity> mascotas) {
-        this.mascotas = mascotas;
     }
 }

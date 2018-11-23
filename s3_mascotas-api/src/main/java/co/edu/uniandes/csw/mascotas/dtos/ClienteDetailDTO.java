@@ -21,7 +21,6 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO implements Serializable{
     
     private List<CompraDTO> compras;
-    private List<MascotaDTO> mascotas;
 
     public ClienteDetailDTO() {
         super();
@@ -31,22 +30,10 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
         super(clienteEntity);
         if (clienteEntity!= null) {
             compras = new ArrayList<>();
-            mascotas = new ArrayList<>();
             for(CompraEntity c : clienteEntity.getCompras()){
                 compras.add(new CompraDTO(c));
             }
-            for(MascotaEntity m: clienteEntity.getMascotas()){
-                mascotas.add(new MascotaDTO(m));
-            }
         }
-    }
-
-    public List<MascotaDTO> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(List<MascotaDTO> mascotas) {
-        this.mascotas = mascotas;
     }
 
     public List<CompraDTO> getCompras() {
@@ -67,13 +54,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable{
             }
             
             clienteEntity.setCompras(comprasEntity);
-        }
-        if(mascotas!=null){
-             List<MascotaEntity> mascotaEntity = new ArrayList<>();
-            for(MascotaDTO a: mascotas){
-                mascotaEntity.add(a.toEntity());
-            }
-            clienteEntity.setMascotas(mascotaEntity);
         }
 
         return clienteEntity;

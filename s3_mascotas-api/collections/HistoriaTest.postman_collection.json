@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0183b885-58db-4da4-8369-33bb30a49a20",
+		"_postman_id": "3376841a-347c-4c8e-8b6c-dcca47b60556",
 		"name": "HistoriaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -49,49 +49,6 @@
 			"response": []
 		},
 		{
-			"name": "Crear historia",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "4c82716a-156f-494d-a156-c356d2a7b861",
-						"exec": [
-							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"historias"
-					]
-				},
-				"description": "Crea la historia con los valores dados, como respuesta se obtiene la historia con un id asignado por la base de datos."
-			},
-			"response": []
-		},
-		{
 			"name": "Actualizar una historia",
 			"event": [
 				{
@@ -115,51 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Esta es la foto de seguimiento de Orion y Ginebra\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/2",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"historias",
-						"2"
-					]
-				},
-				"description": "actualiza la historia con id:{2} con los valores dados, como respuesta se obtiene la historia con los valores actualizados."
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener una historia",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "24533149-6b80-4f02-9380-3eee7b30c285",
-						"exec": [
-							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"foto\": \"photo2.png\",\n\t\"texto\": \"Era mentira lo de la calle\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/1",
@@ -175,7 +88,7 @@
 						"1"
 					]
 				},
-				"description": "Se obtiene la historia con id{2}."
+				"description": "actualiza la historia con id:{2} con los valores dados, como respuesta se obtiene la historia con los valores actualizados."
 			},
 			"response": []
 		}

@@ -90,6 +90,7 @@ public class RazaMascotaLogic {
     public void removeMascota(Long razasId, Long mascotasId){
         RazaEntity r = razaPersistence.find(razasId);
         MascotaEntity m = mascotaPersistence.find(mascotasId);
+        m.setDeleted(Boolean.TRUE);
         r.getMascotas().remove(m);
     }
     

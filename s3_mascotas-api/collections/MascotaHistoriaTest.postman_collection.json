@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "2f45782d-096b-4c2e-924a-019249c598fd",
+		"name": "MascotaHistoriaTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear historia de una mascota",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"foto\":\"foto.png\",\n\t\"texto\":\"Se encontro en la calle\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1/historias",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						"1",
+						"historias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dar historia de una mascota",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1/historias",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						"1",
+						"historias"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
