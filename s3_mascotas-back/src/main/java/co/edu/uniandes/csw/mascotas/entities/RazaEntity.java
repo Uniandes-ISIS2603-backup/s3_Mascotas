@@ -28,8 +28,6 @@ public class RazaEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private EspecieEntity especie;
     
-    private Long especieId;
-    
     @PodamExclude
     @OneToMany(mappedBy = "raza", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<MascotaEntity> mascotas = new ArrayList<>();
@@ -56,15 +54,6 @@ public class RazaEntity extends BaseEntity implements Serializable{
 
     public void setMascotas(List<MascotaEntity> mascotas) {
         this.mascotas = mascotas;
-    }
-    public void setEspecieId(Long especieId)
-    {
-        this.especieId = especieId;
-    }
-    
-    public Long getEspecieId()
-    {
-        return especieId;
     }
     
     public void setEspecie(EspecieEntity especieEntity){

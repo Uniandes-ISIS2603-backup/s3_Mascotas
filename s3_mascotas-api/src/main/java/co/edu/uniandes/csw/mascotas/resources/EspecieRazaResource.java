@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.mascotas.dtos.RazaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieLogic;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieRazaLogic;
+import co.edu.uniandes.csw.mascotas.ejb.RazaLogic;
 import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
@@ -43,6 +44,9 @@ public class EspecieRazaResource
     @Inject 
     private EspecieLogic especieLogic;
     
+    @Inject
+    private RazaLogic razaLogic; 
+   
     @Inject
     private EspecieRazaLogic especieRazaLogic;
  
@@ -85,6 +89,10 @@ public class EspecieRazaResource
         if (e == null || e.getDeleted()) {
             throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
         }
+        RazaEntity r = razaLogic.getRaza(razasId);
+        if (r == null || r.getDeleted()) {
+            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
+        }
         return new RazaDetailDTO(especieRazaLogic.obtenerRaza(especiesId, razasId));
     }
     
@@ -99,6 +107,10 @@ public class EspecieRazaResource
         EspecieEntity e = especieLogic.getSpecies(razasId);
         if (e == null || e.getDeleted()) {
             throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
+        }
+        RazaEntity r = razaLogic.getRaza(razasId);
+        if (r == null || r.getDeleted()) {
+            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
         }
         especieRazaLogic.removerRaza(especiesId, razasId);
     }

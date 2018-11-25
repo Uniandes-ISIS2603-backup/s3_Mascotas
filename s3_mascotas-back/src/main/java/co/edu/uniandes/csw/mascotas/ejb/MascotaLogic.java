@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
+import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,8 +29,14 @@ public class MascotaLogic {
     @Inject
     private MascotaPersistence persistence;
     
+    @Inject
+    private RazaPersistence razaPersistence;
+    
     public MascotaEntity crearMascota(MascotaEntity entity) throws BusinessLogicException{
         LOOGER.info("Pet creation process begins");
+        if (entity.getRaza() == null || razaPersistence.find(entity.getRaza().getId()) == null) {
+            throw new BusinessLogicException("La raza es invalida");
+        }
         if (entity.getEdad() < 0) {
             throw new BusinessLogicException("age is incorrect");
         }
@@ -56,8 +63,11 @@ public class MascotaLogic {
         return mascotaEntity;
     }
     
-    public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios){
+    public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios) throws BusinessLogicException{
         LOOGER.log(Level.INFO, "Finished update on pet with id = {0}", mascotaOriginal.getId());
+        if(mascotaCambios.getEdad() < 0){
+            throw new BusinessLogicException("age is incorrect");
+        }
         try {
             
             BeanUtilsBean copiarEntreClases = new BeanUtilsBean() {
@@ -81,7 +91,11 @@ public class MascotaLogic {
         }
     }
     
-    public void deleteMascota(MascotaEntity mascota){
+    public void deleteMascota(MascotaEntity mascota) throws BusinessLogicException{
+        if(mascota == null || persistence.find(mascota.getId()) == null)
+        {
+            throw new BusinessLogicException("Mascota invalida");
+        }
         persistence.delete(mascota);
     }
 }

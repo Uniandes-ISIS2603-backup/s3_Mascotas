@@ -18,14 +18,14 @@ public class RazaDTO implements Serializable{
     private Long id;
     private String nombre;
     private String imagen;
-    private Long especieId;
+    private EspecieDTO especie;
 
-    public Long getEspecieId() {
-        return especieId;
+    public EspecieDTO getEspecie() {
+        return especie;
     }
 
-    public void setEspecieId(Long especieId) {
-        this.especieId = especieId;
+    public void setEspecieId(EspecieDTO especie) {
+        this.especie = especie;
     }
 
     public String getImagen() {
@@ -43,7 +43,7 @@ public class RazaDTO implements Serializable{
         this.nombre = raza.getNombre();
         this.imagen = raza.getImagen();
         if(raza.getEspecie()!=null)
-            this.especieId = raza.getEspecie().getId();
+            this.especie = new EspecieDTO(raza.getEspecie());
     }
 
     public Long getId() {
@@ -67,7 +67,7 @@ public class RazaDTO implements Serializable{
         newEntity.setNombre(nombre);
         newEntity.setId(id);
         newEntity.setImagen(imagen);
-        newEntity.setEspecieId(especieId);
+        newEntity.setEspecie(especie.toEntity());
         return newEntity;
     }   
 }

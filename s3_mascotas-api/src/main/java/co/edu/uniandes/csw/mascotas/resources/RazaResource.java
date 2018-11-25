@@ -19,7 +19,6 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -40,19 +39,10 @@ public class RazaResource {
     RazaLogic razaLogic;
     
     private static final Logger LOGGER = Logger.getLogger(RazaResource.class.getName());
-
-    @POST
-    public RazaDTO crearRaza(RazaDTO raza) throws BusinessLogicException{
-        LOGGER.info("RazaResource crearRaza: input: "+ raza.toString());
-        RazaDTO nuevoRazaDTO = 
-                new RazaDTO(razaLogic.crearRaza(raza.toEntity()));
-        LOGGER.info("RazaResource crearRaza: input: "+ nuevoRazaDTO.toString());
-        return nuevoRazaDTO;
-    }
     
     @GET
     @Path("{razasId: \\d+}")
-    public RazaDTO getRaza(@PathParam("razasId") Long razasId){
+    public RazaDetailDTO getRaza(@PathParam("razasId") Long razasId){
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
@@ -72,19 +62,19 @@ public class RazaResource {
     
     @PUT
     @Path("{razasId: \\d+}")
-    public RazaDTO updateRaza(@PathParam("razasId") Long razasId, RazaDTO raza) throws BusinessLogicException{
+    public RazaDetailDTO updateRaza(@PathParam("razasId") Long razasId, RazaDTO raza) throws BusinessLogicException{
         raza.setId(razasId);
         RazaEntity razaOriginal = razaLogic.getRaza(razasId);
         if (razaOriginal == null || razaOriginal.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);            
         }
-        return new RazaDTO(razaLogic.updateRaza(razaOriginal, raza.toEntity()));
+        return new RazaDetailDTO(razaLogic.updateRaza(razaOriginal, raza.toEntity()));
     }
     
     @GET
-    public List<RazaDTO> getRazas(){
+    public List<RazaDetailDTO> getRazas(){
         LOGGER.info("RazaResource getRazas: input: void");
-        List<RazaDTO> listaRazas = listEntity2DTO(razaLogic.getRazas());
+        List<RazaDetailDTO> listaRazas = listEntity2DTO(razaLogic.getRazas());
         LOGGER.log(Level.INFO, "RazaResource getRazas: output: {0}", listaRazas.toString());
         return listaRazas;
     }
@@ -98,10 +88,10 @@ public class RazaResource {
         return RazaMascotaResource.class;
     }
 
-    private List<RazaDTO> listEntity2DTO(List<RazaEntity> razas) {
-        List<RazaDTO> list = new ArrayList<>();
+    private List<RazaDetailDTO> listEntity2DTO(List<RazaEntity> razas) {
+        List<RazaDetailDTO> list = new ArrayList<>();
         for(RazaEntity m : razas){
-            list.add(new RazaDTO(m));
+            list.add(new RazaDetailDTO(m));
         }
         return list;
     }

@@ -18,9 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
@@ -55,15 +53,6 @@ public class CalificacionResource {
         List<CalificacionDTO> lista = convertirLista(calificacionLogic.getCalificaciones());
         LOGGER.log(Level.INFO, "CalificacionResource getCalificaciones: output: {0}", "Calificaciones");
         return lista;
-    }
-    
-    
-    
-    @POST
-    public CalificacionDTO crearCalificacion(CalificacionDTO calificacion)throws BusinessLogicException
-    {
-        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.crearCalificacion(calificacion.toEntity()));
-        return calificacionDTO;
     }
     
     public List<CalificacionDTO> convertirLista(List<CalificacionEntity> pLista)

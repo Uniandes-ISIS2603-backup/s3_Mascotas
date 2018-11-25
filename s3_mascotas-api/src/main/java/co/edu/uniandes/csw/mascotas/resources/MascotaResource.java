@@ -44,28 +44,26 @@ public class MascotaResource {
     RazaMascotaResource razaMascotaResource;
     
     private static final Logger LOGGER = Logger.getLogger(MascotaResource.class.getName());
-    
+
     /**
-     * Crea una nueva mascota con la información proporcionada en el cuerpo
-     * de la petición. Retorna un objeto idéntico con un id autogenerado.
-     * @param mascota
-     * @return
-     * @throws BusinessLogicException 
+     * Crea una nueva mascota con la informacion que se recibe en el cuerpo de la
+     * petición y se regresa un objeto identico con un id auto-generado por la
+     * base de datos.
+     *
+     * @param mascota {@link MascotaDTO} - La mascota que se desea guardar.
+     * @return JSON {@link MascotaDTO} - La mascota guardada con el atributo id
+     * autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe la mascota o es invalida
      */
     @POST
-    public MascotaDTO crearMascota(MascotaDTO mascota)throws BusinessLogicException{
-        
-        LOGGER.info("MascotaResource crearMascota: input: "+ mascota.toString());
-        /** User cannot define id´s */
-        mascota.setId(null);
-        MascotaEntity mascotaEntity = mascota.toEntity();
-        MascotaEntity nuevoMascotaEntity = mascotaLogic.crearMascota(mascotaEntity);
-        MascotaDTO nuevoMascotaDTO = new MascotaDTO(nuevoMascotaEntity);
-        LOGGER.info("MascotaResource crearMascota: output: "+ nuevoMascotaDTO.toString());
-        mascotaLogic.crearMascota(mascota.toEntity());
-        return nuevoMascotaDTO;
+    public MascotaDTO createBook(MascotaDTO mascota) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "MascotaResource createMascota: input: {0}", mascota.toString());
+        MascotaDTO nuevaMascotaDTO = new MascotaDTO(mascotaLogic.crearMascota(mascota.toEntity()));
+        LOGGER.log(Level.INFO, "BookResource createMascota: output: {0}", nuevaMascotaDTO.toString());
+        return nuevaMascotaDTO;
     }
-
+    
     @GET
     @Path("{mascotasId: \\d+}")
     public MascotaDTO getMascota(@PathParam("mascotasId") Long mascotasId){
