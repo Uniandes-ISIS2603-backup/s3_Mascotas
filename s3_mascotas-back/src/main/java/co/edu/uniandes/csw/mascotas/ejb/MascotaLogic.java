@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
+import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
@@ -40,7 +41,12 @@ public class MascotaLogic {
         if (entity.getEdad() < 0) {
             throw new BusinessLogicException("age is incorrect");
         }
+        RazaEntity raza = entity.getRaza();
+        entity.setRaza(null);
         persistence.create(entity);
+        entity.setRaza(razaPersistence.find(entity.getRaza().getId()));
+        razaPersistence.find(entity.getRaza().getId()).getMascotas().add(entity);
+        
         LOOGER.info("Pet creation finishes");
         return entity;
     }

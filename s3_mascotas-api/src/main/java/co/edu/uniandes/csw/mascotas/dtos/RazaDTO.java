@@ -67,7 +67,8 @@ public class RazaDTO implements Serializable{
         newEntity.setNombre(nombre);
         newEntity.setId(id);
         newEntity.setImagen(imagen);
-        newEntity.setEspecie(especie.toEntity());
+        if(especie != null)
+            newEntity.setEspecie(especie.toEntity());
         return newEntity;
     }   
 }
