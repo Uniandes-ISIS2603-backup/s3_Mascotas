@@ -44,7 +44,7 @@ public class MascotaLogic {
         RazaEntity raza = entity.getRaza();
         entity.setRaza(null);
         persistence.create(entity);
-        entity.setRaza(razaPersistence.find(entity.getRaza().getId()));
+        entity.setRaza(razaPersistence.find(raza.getId()));
         razaPersistence.find(entity.getRaza().getId()).getMascotas().add(entity);
         
         LOOGER.info("Pet creation finishes");
