@@ -25,7 +25,7 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     
         
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private RazaEntity raza;
     
     @PodamExclude

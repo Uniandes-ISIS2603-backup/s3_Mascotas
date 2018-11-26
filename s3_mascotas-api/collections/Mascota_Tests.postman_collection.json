@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "492fba47-dbda-4e93-b35a-cb38f2126d67",
+		"_postman_id": "72fe94c5-7c1e-41b6-8a8e-a9992653ea9c",
 		"name": "Mascota_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -130,7 +130,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"pecas\"\n}"
+					"raw": "{\n\t\"nombre\": \"pecsas\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1",
@@ -147,6 +147,39 @@
 					]
 				},
 				"description": "actualizar nombre de la mascota"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mascota",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\" : \"perrito\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"cahrdhrd\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\",\n\t\"raza\":{\n\t\t\"id\":\"2\"\n\t}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						""
+					]
+				}
 			},
 			"response": []
 		}

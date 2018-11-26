@@ -41,11 +41,7 @@ public class MascotaLogic {
         if (entity.getEdad() < 0) {
             throw new BusinessLogicException("age is incorrect");
         }
-        RazaEntity raza = entity.getRaza();
-        entity.setRaza(null);
         persistence.create(entity);
-        entity.setRaza(razaPersistence.find(raza.getId()));
-        razaPersistence.find(entity.getRaza().getId()).getMascotas().add(entity);
         
         LOOGER.info("Pet creation finishes");
         return entity;
@@ -71,7 +67,7 @@ public class MascotaLogic {
     
     public MascotaEntity updateMascota(MascotaEntity mascotaOriginal, MascotaEntity mascotaCambios) throws BusinessLogicException{
         LOOGER.log(Level.INFO, "Finished update on pet with id = {0}", mascotaOriginal.getId());
-        if(mascotaCambios.getEdad() < 0){
+        if(mascotaCambios.getEdad() != null && mascotaCambios.getEdad() < 0){
             throw new BusinessLogicException("age is incorrect");
         }
         try {
