@@ -48,22 +48,7 @@ public class EspecieRazaResource
     private RazaLogic razaLogic; 
    
     @Inject
-    private EspecieRazaLogic especieRazaLogic;
- 
-    /**
-     * Relaciona una raza existente con una especie existente
-     * @return JSON {@link EspecieDetailDTO} - La raza asociada
-     */
-    @POST
-    public EspecieDetailDTO añadirRaza(@PathParam("especiesId") Long especiesId, RazaDTO raza)throws BusinessLogicException{
-        
-        EspecieEntity e = especieLogic.getSpecies(especiesId);
-        if (e == null || e.getDeleted()) {
-            throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
-        }
-        EspecieDetailDTO especieDetail = new EspecieDetailDTO(especieRazaLogic.addRaza(especiesId, raza.toEntity()));
-        return especieDetail;
-    }
+    private EspecieRazaLogic especieRazaLogic; 
 
     /**
      * Retorna todas las razas asociadas con la especie especificada
@@ -85,7 +70,7 @@ public class EspecieRazaResource
     @GET
     @Path("/{razasId: \\d+}")
     public RazaDetailDTO obtenerRaza(@PathParam("especiesId") Long especiesId, @PathParam("razasId") Long razasId) throws BusinessLogicException{
-        EspecieEntity e = especieLogic.getSpecies(razasId);
+        EspecieEntity e = especieLogic.getSpecies(especiesId);
         if (e == null || e.getDeleted()) {
             throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
         }
@@ -118,7 +103,8 @@ public class EspecieRazaResource
     private List<RazaDetailDTO> listEntity2DTO(List<RazaEntity> entityList){
         List<RazaDetailDTO> list = new ArrayList<>();
         for(RazaEntity r : entityList){
-            list.add(new RazaDetailDTO(r));
+            if(!r.getDeleted())
+                list.add(new RazaDetailDTO(r));
         }
         return list;
     }

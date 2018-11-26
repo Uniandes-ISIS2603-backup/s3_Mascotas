@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -74,12 +75,13 @@ public class RazaMascotaLogic {
     public MascotaEntity getMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
         List<MascotaEntity> mascotas = getMascotas(razasId);
         MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
-        int posicion = mascotas.indexOf(mascotaBuscada);
-        if (posicion >= 0 || !mascotaBuscada.getDeleted()) {
-            return mascotas.get(posicion);
-        }else{
-            throw new BusinessLogicException("La mascota no está asociada con la raza");
+        if(mascotaBuscada == null){
+            throw new BusinessLogicException("la mascota no existe");
         }
+        for(int i = 0; i < mascotas.size(); i++){
+            if(Objects.equals(mascotas.get(i).getId(), mascotaBuscada.getId())) return mascotaBuscada;
+        }
+        throw new BusinessLogicException("La mascota no está asociada con la raza");
     }
     
     /**

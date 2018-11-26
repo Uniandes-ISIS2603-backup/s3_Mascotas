@@ -1,76 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f049b6af-448c-4703-b4c2-2ae3a3ac8d35",
+		"_postman_id": "96a94a75-0ce2-4fc0-9b48-44d24620cc87",
 		"name": "EspecieRazaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Crear Especie",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"EspecieEjempl\",\n\t\"imagen\":\"urlEjemplo\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"especies"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Agregar raza (OBLIGATORIO que este con especie)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"raza1\",\n\t\"imagen\":\"urlEjem\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1/razas",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"especies",
-						"1",
-						"razas"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Dar razas de una especie",
 			"request": {
@@ -93,6 +27,34 @@
 						"especies",
 						"1",
 						"razas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dar raza de una especie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1/razas/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies",
+						"1",
+						"razas",
+						"1"
 					]
 				}
 			},

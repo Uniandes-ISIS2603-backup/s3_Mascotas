@@ -42,21 +42,6 @@ public class RazaMascotaResource {
     
     @Inject
     private RazaLogic razaLogic;
-    
-    /**
-     * Relaciona una mascota existente con una raza existente
-     * @return JSON {@link RazaDetailDTO} - La raza asociada
-     */
-    @POST
-    public RazaDetailDTO addMascota(@PathParam("razasId") Long razasId, MascotaDTO mascota)throws BusinessLogicException{
-        
-        RazaEntity r = razaLogic.getRaza(razasId);
-        if (r == null || r.getDeleted()) {
-            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
-        }
-        RazaDetailDTO razaDetail = new RazaDetailDTO(razaMascotaLogic.addMascota(razasId, mascota.toEntity()));
-        return razaDetail;
-    }
 
     /**
      * Retorna todas las mascotas asociadas con la raza especificada
@@ -65,6 +50,10 @@ public class RazaMascotaResource {
      */
     @GET
     public List<MascotaDTO> getMascotas(@PathParam("razasId") Long razasId){
+        RazaEntity r = razaLogic.getRaza(razasId);
+        if (r == null || r.getDeleted()) {
+            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
+        }
         return listEntity2DTO(razaMascotaLogic.getMascotas(razasId));
     }
     

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.dtos;
 
-import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import java.io.Serializable;
 
@@ -20,21 +19,6 @@ public class RazaDTO implements Serializable{
     private String imagen;
     private EspecieDTO especie;
 
-    public EspecieDTO getEspecie() {
-        return especie;
-    }
-
-    public void setEspecieId(EspecieDTO especie) {
-        this.especie = especie;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
     public RazaDTO(){
     }
     
@@ -44,6 +28,14 @@ public class RazaDTO implements Serializable{
         this.imagen = raza.getImagen();
         if(raza.getEspecie()!=null)
             this.especie = new EspecieDTO(raza.getEspecie());
+    }
+    
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Long getId() {
@@ -60,6 +52,14 @@ public class RazaDTO implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+     public EspecieDTO getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(EspecieDTO especie) {
+        this.especie = especie;
     }
     
     public RazaEntity toEntity(){

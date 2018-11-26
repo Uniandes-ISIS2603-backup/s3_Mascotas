@@ -57,10 +57,10 @@ public class MascotaResource {
      * Error de lógica que se genera cuando ya existe la mascota o es invalida
      */
     @POST
-    public MascotaDTO createBook(MascotaDTO mascota) throws BusinessLogicException {
+    public MascotaDTO createMascota(MascotaDTO mascota) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "MascotaResource createMascota: input: {0}", mascota.toString());
         MascotaDTO nuevaMascotaDTO = new MascotaDTO(mascotaLogic.crearMascota(mascota.toEntity()));
-        LOGGER.log(Level.INFO, "BookResource createMascota: output: {0}", nuevaMascotaDTO.toString());
+        LOGGER.log(Level.INFO, "MascotaResource createMascota: output: {0}", nuevaMascotaDTO.toString());
         return nuevaMascotaDTO;
     }
     

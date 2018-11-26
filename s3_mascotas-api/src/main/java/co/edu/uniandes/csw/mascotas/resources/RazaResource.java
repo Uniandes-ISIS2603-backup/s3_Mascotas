@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -40,6 +41,25 @@ public class RazaResource {
     
     private static final Logger LOGGER = Logger.getLogger(RazaResource.class.getName());
     
+    /**
+     * Crea una nueva raza con la informacion que se recibe en el cuerpo de la
+     * petición y se regresa un objeto identico con un id auto-generado por la
+     * base de datos.
+     *
+     * @param raza {@link RazaDTO} - La raza que se desea guardar.
+     * @return JSON {@link RazaDTO} - La raza guardada con el atributo id
+     * autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe la raza o es invalida
+     */
+    @POST
+    public RazaDTO createRaza(RazaDTO raza) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "RazaResource createRaza: input: {0}", raza.toString());
+        RazaDTO nuevaRazaDTO = new RazaDTO(razaLogic.crearRaza(raza.toEntity()));
+        LOGGER.log(Level.INFO, "RazaResource createRaza: output: {0}", nuevaRazaDTO.toString());
+        return nuevaRazaDTO;
+    }
+    
     @GET
     @Path("{razasId: \\d+}")
     public RazaDetailDTO getRaza(@PathParam("razasId") Long razasId){
@@ -52,7 +72,7 @@ public class RazaResource {
     
     @DELETE
     @Path("{razasId: \\d+}")
-    public void deleteRaza(@PathParam("razasId") Long razasId){
+    public void deleteRaza(@PathParam("razasId") Long razasId) throws BusinessLogicException{
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
             throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);

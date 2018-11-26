@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aa357432-2672-41d1-8688-5860c33aeda6",
+		"_postman_id": "bd527d72-e922-46f1-bc11-da441cbca2b0",
 		"name": "EspecieTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,13 +12,13 @@
 					"listen": "test",
 					"script": {
 						"id": "cff3e756-d734-4388-a431-f47e7ed9984c",
-						"type": "text/javascript",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_nombre_a\",data.nombre);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
 							"console.log(data.id);"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -56,8 +56,7 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -175,8 +174,7 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -262,7 +260,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
 					"protocol": "http",
@@ -298,7 +299,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
 					"protocol": "http",
@@ -334,7 +338,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/0",
 					"protocol": "http",
@@ -448,8 +455,7 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"disabled": false
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -534,7 +540,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
 					"protocol": "http",

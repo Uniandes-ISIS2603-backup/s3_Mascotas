@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.mascotas.persistence.EspeciePersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -29,10 +30,16 @@ public class RazaLogic
     @Inject
     RazaPersistence persistence;
     
+    @Inject
+    EspeciePersistence especiePersistence;
+    
     public RazaEntity crearRaza(RazaEntity entity) throws BusinessLogicException{
         LOOGER.info("Race creation process begins");
+        if (entity.getEspecie() == null || especiePersistence.find(entity.getEspecie().getId()) == null) {
+            throw new BusinessLogicException("La especie es invalida");
+        }
         if (verificarNombreRepetido(entity)) {
-            throw new BusinessLogicException("The race with the name" + entity.getNombre() + "already exist.");
+            throw new BusinessLogicException("The race with the name " + entity.getNombre() + " already exist.");
         }
         persistence.create(entity);
         LOOGER.info("Race creation finishes");
@@ -48,7 +55,9 @@ public class RazaLogic
         return razaEntity;
     }
     
-    public void deleteRaza(RazaEntity raza){
+    public void deleteRaza(RazaEntity raza) throws BusinessLogicException{
+        if(raza.getMascotas() != null && !raza.getMascotas().isEmpty())
+            throw new BusinessLogicException("No se puede elminar una raza que tiene mascotas");
         persistence.delete(raza);
     }
     

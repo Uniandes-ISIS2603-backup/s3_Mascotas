@@ -1,44 +1,10 @@
 {
 	"info": {
-		"_postman_id": "8ff308a3-4cd4-452b-9a2d-83f94ffe1bec",
+		"_postman_id": "f4b647b7-a325-450f-a0a7-190cd6c6db12",
 		"name": "RazaMascotaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Crear Mascota",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\" : \"b\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"c\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\"\n}\n"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/1/mascotas",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"razas",
-						"1",
-						"mascotas"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Dar mascotas de una raza",
 			"request": {
@@ -61,6 +27,34 @@
 						"razas",
 						"1",
 						"mascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dar mascota de una raza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/1/mascotas/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						"1",
+						"mascotas",
+						"1"
 					]
 				}
 			},

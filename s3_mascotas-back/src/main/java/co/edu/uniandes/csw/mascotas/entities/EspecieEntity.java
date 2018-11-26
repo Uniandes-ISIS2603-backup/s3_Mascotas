@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mascotas.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -29,7 +30,7 @@ public class EspecieEntity extends BaseEntity implements Serializable{
     private String nombre;
     private String imagen;
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "especie", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<RazaEntity> razas;
     
     public String getNombre() {

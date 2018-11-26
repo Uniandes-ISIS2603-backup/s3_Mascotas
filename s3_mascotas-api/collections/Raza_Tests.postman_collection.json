@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "16540100-cd7b-48d3-b193-490633f1a94d",
+		"_postman_id": "f09501aa-2946-4616-a268-ff7642726428",
 		"name": "Raza_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -129,7 +129,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"razaNueva\"\n}"
+					"raw": "{\n\t\"nombre\": \"razaNuev\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/1",
@@ -146,6 +146,87 @@
 					]
 				},
 				"description": "Se actualiza el nombre de la raza"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Raza",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						"1"
+					]
+				},
+				"description": "Se elimina la raza"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Raza",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"raza1sss\",\n\t\"imagen\":\"urlEjem\",\n\t\"especie\":{\n\t\t\"id\":1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						""
+					]
+				}
 			},
 			"response": []
 		}
