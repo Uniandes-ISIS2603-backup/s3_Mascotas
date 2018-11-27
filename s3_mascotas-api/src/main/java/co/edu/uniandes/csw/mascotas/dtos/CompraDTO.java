@@ -79,9 +79,8 @@ public class CompraDTO implements Serializable {
     }
     /**
      * Atributo que representa el precio de la mascota
+     * @return 
      */
-       
-
     public Long getId() {
         return id;
     }

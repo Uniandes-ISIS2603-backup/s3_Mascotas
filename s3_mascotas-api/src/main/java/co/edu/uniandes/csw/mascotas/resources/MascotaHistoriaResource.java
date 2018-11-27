@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.mascotas.ejb.MascotaHistoriaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.MascotaLogic;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
+import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -33,35 +34,17 @@ public class MascotaHistoriaResource
 {
     private static final Logger LOGGER = Logger.getLogger(MascotaHistoriaResource.class.getName());
     @Inject
-    private MascotaLogic mascotaLogic;
-    @Inject
     private MascotaHistoriaLogic mascotaHistoriaLogic;
-    
-    /**
-     * Crea una historia y la relaciona con una mascota existente
-     * @param mascotaId
-     * @param historia
-     * @return Instancia de la mascota visible al usuario
-     * @throws BusinessLogicException 
-     */
-    @POST
-    public MascotaDTO añadirHistoria(@PathParam("mascotasId") Long mascotaId, HistoriaDTO historia) throws BusinessLogicException
-    {
-        MascotaEntity mascota = mascotaLogic.getMascota(mascotaId);
-        if(mascota == null || mascota.getDeleted()) {
-            throw new WebApplicationException("the resource /mascotas/" + mascotaId + " doesn't exists.", 404);
-        }
-        MascotaDTO mascotaRetorno = new MascotaDTO(mascotaHistoriaLogic.addHistoria(mascotaId, historia.toEntity()));
-        return mascotaRetorno;
-    }
     
     /**
      * Retorna todas las razas asociadas con la especie especificada
      * @param mascotaId mascota
      * @return colección de razas de la especie
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     @GET
-    public HistoriaDTO obtenerHistoria(@PathParam("mascotasId") Long mascotaId){
+    public HistoriaDTO obtenerHistoria(@PathParam("mascotasId") Long mascotaId) throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Begins query of story related to pet id = {0}", mascotaId);
         return new HistoriaDTO(mascotaHistoriaLogic.obtenerHistoria(mascotaId));
     }
 }

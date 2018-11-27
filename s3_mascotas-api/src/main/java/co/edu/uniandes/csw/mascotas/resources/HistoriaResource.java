@@ -53,14 +53,14 @@ public class HistoriaResource {
     @POST
     public HistoriaDTO createHistoria(HistoriaDTO historia)throws BusinessLogicException{
         
-        LOGGER.info("HistoriaResource createHistoria: input: "+ historia.toString());
+        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: input: {0}", historia.toString());
         
         HistoriaEntity historiaEntity = historia.toEntity();
         HistoriaEntity newHistoriaEntity = historiaLogic.createHistoria(historiaEntity);
         
         HistoriaDTO newHistoriaDTO = new HistoriaDTO(newHistoriaEntity);
         
-        LOGGER.info("HistoriaResource createHistoria: output: "+ newHistoriaDTO.toString());
+        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: output: {0}", newHistoriaDTO.toString());
         
         return newHistoriaDTO;
     }
@@ -113,12 +113,12 @@ public class HistoriaResource {
      */
     @PUT
     @Path("{historiaId: \\d+}")
-    public HistoriaDTO updateHistoria(@PathParam("historiaId") Long historiaId, HistoriaDTO cliente) throws BusinessLogicException{
-        cliente.setId(historiaId);
+    public HistoriaDTO updateHistoria(@PathParam("historiaId") Long historiaId, HistoriaDTO historia) throws BusinessLogicException{
+        historia.setId(historiaId);
         if (historiaLogic.getHistoria(historiaId) == null) {
             throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);            
         }
-        return new HistoriaDTO(historiaLogic.updateHistoria(historiaId, cliente.toEntity()));
+        return new HistoriaDTO(historiaLogic.updateHistoria(historiaId, historia.toEntity()));
     }
     
     @DELETE
@@ -128,7 +128,7 @@ public class HistoriaResource {
         if (historiaLogic.getHistoria(historiaId) == null) {
             throw new WebApplicationException("The resource /clientes/" + historiaId + "doesn't exist.", 404);            
         }
-        historiaLogic.deleteCliente(clienteEntity);
+        historiaLogic.deleteHistoria(clienteEntity);
     }
     
     private List<HistoriaDTO> listEntity2DTO(List<HistoriaEntity> entityList){

@@ -44,7 +44,7 @@ public class CompraLogic {
         if(masc == null){
             throw new BusinessLogicException("La mascota no existe");
         }
-        if(masc.getDeleted().equals(Boolean.TRUE))
+        if(masc.getCompra() != null)
         {
             throw new BusinessLogicException("La mascota ya fue comprada");
         }

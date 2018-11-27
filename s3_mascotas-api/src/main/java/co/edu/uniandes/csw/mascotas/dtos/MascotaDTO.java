@@ -22,7 +22,6 @@ public class MascotaDTO implements Serializable{
     private Double precio;
     private String imagen;
     private RazaDTO raza;
-    private HistoriaDTO historia;
 
 
    
@@ -44,10 +43,6 @@ public class MascotaDTO implements Serializable{
             }else{
                 this.raza = null;
             }
-            if(mascotaEntity.getHistoria() != null)
-                this.historia = new HistoriaDTO(mascotaEntity.getHistoria());
-            else
-                this.historia = null;
             
         }
     }
@@ -127,17 +122,7 @@ public class MascotaDTO implements Serializable{
         newEntity.setImagen(imagen);
         if(this.raza != null)
             newEntity.setRaza(this.raza.toEntity());
-        if(this.historia != null)
-            newEntity.setHistoria(this.historia.toEntity());
        
         return newEntity;
-    }
-
-    public HistoriaDTO getHistoria() {
-        return historia;
-    }
-
-    public void setHistoria(HistoriaDTO historia) {
-        this.historia = historia;
     }
 }

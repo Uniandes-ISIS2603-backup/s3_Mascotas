@@ -17,8 +17,18 @@ public class HistoriaDTO implements Serializable{
     private Long id;
     private String foto;
     private String texto;
+    
+    private MascotaDTO mascota;
 
-    public long getId() {
+    public MascotaDTO getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(MascotaDTO mascota) {
+        this.mascota = mascota;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -51,15 +61,18 @@ public class HistoriaDTO implements Serializable{
             this.id= historia.getId();
             this.foto = historia.getFoto();
             this.texto = historia.getTexto();
+            if(historia.getMascota() != null)
+                this.mascota = new MascotaDTO(historia.getMascota());
         }
     }
     
     public HistoriaEntity toEntity(){
         HistoriaEntity nueva = new HistoriaEntity();
-        
         nueva.setId(this.id);
         nueva.setFoto(this.foto);
         nueva.setTexto(this.texto);
+        if(this.mascota != null)
+            nueva.setMascota(this.mascota.toEntity());
         return nueva;
     }
     

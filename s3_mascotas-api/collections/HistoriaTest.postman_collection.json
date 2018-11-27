@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3376841a-347c-4c8e-8b6c-dcca47b60556",
+		"_postman_id": "b3f675ac-4d2b-463a-b83f-e22552be299e",
 		"name": "HistoriaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -49,6 +49,50 @@
 			"response": []
 		},
 		{
+			"name": "Obtener una historia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ab9d4f0-41b6-4b7f-b886-3114563d4a6d",
+						"exec": [
+							"tests[\"No genera error el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias",
+						"1"
+					]
+				},
+				"description": "Obtiene la lista de todos las historias."
+			},
+			"response": []
+		},
+		{
 			"name": "Actualizar una historia",
 			"event": [
 				{
@@ -89,6 +133,39 @@
 					]
 				},
 				"description": "actualiza la historia con id:{2} con los valores dados, como respuesta se obtiene la historia con los valores actualizados."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Historia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"foto\":\"image\",\n\t\"texto\":\"se encontro en la calle\",\n\t\"mascota\":{\n\t\t\"id\":1\n\t}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"historias",
+						""
+					]
+				}
 			},
 			"response": []
 		}

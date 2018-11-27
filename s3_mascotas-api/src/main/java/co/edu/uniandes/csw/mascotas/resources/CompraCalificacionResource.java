@@ -39,15 +39,6 @@ public class CompraCalificacionResource {
     @Inject 
     private CalificacionLogic calificacionLogic;
     
-    @POST
-    public CalificacionDTO addCalificacion(CalificacionDTO calificacion, @PathParam("comprasId") Long compraId)throws BusinessLogicException{
-                LOGGER.log(Level.INFO, "CompraCalificacionResource addCalifcacion: input: compraID: {0}:", new Object[]{compraId});
-                LOGGER.log(Level.INFO, "String: {0}", calificacion.toString());
-        CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.addCalificacion(compraId, calificacion.toEntity()));
-        LOGGER.log(Level.INFO, "EditorialBooksResource addBook: output: {0}", calificacionDTO.toString());
-        return calificacionDTO;
-    }
-    
     @GET
     public CalificacionDTO getCalificacion(@PathParam("comprasId") Long compraId)
     {
@@ -67,16 +58,5 @@ public class CompraCalificacionResource {
         CalificacionDTO calificacionDTO = new CalificacionDTO(compraCalificacionLogic.replaceCalificacion(compraId, calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CompraCalificacionResource replaceCalificacion: output:{0}", calificacionDTO.toString());
         return calificacionDTO;
-    }
-    
-    @DELETE
-    @Path("{calificacionId: \\d+}")
-    public void removeAuthor(@PathParam("compraId") Long compraId, @PathParam("calificacionId") Long calificacionId) {
-        LOGGER.log(Level.INFO, "CompraCalificacionResource removeCalificacion: input: compraId {0} , calificacionId {1}", new Object[]{compraId, calificacionId});
-        if (calificacionLogic.getCalificacion(calificacionId) == null) {
-            throw new WebApplicationException("El recurso /calificacion/" + calificacionId + " no existe.", 404);
-        }
-        compraCalificacionLogic.removeCalificacion(compraId, calificacionId);
-        LOGGER.info("CompraCalificacionResource removeCalificacion: output: void");
     }
 }
