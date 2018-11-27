@@ -17,7 +17,6 @@ public class CompraDTO implements Serializable {
     private Double precio;
     private String tipoDePago;
     private Long id;
-    private CalificacionDTO relacionCalificacion;
     private ClienteDTO relacionCliente;
     private MascotaDTO mascota;
     
@@ -35,14 +34,6 @@ public class CompraDTO implements Serializable {
 
     public void setMascota(MascotaDTO mascota) {
         this.mascota = mascota;
-    }
-    
-    public CalificacionDTO getRelacionCalificacion() {
-        return relacionCalificacion;
-    }
-
-    public void setRelacionCalificacion(CalificacionDTO relacionCalificacion) {
-        this.relacionCalificacion = relacionCalificacion;
     }
         
     public Double getPrecio() {
@@ -69,8 +60,6 @@ public class CompraDTO implements Serializable {
             this.id =compra.getId();
             this.precio=compra.getPrecio();
             this.tipoDePago=compra.getTipoDePago();
-            if(compra.getCalificacion() != null)
-                this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
             if(compra.getMascota() != null)
                 this.mascota = new MascotaDTO(compra.getMascota());
             if(compra.getCliente() != null)
@@ -95,8 +84,6 @@ public class CompraDTO implements Serializable {
         compra.setTipoDePago(this.tipoDePago);
         if(this.mascota != null)
             compra.setMascota(this.mascota.toEntity());
-        if(this.relacionCalificacion != null)
-            compra.setCalificacion(this.relacionCalificacion.toEntity());
         if(this.relacionCliente != null)
             compra.setCliente(this.relacionCliente.toEntity());
         return compra;

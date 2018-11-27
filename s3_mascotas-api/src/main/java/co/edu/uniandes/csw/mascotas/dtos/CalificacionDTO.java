@@ -21,6 +21,8 @@ public class CalificacionDTO implements Serializable
     private String comentarios;
     //Identificador unico de la calificacion
     private Long id;
+    
+    private CompraDTO compra;
 
     public CalificacionDTO() {
     }
@@ -35,7 +37,17 @@ public class CalificacionDTO implements Serializable
             this.id=calificacionEntity.getId();
             this.puntaje=calificacionEntity.getPuntaje();
             this.comentarios=calificacionEntity.getComentarios();
+            if(calificacionEntity.getCompra() != null)
+                this.compra = new CompraDTO(calificacionEntity.getCompra());
         }
+    }
+
+    public CompraDTO getCompra() {
+        return compra;
+    }
+
+    public void setCompra(CompraDTO compra) {
+        this.compra = compra;
     }
 
     /**
@@ -87,6 +99,8 @@ public class CalificacionDTO implements Serializable
         calificacionEntity.setId(id);
         calificacionEntity.setComentarios(comentarios);
         calificacionEntity.setPuntaje(puntaje);
+        if(this.compra != null)
+            calificacionEntity.setCompra(this.compra.toEntity());
         return calificacionEntity;
     }
     

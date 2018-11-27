@@ -72,13 +72,15 @@ public class HistoriaLogic {
         if(historiaEntity == null){
             throw new BusinessLogicException("Historia invalida");
         }
-        LOOGER.log(Level.INFO, "Updating the customer with id = {0}", historiaId);
+        LOOGER.log(Level.INFO, "Updating the story with id = {0}", historiaId);
         HistoriaEntity newEntity = persistence.update(historiaEntity);
-        LOOGER.log(Level.INFO, "Finished update on customer with id = {0}", newEntity.getId());
+        LOOGER.log(Level.INFO, "Finished update on story with id = {0}", newEntity.getId());
         return newEntity;
     }
     
-    public void deleteHistoria(HistoriaEntity historia){
+    public void deleteHistoria(HistoriaEntity historia) throws BusinessLogicException{
+        if(historia == null || persistence.find(historia.getId()) == null)
+            throw new BusinessLogicException("historia invalida al eliminar");
         persistence.delete(historia);
     }
 }

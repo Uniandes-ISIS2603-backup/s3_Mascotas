@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.mascotas.resources;
 import co.edu.uniandes.csw.mascotas.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.mascotas.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.mascotas.ejb.CompraCalificacionLogic;
+import co.edu.uniandes.csw.mascotas.ejb.CompraLogic;
+import co.edu.uniandes.csw.mascotas.entities.CalificacionEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,14 +40,27 @@ public class CompraCalificacionResource {
     private CompraCalificacionLogic compraCalificacionLogic;
     @Inject 
     private CalificacionLogic calificacionLogic;
+    @Inject 
+    private CompraLogic compraLogic;
     
     @GET
     public CalificacionDTO getCalificacion(@PathParam("comprasId") Long compraId)
     {
         LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: input: {0}", compraId);
-        CalificacionDTO calificacion = new CalificacionDTO(compraCalificacionLogic.getCalificacion(compraId));
-        LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: output: {0}", calificacion.toString());
-        return calificacion;
+        if(compraLogic.getCompra(compraId) == null)
+        {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
+        }
+        CalificacionEntity calificacion = compraCalificacionLogic.getCalificacion(compraId);
+        if(calificacion == null)
+        {
+            throw new WebApplicationException("El recurso /compras/" + compraId + " no tiene calificacion.", 404);
+        }
+        else
+        {
+            LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: output: {0}", calificacion.toString());
+        }
+        return new CalificacionDTO(calificacion);
     }
     
     @PUT

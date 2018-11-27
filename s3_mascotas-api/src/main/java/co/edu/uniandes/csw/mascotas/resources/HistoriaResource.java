@@ -124,11 +124,11 @@ public class HistoriaResource {
     @DELETE
     @Path("{historiaId: \\d+}")
     public void deleteHistoria(@PathParam("historiaId") Long historiaId) throws BusinessLogicException{
-        HistoriaEntity clienteEntity = historiaLogic.getHistoria(historiaId);
-        if (historiaLogic.getHistoria(historiaId) == null) {
-            throw new WebApplicationException("The resource /clientes/" + historiaId + "doesn't exist.", 404);            
+        HistoriaEntity historiaEntity = historiaLogic.getHistoria(historiaId);
+        if (historiaEntity == null) {
+            throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);            
         }
-        historiaLogic.deleteHistoria(clienteEntity);
+        historiaLogic.deleteHistoria(historiaEntity);
     }
     
     private List<HistoriaDTO> listEntity2DTO(List<HistoriaEntity> entityList){

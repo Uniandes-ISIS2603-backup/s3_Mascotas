@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "acff6050-6a74-4b37-a867-a7dc18f3a7ab",
+		"_postman_id": "c03d7f61-a331-44c8-b4e2-3c61c212563e",
 		"name": "CalificacionTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -30,7 +30,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"excelente servicio\"\n}"
+					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"excelente servicio\",\n\t\"compra\":{\n\t\t\"id\":1\n\t}\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones",
@@ -89,6 +89,145 @@
 						"calificaciones"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultar una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10931931-e5f0-4898-af4e-3a6a85b4ddea",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b735edef-1a42-427d-bf0a-cf5462090f3e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"4\", \n\t\"comentarios\":\"buen servicio\",\n\t\"compra\":{\n\t\t\"id\":1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				},
+				"description": "Se elimina la raza"
 			},
 			"response": []
 		}
