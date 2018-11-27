@@ -14,12 +14,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CompraDTO implements Serializable {
 
-     private Double precio;
-     private String tipoDePago;
-     private Long id;
-     private CalificacionDTO relacionCalificacion;
-     private ClienteDTO relacionCliente;
-     private Long mascotaId;
+    private Double precio;
+    private String tipoDePago;
+    private Long id;
+    private CalificacionDTO relacionCalificacion;
+    private ClienteDTO relacionCliente;
+    private MascotaDTO mascota;
+    
     public ClienteDTO getRelacionCliente() {
         return relacionCliente;
     }
@@ -28,17 +29,15 @@ public class CompraDTO implements Serializable {
         this.relacionCliente = relacionCliente;
     }
 
-    public Long getMascotaId() {
-        return mascotaId;
+    public MascotaDTO getMascota() {
+        return mascota;
     }
 
-    public void setMascotaId(Long mascotaId) {
-        this.mascotaId = mascotaId;
+    public void setMascota(MascotaDTO mascota) {
+        this.mascota = mascota;
     }
     
-    
-    
-     public CalificacionDTO getRelacionCalificacion() {
+    public CalificacionDTO getRelacionCalificacion() {
         return relacionCalificacion;
     }
 
@@ -66,14 +65,17 @@ public class CompraDTO implements Serializable {
         
     }
     public CompraDTO(CompraEntity compra){
-        
-       if(compra!=null){
-           this.id =compra.getId();
-           this.precio=compra.getPrecio();
-           this.tipoDePago=compra.getTipoDePago();
-           this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
-           this.mascotaId = compra.getMascotaId();
-       }
+        if(compra!=null){
+            this.id =compra.getId();
+            this.precio=compra.getPrecio();
+            this.tipoDePago=compra.getTipoDePago();
+            if(compra.getCalificacion() != null)
+                this.relacionCalificacion = new CalificacionDTO(compra.getCalificacion());
+            if(compra.getMascota() != null)
+                this.mascota = new MascotaDTO(compra.getMascota());
+            if(compra.getCliente() != null)
+                this.relacionCliente = new ClienteDTO(compra.getCliente());
+        }
     }
     /**
      * Atributo que representa el precio de la mascota
@@ -92,11 +94,18 @@ public class CompraDTO implements Serializable {
         compra.setId(this.id);
         compra.setPrecio(this.precio);
         compra.setTipoDePago(this.tipoDePago);
-        compra.setMascotaId(mascotaId);
+        if(this.mascota != null)
+            compra.setMascota(this.mascota.toEntity());
+        if(this.relacionCalificacion != null)
+            compra.setCalificacion(this.relacionCalificacion.toEntity());
+        if(this.relacionCliente != null)
+            compra.setCliente(this.relacionCliente.toEntity());
         return compra;
     }   
-        @Override
-    public String toString() {
+    
+    @Override
+    public String toString() 
+    {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

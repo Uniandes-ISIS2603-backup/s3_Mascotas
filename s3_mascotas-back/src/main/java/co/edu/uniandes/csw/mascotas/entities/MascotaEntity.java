@@ -32,20 +32,9 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     @OneToOne(mappedBy="mascota", fetch = FetchType.LAZY)
     private HistoriaEntity historia;
     
-    /**
     @PodamExclude
-    @OneToOne(mappedBy="mascota" , fetch = FetchType.EAGER)
-    private MascotaAdopcionEntity mascotaAdopcion;
-    
-    @PodamExclude
-    //@OneToOne
-    @OneToOne(mappedBy="mascota" , fetch = FetchType.EAGER)
-    private MascotaVentaEntity mascotaVenta;
-    * */
-    
-    @PodamExclude
-    @ManyToOne
-    private ClienteEntity cliente;
+    @OneToOne(mappedBy = "mascota", fetch = FetchType.LAZY)
+    private CompraEntity compra;
     
     public String getNombre() {
         return nombre;
@@ -99,47 +88,19 @@ public class MascotaEntity extends BaseEntity implements Serializable{
     public String toString() {
         return "MascotaEntity{" + "nombre=" + nombre + ", edad=" + edad + ", genero=" + genero + ", color=" + color + ", precio=" + precio + ", raza=" + raza + '}';
     }
-
-    /**
-     * @return the mascotaAdopcion
-     *
-    public MascotaAdopcionEntity getMascotaAdopcion() {
-        return mascotaAdopcion;
-    }*/
-
-    /**
-     * @param mascotaAdopcion the mascotaAdopcion to set
-     *
-    public void setMascotaAdopcion(MascotaAdopcionEntity mascotaAdopcion) {
-        this.mascotaAdopcion = mascotaAdopcion;
-    }*/
-
-    /**
-     * @return the mascotaVenta
-     *
-    public MascotaVentaEntity getMascotaVenta() {
-        return mascotaVenta;
-    }*/
-
-    /**
-     * @param mascotaVenta the mascotaVenta to set
-     *
-    public void setMascotaVenta(MascotaVentaEntity mascotaVenta) {
-        this.mascotaVenta = mascotaVenta;
-    }*/
     
     /**
-     * @return the cliente
+     * @return the compra
      */
-    public ClienteEntity getCliente() {
-        return cliente;
+    public CompraEntity getCompra() {
+        return compra;
     }
 
     /**
-     * @param cliente the cliente to set
+     * @param compra the compra to set
      */
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
+    public void setCompra(CompraEntity compra) {
+        this.compra = compra;
     }
     public String getImagen() {
         return imagen;

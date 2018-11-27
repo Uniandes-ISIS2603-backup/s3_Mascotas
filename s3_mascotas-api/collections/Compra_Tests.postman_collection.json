@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "75001bf7-51a1-4061-b5c9-d27db349b2fc",
+		"_postman_id": "5f5b2f05-b767-4a06-a9b0-425790f44167",
 		"name": "Compra_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "compraCreada",
+			"name": "crear una compra",
 			"event": [
 				{
 					"listen": "test",
@@ -31,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 3,\n    \"mascotaId\":1,\n    \"precio\": 0,\n    \"tipoDePago\" : \"asdf\"\n}"
+					"raw": "{\n    \"precio\": 1000,\n    \"tipoDePago\" : \"asdf\",\n    \"mascota\":{\n    \t\"id\":1\n    },\n    \"relacionCliente\":{\n    \t\"id\":1\n    }\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras",
@@ -50,7 +50,7 @@
 			"response": []
 		},
 		{
-			"name": "CogerCompra",
+			"name": "Obtener todas las compras",
 			"event": [
 				{
 					"listen": "test",
@@ -74,7 +74,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/{{new_id_b}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -84,7 +84,48 @@
 						"s3_mascotas-api",
 						"api",
 						"compras",
-						"{{new_id_b}}"
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4143fc00-0380-42bb-af85-529ab7f211a9",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"pm.globals.set(\"new_id_b\", \"1\");",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"compras",
+						"1"
 					]
 				}
 			},

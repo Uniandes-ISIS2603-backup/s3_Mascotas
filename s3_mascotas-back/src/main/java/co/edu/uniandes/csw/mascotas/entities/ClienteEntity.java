@@ -20,7 +20,7 @@ public class ClienteEntity extends BaseEntity implements Serializable
     private String tarjetaCreditoRegistrada;
     
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CompraEntity> compras = new ArrayList<>();
 
     public String getCorreo()

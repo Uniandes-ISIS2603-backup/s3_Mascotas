@@ -24,6 +24,8 @@ public class MascotaDTO implements Serializable{
     private RazaDTO raza;
     private HistoriaDTO historia;
 
+
+   
     public MascotaDTO() {
     }
     
@@ -46,6 +48,7 @@ public class MascotaDTO implements Serializable{
                 this.historia = new HistoriaDTO(mascotaEntity.getHistoria());
             else
                 this.historia = null;
+            
         }
     }
 
@@ -126,6 +129,7 @@ public class MascotaDTO implements Serializable{
             newEntity.setRaza(this.raza.toEntity());
         if(this.historia != null)
             newEntity.setHistoria(this.historia.toEntity());
+       
         return newEntity;
     }
 

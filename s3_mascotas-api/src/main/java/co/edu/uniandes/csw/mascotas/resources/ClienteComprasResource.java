@@ -7,7 +7,9 @@ package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.CompraDTO;
 import co.edu.uniandes.csw.mascotas.ejb.ClienteComprasLogic;
+import co.edu.uniandes.csw.mascotas.ejb.ClienteLogic;
 import co.edu.uniandes.csw.mascotas.ejb.CompraLogic;
+import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -39,17 +41,9 @@ public class ClienteComprasResource {
     @Inject
     private CompraLogic compraLogic;
     
-    @POST
-    @Path("/{compraId: \\d+}")
-    public CompraDTO addCompra(@PathParam("clienteId") Long clienteId, @PathParam("compraId") Long compraId) throws BusinessLogicException
-    {
-        if(compraLogic.getCompra(compraId) == null){
-            throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
-        }
-        CompraDTO compraDTO = new CompraDTO(clienteCompraLogic.addCompra(compraId, clienteId));
-        LOGGER.log(Level.INFO, "ClienteCompraResource addCompra: output: {0}", compraDTO.toString());
-        return compraDTO;
-    }    
+    @Inject
+    private ClienteLogic clienteLogic;
+    
     @GET
     public List<CompraDTO> getCompras(@PathParam("clienteId") Long clienteId)
     {
@@ -61,5 +55,26 @@ public class ClienteComprasResource {
         }
         LOGGER.log(Level.INFO, "ClienteComprasResource getCompras: output: {0}", compras.toString());
         return compras;
+    }
+    
+    /**
+     * Retorna la compra asociada al cliente específico dados por parámetro
+     * @param clienteId
+     * @param compraId
+     * @return
+     * @throws BusinessLogicException 
+     */
+    @GET
+    @Path("/{comprasId: \\d+}")
+    public CompraDTO getCompra(@PathParam("clienteId") Long clienteId, @PathParam("comprasId") Long compraId) throws BusinessLogicException{
+        ClienteEntity e = clienteLogic.getCliente(clienteId);
+        if (e == null || e.getDeleted()) {
+            throw new WebApplicationException("the resource /clientes/" + clienteId + " doesn't exists.", 404);
+        }
+        CompraEntity r = compraLogic.getCompra(compraId);
+        if (r == null || r.getDeleted()) {
+            throw new WebApplicationException("the resource /compras/" + compraId + " doesn't exists.", 404);
+        }
+        return new CompraDTO(clienteCompraLogic.getCompra(clienteId, compraId));
     }
 }

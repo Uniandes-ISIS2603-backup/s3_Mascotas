@@ -42,7 +42,7 @@ public class CompraCalificacionLogic {
         CalificacionEntity calificacionEntity = calificacionLogic.crearCalificacion(calificacion);
         compraEntity.setCalificacion(calificacionEntity);
         compraPersistence.update(compraEntity);
-        return calificacionPersistence.find(calificacionEntity.getId());
+        return calificacionEntity;
     }
     
     public CalificacionEntity getCalificacion(Long compraId)

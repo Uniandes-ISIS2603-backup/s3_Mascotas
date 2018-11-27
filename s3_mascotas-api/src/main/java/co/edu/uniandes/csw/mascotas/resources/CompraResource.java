@@ -48,12 +48,12 @@ public class CompraResource {
     @POST
     public CompraDTO crearCompra(CompraDTO compra)throws BusinessLogicException{
         
-        LOGGER.info("CompraResource crearCompra: input: "+ compra.toString());
-        CompraEntity adopEntity = compra.toEntity();
-        CompraEntity nuevoAdopEntity = compraLogic.crearCompra(adopEntity);
-        CompraDTO nuevaAdopcionDTO = new CompraDTO(nuevoAdopEntity);
-        LOGGER.info("AdopcionResource crearAdopcion: output: "+ nuevaAdopcionDTO.toString());
-        return nuevaAdopcionDTO;
+        LOGGER.log(Level.INFO,"CompraResource crearCompra: input: {0}", compra.toString());
+        CompraEntity compraEntity = compra.toEntity();
+        CompraEntity nuevaCompraEntity = compraLogic.crearCompra(compraEntity);
+        CompraDTO nuevaCompraDTO = new CompraDTO(nuevaCompraEntity);
+        LOGGER.log(Level.INFO,"CompraResource crearCompra: outpus: {0}", nuevaCompraDTO.toString());
+        return nuevaCompraDTO;
     }
 
     @GET
@@ -75,11 +75,13 @@ public class CompraResource {
     public CompraDTO updateCompra(@PathParam("comprasId") Long compraId, CompraDTO compra) throws BusinessLogicException{
         compra.setId(compraId);
         if (compraLogic.getCompra(compraId) == null) {
-            throw new WebApplicationException("The resource /comrpas/" + compraId + "doesn't exist.", 404);            
+            throw new WebApplicationException("The resource /compras/" + compraId + "doesn't exist.", 404);            
         }
         return new CompraDTO(compraLogic.updateCompra(compraId, compra.toEntity()));
     }
-     private List<CompraDTO> listEntity2DTO(List<CompraEntity> entityList){
+    
+    
+    private List<CompraDTO> listEntity2DTO(List<CompraEntity> entityList){
         List<CompraDTO> list = new ArrayList<>();
         for(CompraEntity m : entityList){
             list.add(new CompraDTO(m));

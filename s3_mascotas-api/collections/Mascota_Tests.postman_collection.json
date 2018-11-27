@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "72fe94c5-7c1e-41b6-8a8e-a9992653ea9c",
+		"_postman_id": "3bb6b54c-bacf-4e84-b6a9-325f5d8fbb6c",
 		"name": "Mascota_Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -164,7 +164,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\" : \"perrito\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"cahrdhrd\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\",\n\t\"raza\":{\n\t\t\"id\":\"2\"\n\t}\n}\n"
+					"raw": "{\n\t\"nombre\" : \"perrito\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"cahrdhrd\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\",\n\t\"raza\":{\n\t\t\"id\":\"1\"\n\t}\n}\n"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/",

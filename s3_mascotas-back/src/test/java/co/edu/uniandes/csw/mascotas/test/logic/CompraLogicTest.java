@@ -94,7 +94,7 @@ public class CompraLogicTest {
         
         Query q = em.createQuery("select u from MascotaEntity u");
         List<MascotaEntity> m = q.getResultList();
-        nueva.setMascotaId(m.get(0).getId());
+        nueva.setMascota(m.get(0));
         
         CompraEntity resultado = compraLogic.crearCompra(nueva);
         Assert.assertNotNull(resultado);

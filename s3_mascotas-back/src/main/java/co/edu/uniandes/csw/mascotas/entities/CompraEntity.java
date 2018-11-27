@@ -17,11 +17,15 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class CompraEntity extends BaseEntity implements Serializable{
     private Double precio;
     private String tipoDePago;
+    
     @PodamExclude
     @OneToOne(mappedBy = "compra")
     private CalificacionEntity calificacion;
    
-    private Long mascotaId; 
+    @PodamExclude
+    @OneToOne
+    private MascotaEntity mascota; 
+    
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
@@ -34,12 +38,12 @@ public class CompraEntity extends BaseEntity implements Serializable{
         this.cliente = cliente;
     }
 
-    public Long getMascotaId() {
-        return mascotaId;
+    public MascotaEntity getMascota() {
+        return mascota;
     }
 
-    public void setMascotaId(Long mascotaId) {
-        this.mascotaId = mascotaId;
+    public void setMascota(MascotaEntity mascota) {
+        this.mascota = mascota;
     }
     
     
