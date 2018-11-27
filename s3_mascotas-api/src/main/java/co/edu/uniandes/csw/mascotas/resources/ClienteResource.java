@@ -126,10 +126,10 @@ public class ClienteResource {
     @Path("{clienteId: \\d+}")
     public void deleteCliente(@PathParam("clienteId") Long clienteId) throws BusinessLogicException{
         ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
-        if (clienteLogic.getCliente(clienteId) == null) {
+        if (clienteEntity == null) {
             throw new WebApplicationException("The resource /clientes/" + clienteId + "doesn't exist.", 404);            
         }
-        clienteLogic.deleteCliente(clienteEntity);
+        clienteLogic.deleteCliente(clienteId);
     }
     
     private List<ClienteDetailDTO> listEntity2DTO(List<ClienteEntity> entityList){

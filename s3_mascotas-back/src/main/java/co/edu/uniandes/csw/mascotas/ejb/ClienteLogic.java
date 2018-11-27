@@ -65,7 +65,7 @@ public class ClienteLogic {
         return newEntity;
     }
     
-    public void deleteCliente(ClienteEntity cliente){
-        persistence.delete(cliente);
+    public void deleteCliente(Long clienteId){
+        persistence.delete(clienteId);
     }
 }

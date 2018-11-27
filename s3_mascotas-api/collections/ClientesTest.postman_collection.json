@@ -6,6 +6,51 @@
 	},
 	"item": [
 		{
+			"name": "Crear cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c99704ce-fdf4-41dc-b1ef-6b1d0de28d04",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_cliente_fromcliente_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
 			"name": "Obtener todos los clientes",
 			"event": [
 				{
@@ -50,50 +95,6 @@
 			"response": []
 		},
 		{
-			"name": "Crear cliente",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c99704ce-fdf4-41dc-b1ef-6b1d0de28d04",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_mascotas-api",
-						"api",
-						"clientes"
-					]
-				},
-				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
-			},
-			"response": []
-		},
-		{
 			"name": "Obtener un cliente",
 			"event": [
 				{
@@ -122,7 +123,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/{{new_cliente_fromcliente_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -132,7 +133,51 @@
 						"s3_mascotas-api",
 						"api",
 						"clientes",
-						"1"
+						"{{new_cliente_fromcliente_id}}"
+					]
+				},
+				"description": "Obtiene un cliente con identificador id:{1}"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un cliente inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03a2431e-4580-468a-b0d4-7629b199a785",
+						"exec": [
+							"tests[\"No encuentra el cliente\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"0"
 					]
 				},
 				"description": "Obtiene un cliente con identificador id:{1}"
@@ -168,7 +213,7 @@
 					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/{{new_cliente_fromcliente_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -178,10 +223,146 @@
 						"s3_mascotas-api",
 						"api",
 						"clientes",
-						"1"
+						"{{new_cliente_fromcliente_id}}"
 					]
 				},
 				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un cliente inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b735edef-1a42-427d-bf0a-cf5462090f3e",
+						"exec": [
+							"tests[\"No encuentra el cliente\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"mardukencolobia@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"0"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/{{new_cliente_fromcliente_id}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"{{new_cliente_fromcliente_id}}"
+					]
+				},
+				"description": "Se elimina la raza"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Cliente Inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d0256c-3628-4fd3-bbaf-bf0e4ed7a451",
+						"exec": [
+							"tests[\"No encuentra el cliente\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes",
+						"0"
+					]
+				},
+				"description": "Se elimina la raza"
 			},
 			"response": []
 		}

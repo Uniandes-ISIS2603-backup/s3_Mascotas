@@ -35,7 +35,7 @@ public class MascotaPersistence {
     
     public List<MascotaEntity> findAll(){
         LOGGER.log(Level.INFO, "Consulting all pets");
-        Query q = em.createQuery("select u from MascotaEntity u where u.compra IS null");
+        Query q = em.createQuery("select u from MascotaEntity u where u.deleted = FALSE");
         return q.getResultList();
     }
     

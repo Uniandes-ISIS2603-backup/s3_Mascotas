@@ -50,10 +50,9 @@ public class ClientePersistence {
         return em.merge(clienteEntity);
     }
     
-    public void delete(ClienteEntity cliente){
-        em.getTransaction();
+    public void delete(Long clienteId){
+        ClienteEntity cliente = em.find(ClienteEntity.class, clienteId);
         em.remove(cliente);
-        em.getTransaction().commit();
     }
     
     /**

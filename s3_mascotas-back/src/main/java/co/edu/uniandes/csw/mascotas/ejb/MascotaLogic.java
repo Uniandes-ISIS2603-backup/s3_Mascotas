@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,8 +51,16 @@ public class MascotaLogic {
     public List<MascotaEntity> getMascotas(){
         LOOGER.log(Level.INFO, "Searching for pets");
         List<MascotaEntity> mascotas = persistence.findAll();
+        List<MascotaEntity> aRet = new ArrayList<>();
+        for(int i = 0; i < mascotas.size(); i++)
+        {
+            if(mascotas.get(i).getCompra() == null)
+            {
+                aRet.add(mascotas.get(i));
+            }
+        }
         LOOGER.log(Level.INFO, "Ending search");
-        return mascotas;
+        return aRet;
     }
     
     public MascotaEntity getMascota(Long mascotasId){
