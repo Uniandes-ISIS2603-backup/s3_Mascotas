@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.mascotas.ejb;
 
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
-import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;

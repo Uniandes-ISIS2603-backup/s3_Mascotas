@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -42,17 +41,17 @@ public class CompraResource {
     public List<CompraDTO> getCompras(){
         LOGGER.info("CompraResource getCompras: input: void");
         List<CompraDTO> listaCompra = listEntity2DTO(compraLogic.getCompras());
-        LOGGER.log(Level.INFO, "CompraResource getCompras: output: {0}", listaCompra.toString());
+        LOGGER.log(Level.INFO, "CompraResource getCompras: output: {0}", listaCompra);
         return listaCompra;
     }
     @POST
     public CompraDTO crearCompra(CompraDTO compra)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO,"CompraResource crearCompra: input: {0}", compra.toString());
+        LOGGER.log(Level.INFO,"CompraResource crearCompra: input: {0}", compra);
         CompraEntity compraEntity = compra.toEntity();
         CompraEntity nuevaCompraEntity = compraLogic.crearCompra(compraEntity);
         CompraDTO nuevaCompraDTO = new CompraDTO(nuevaCompraEntity);
-        LOGGER.log(Level.INFO,"CompraResource crearCompra: outpus: {0}", nuevaCompraDTO.toString());
+        LOGGER.log(Level.INFO,"CompraResource crearCompra: outpus: {0}", nuevaCompraDTO);
         return nuevaCompraDTO;
     }
 
@@ -64,7 +63,7 @@ public class CompraResource {
         if(compraEntity == null){
             throw new WebApplicationException("The resource /compras/" + compraId + "doesn't exist.", 404);
         }
-        LOGGER.log(Level.INFO, "CompraResource getCompra: output: {0}", compraEntity.toString());
+        LOGGER.log(Level.INFO, "CompraResource getCompra: output: {0}", compraEntity);
         return new CompraDTO(compraEntity);
     }
     
@@ -72,7 +71,7 @@ public class CompraResource {
     
     @PUT
     @Path("{comprasId: \\d+}")
-    public CompraDTO updateCompra(@PathParam("comprasId") Long compraId, CompraDTO compra) throws BusinessLogicException{
+    public CompraDTO updateCompra(@PathParam("comprasId") Long compraId, CompraDTO compra){
         compra.setId(compraId);
         if (compraLogic.getCompra(compraId) == null) {
             throw new WebApplicationException("The resource /compras/" + compraId + "doesn't exist.", 404);            

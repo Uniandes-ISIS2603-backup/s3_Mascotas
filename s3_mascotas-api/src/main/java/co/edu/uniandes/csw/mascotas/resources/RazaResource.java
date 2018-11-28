@@ -39,6 +39,8 @@ public class RazaResource {
     @Inject
     RazaLogic razaLogic;
     
+    private static final String NA1 = "The resource /razas/";
+    private static final String NA2 = " doesn't exist.";
     private static final Logger LOGGER = Logger.getLogger(RazaResource.class.getName());
     
     /**
@@ -54,9 +56,9 @@ public class RazaResource {
      */
     @POST
     public RazaDTO createRaza(RazaDTO raza) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "RazaResource createRaza: input: {0}", raza.toString());
+        LOGGER.log(Level.INFO, "RazaResource createRaza: input: {0}", raza);
         RazaDTO nuevaRazaDTO = new RazaDTO(razaLogic.crearRaza(raza.toEntity()));
-        LOGGER.log(Level.INFO, "RazaResource createRaza: output: {0}", nuevaRazaDTO.toString());
+        LOGGER.log(Level.INFO, "RazaResource createRaza: output: {0}", nuevaRazaDTO);
         return nuevaRazaDTO;
     }
     
@@ -65,7 +67,7 @@ public class RazaResource {
     public RazaDetailDTO getRaza(@PathParam("razasId") Long razasId){
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
-            throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + razasId + NA2, 404);
         }
         return new RazaDetailDTO(razaEntity);
     }
@@ -75,18 +77,18 @@ public class RazaResource {
     public void deleteRaza(@PathParam("razasId") Long razasId) throws BusinessLogicException{
         RazaEntity razaEntity = razaLogic.getRaza(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
-            throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + razasId + NA2, 404);
         }
         razaLogic.deleteRaza(razaEntity);
     }
     
     @PUT
     @Path("{razasId: \\d+}")
-    public RazaDetailDTO updateRaza(@PathParam("razasId") Long razasId, RazaDTO raza) throws BusinessLogicException{
+    public RazaDetailDTO updateRaza(@PathParam("razasId") Long razasId, RazaDTO raza){
         raza.setId(razasId);
         RazaEntity razaOriginal = razaLogic.getRaza(razasId);
         if (razaOriginal == null || razaOriginal.getDeleted()) {
-            throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + razasId + NA2, 404);            
         }
         return new RazaDetailDTO(razaLogic.updateRaza(razaOriginal, raza.toEntity()));
     }
@@ -95,7 +97,7 @@ public class RazaResource {
     public List<RazaDetailDTO> getRazas(){
         LOGGER.info("RazaResource getRazas: input: void");
         List<RazaDetailDTO> listaRazas = listEntity2DTO(razaLogic.getRazas());
-        LOGGER.log(Level.INFO, "RazaResource getRazas: output: {0}", listaRazas.toString());
+        LOGGER.log(Level.INFO, "RazaResource getRazas: output: {0}", listaRazas);
         return listaRazas;
     }
     
@@ -103,7 +105,7 @@ public class RazaResource {
     public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("razasId") Long razasId){
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
-            throw new WebApplicationException("The resource /razas/" + razasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + razasId + NA2, 404);            
         }
         return RazaMascotaResource.class;
     }

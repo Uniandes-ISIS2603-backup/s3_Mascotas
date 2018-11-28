@@ -40,6 +40,8 @@ public class HistoriaResource {
     @Inject
     HistoriaLogic historiaLogic;
     
+    private static final String NA1 = "The resource /historias/";
+    private static final String NA2 = " doesn't exist.";
     // Debug logger
     private static final Logger LOGGER = Logger.getLogger(HistoriaResource.class.getName());
     
@@ -53,14 +55,14 @@ public class HistoriaResource {
     @POST
     public HistoriaDTO createHistoria(HistoriaDTO historia)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: input: {0}", historia.toString());
+        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: input: {0}", historia);
         
         HistoriaEntity historiaEntity = historia.toEntity();
         HistoriaEntity newHistoriaEntity = historiaLogic.createHistoria(historiaEntity);
         
         HistoriaDTO newHistoriaDTO = new HistoriaDTO(newHistoriaEntity);
         
-        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: output: {0}", newHistoriaDTO.toString());
+        LOGGER.log(Level.INFO,"HistoriaResource createHistoria: output: {0}", newHistoriaDTO);
         
         return newHistoriaDTO;
     }
@@ -80,10 +82,10 @@ public class HistoriaResource {
         HistoriaEntity historiaEntity = historiaLogic.getHistoria(historiaId);
         
         if(historiaEntity == null){
-            throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + historiaId + NA2, 404);
         }
         
-        LOGGER.log(Level.INFO, "HistoriaResource getCliente: output: {0}", historiaEntity.toString());
+        LOGGER.log(Level.INFO, "HistoriaResource getCliente: output: {0}", historiaEntity);
         
         return new HistoriaDTO(historiaEntity);
     }
@@ -99,7 +101,7 @@ public class HistoriaResource {
         
         List<HistoriaDTO> listaHistorias = listEntity2DTO(historiaLogic.getHistorias());
         
-        LOGGER.log(Level.INFO, "HistoriaResource getHistorias: output: {0}", listaHistorias.toString());
+        LOGGER.log(Level.INFO, "HistoriaResource getHistorias: output: {0}", listaHistorias);
         
         return listaHistorias;
     }
@@ -110,13 +112,14 @@ public class HistoriaResource {
      * @param historiaId
      * @param historia
      * @return HistoriaDTO
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     @PUT
     @Path("{historiaId: \\d+}")
     public HistoriaDTO updateHistoria(@PathParam("historiaId") Long historiaId, HistoriaDTO historia) throws BusinessLogicException{
         historia.setId(historiaId);
         if (historiaLogic.getHistoria(historiaId) == null) {
-            throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + historiaId + NA2, 404);            
         }
         return new HistoriaDTO(historiaLogic.updateHistoria(historiaId, historia.toEntity()));
     }
@@ -126,7 +129,7 @@ public class HistoriaResource {
     public void deleteHistoria(@PathParam("historiaId") Long historiaId) throws BusinessLogicException{
         HistoriaEntity historiaEntity = historiaLogic.getHistoria(historiaId);
         if (historiaEntity == null) {
-            throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + historiaId + NA2, 404);            
         }
         historiaLogic.deleteHistoria(historiaId);
     }

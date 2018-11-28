@@ -84,16 +84,4 @@ public class RazaMascotaLogic {
         throw new BusinessLogicException("La mascota no está asociada con la raza");
     }
     
-    /**
-     * Elimina la relación entre una mascota y una raza (ya existentes)
-     * @param razasId
-     * @param mascotasId 
-     */
-    public void removeMascota(Long razasId, Long mascotasId){
-        RazaEntity r = razaPersistence.find(razasId);
-        MascotaEntity m = mascotaPersistence.find(mascotasId);
-        m.setDeleted(Boolean.TRUE);
-        r.getMascotas().remove(m);
-    }
-    
 }

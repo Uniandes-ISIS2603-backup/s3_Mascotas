@@ -49,9 +49,7 @@ public class MascotaPersistence {
     }
     
     public void delete(MascotaEntity mascota){
-        //em.getTransaction();
         mascota.setDeleted(Boolean.TRUE);
         em.merge(mascota);
-        //em.getTransaction().commit();
     }
 }

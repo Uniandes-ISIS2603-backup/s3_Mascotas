@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.resources;
 
-import co.edu.uniandes.csw.mascotas.dtos.EspecieDetailDTO;
-import co.edu.uniandes.csw.mascotas.dtos.RazaDTO;
 import co.edu.uniandes.csw.mascotas.dtos.RazaDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieLogic;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieRazaLogic;
@@ -19,12 +17,12 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.WebApplicationException;
 
@@ -39,6 +37,9 @@ import javax.ws.rs.WebApplicationException;
 @Produces(MediaType.APPLICATION_JSON)
 public class EspecieRazaResource 
 {
+    private static final String NA1 = "the resource /especies/";
+    private static final String NA3 = "the resource /razas/";
+    private static final String NA2 = " doesn't exists.";
     private static final Logger LOGGER = Logger.getLogger(EspecieRazaResource.class.getName());
     
     @Inject 
@@ -52,11 +53,13 @@ public class EspecieRazaResource
 
     /**
      * Retorna todas las razas asociadas con la especie especificada
-     * @param razasId
+     * @param especiesId
      * @return colección de razas de la especie
      */
     @GET
-    public List<RazaDetailDTO> obtenerRazas(@PathParam("especiesId") Long especiesId){
+    public List<RazaDetailDTO> obtenerRazas(@PathParam("especiesId") Long especiesId)
+    {
+        LOGGER.log(Level.INFO, "Busqueda de razas de la especie: {0}", especiesId);
         return listEntity2DTO(especieRazaLogic.obtenerRazas(especiesId));
     }
     
@@ -70,34 +73,17 @@ public class EspecieRazaResource
     @GET
     @Path("/{razasId: \\d+}")
     public RazaDetailDTO obtenerRaza(@PathParam("especiesId") Long especiesId, @PathParam("razasId") Long razasId) throws BusinessLogicException{
+        LOGGER.log(Level.INFO,"obtener la raza: {0} de la especie: {1}", new Object[]{razasId, especiesId});
         EspecieEntity e = especieLogic.getSpecies(especiesId);
         if (e == null || e.getDeleted()) {
-            throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
+            throw new WebApplicationException(NA1 + especiesId + NA2, 404);
         }
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
-            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
+            throw new WebApplicationException(NA3 + razasId + NA2, 404);
         }
+        LOGGER.log(Level.INFO, "FINALIZANDO BUSQUEDA especies/{0}/razas/{1}", new Object[]{especiesId, razasId});
         return new RazaDetailDTO(especieRazaLogic.obtenerRaza(especiesId, razasId));
-    }
-    
-    /**
-     * Elimina la relación entre una raza y una especie (ya existentes)
-     * @param especiesId
-     * @param razasId 
-     */
-    @DELETE
-    @Path("/{razasId: \\d+}")
-    public void removerRaza(@PathParam("especiesId") Long especiesId, @PathParam("razasId") Long razasId){
-        EspecieEntity e = especieLogic.getSpecies(razasId);
-        if (e == null || e.getDeleted()) {
-            throw new WebApplicationException("the resource /especies/" + especiesId + " doesn't exists.", 404);
-        }
-        RazaEntity r = razaLogic.getRaza(razasId);
-        if (r == null || r.getDeleted()) {
-            throw new WebApplicationException("the resource /razas/" + razasId + " doesn't exists.", 404);
-        }
-        especieRazaLogic.removerRaza(especiesId, razasId);
     }
     
     private List<RazaDetailDTO> listEntity2DTO(List<RazaEntity> entityList){

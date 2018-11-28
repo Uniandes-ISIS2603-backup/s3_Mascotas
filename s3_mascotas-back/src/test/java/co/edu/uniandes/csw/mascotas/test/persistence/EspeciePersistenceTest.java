@@ -169,6 +169,6 @@ public class EspeciePersistenceTest {
         EspecieEntity entity = data.get(0);
         especiePersistence.delete(entity.getId());
         EspecieEntity deleted = em.find(EspecieEntity.class, entity.getId());
-        Assert.assertEquals(deleted.getDeleted(), Boolean.TRUE);
+        Assert.assertEquals(Boolean.TRUE, deleted.getDeleted());
     }
 }

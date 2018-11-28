@@ -63,4 +63,13 @@ public class RazaEntity extends BaseEntity implements Serializable{
     public EspecieEntity getEspecie(){
         return especie;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+          return false;
+        }
+        RazaEntity fobj = (RazaEntity) obj;
+        return nombre.equals(fobj.getNombre());
+    }
 }

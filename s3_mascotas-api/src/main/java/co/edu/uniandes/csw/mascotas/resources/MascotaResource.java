@@ -43,6 +43,8 @@ public class MascotaResource {
     @Inject
     RazaMascotaResource razaMascotaResource;
     
+    private static final String NA1 = "The resource /mascotas/";
+    private static final String NA2 = " doesn't exist.";
     private static final Logger LOGGER = Logger.getLogger(MascotaResource.class.getName());
 
     /**
@@ -58,9 +60,9 @@ public class MascotaResource {
      */
     @POST
     public MascotaDTO createMascota(MascotaDTO mascota) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "MascotaResource createMascota: input: {0}", mascota.toString());
+        LOGGER.log(Level.INFO, "MascotaResource createMascota: input: {0}", mascota);
         MascotaDTO nuevaMascotaDTO = new MascotaDTO(mascotaLogic.crearMascota(mascota.toEntity()));
-        LOGGER.log(Level.INFO, "MascotaResource createMascota: output: {0}", nuevaMascotaDTO.toString());
+        LOGGER.log(Level.INFO, "MascotaResource createMascota: output: {0}", nuevaMascotaDTO);
         return nuevaMascotaDTO;
     }
     
@@ -70,9 +72,9 @@ public class MascotaResource {
         LOGGER.log(Level.INFO, "MascotaResource getMascota: input: {0}", mascotasId);
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
         if(mascotaEntity == null){
-            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + mascotasId + NA2, 404);
         }
-        LOGGER.log(Level.INFO, "MascotaResource getMascota: output: {0}", mascotaEntity.toString());
+        LOGGER.log(Level.INFO, "MascotaResource getMascota: output: {0}", mascotaEntity);
         return new MascotaDTO(mascotaEntity);
     }
     
@@ -80,7 +82,7 @@ public class MascotaResource {
     public List<MascotaDTO> getMascotas(){
         LOGGER.info("MascotaResource getMascotas: input: void");
         List<MascotaDTO> listaMascotas = listEntity2DTO(mascotaLogic.getMascotas());
-        LOGGER.log(Level.INFO, "MascotaResource getMascotas: output: {0}", listaMascotas.toString());
+        LOGGER.log(Level.INFO, "MascotaResource getMascotas: output: {0}", listaMascotas);
         return listaMascotas;
     }
     
@@ -90,7 +92,7 @@ public class MascotaResource {
         mascota.setId(mascotasId);
         MascotaEntity mascotaOriginal = mascotaLogic.getMascota(mascotasId);
         if (mascotaOriginal == null) {
-            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + mascotasId + NA2, 404);            
         }
         return new MascotaDTO(mascotaLogic.updateMascota(mascotaOriginal, mascota.toEntity()));
     }
@@ -100,7 +102,7 @@ public class MascotaResource {
     public void deleteMascota(@PathParam("mascotasId") Long mascotasId) throws BusinessLogicException{
         MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotasId);
         if (mascotaEntity == null) {
-            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + mascotasId + NA2, 404);            
         }
         mascotaLogic.deleteMascota(mascotaEntity);
     }
@@ -117,7 +119,7 @@ public class MascotaResource {
     public Class<RazaMascotaResource> getRazaMascotaResource(@PathParam("mascotasId") Long mascotasId){
         MascotaEntity m = mascotaLogic.getMascota(mascotasId);
         if(m == null){
-            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + mascotasId + NA2, 404);            
         }
         return RazaMascotaResource.class;
     }
@@ -126,7 +128,7 @@ public class MascotaResource {
     public Class<MascotaHistoriaResource> getMascotaHistoriaResource(@PathParam("mascotasId") Long mascotasId){
         MascotaEntity m = mascotaLogic.getMascota(mascotasId);
         if(m == null){
-            throw new WebApplicationException("The resource /mascotas/" + mascotasId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + mascotasId + NA2, 404);            
         }
         return MascotaHistoriaResource.class;
     }

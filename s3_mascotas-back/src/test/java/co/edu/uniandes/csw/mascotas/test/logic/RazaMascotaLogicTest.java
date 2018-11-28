@@ -172,33 +172,4 @@ public class RazaMascotaLogicTest {
             Assert.assertEquals(nombres.get(i), nombresEsperados.get(i));
         }
     }
-    
-    @Test
-    public void removeMascota() throws BusinessLogicException{
-        RazaEntity r = listaRazas.get(0);
-        MascotaEntity m1 = listaMascotas.get(0);
-        MascotaEntity m2 = listaMascotas.get(1);
-        MascotaEntity m3 = listaMascotas.get(2);
-        MascotaEntity m4 = listaMascotas.get(3);
-        MascotaEntity m5 = listaMascotas.get(4);
-        MascotaEntity m6 = listaMascotas.get(5);
-
-        razaMascotaLogic.addMascota(r.getId(), m1);
-        razaMascotaLogic.addMascota(r.getId(), m2);
-        razaMascotaLogic.addMascota(r.getId(), m3);
-        razaMascotaLogic.addMascota(r.getId(), m4);
-        razaMascotaLogic.addMascota(r.getId(), m5);
-        razaMascotaLogic.addMascota(r.getId(), m6);
-        
-        razaMascotaLogic.removeMascota(r.getId(), m2.getId());
-
-        RazaEntity modR = razaLogic.getRaza(r.getId());
-        List<MascotaEntity> mascotas = modR.getMascotas();
-        Assert.assertEquals(5, mascotas.size());
-        
-        for(MascotaEntity m : mascotas){
-            Assert.assertFalse(m.getId().equals(m2.getId()));
-        }
-
-    }
 }

@@ -41,6 +41,8 @@ public class ClienteResource {
     @Inject
     private ClienteLogic clienteLogic;
     
+    private static final String NA1 = "The resource /clientes/";
+    private static final String NA2 = " doesn't exist.";
     // Debug logger
     private static final Logger LOGGER = Logger.getLogger(ClienteResource.class.getName());
     
@@ -54,14 +56,14 @@ public class ClienteResource {
     @POST
     public ClienteDTO createCliente(ClienteDTO cliente)throws BusinessLogicException{
         
-        LOGGER.info("ClienteResource createMascota: input: "+ cliente.toString());
+        LOGGER.log(Level.INFO, "ClienteResource createMascota: input: {0}", cliente);
         
         ClienteEntity clienteEntity = cliente.toEntity();
         ClienteEntity newClienteEntity = clienteLogic.createCliente(clienteEntity);
         
         ClienteDTO newClienteDTO = new ClienteDTO(newClienteEntity);
         
-        LOGGER.info("ClienteResource createMascota: output: "+ newClienteDTO.toString());
+        LOGGER.log(Level.INFO,"ClienteResource createMascota: output: {0}", newClienteDTO);
         
         return newClienteDTO;
     }
@@ -81,10 +83,10 @@ public class ClienteResource {
         ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
         
         if(clienteEntity == null){
-            throw new WebApplicationException("The resource /clientes/" + clienteId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + clienteId + NA2, 404);
         }
         
-        LOGGER.log(Level.INFO, "CLienteResource getCliente: output: {0}", clienteEntity.toString());
+        LOGGER.log(Level.INFO, "CLienteResource getCliente: output: {0}", clienteEntity);
         
         return new ClienteDetailDTO(clienteEntity);
     }
@@ -100,7 +102,7 @@ public class ClienteResource {
         
         List<ClienteDetailDTO> listaClientes = listEntity2DTO(clienteLogic.getClientes());
         
-        LOGGER.log(Level.INFO, "MascotaResource getMascotas: output: {0}", listaClientes.toString());
+        LOGGER.log(Level.INFO, "MascotaResource getMascotas: output: {0}", listaClientes);
         
         return listaClientes;
     }
@@ -117,17 +119,17 @@ public class ClienteResource {
     public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente) throws BusinessLogicException{
         cliente.setId(clienteId);
         if (clienteLogic.getCliente(clienteId) == null) {
-            throw new WebApplicationException("The resource /clientes/" + clienteId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + clienteId + NA2, 404);            
         }
         return new ClienteDTO(clienteLogic.updateCliente(clienteId, cliente.toEntity()));
     }
     
     @DELETE
     @Path("{clienteId: \\d+}")
-    public void deleteCliente(@PathParam("clienteId") Long clienteId) throws BusinessLogicException{
+    public void deleteCliente(@PathParam("clienteId") Long clienteId){
         ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
         if (clienteEntity == null) {
-            throw new WebApplicationException("The resource /clientes/" + clienteId + "doesn't exist.", 404);            
+            throw new WebApplicationException(NA1 + clienteId + NA2, 404);            
         }
         clienteLogic.deleteCliente(clienteId);
     }

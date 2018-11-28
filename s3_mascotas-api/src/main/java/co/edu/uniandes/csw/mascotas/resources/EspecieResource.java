@@ -36,7 +36,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class EspecieResource 
 {
-    
+    private static final String NA1 = "El recurso /especies/";
+    private static final String NA2= " no existe.";
     private static final Logger LOGGER = Logger.getLogger(EspecieResource.class.getName());
     @Inject
     private EspecieLogic especieLogic;
@@ -89,10 +90,10 @@ public class EspecieResource
         LOGGER.log(Level.INFO, "EspecieResource getSpecies: input: {0}", especieId);
         EspecieEntity especieEntity = especieLogic.getSpecies(especieId);
         if (especieEntity == null) {
-            throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
+            throw new WebApplicationException(NA1 + especieId + NA2, 404);
         }
         EspecieDetailDTO detailDTO = new EspecieDetailDTO(especieEntity);
-        LOGGER.log(Level.INFO, "EspecieResource getSpecies: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EspecieResource getSpecies: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -111,13 +112,13 @@ public class EspecieResource
     @PUT
     @Path("{especieId: \\d+}")
     public EspecieDetailDTO updateEspecie(@PathParam("especieId") Long especieId, EspecieDetailDTO especie) {
-        LOGGER.log(Level.INFO, "EspecieResource updateEspecie: input: especieId: {0} , especie: {1}", new Object[]{especieId, especie.toString()});
+        LOGGER.log(Level.INFO, "EspecieResource updateEspecie: input: especieId: {0} , especie: {1}", new Object[]{especieId, especie});
         especie.setId(especieId);
         if (especieLogic.getSpecies(especieId) == null) {
-            throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
+            throw new WebApplicationException(NA1 + especieId + NA2, 404);
         }
         EspecieDetailDTO detailDTO = new EspecieDetailDTO(especieLogic.updateSpecies(especieId, especie.toEntity()));
-        LOGGER.log(Level.INFO, "EspecieResource updateEspecie: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EspecieResource updateEspecie: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -136,7 +137,7 @@ public class EspecieResource
     public void deleteEspecie(@PathParam("especieId") Long especieId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EspecieResource deleteEspecie: input: {0}", especieId);
         if (especieLogic.getSpecies(especieId) == null) {
-            throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
+            throw new WebApplicationException(NA1 + especieId + NA2, 404);
         }
         especieLogic.deleteEspecie(especieId);
         LOGGER.info("EspecieResource deleteEspecie: output: void");
@@ -153,7 +154,7 @@ public class EspecieResource
     @Path("{especieId: \\d+}/razas")
     public Class<EspecieRazaResource> getEspecieRazaResource(@PathParam("especieId") Long especieId) {
         if (especieLogic.getSpecies(especieId) == null) {
-            throw new WebApplicationException("El recurso /especies/" + especieId + " no existe.", 404);
+            throw new WebApplicationException(NA1 + especieId + NA2, 404);
         }
         return EspecieRazaResource.class;
     }

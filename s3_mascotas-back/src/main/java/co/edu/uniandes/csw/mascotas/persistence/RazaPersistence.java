@@ -40,10 +40,8 @@ public class RazaPersistence {
     }
     
     public void delete(RazaEntity raza){
-        //em.getTransaction();
         raza.setDeleted(Boolean.TRUE);
         em.merge(raza);
-        //em.getTransaction().commit();
     }
     
     public RazaEntity update(RazaEntity razaEntity){

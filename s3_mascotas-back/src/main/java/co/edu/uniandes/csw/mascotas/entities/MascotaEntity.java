@@ -118,5 +118,12 @@ public class MascotaEntity extends BaseEntity implements Serializable{
         this.historia = historia;
     }
     
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+          return false;
+        }
+        MascotaEntity fobj = (MascotaEntity) obj;
+        return nombre.equals(fobj.getNombre());
+    }
 }

@@ -40,6 +40,8 @@ public class CalificacionResource {
     @Inject
     CalificacionLogic calificacionLogic;
     
+    private static final String NA1 = "The resource /calificacion/";
+    private static final String NA2 = " doesn't exist.";
     private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
     
     /**
@@ -52,14 +54,14 @@ public class CalificacionResource {
     @POST
     public CalificacionDTO createCalificacion(CalificacionDTO calif)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO,"CalificacionResource createCalificacion: input: {0}", calif.toString());
+        LOGGER.log(Level.INFO,"CalificacionResource createCalificacion: input: {0}", calif);
         
         CalificacionEntity calificacionEntity = calif.toEntity();
         CalificacionEntity newCalificacionEntity = calificacionLogic.crearCalificacion(calificacionEntity);
         
         CalificacionDTO newCalifDTO = new CalificacionDTO(newCalificacionEntity);
         
-        LOGGER.log(Level.INFO,"CalificacionResource createCalificacion: output: {0}", newCalifDTO.toString());
+        LOGGER.log(Level.INFO,"CalificacionResource createCalificacion: output: {0}", newCalifDTO);
         
         return newCalifDTO;
     }
@@ -79,10 +81,10 @@ public class CalificacionResource {
         CalificacionEntity califEntity = calificacionLogic.getCalificacion(calificacionId);
         
         if(califEntity == null){
-            throw new WebApplicationException("The resource /calificacion/" + calificacionId + "doesn't exist.", 404);
+            throw new WebApplicationException(NA1 + calificacionId + NA2, 404);
         }
         
-        LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", califEntity.toString());
+        LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", califEntity);
         
         return new CalificacionDTO(califEntity);
     }
@@ -94,7 +96,7 @@ public class CalificacionResource {
      * @throws BusinessLogicException 
      */
     @GET
-    public List<CalificacionDTO> darCalificaciones()throws BusinessLogicException{
+    public List<CalificacionDTO> darCalificaciones(){
         
         LOGGER.info("CalificacionResource darCalificaciones: input: void");
         List<CalificacionDTO> lista = convertirLista(calificacionLogic.getCalificaciones());

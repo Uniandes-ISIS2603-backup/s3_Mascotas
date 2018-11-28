@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.mascotas.dtos;
 
 import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
-import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
