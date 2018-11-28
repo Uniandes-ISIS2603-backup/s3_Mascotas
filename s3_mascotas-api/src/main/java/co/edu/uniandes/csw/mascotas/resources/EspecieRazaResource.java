@@ -15,7 +15,6 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -60,6 +59,10 @@ public class EspecieRazaResource
     public List<RazaDetailDTO> obtenerRazas(@PathParam("especiesId") Long especiesId)
     {
         LOGGER.log(Level.INFO, "Busqueda de razas de la especie: {0}", especiesId);
+        EspecieEntity e = especieLogic.getSpecies(especiesId);
+        if (e == null || e.getDeleted()) {
+            throw new WebApplicationException(NA1 + especiesId + NA2, 404);
+        }
         return listEntity2DTO(especieRazaLogic.obtenerRazas(especiesId));
     }
     
