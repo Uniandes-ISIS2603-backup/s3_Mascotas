@@ -44,6 +44,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     public CompraEntity getCompra(){
         return compra;
     }
+    
     public void setCompra(CompraEntity compra) {
         this.compra = compra;
     }
