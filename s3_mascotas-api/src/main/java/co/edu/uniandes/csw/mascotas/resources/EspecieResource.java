@@ -5,11 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.resources;
 
-
-import co.edu.uniandes.csw.mascotas.ejb.EspecieLogic;
-import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
-import javax.inject.Inject;
-import javax.ws.rs.Path;
 import co.edu.uniandes.csw.mascotas.dtos.EspecieDTO;
 import co.edu.uniandes.csw.mascotas.dtos.EspecieDetailDTO;
 import co.edu.uniandes.csw.mascotas.ejb.EspecieLogic;
@@ -54,12 +49,13 @@ public class EspecieResource
      * @param especie {@link EspecieDTO} - La especie que se desea guardar.
      * @return JSON {@link EspecieDTO} - La especie guardada con el atributo id
      * autogenerado.
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     @POST
     public EspecieDTO createEspecie(EspecieDTO especie) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EspecieResource crearEspecie: input: {0}", especie.toString());
+        LOGGER.log(Level.INFO, "EspecieResource crearEspecie: input: {0}", especie);
         EspecieDTO especieDTO = new EspecieDTO(especieLogic.crearEspecie(especie.toEntity()));
-        LOGGER.log(Level.INFO, "EspecieResource crearEspecie: output: {0}", especieDTO.toString());
+        LOGGER.log(Level.INFO, "EspecieResource crearEspecie: output: {0}", especieDTO);
         return especieDTO;
     }
     
@@ -70,7 +66,7 @@ public class EspecieResource
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<EspecieDetailDTO> darEspecies()throws BusinessLogicException{
+    public List<EspecieDetailDTO> darEspecies(){
         
         LOGGER.info("EspecieResource darEspecies: input: void");
         List<EspecieDetailDTO> lista = convertirLista(especieLogic.getEspecies());

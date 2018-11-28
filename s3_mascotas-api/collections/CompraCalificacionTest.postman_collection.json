@@ -6,6 +6,350 @@
 	},
 	"item": [
 		{
+			"name": "crear especie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cff3e756-d734-4388-a431-f47e7ed9984c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_especie_fromcompracalificacion_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"EspecieTestCompraCalificacion\",\n\t\"imagen\":\"imagenx\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear especie",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Ejemplo\"\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"s3_mascotas-api",
+								"api",
+								"especies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "27",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Sep 2018 05:51:48 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\":4,\"nombre\":\"Ejemplo\"}"
+				}
+			]
+		},
+		{
+			"name": "Crear Raza",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9232184b-2ac0-453d-a930-47d268919335",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_raza_fromcompracalificacion_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"razafromCompraCalificacion\",\n\t\"imagen\":\"urlEjem\",\n\t\"especie\":{\n\t\t\"id\":{{new_especie_fromcompracalificacion_id}}\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed37744f-9750-4942-ae0c-a5dcf7b2ccbf",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_mascota_fromcompracalificacion_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\" : \"perrito\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"cahrdhrd\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\",\n\t\"raza\":{\n\t\t\"id\":{{new_raza_fromcompracalificacion_id}}\n\t}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c99704ce-fdf4-41dc-b1ef-6b1d0de28d04",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_cliente_fromcompracalificacion_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"correoCompraCalificacion@metal.com\",\n    \"direccion\": \"Calle 106 $ 22 - 41\",\n    \"tarjetaCreditoRegistrada\": \"Visa 1234452312\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Crea un nuevo cliente, la base de datos realiza la asignación del id y se obtiene como respuesta el nuevo cliente con su respectivo id"
+			},
+			"response": []
+		},
+		{
+			"name": "crear una compra",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c24b9e7d-1daa-4241-9bbe-1abbdc651277",
+						"exec": [
+							"var data = JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_compra_fromcompracalificacion_id\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precio\": 1000,\n    \"tipoDePago\" : \"asdf\",\n    \"mascota\":{\n    \t\"id\":{{new_mascota_fromcompracalificacion_id}}\n    },\n    \"relacionCliente\":{\n    \t\"id\":{{new_cliente_fromcompracalificacion_id}}\n    }\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1a802a0-b69e-4ac4-b2e7-d5dac5da1fa6",
+						"exec": [
+							"var data = JSON.parse(responseBody)",
+							"postman.setGlobalVariable(\"new_calificacion_fromcompracalificacion_id\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"5\", \n\t\"comentarios\":\"excelente servicio\",\n\t\"compra\":{\n\t\t\"id\":{{new_compra_fromcompracalificacion_id}}\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "dar calificacion de una compra",
 			"request": {
 				"method": "GET",
@@ -15,7 +359,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/1/calificaciones/",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/compras/{{new_compra_fromcompracalificacion_id}}/calificaciones",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -25,9 +369,8 @@
 						"s3_mascotas-api",
 						"api",
 						"compras",
-						"1",
-						"calificaciones",
-						""
+						"{{new_compra_fromcompracalificacion_id}}",
+						"calificaciones"
 					]
 				}
 			},

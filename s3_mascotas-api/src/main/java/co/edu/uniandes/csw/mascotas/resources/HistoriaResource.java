@@ -128,7 +128,7 @@ public class HistoriaResource {
         if (historiaEntity == null) {
             throw new WebApplicationException("The resource /historias/" + historiaId + "doesn't exist.", 404);            
         }
-        historiaLogic.deleteHistoria(historiaEntity);
+        historiaLogic.deleteHistoria(historiaId);
     }
     
     private List<HistoriaDTO> listEntity2DTO(List<HistoriaEntity> entityList){

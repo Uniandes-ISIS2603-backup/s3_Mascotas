@@ -40,8 +40,8 @@ public class HistoriaPersistence {
         return q.getResultList();
     }
     
-    public HistoriaEntity find(Long clienteId){
-        return em.find(HistoriaEntity.class, clienteId);
+    public HistoriaEntity find(Long historiaId){
+        return em.find(HistoriaEntity.class, historiaId);
     }
     
     public HistoriaEntity update(HistoriaEntity historiaEntity){
@@ -49,9 +49,8 @@ public class HistoriaPersistence {
         return em.merge(historiaEntity);
     }
     
-    public void delete(HistoriaEntity cliente){
-        em.getTransaction();
-        em.remove(cliente);
-        em.getTransaction().commit();
+    public void delete(Long historiaId){
+        HistoriaEntity historia = em.find(HistoriaEntity.class, historiaId);
+        em.remove(historia);
     }
 }

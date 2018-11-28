@@ -84,9 +84,9 @@ public class CalificacionLogic
         return newEntity;
     }
     
-    public void deleteCalificacion(CalificacionEntity calif) throws BusinessLogicException{
-        if(calif == null || persistence.find(calif.getId()) == null)
+    public void deleteCalificacion(Long califId) throws BusinessLogicException{
+        if(califId == null || persistence.find(califId) == null)
             throw new BusinessLogicException("calificacion invalida al eliminar");
-        persistence.delete(calif.getId());
+        persistence.delete(califId);
     }
 }

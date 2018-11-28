@@ -127,7 +127,7 @@ public class CalificacionResource {
         if (califEntity == null) {
             throw new WebApplicationException("The resource /calificaciones/" + califId + "doesn't exist.", 404);            
         }
-        calificacionLogic.deleteCalificacion(califEntity);
+        calificacionLogic.deleteCalificacion(califId);
     }
     
     public List<CalificacionDTO> convertirLista(List<CalificacionEntity> pLista)

@@ -6,16 +6,201 @@
 	},
 	"item": [
 		{
-			"name": "dar historia de una mascota",
+			"name": "crear especie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cff3e756-d734-4388-a431-f47e7ed9984c",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_especie_frommascotahistoria_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"nombre\":\"EspecieTestMascotaHistoria\",\n\t\"imagen\":\"imagenx\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/1/historias/",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "crear especie",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Ejemplo\"\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"s3_mascotas-api",
+								"api",
+								"especies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "27",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Sep 2018 05:51:48 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN",
+							"name": "X-Frame-Options",
+							"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\":4,\"nombre\":\"Ejemplo\"}"
+				}
+			]
+		},
+		{
+			"name": "Crear Raza",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9232184b-2ac0-453d-a930-47d268919335",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_raza_fromhistoria_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"razafromHistoria\",\n\t\"imagen\":\"urlEjem\",\n\t\"especie\":{\n\t\t\"id\":{{new_especie_fromhistoria_id}}\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"razas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed37744f-9750-4942-ae0c-a5dcf7b2ccbf",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_mascota_frommascotahistoria_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\" : \"perrito\",\n\t\"edad\": \"4\",\n\t\"genero\": \"g\",\n\t\"color\": \"cahrdhrd\",\n\t\"precio\": \"6\",\n\t\"imagen\":\"url nuevo\",\n\t\"raza\":{\n\t\t\"id\":{{new_raza_frommascotahistoria_id}}\n\t}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -25,9 +210,136 @@
 						"s3_mascotas-api",
 						"api",
 						"mascotas",
-						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Historia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d049c02c-dfc7-4590-93f7-b8340e4ddee0",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_historia_frommascotahistoria_id\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"foto\":\"image\",\n\t\"texto\":\"se encontro en la calle\",\n\t\"mascota\":{\n\t\t\"id\":{{new_mascota_frommascotahistoria_id}}\n\t}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/historias/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
 						"historias",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dar historia de una mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1983360-1f7d-48a3-a745-e353e45c69b3",
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () { ",
+							"    pm.response.to.not.be.error; ",
+							"    pm.response.to.have.jsonBody(\"\"); ",
+							"    pm.response.to.not.have.jsonBody(\"error\"); ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/{{new_mascota_fromhistoria_id}}/historias",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						"{{new_mascota_fromhistoria_id}}",
+						"historias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dar historia de una mascota Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1983360-1f7d-48a3-a745-e353e45c69b3",
+						"exec": [
+							"tests[\"Genera error por la mascota\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/0/historias",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_mascotas-api",
+						"api",
+						"mascotas",
+						"0",
+						"historias"
 					]
 				}
 			},

@@ -78,8 +78,8 @@ public class HistoriaLogic {
         return newEntity;
     }
     
-    public void deleteHistoria(HistoriaEntity historia) throws BusinessLogicException{
-        if(historia == null || persistence.find(historia.getId()) == null)
+    public void deleteHistoria(Long historia) throws BusinessLogicException{
+        if(historia == null || persistence.find(historia) == null)
             throw new BusinessLogicException("historia invalida al eliminar");
         persistence.delete(historia);
     }
