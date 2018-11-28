@@ -14,7 +14,7 @@
 						"id": "cff3e756-d734-4388-a431-f47e7ed9984c",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_nombre_a\",data.nombre);",
+							"postman.setGlobalVariable(\"new_especie_fromespecie_id\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
 							"console.log(data.id);"
 						],
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"EspecieTest\",\n\t\"imagen\":\"imagenx\"\n}"
+					"raw": "{\n\t\"nombre\":\"EspecieTestFromEspecie\",\n\t\"imagen\":\"imagenx\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
@@ -130,12 +130,12 @@
 					"listen": "test",
 					"script": {
 						"id": "0eb39653-2062-4165-a0b2-9bec6fbd7f66",
-						"type": "text/javascript",
 						"exec": [
 							"",
 							"tests[\"No se deberia obtener una especie con un nombre que ya existe\"] = responseCode.code === 412;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se puede crear la especie\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -149,7 +149,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"EspecieTest\"\n}"
+					"raw": "{\n\t\"nombre\":\"EspecieTestFromEspecie\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies",
@@ -287,12 +287,10 @@
 					"listen": "test",
 					"script": {
 						"id": "b4531208-e708-405d-9041-2097f9360344",
-						"type": "text/javascript",
 						"exec": [
-							"console.log(responseBody);",
-							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -304,7 +302,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/{{new_especie_fromespecie_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -314,7 +312,7 @@
 						"s3_mascotas-api",
 						"api",
 						"especies",
-						"1"
+						"{{new_especie_fromespecie_id}}"
 					]
 				}
 			},
@@ -327,11 +325,11 @@
 					"listen": "test",
 					"script": {
 						"id": "f2e00162-1983-4437-bc90-617ab54811b1",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se deberia obtener una especie con un id que no existe\"] = responseCode.code === 404;",
 							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /especies/0 no existe.\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -410,12 +408,12 @@
 					"listen": "test",
 					"script": {
 						"id": "2953d165-8de1-4546-82ea-3d289158a51b",
-						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
 							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -432,7 +430,7 @@
 					"raw": "{\n\t\"nombre\":\"yahtsu\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/{{new_especie_fromespecie_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -442,7 +440,7 @@
 						"s3_mascotas-api",
 						"api",
 						"especies",
-						"1"
+						"{{new_especie_fromespecie_id}}"
 					]
 				}
 			},
@@ -530,10 +528,10 @@
 					"listen": "test",
 					"script": {
 						"id": "4ab31a10-4993-43ae-8fd5-517adf3817e3",
-						"type": "text/javascript",
 						"exec": [
 							"tests[\"No se recibe ningun dato, como es esperado del DELETE\"] = responseCode.code === 204;"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -545,7 +543,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/1",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/especies/{{new_especie_fromespecie_id}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -555,7 +553,7 @@
 						"s3_mascotas-api",
 						"api",
 						"especies",
-						"1"
+						"{{new_especie_fromespecie_id}}"
 					]
 				}
 			},

@@ -131,7 +131,7 @@
 						"id": "9232184b-2ac0-453d-a930-47d268919335",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_raza_fromhistoria_id\",data.id);",
+							"postman.setGlobalVariable(\"new_raza_frommascotahistoria_id\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -150,7 +150,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"razafromHistoria\",\n\t\"imagen\":\"urlEjem\",\n\t\"especie\":{\n\t\t\"id\":{{new_especie_fromhistoria_id}}\n\t}\n}"
+					"raw": "{\n\t\"nombre\":\"razafromMascotaHistoria\",\n\t\"imagen\":\"urlEjem\",\n\t\"especie\":{\n\t\t\"id\":{{new_especie_frommascotahistoria_id}}\n\t}\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/razas/",
