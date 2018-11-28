@@ -60,13 +60,4 @@ public class ClienteEntity extends BaseEntity implements Serializable
     public void setCompras(List<CompraEntity> compras) {
         this.compras = compras;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (! super.equals(obj)) {
-          return false;
-        }
-        ClienteEntity fobj = (ClienteEntity) obj;
-        return fobj.getCorreo().equals(correo);
-    }
 }

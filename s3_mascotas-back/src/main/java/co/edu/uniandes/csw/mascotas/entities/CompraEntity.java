@@ -71,13 +71,4 @@ public class CompraEntity extends BaseEntity implements Serializable{
     public void setTipoDePago(String tipoDePago) {
         this.tipoDePago = tipoDePago;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (! super.equals(obj)) {
-          return false;
-        }
-        CompraEntity fobj = (CompraEntity) obj;
-        return tipoDePago.equals(fobj.getTipoDePago());
-    }
 }

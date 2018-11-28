@@ -47,14 +47,5 @@ public class CalificacionEntity extends BaseEntity implements Serializable
     public void setCompra(CompraEntity compra) {
         this.compra = compra;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (! super.equals(obj)) {
-          return false;
-        }
-        CalificacionEntity fobj = (CalificacionEntity) obj;
-        return comentarios.equals(fobj.getComentarios());
-    }
 }
 

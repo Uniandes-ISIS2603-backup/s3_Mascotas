@@ -48,14 +48,5 @@ public class EspecieEntity extends BaseEntity implements Serializable{
     public void setRazas(List<RazaEntity> razas){
         this.razas = razas;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (! super.equals(obj)) {
-          return false;
-        }
-        EspecieEntity fobj = (EspecieEntity) obj;
-        return nombre.equals(fobj.getNombre());
-    }
 }
 

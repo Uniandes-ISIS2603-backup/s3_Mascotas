@@ -56,12 +56,4 @@ public class HistoriaEntity extends BaseEntity implements Serializable
         this.mascota = mascota;
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        if (! super.equals(obj)) {
-          return false;
-        }
-        HistoriaEntity fobj = (HistoriaEntity) obj;
-        return texto.equals(fobj.getTexto());
-    }
 }
