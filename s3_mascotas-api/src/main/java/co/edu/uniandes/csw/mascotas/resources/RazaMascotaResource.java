@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.mascotas.resources;
 
 import co.edu.uniandes.csw.mascotas.dtos.MascotaDTO;
+import co.edu.uniandes.csw.mascotas.ejb.MascotaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.RazaLogic;
 import co.edu.uniandes.csw.mascotas.ejb.RazaMascotaLogic;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
@@ -17,7 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -43,6 +43,9 @@ public class RazaMascotaResource {
     
     @Inject
     private RazaLogic razaLogic;
+    
+    @Inject
+    private MascotaLogic mascotaLogic;
 
     /**
      * Retorna todas las mascotas asociadas con la raza especificada
@@ -65,6 +68,10 @@ public class RazaMascotaResource {
         RazaEntity r = razaLogic.getRaza(razasId);
         if (r == null || r.getDeleted()) {
             throw new WebApplicationException(NA1 + razasId + NA2, 404);
+        }
+        MascotaEntity m = mascotaLogic.getMascota(mascotasId);
+        if (m == null || m.getDeleted()) {
+            throw new WebApplicationException("the resource /mascotas/" + mascotasId + NA2, 404);
         }
         return new MascotaDTO(razaMascotaLogic.getMascota(razasId, mascotasId));
     }

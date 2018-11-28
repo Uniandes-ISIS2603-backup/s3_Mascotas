@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.mascotas.ejb.RazaMascotaLogic;
 import co.edu.uniandes.csw.mascotas.entities.MascotaEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +19,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import javax.validation.constraints.AssertFalse;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -113,46 +111,22 @@ public class RazaMascotaLogicTest {
             listaRazas.add(nueva);
         }
     }  
-    
-    @Test
-    public void addMascotaTest() throws BusinessLogicException{
-        RazaEntity r = listaRazas.get(0);
-        MascotaEntity m1 = listaMascotas.get(0);
-        MascotaEntity m2 = listaMascotas.get(1);
-        MascotaEntity m3 = listaMascotas.get(2);
-        
-        razaMascotaLogic.addMascota(r.getId(), m1);
-        razaMascotaLogic.addMascota(r.getId(), m2);
-        razaMascotaLogic.addMascota(r.getId(), m3);
-        
-        RazaEntity modR = razaLogic.getRaza(r.getId());
-        MascotaEntity modM1 = mascotaLogic.getMascota(m1.getId());
-        MascotaEntity modM2 = mascotaLogic.getMascota(m2.getId());
-        MascotaEntity modM3 = mascotaLogic.getMascota(m3.getId());
-        
-        Assert.assertEquals(modM1.getRaza().getNombre(), modR.getNombre());
-        Assert.assertEquals(modM2.getRaza().getNombre(), modR.getNombre());
-        Assert.assertEquals(modM3.getRaza().getNombre(), modR.getNombre());
-        
-        List<MascotaEntity> list = modR.getMascotas();
-        Assert.assertEquals(3, list.size());
-    }
 
     @Test
     public void getMascotas() throws BusinessLogicException{
         RazaEntity r = listaRazas.get(0);
         MascotaEntity m1 = listaMascotas.get(0);
+        m1.setRaza(r);
         MascotaEntity m2 = listaMascotas.get(1);
+        m2.setRaza(r);
         MascotaEntity m3 = listaMascotas.get(2);
+        m3.setRaza(r);
 
-        razaMascotaLogic.addMascota(r.getId(), m1);
-        razaMascotaLogic.addMascota(r.getId(), m2);
-        razaMascotaLogic.addMascota(r.getId(), m3);
+        mascotaLogic.crearMascota(m1);
+        mascotaLogic.crearMascota(m2);
+        mascotaLogic.crearMascota( m3);
 
         RazaEntity modR = razaLogic.getRaza(r.getId());
-        MascotaEntity modM1 = mascotaLogic.getMascota(m1.getId());
-        MascotaEntity modM2 = mascotaLogic.getMascota(m2.getId());
-        MascotaEntity modM3 = mascotaLogic.getMascota(m3.getId());
 
         List<String> nombres = new ArrayList<>();
         List<String> nombresEsperados = new ArrayList<>();

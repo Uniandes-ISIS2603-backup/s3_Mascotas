@@ -30,25 +30,9 @@ public class ClienteComprasLogic {
     
     @Inject
     private CompraPersistence compraPersistence;
-    
-    public CompraEntity addCompra(Long compraId, Long clienteId) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO, "Relacionando compra {0} con cliente {1}", new Object[]{compraId, clienteId});
-        CompraEntity compraEntity = compraPersistence.find(compraId);
-        if(compraEntity == null){
-            throw new BusinessLogicException("La compra no existe");
-        }
-        ClienteEntity clienteEntity = clientePersistence.find(clienteId);
-        if(clienteEntity == null){
-            throw new BusinessLogicException("El cliente no existe");
-        }
-        clienteEntity.getCompras().add(compraEntity);
-        compraEntity.setCliente(clienteEntity);
-        clientePersistence.update(clienteEntity);
-        return compraPersistence.find(compraId);
-    }
     public List<CompraEntity> getCompras(Long clienteId)
     {
+        LOGGER.log(Level.INFO,"Checking compras from cliente id: {0}", clienteId);
         return clientePersistence.find(clienteId).getCompras();
     }  
     public CompraEntity getCompra(Long cliente, Long compra)throws BusinessLogicException{

@@ -31,45 +31,25 @@ public class EspecieRazaLogic {
     @Inject
     private RazaPersistence razaPersistence;
     
-    @Inject
-    private RazaLogic razaLogic;      
-    
-        /**
-     * Relaciona una raza con su especie (ya existentes)
-     * @param especiesId
-     * @param mascotasId
-     * @return instancia de Especie que fue asociada con la raza
-     */
-    public EspecieEntity addRaza(Long especiesId, RazaEntity razaEntity) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO, "Creating raza linked with especie id = {0}", especiesId);
-        RazaEntity raza = razaLogic.crearRaza(razaEntity);
-        EspecieEntity especie = especiePersistence.find(especiesId);
-        if(raza == null || raza.getDeleted()){
-            throw new BusinessLogicException("The race doesn't exist.");
-        }
-        especie.getRazas().add(raza);
-        raza.setEspecie(especie);
-        razaPersistence.update(raza);
-        return especie;
-    }
-    
     /**
      * Retorna la colección de razas asociadas a una especie concreta
      * @param especiesId
      * @return List de RazaEntity
      */
     public List<RazaEntity> obtenerRazas(Long especiesId){
+        LOGGER.log(Level.INFO, "Consultando las razas de la especie id: {0}", especiesId);
         return especiePersistence.find(especiesId).getRazas();
     }
     
     /**
      * Retorna la raza asociada a la especie identificada por el parámetro
      * @param especiesId
-     * @param mascotasId
+     * @param razasId
      * @return Entidad de la raza
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     public RazaEntity obtenerRaza(Long especiesId, Long razasId)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Consultando la raza id:{1} de la especie id: {0}", new Object[]{especiesId, razasId});
         List<RazaEntity> razas = obtenerRazas(especiesId);
         RazaEntity razaBuscada = razaPersistence.find(razasId);
         int posicion = razas.indexOf(razaBuscada);
@@ -78,16 +58,5 @@ public class EspecieRazaLogic {
         }else{
             throw new BusinessLogicException("La raza no está asociada con la especie");
         }
-    }
-    
-    /**
-     * Elimina la relación entre una raza y una especie (ya existentes)
-     * @param especiesId
-     * @param mascotasId 
-     */
-    public void removerRaza(Long especiesId, Long razasId){
-        RazaEntity r = razaPersistence.find(razasId);
-        EspecieEntity e = especiePersistence.find(especiesId);
-        e.getRazas().remove(r);
     }
 }

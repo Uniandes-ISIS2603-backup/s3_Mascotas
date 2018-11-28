@@ -23,11 +23,13 @@ public class RazaDTO implements Serializable{
     }
     
     public RazaDTO(RazaEntity raza){
-        this.id = raza.getId();
-        this.nombre = raza.getNombre();
-        this.imagen = raza.getImagen();
-        if(raza.getEspecie()!=null)
-            this.especie = new EspecieDTO(raza.getEspecie());
+        if(raza != null){
+            this.id = raza.getId();
+            this.nombre = raza.getNombre();
+            this.imagen = raza.getImagen();
+            if(raza.getEspecie()!=null)
+                this.especie = new EspecieDTO(raza.getEspecie());
+        }
     }
     
     public String getImagen() {

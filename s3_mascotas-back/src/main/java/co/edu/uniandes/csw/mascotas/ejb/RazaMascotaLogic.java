@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.mascotas.persistence.MascotaPersistence;
 import co.edu.uniandes.csw.mascotas.persistence.RazaPersistence;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -32,37 +33,12 @@ public class RazaMascotaLogic {
     private MascotaPersistence mascotaPersistence;
     
     /**
-     * Relaciona una raza con su mascota (ya existentes)
-     * @param razasId
-     * @param mascotaIngresada
-     * @return instancia de razaEntity que fue asociada con la mascota
-     */
-    public RazaEntity addMascota(Long razasId, MascotaEntity mascotaIngresada) throws BusinessLogicException{
-        RazaEntity raza = razaPersistence.find(razasId);
-        
-        LOGGER.info("Pet creation process begins");
-        if (mascotaIngresada.getEdad() < 0) {
-            throw new BusinessLogicException("age is incorrect");
-        }
-        MascotaEntity mascota = mascotaPersistence.create(mascotaIngresada);
-        LOGGER.info("Pet creation finishes");
-        
-        if(mascota == null || mascota.getDeleted()){
-            throw new BusinessLogicException("The pet doesn't exist.");
-        }
-        raza.getMascotas().add(mascota);
-        mascota.setRaza(raza);
-        mascotaPersistence.update(mascota);
-        razaPersistence.update(raza);
-        return razaPersistence.find(razasId);
-    }
-    
-    /**
      * Retorna la colección de mascotas asociadas a una raza concreta
      * @param razasId
      * @return List de MascotaEntity
      */
     public List<MascotaEntity> getMascotas(Long razasId){
+        LOGGER.log(Level.INFO, "Consultando las mascotas de la raza id: {0}", razasId);
         return razaPersistence.find(razasId).getMascotas();
     }
     
@@ -71,8 +47,10 @@ public class RazaMascotaLogic {
      * @param razasId
      * @param mascotasId
      * @return Entidad de la mascota
+     * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     public MascotaEntity getMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Consultando la mascota id: {0} de la raza id: {1]", new Object[]{mascotasId, razasId});
         List<MascotaEntity> mascotas = getMascotas(razasId);
         MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
         if(mascotaBuscada == null){
