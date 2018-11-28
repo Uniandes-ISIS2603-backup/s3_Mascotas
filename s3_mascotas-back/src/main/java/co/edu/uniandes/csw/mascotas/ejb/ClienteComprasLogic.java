@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.ejb;
 
-import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.entities.CompraEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
@@ -32,7 +31,6 @@ public class ClienteComprasLogic {
     private CompraPersistence compraPersistence;
     public List<CompraEntity> getCompras(Long clienteId)
     {
-        LOGGER.log(Level.INFO,"Checking compras from cliente id: {0}", clienteId);
         return clientePersistence.find(clienteId).getCompras();
     }  
     public CompraEntity getCompra(Long cliente, Long compra)throws BusinessLogicException{

@@ -25,9 +25,7 @@ import java.util.logging.Logger;
 @Path("mascotas/{mascotasId : \\d+}/historias")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class MascotaHistoriaResource 
-{
-    private static final Logger LOGGER = Logger.getLogger(MascotaHistoriaResource.class.getName());
+public class MascotaHistoriaResource {
     @Inject
     private MascotaHistoriaLogic mascotaHistoriaLogic;
     
@@ -39,7 +37,6 @@ public class MascotaHistoriaResource
      */
     @GET
     public HistoriaDTO obtenerHistoria(@PathParam("mascotasId") Long mascotaId) throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Begins query of story related to pet id = {0}", mascotaId);
         return new HistoriaDTO(mascotaHistoriaLogic.obtenerHistoria(mascotaId));
     }
 }

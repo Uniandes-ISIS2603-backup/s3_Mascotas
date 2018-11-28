@@ -41,14 +41,10 @@ public class CompraCalificacionResource {
     {
         LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: input: {0}", compraId);
         if(compraLogic.getCompra(compraId) == null)
-        {
             throw new WebApplicationException("El recurso /compras/" + compraId + " no existe.", 404);
-        }
         CalificacionEntity calificacion = compraCalificacionLogic.getCalificacion(compraId);
         if(calificacion == null)
-        {
             throw new WebApplicationException("El recurso /compras/" + compraId + " no tiene calificacion.", 404);
-        }
         else
         {
             LOGGER.log(Level.INFO, "CompraCalificacionResource getCalificacion: output: {0}", calificacion);

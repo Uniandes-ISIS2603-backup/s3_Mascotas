@@ -38,10 +38,8 @@ public class RazaMascotaLogic {
      * @return List de MascotaEntity
      */
     public List<MascotaEntity> getMascotas(Long razasId){
-        LOGGER.log(Level.INFO, "Consultando las mascotas de la raza id: {0}", razasId);
         return razaPersistence.find(razasId).getMascotas();
     }
-    
     /**
      * Retorna la mascota asociada a la raza identificada por el parámetro
      * @param razasId
@@ -50,7 +48,7 @@ public class RazaMascotaLogic {
      * @throws co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException
      */
     public MascotaEntity getMascota(Long razasId, Long mascotasId)throws BusinessLogicException{
-        LOGGER.log(Level.INFO, "Consultando la mascota id: {0} de la raza id: {1]", new Object[]{mascotasId, razasId});
+        LOGGER.log(Level.INFO, "Consultando la mascota id: {0} de la raza id: {1}", new Object[]{mascotasId, razasId});
         List<MascotaEntity> mascotas = getMascotas(razasId);
         MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
         if(mascotaBuscada == null){
