@@ -289,7 +289,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/{{new_mascota_fromhistoria_id}}/historias",
+					"raw": "http://{{ip}}:{{puerto}}/s3_mascotas-api/api/mascotas/{{new_mascota_frommascotahistoria_id}}/historias",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -299,7 +299,7 @@
 						"s3_mascotas-api",
 						"api",
 						"mascotas",
-						"{{new_mascota_fromhistoria_id}}",
+						"{{new_mascota_frommascotahistoria_id}}",
 						"historias"
 					]
 				}
@@ -307,7 +307,7 @@
 			"response": []
 		},
 		{
-			"name": "dar historia de una mascota Copy",
+			"name": "dar historia de una mascota inexistente",
 			"event": [
 				{
 					"listen": "test",
