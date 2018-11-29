@@ -58,7 +58,6 @@ public class CompraLogic {
     public List<CompraEntity> getCompras(){
         LOGGER.log(Level.INFO, "Buscando compras");
         List<CompraEntity> compras = persistence.findAll();
-        LOGGER.log(Level.INFO, "Ending search");
         return compras;
     }
     
@@ -68,23 +67,12 @@ public class CompraLogic {
         if (compraEntity == null) {
             LOGGER.log(Level.SEVERE, "The purchase with id = {0} does not exists", compraId);            
         }
-        else
-        {
-            if(compraEntity.getMascota() == null){
-            LOGGER.log(Level.INFO, "La mascota de la compra es: {0}", compraEntity.getMascota());
-            }
-            else{
-                LOGGER.log(Level.INFO, "La compra no tiene mascota");
-            }
-        }
-        LOGGER.log(Level.INFO, "Ending search for the pet with id {0}", compraId);
         return compraEntity;
     }
     
     public CompraEntity updateCompra(Long compraId, CompraEntity compraEntity){
         LOGGER.log(Level.INFO, "Updating the pet with id = {0}", compraId);
         CompraEntity newEntity = persistence.update(compraEntity);
-        LOGGER.log(Level.INFO, "Finished update on pet with id = {0}", compraEntity.getId());
         return newEntity;
     }
 }

@@ -33,28 +33,23 @@ public class EspecieLogic
             throw new BusinessLogicException("No se puede crear la especie");
         }
         EspecieEntity nuevaEntity = persistence.create(entity);
-        LOGGER.info("Species creation finishes");
         return nuevaEntity;
     }
     
     public List<EspecieEntity> getEspecies() {
-        LOGGER.info("Listing all species");
         List<EspecieEntity> lista = persistence.findAll();
-        LOGGER.info("Species list created");
         return lista;
     }
     
     public EspecieEntity getSpecies(Long speciesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la especie con id = {0}", speciesId);
         EspecieEntity especieEntity = persistence.find(speciesId);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la especie con id = {0}", speciesId);
         return especieEntity;
     }
     
     public EspecieEntity updateSpecies(Long speciesId, EspecieEntity especieEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la especie con id = {0}", speciesId);
         EspecieEntity newEspecieEntity = persistence.update(especieEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la especie con id = {0}", speciesId);
         return newEspecieEntity;
     }
     
@@ -65,7 +60,6 @@ public class EspecieLogic
             throw new BusinessLogicException("No se puede borrar la especie con id = " + speciesId + " porque tiene razas asociadas");
         }
         getSpecies(speciesId).setDeleted(Boolean.TRUE);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la especie con id = {0}", speciesId);
     }
     private boolean mismoNombre(EspecieEntity entity)
     {

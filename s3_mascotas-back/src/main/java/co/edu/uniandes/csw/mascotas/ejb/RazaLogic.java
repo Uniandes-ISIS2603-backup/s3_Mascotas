@@ -42,15 +42,13 @@ public class RazaLogic
             throw new BusinessLogicException("The race with the name " + entity.getNombre() + " already exist.");
         }
         persistence.create(entity);
-        LOOGER.info("Race creation finishes");
         return entity;
     }
     
     public RazaEntity getRaza(Long razasId){
         RazaEntity razaEntity = persistence.find(razasId);
         if (razaEntity == null || razaEntity.getDeleted()) {
-            LOOGER.log(Level.SEVERE, "The race with id = {0} does not exists", razaEntity);       
-            return null;
+            LOOGER.log(Level.SEVERE, "The race with id = {0} does not exists", razaEntity);
         }
         return razaEntity;
     }
@@ -88,7 +86,6 @@ public class RazaLogic
     public List<RazaEntity> getRazas(){
         LOOGER.log(Level.INFO, "Searching for races");
         List<RazaEntity> razas = persistence.findAll();
-        LOOGER.log(Level.INFO, "Ending search");
         return razas;
     }
     
@@ -100,9 +97,8 @@ public class RazaLogic
     private boolean verificarNombreRepetido(RazaEntity raza){
         List<RazaEntity> razas = getRazas();
         for (RazaEntity r : razas){
-            if (raza.getNombre().equals(r.getNombre())) {
+            if (raza.getNombre().equals(r.getNombre()))
                 return true;
-            }
         }
         return false;
     }
