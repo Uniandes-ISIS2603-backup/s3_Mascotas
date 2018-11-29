@@ -10,8 +10,6 @@ import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
 import co.edu.uniandes.csw.mascotas.persistence.CompraPersistence;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,7 +20,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ClienteComprasLogic {
-      private static final Logger LOGGER = Logger.getLogger(ClienteComprasLogic.class.getName());
     
     @Inject
     private ClientePersistence clientePersistence;

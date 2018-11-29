@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.mascotas.ejb;
 
-import co.edu.uniandes.csw.mascotas.entities.EspecieEntity;
 import co.edu.uniandes.csw.mascotas.entities.RazaEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.EspeciePersistence;
@@ -37,7 +36,6 @@ public class EspecieRazaLogic {
      * @return List de RazaEntity
      */
     public List<RazaEntity> obtenerRazas(Long especiesId){
-        LOGGER.log(Level.INFO, "Consultando las razas de la especie id: {0}", especiesId);
         return especiePersistence.find(especiesId).getRazas();
     }
     
