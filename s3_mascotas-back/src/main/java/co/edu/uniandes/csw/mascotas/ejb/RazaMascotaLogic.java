@@ -50,7 +50,7 @@ public class RazaMascotaLogic {
         LOGGER.log(Level.INFO, "Consultando la mascota id: {0} de la raza id: {1}", new Object[]{mascotasId, razasId});
         List<MascotaEntity> mascotas = getMascotas(razasId);
         MascotaEntity mascotaBuscada = mascotaPersistence.find(mascotasId);
-        if(mascotaBuscada == null) throw new BusinessLogicException("la mascota no existe");
+        if(mascotaBuscada == null  || mascotaBuscada.getDeleted()) throw new BusinessLogicException("la mascota no existe");
         for(int i = 0; i < mascotas.size(); i++){
             if(Objects.equals(mascotas.get(i).getId(), mascotaBuscada.getId())) return mascotaBuscada;
         }

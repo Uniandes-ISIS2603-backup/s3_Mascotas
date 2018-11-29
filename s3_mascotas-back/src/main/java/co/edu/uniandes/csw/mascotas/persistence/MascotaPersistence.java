@@ -40,7 +40,9 @@ public class MascotaPersistence {
     }
     
     public MascotaEntity find(Long mascotasId){
-        return em.find(MascotaEntity.class, mascotasId);
+        MascotaEntity masc = em.find(MascotaEntity.class, mascotasId);
+        if(masc == null || masc.getDeleted()) return null;
+        else return masc;
     }
     
     public MascotaEntity update(MascotaEntity mascotaEntity){
