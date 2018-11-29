@@ -32,25 +32,21 @@ public class EspecieLogic
         if(entity == null || mismoNombre(entity)){
             throw new BusinessLogicException("No se puede crear la especie");
         }
-        EspecieEntity nuevaEntity = persistence.create(entity);
-        return nuevaEntity;
+        return persistence.create(entity);
     }
     
     public List<EspecieEntity> getEspecies() {
-        List<EspecieEntity> lista = persistence.findAll();
-        return lista;
+        return persistence.findAll();
     }
     
     public EspecieEntity getSpecies(Long speciesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la especie con id = {0}", speciesId);
-        EspecieEntity especieEntity = persistence.find(speciesId);
-        return especieEntity;
+        return persistence.find(speciesId);
     }
     
     public EspecieEntity updateSpecies(Long speciesId, EspecieEntity especieEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la especie con id = {0}", speciesId);
-        EspecieEntity newEspecieEntity = persistence.update(especieEntity);
-        return newEspecieEntity;
+        return persistence.update(especieEntity);
     }
     
     public void deleteEspecie(Long speciesId) throws BusinessLogicException {

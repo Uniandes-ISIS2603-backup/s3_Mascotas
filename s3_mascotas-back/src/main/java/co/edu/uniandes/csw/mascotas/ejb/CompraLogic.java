@@ -57,8 +57,7 @@ public class CompraLogic {
     
     public List<CompraEntity> getCompras(){
         LOGGER.log(Level.INFO, "Buscando compras");
-        List<CompraEntity> compras = persistence.findAll();
-        return compras;
+        return persistence.findAll();
     }
     
     public CompraEntity getCompra(Long compraId){
@@ -72,7 +71,6 @@ public class CompraLogic {
     
     public CompraEntity updateCompra(Long compraId, CompraEntity compraEntity){
         LOGGER.log(Level.INFO, "Updating the pet with id = {0}", compraId);
-        CompraEntity newEntity = persistence.update(compraEntity);
-        return newEntity;
+        return persistence.update(compraEntity);
     }
 }

@@ -88,8 +88,7 @@ public class RazaLogic
     
     public List<RazaEntity> getRazas(){
         LOOGER.log(Level.INFO, "Searching for races");
-        List<RazaEntity> razas = persistence.findAll();
-        return razas;
+        return persistence.findAll();
     }
     
     /**
