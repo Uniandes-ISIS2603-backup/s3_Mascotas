@@ -144,9 +144,26 @@ public class HistoriaPersistenceTest {
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getFoto(), newEntity.getFoto());
     }
+    
+    /**
+     * Prueba para consultar todas las historias
+     */
+    @Test
+    public void getHistoriasTest(){
+        List<HistoriaEntity> historias = historiaPersistence.findAll();
+        Assert.assertEquals(historias.size(),data.size());
+        for(int i = 0; i < historias.size(); i++){
+            for(int j = 0; j < data.size(); j++){
+                if(historias.get(i).getId().compareTo(data.get(j).getId()) == 0){
+                    Assert.assertEquals(historias.get(i).getFoto(),data.get(j).getFoto());
+                    Assert.assertEquals(historias.get(i).getTexto(), data.get(j).getTexto());
+                }
+            }
+        }
+    }
 
     @Test
-    public void updateClienteTest() throws BusinessLogicException {
+    public void updateHistoriaTest() throws BusinessLogicException {
         HistoriaEntity entity = data.get(0);
         HistoriaEntity newEntity = fabrica.manufacturePojo(HistoriaEntity.class);
 
@@ -158,5 +175,13 @@ public class HistoriaPersistenceTest {
         Assert.assertEquals(newEntity.getId(), compareEntity.getId());
         Assert.assertEquals(newEntity.getTexto(), compareEntity.getTexto());
         Assert.assertEquals(newEntity.getFoto(), compareEntity.getFoto());
+    }
+    
+     @Test
+    public void deleteHistoriaTest(){
+        HistoriaEntity historia = data.get(data.size()-1);
+        historiaPersistence.delete(historia.getId());
+        
+        Assert.assertEquals(historiaPersistence.findAll().size(), data.size()-1);
     }
 }

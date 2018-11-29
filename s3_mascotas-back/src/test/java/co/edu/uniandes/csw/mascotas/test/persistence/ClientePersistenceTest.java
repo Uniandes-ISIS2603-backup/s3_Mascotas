@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.mascotas.entities.ClienteEntity;
 import co.edu.uniandes.csw.mascotas.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.mascotas.persistence.ClientePersistence;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -111,7 +112,7 @@ public class ClientePersistenceTest {
      * pruebas.
      */
     private void insertData(){
-        for(int i= 0; i<10;i++){
+        for(int i= 0; i<3;i++){
             ClienteEntity nueva = fabrica.manufacturePojo(ClienteEntity.class);
             em.persist(nueva);
             data.add(nueva);
@@ -133,6 +134,24 @@ public class ClientePersistenceTest {
         Assert.assertEquals(newEntity.getCorreo(),ent.getCorreo());
         Assert.assertEquals(newEntity.getDireccion(), ent.getDireccion());
         Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),ent.getTarjetaCreditoRegistrada());
+    }
+    
+    /**
+     * Prueba para consultar todos los clientes
+     */
+    @Test
+    public void getClientesTest(){
+        List<ClienteEntity> clientes = clientePersistence.findAll();
+        Assert.assertEquals(clientes.size(),data.size());
+        for(int i = 0; i < clientes.size(); i++){
+            for(int j = 0; j < data.size(); j++){
+                if(clientes.get(i).getId().compareTo(data.get(j).getId()) == 0){
+                    Assert.assertEquals(clientes.get(i).getCorreo(),data.get(j).getCorreo());
+                    Assert.assertEquals(clientes.get(i).getDireccion(), data.get(j).getDireccion());
+                    Assert.assertEquals(clientes.get(i).getTarjetaCreditoRegistrada(),data.get(j).getTarjetaCreditoRegistrada());
+                }
+            }
+        }
     }
     
     /**
@@ -164,5 +183,23 @@ public class ClientePersistenceTest {
         Assert.assertEquals(newEntity.getCorreo(),compareEntity.getCorreo());
         Assert.assertEquals(newEntity.getDireccion(),compareEntity.getDireccion());
         Assert.assertEquals(newEntity.getTarjetaCreditoRegistrada(),compareEntity.getTarjetaCreditoRegistrada());
+    }
+    
+    @Test
+    public void deleteClienteTest(){
+        ClienteEntity cliente = data.get(data.size()-1);
+        clientePersistence.delete(cliente.getId());
+        
+        Assert.assertEquals(clientePersistence.findAll().size(), data.size()-1);
+    }
+    
+    @Test
+    public void findCorreoTest(){
+        ClienteEntity cliente = data.get(0);
+        ClienteEntity rta = clientePersistence.findByCorreo(cliente.getCorreo());
+        Assert.assertNotNull(rta);
+        ClienteEntity cliente2 = fabrica.manufacturePojo(ClienteEntity.class);
+        ClienteEntity rta2 = clientePersistence.findByCorreo(cliente2.getCorreo());
+        Assert.assertNull(rta2);
     }
 }

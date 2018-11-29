@@ -130,7 +130,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    201, 'Violet', FALSE, 2, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    201, 'Violet', FALSE, 2, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Pronghorn', 78.44, 204
   );
 /* INSERT QUERY */
@@ -140,7 +140,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    202, 'Orange', FALSE, 3, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    202, 'Orange', FALSE, 3, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Yellow mongoose', 228.00, 201
   );
 /* INSERT QUERY */
@@ -150,7 +150,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    203, 'Blue', FALSE, 1, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    203, 'Blue', FALSE, 1, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Bat-eared fox', 998.95, 202
   );
 /* INSERT QUERY */
@@ -160,7 +160,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    204, 'Orange', FALSE, 10, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    204, 'Orange', FALSE, 10, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Blue-tongued lizard', 511.11, 206
   );
 /* INSERT QUERY */
@@ -170,7 +170,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    205, 'Red', FALSE, 9, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    205, 'Red', FALSE, 9, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Duck, white-faced whistling', 
     929.62, 212
   );
@@ -181,7 +181,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    206, 'Purple', FALSE, 1, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    206, 'Purple', FALSE, 1, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Possum, western pygmy', 993.85, 
     210
   );
@@ -192,7 +192,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    207, 'Yellow', FALSE, 10, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    207, 'Yellow', FALSE, 10, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Common rhea', 426.39, 212
   );
 /* INSERT QUERY */
@@ -202,7 +202,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    208, 'Green', FALSE, 9, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    208, 'Green', FALSE, 9, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'King vulture', 17.47, 206
   );
 /* INSERT QUERY */
@@ -212,7 +212,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    209, 'Aquamarine', FALSE, 4, 'M', 
+    209, 'Aquamarine', FALSE, 4, 'Macho', 
     'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Great egret', 110.16, 211
   );
@@ -223,7 +223,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    210, 'Pink', FALSE, 9, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    210, 'Pink', FALSE, 9, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Wapiti, elk,', 184.85, 201
   );
 /* INSERT QUERY */
@@ -233,7 +233,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    211, 'Blue', FALSE, 2, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    211, 'Blue', FALSE, 2, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Oryx, fringe-eared', 911.73, 201
   );
 /* INSERT QUERY */
@@ -243,7 +243,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    212, 'Mauv', FALSE, 2, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    212, 'Mauv', FALSE, 2, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'South African hedgehog', 523.31, 
     205
   );
@@ -254,7 +254,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    213, 'Goldenrod', FALSE, 3, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    213, 'Goldenrod', FALSE, 3, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Little grebe', 311.00, 210
   );
 /* INSERT QUERY */
@@ -264,7 +264,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    214, 'Orange', FALSE, 4, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    214, 'Orange', FALSE, 4, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Bahama pintail', 620.64, 207
   );
 /* INSERT QUERY */
@@ -274,7 +274,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    215, 'Orange', FALSE, 9, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    215, 'Orange', FALSE, 9, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Andean goose', 894.22, 208
   );
 /* INSERT QUERY */
@@ -284,7 +284,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    216, 'Yellow', FALSE, 7, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    216, 'Yellow', FALSE, 7, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Waxbill, black-cheeked', 791.83, 
     212
   );
@@ -295,7 +295,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    217, 'Goldenrod', FALSE, 6, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    217, 'Goldenrod', FALSE, 6, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Dusky gull', 251.84, 201
   );
 /* INSERT QUERY */
@@ -305,7 +305,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    218, 'Orange', FALSE, 6, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    218, 'Orange', FALSE, 6, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'North American river otter', 512.58, 
     209
   );
@@ -316,7 +316,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    219, 'Yellow', FALSE, 9, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    219, 'Yellow', FALSE, 9, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Horned puffin', 213.54, 212
   );
 /* INSERT QUERY */
@@ -326,7 +326,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    220, 'Teal', FALSE, 6, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    220, 'Teal', FALSE, 6, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Turtle (unidentified)', 212.61, 
     205
   );
@@ -337,7 +337,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    221, 'Yellow', FALSE, 5, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    221, 'Yellow', FALSE, 5, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Avocet, pied', 934.78, 208
   );
 /* INSERT QUERY */
@@ -347,7 +347,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    222, 'Indigo', FALSE, 4, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    222, 'Indigo', FALSE, 4, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Snake, tiger', 782.16, 207
   );
 /* INSERT QUERY */
@@ -357,7 +357,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    223, 'Fuscia', FALSE, 3, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    223, 'Fuscia', FALSE, 3, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Woylie', 541.36, 206
   );
 /* INSERT QUERY */
@@ -367,7 +367,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    224, 'Pink', FALSE, 8, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    224, 'Pink', FALSE, 8, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Squirrel, red', 32.73, 209
   );
 /* INSERT QUERY */
@@ -377,7 +377,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    225, 'Yellow', FALSE, 4, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    225, 'Yellow', FALSE, 4, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'American bison', 173.97, 207
   );
 /* INSERT QUERY */
@@ -387,7 +387,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    226, 'Green', FALSE, 2, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    226, 'Green', FALSE, 2, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Red phalarope', 315.18, 206
   );
 /* INSERT QUERY */
@@ -397,7 +397,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    227, 'Mauv', FALSE, 2, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    227, 'Mauv', FALSE, 2, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Pintail, white-cheeked', 59.78, 
     206
   );
@@ -408,7 +408,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    228, 'Blue', FALSE, 5, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    228, 'Blue', FALSE, 5, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'White-fronted bee-eater', 797.76, 
     211
   );
@@ -419,7 +419,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    229, 'Blue', FALSE, 4, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    229, 'Blue', FALSE, 4, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Magpie, australian', 170.36, 204
   );
 /* INSERT QUERY */
@@ -429,7 +429,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    230, 'Crimson', FALSE, 3, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    230, 'Crimson', FALSE, 3, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Rhea, common', 291.42, 209
   );
 /* INSERT QUERY */
@@ -439,7 +439,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    231, 'Mauv', FALSE, 9, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    231, 'Mauv', FALSE, 9, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Hyena, spotted', 491.93, 207
   );
 /* INSERT QUERY */
@@ -449,7 +449,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    232, 'Blue', FALSE, 3, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    232, 'Blue', FALSE, 3, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Stork, greater adjutant', 864.95, 
     209
   );
@@ -460,7 +460,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    233, 'Yellow', FALSE, 2, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    233, 'Yellow', FALSE, 2, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Owl, great horned', 450.25, 202
   );
 /* INSERT QUERY */
@@ -470,7 +470,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    234, 'Indigo', FALSE, 10, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    234, 'Indigo', FALSE, 10, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Nilgai', 101.76, 204
   );
 /* INSERT QUERY */
@@ -480,7 +480,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    235, 'Puce', FALSE, 6, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    235, 'Puce', FALSE, 6, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Chilean flamingo', 923.27, 209
   );
 /* INSERT QUERY */
@@ -490,7 +490,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    236, 'Puce', FALSE, 3, 'F', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    236, 'Puce', FALSE, 3, 'Hembra', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Falcon, peregrine', 509.44, 206
   );
 /* INSERT QUERY */
@@ -500,7 +500,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    237, 'Goldenrod', FALSE, 1, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    237, 'Goldenrod', FALSE, 1, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'White-winged dove', 530.70, 210
   );
 /* INSERT QUERY */
@@ -510,7 +510,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    238, 'Purple', FALSE, 8, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    238, 'Purple', FALSE, 8, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'American badger', 127.93, 206
   );
 /* INSERT QUERY */
@@ -520,7 +520,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    239, 'Blue', FALSE, 1, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    239, 'Blue', FALSE, 1, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Black-tailed tree creeper', 838.71, 
     208
   );
@@ -531,7 +531,7 @@ INSERT INTO APP.MASCOTAENTITY(
 ) 
 VALUES 
   (
-    240, 'Yellow', FALSE, 6, 'M', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
+    240, 'Yellow', FALSE, 6, 'Macho', 'http://thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png', 
     'Purple moorhen', 947.12, 202
   );
   
